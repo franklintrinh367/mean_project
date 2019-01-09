@@ -1,0 +1,27 @@
+#nav {
+    height: 10%;
+}
+
+.card {
+    text-align: center;
+    width: 25%;
+    height: 90%;
+    margin: 0 auto;
+}
+
+.card-header {
+    background-color: #007E33;
+    color: white;
+}
+
+button {
+    background-color: #2E2E2E;
+    color: white;
+    width: 60%;
+}
+
+:host {
+    display: block;
+    height: 1000px;
+    padding-top: 100px;
+}

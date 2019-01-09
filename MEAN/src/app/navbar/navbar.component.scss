@@ -1,0 +1,34 @@
+$enable-shadows: true;
+
+nav {
+    background-color: #0099CC;
+    width: 1360px;
+    height: 70px;
+}
+
+#title {
+    color: white;
+    font-size: 30px;
+}
+
+#login {
+    color: white;
+    margin-left: 100px;
+    width: 120px;
+    height: 50px;
+}
+#signup {
+    color: #01579b;
+    background-color: white;
+    width: 120px;
+    height: 50px;
+}
+
+button {
+    width: 150px;
+}
+
+.link-text {
+    font-size: 20px;
+    color: white;
+}
