@@ -53,9 +53,9 @@
           <p *ngIf="(confirm.dirty || confirm.touched || password.dirty || password.touched ) && registerForm.errors?.notMatched">Password mismatch</p>
         </div>
         <br>
-        <mat-checkbox color="warn" formControlName="checkbox">I agree with the <a href="#">Terms and Service</a></mat-checkbox>
+        <mat-checkbox color="warn" formControlName="checkbox">I agree with the <a href="#">Terms of Service</a></mat-checkbox>
         <div class="validation-wraper">
-          <p *ngIf="checkbox.errors?.unChecked && (checkbox.touched)">You must agree with the Terms and Service</p>
+          <p *ngIf="checkbox.errors?.unChecked && (checkbox.touched)">You must agree with the Terms of Service</p>
         </div>
         <!-- Sign Up Button -->
         <button id="signup-btn" mat-button class="mat-elevation-z8" [disabled]="!registerForm.valid">SIGN UP</button>

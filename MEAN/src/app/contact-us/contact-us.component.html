@@ -1,0 +1,39 @@
+<div class="wraper">
+  <mat-card class="mat-elevation-z8">
+    <mat-card-header>
+      <mat-card-title>Send us a message</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form autocomplete="off">
+        <div class="container">
+          <!-- Name -->
+          <mat-form-field>
+            <input matInput type="text" placeholder="Name">
+          </mat-form-field>
+          <!-- Email -->
+          <mat-form-field>
+            <input matInput type="text" placeholder="Email">
+          </mat-form-field>
+          <!-- Mobile -->
+          <mat-form-field>
+            <input matInput type="text" placeholder="Mobile">
+          </mat-form-field>
+          <!-- Mode -->
+          <label for="mode"><h6>Prefered mode of communication</h6></label>
+          <mat-radio-group id="mode">
+            <mat-radio-button *ngFor="let mode of modes" [value]="mode">{{mode}}</mat-radio-button>
+          </mat-radio-group>
+          <!-- Message -->
+          <mat-form-field>
+            <input matInput type="text" maxlength="256" placeholder="Message" #message/>
+            <mat-hint align="end">{{message.value.length}}/256</mat-hint>
+          </mat-form-field>
+          <br><br>
+          <!-- Submit -->
+          <button mat-button>Submit</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+<footer></footer>
