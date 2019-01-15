@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule
-, MatProgressSpinnerModule} from '@angular/material';
+, MatProgressSpinnerModule, MatCheckboxModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import {MatGridListModule} from '@angular/material/grid-list';
 import {HttpClientModule} from '@angular/common/http'
@@ -38,7 +38,8 @@ import { FooterComponent } from './footer/footer.component';
     MatGridListModule,
     MatButtonModule,
     HttpClientModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { UserService } from '../services/user.service';
-import { existingUserValidator } from '../validators/existingUserValidator';
 import { existingEmailValidator } from '../validators/existingEmailValidator';
 
 
@@ -21,12 +20,6 @@ export class RegisterCardComponent implements OnInit {
 
   buildForm() {
     return this.builder.group({
-      username: ['', [
-        Validators.required, Validators.minLength(6),
-        Validators.maxLength(25), Validators.pattern('[\\w]+')
-      ],
-      [existingUserValidator(this.userService)]
-    ],
       fullname: ['',[Validators.required, Validators.minLength(4),
       Validators.maxLength(30), Validators.pattern("[a-zA-Z\\s]+")]],
       email: ['',
@@ -37,7 +30,8 @@ export class RegisterCardComponent implements OnInit {
       [existingEmailValidator(this.userService)]
     ],
       password: ['', Validators.required],
-      confirm: [''],
+      confirm: ['', Validators.required],
+      checkbox: ['', this.checked()]
     },
     {
       validator: this.matchPassword()
@@ -55,11 +49,20 @@ export class RegisterCardComponent implements OnInit {
 
   get confirm() { return this.registerForm.get('confirm')}
 
+  get checkbox() { return this.registerForm.get('checkbox');}
+
   //Match password validator
   matchPassword(): ValidatorFn{
     return (control: FormGroup) : {[key: string] : any} | null => {
         const matched = control.controls.password.value === control.controls.confirm.value;
         return !matched? {'notMatched' : true} : null;
+    }
+  }
+
+  //Checked validator
+  checked(): ValidatorFn {
+    return (control: AbstractControl): {[key: string] : any} | null => {
+        return !control.value? {unChecked: true} : null;
     }
   }
 }
