@@ -1,5 +1,6 @@
 const user = require('../models/user');
 
+//look for existing username
 exports.find = (req, res) => {
     console.log("call to request");
     var username = req.params.username;
@@ -12,6 +13,23 @@ exports.find = (req, res) => {
     ).catch(err => {
         console.log(err);
     })
+}
+//look for existing email
+exports.findEmail = (req, res) => {
+        var email = req.params.email;
+        console.log(email)
+        user.findOne({email: email}).then(
+            result => {
+                if(result)
+                    res.json(result)
+            }
+        ).catch(
+            error => {
+                if(error){
+                    console.log(error);
+                }
+            }
+        )
 }
 
 exports.register = (req, res) => {

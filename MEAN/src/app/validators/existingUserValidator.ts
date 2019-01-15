@@ -6,12 +6,11 @@ import { UserService } from "../services/user.service";
 export function existingUserValidator(userService : UserService) : AsyncValidatorFn {
     return (control: AbstractControl) : Promise<ValidationErrors | null> | 
     Observable<ValidationErrors | null> => {
-        return timer(500).pipe(
+        return timer(1000).pipe(
             switchMap(() => {
                 if(!control.value) {
                     return of(null)
                 }
-
                 return userService.findUser(control.value).pipe(
                     map(user => user ? {'existed' : true} : null)
                 )

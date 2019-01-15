@@ -21,6 +21,7 @@
           <div *ngIf="email.invalid && (email.dirty || email.touched)">
             <p *ngIf="(email.errors | firstErrPipe) === 'required'">Email is required</p>
             <p *ngIf="(email.errors | firstErrPipe) === 'pattern'">Invalid email address</p>
+            <p *ngIf="(email.errors | firstErrPipe) === 'emailExisting'">This email has been used</p>
           </div>
         </div>
       </div>

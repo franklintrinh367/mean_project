@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { existingUserValidator } from '../validators/existingUserValidator';
+import { existingEmailValidator } from '../validators/existingEmailValidator';
 
 
 @Component({
@@ -29,10 +30,11 @@ export class RegisterCardComponent implements OnInit {
       fullname: ['',Validators.compose([Validators.required, Validators.minLength(4),
       Validators.maxLength(30), Validators.pattern("[a-zA-Z\\s]+")])],
       email: ['',
-      Validators.compose([
+      [
       Validators.pattern("[\\w]+@[a-zA-Z\\d]+\\.[a-zA-Z\\d]+\\.?[a-zA-Z\\d]+"),
       Validators.required
-      ],)
+      ],
+      existingEmailValidator(this.userService)
     ],
       password: ['', Validators.required],
       confirm: [''],

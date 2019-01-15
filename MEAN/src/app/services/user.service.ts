@@ -12,7 +12,12 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+  //Find existing user
   public findUser(username: String): Observable<User>{
       return this.http.get<User>(`${this.baseUrl}/find/${username}`);
+  }
+  //Find existing user's email
+  public findEmail(email: string) : Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}/findEmail/${email}`);
   }
 }
