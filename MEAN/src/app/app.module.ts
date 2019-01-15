@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule} from '@angular/material';
+import {MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule
+, MatProgressSpinnerModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import {MatGridListModule} from '@angular/material/grid-list';
 import {HttpClientModule} from '@angular/common/http'
@@ -13,9 +14,7 @@ import { RegisterCardComponent } from './register-card/register-card.component';
 import { FirstErrPipePipe } from './pipe/first-err-pipe.pipe';
 import { LoginComponent } from './login/login.component';
 import { UnderconstructComponent } from './underconstruct/underconstruct.component';
-import { IndexComponent } from './index/index.component';
 import { FooterComponent } from './footer/footer.component';
-import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -25,9 +24,7 @@ import { RegisterComponent } from './register/register.component';
     FirstErrPipePipe,
     LoginComponent,
     UnderconstructComponent,
-    IndexComponent,
-    FooterComponent,
-    RegisterComponent
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +37,8 @@ import { RegisterComponent } from './register/register.component';
     MatCardModule,
     MatGridListModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,27 +1,39 @@
-#nav {
-    height: 10%;
-}
 
-.card {
-    text-align: center;
+#login-card {
     width: 25%;
-    height: 90%;
+    height: 500px;
     margin: 0 auto;
+    background-image: url('../../assets/login.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
-.card-header {
-    background-color: #007E33;
-    color: white;
-}
-
-button {
-    background-color: #2E2E2E;
-    color: white;
-    width: 60%;
-}
 
 :host {
     display: block;
-    height: 1000px;
-    padding-top: 100px;
+    background-image: url('../../assets/login-bg.jpg');
+    background-size: cover;
+}
+
+.container > *{
+    width: 100%;
+}
+
+.wraper {
+    padding-top: 30px;
+    padding-bottom: 70px;
+}
+#login-btn {
+    background-color: #0099CC;
+}
+
+#signup-btn {
+    color: black;
+}
+
+.button-style {
+    width: 100%;
+    height: 50px;
+    font-size: 15px;
+    color: white;
 }

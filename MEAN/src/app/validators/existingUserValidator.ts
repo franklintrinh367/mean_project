@@ -1,6 +1,6 @@
 import { AsyncValidatorFn, AbstractControl, ValidationErrors } from "@angular/forms";
 import { Observable, of, timer} from "rxjs";
-import {map,  debounceTime, delay, switchMap, debounce} from "rxjs/operators";
+import {map,  debounceTime, delay, switchMap, debounce, take} from "rxjs/operators";
 import { UserService } from "../services/user.service";
 
 export function existingUserValidator(userService : UserService) : AsyncValidatorFn {
@@ -12,7 +12,8 @@ export function existingUserValidator(userService : UserService) : AsyncValidato
                     return of(null)
                 }
                 return userService.findUser(control.value).pipe(
-                    map(user => user ? {'existed' : true} : null)
+                    map(user => { 
+                        return user ? {existed : true} : null})
                 )
             })
         );

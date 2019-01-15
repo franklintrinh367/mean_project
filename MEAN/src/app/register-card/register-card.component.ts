@@ -25,16 +25,16 @@ export class RegisterCardComponent implements OnInit {
         Validators.required, Validators.minLength(6),
         Validators.maxLength(25), Validators.pattern('[\\w]+')
       ],
-      existingUserValidator(this.userService)
+      [existingUserValidator(this.userService)]
     ],
-      fullname: ['',Validators.compose([Validators.required, Validators.minLength(4),
-      Validators.maxLength(30), Validators.pattern("[a-zA-Z\\s]+")])],
+      fullname: ['',[Validators.required, Validators.minLength(4),
+      Validators.maxLength(30), Validators.pattern("[a-zA-Z\\s]+")]],
       email: ['',
       [
       Validators.pattern("[\\w]+@[a-zA-Z\\d]+\\.[a-zA-Z\\d]+\\.?[a-zA-Z\\d]+"),
       Validators.required
       ],
-      existingEmailValidator(this.userService)
+      [existingEmailValidator(this.userService)]
     ],
       password: ['', Validators.required],
       confirm: [''],

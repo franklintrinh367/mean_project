@@ -1,17 +1,27 @@
-<div class="login">
-  <div class="card">
-      <h3 class="card-header">Login</h3>
-    <div class="card-body">
-      <form>
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Username">
-        </div>
-        <div class="form-group">
-          <input type="password" class="form-control" placeholder="Password">
-        </div>
-      </form>
-      <button class="btn btn-lg">Login</button><br>
-      <a href="#">Forgot your password?</a>
+<br>
+<div class="wraper">
+<mat-card id="login-card" class="mat-elevation-z8">
+  <form>
+    <div class="container">
+      <!-- Login Input-->
+      <mat-form-field>
+        <input matInput type="text" placeholder="Login">
+      </mat-form-field>
+      <!-- Password Input -->
+      <mat-form-field>
+        <input matInput type="text" placeholder="Password">
+      </mat-form-field>
+      <br><br>
+      <div id="login-btn">
+        <button class="button-style mat-elevation-z8" mat-button>LOGIN</button>
+      </div>
+      <br>
+      <div id="signup-btn">
+      <button class="button-style mat-elevation-z8" mat-button mat-elevation-z8>SIGN UP</button>
+      </div>
     </div>
-  </div>
-<div>
+  </form>
+</mat-card>
+</div>
+<br>
+<footer></footer>

@@ -1,6 +1,10 @@
 #f-block-1 {
     height: 150px;
-    background-color: #0d47a1;
+    width: 25%;
+    margin: 0 auto;
+}
+#img-ul {
+    padding-left: 120px;
 }
 
 .logo {
@@ -12,16 +16,6 @@
 li {
     display: inline-block;
     padding-left: 10px;
-}
-
-#img-ul {
-    width: 16%;
-    margin: 0 auto;
-}
-
-#map-ul {
-    width: 27%;
-    margin: 0 auto;
 }
 
 a {

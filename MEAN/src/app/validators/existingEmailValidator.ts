@@ -1,7 +1,7 @@
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from "@angular/forms";
 import { Observable, timer, of } from "rxjs";
 import { UserService } from "../services/user.service";
-import { switchMap, map } from "rxjs/operators";
+import { switchMap, map, take } from "rxjs/operators";
 
 export function existingEmailValidator(userService: UserService) : AsyncValidatorFn {
     return (control:AbstractControl) : Promise<ValidationErrors | null> |

@@ -7,7 +7,6 @@ exports.find = (req, res) => {
     console.log(username);
     user.findOne({username: username}).then(
         (result) =>{
-            if(result)
                 res.json(result);
         }
     ).catch(err => {
@@ -20,8 +19,7 @@ exports.findEmail = (req, res) => {
         console.log(email)
         user.findOne({email: email}).then(
             result => {
-                if(result)
-                    res.json(result)
+                res.json(result)
             }
         ).catch(
             error => {
