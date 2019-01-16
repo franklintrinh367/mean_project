@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
-import { UserService } from '../services/user.service';
-import { existingEmailValidator } from '../validators/existingEmailValidator';
+import { UserService } from '../../../services/main-pages/user.service';
+import { existingEmailValidator } from '../../../validators/main-pages/existingEmailValidator';
 
 
 @Component({
@@ -12,6 +12,7 @@ import { existingEmailValidator } from '../validators/existingEmailValidator';
 export class RegisterCardComponent implements OnInit {
 
   private registerForm: FormGroup;
+  private modes = ['Candidate', 'Hiring Company'];
   constructor(private builder: FormBuilder, private userService: UserService) { }
 
   ngOnInit() {
@@ -31,7 +32,8 @@ export class RegisterCardComponent implements OnInit {
     ],
       password: ['', Validators.required],
       confirm: ['', Validators.required],
-      checkbox: ['', this.checked()]
+      checkbox: ['', this.checked()],
+      type: ['', this.checked()]
     },
     {
       validator: this.matchPassword()

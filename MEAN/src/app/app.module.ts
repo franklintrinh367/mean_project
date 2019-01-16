@@ -9,14 +9,14 @@ import {HttpClientModule} from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { RegisterCardComponent } from './register-card/register-card.component';
+import { NavbarComponent } from './components/main pages/navbar/navbar.component';
+import { RegisterCardComponent } from './components/main pages/register-card/register-card.component';
 import { FirstErrPipePipe } from './pipe/first-err-pipe.pipe';
-import { LoginComponent } from './login/login.component';
-import { UnderconstructComponent } from './underconstruct/underconstruct.component';
-import { FooterComponent } from './footer/footer.component';
-import { HomeComponent } from './home/home.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
+import { LoginComponent } from './components/main pages/login/login.component';
+import { UnderconstructComponent } from './components/main pages/underconstruct/underconstruct.component';
+import { FooterComponent } from './components/main pages/footer/footer.component';
+import { HomeComponent } from './components/main pages/home/home.component';
+import { ContactUsComponent } from './components/main pages/contact-us/contact-us.component';
 
 @NgModule({
   declarations: [

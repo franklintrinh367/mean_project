@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UnderconstructComponent } from './underconstruct/underconstruct.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterCardComponent } from './register-card/register-card.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
+import { UnderconstructComponent } from './components/main pages/underconstruct/underconstruct.component';
+import { LoginComponent } from './components/main pages/login/login.component';
+import { RegisterCardComponent } from './components/main pages/register-card/register-card.component';
+import { ContactUsComponent } from './components/main pages/contact-us/contact-us.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},

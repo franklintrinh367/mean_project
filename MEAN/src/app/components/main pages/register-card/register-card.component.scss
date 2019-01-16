@@ -1,9 +1,9 @@
 
 mat-card {
     width: 25%;
-    height: 500px;
+    height: 550px;
     margin: 0 auto;
-    background-image: url('../../assets/login.jpg');
+    background-image: url('../../../../assets/login.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -19,7 +19,7 @@ mat-card {
 
 :host {
     display: block;
-    background-image: url('../../assets/login-bg.jpg');
+    background-image: url('../../../../assets/login-bg.jpg');
     background-size: cover;
 }
 
@@ -29,6 +29,11 @@ mat-card {
     height: 50px;
     font-size: 15px;
     color: white;
+}
+
+mat-radio-button{
+    padding-right: 15px;
+    padding-bottom: 10px;
 }
 
 
