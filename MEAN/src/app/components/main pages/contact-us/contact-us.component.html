@@ -19,21 +19,22 @@
         <mat-form-field>
           <input matInput type="text" placeholder="Mobile">
         </mat-form-field>
-        <div class="validation-wraper"></div>
         <!-- Mode -->
         <label for="mode"><h6>Prefered mode of communication</h6></label>
         <mat-radio-group id="mode">
-          <mat-radio-button *ngFor="let mode of modes" [value]="mode">{{mode}}</mat-radio-button>
+          <mat-radio-button [value]="modes[0]" checked>{{modes[0]}}</mat-radio-button>
+          <mat-radio-button [value]="modes[1]">{{modes[1]}}</mat-radio-button>
         </mat-radio-group>
-        <div class="validation-wraper"></div>
+        <br><br>
         <!-- Message -->
         <mat-form-field>
-          <input matInput type="text" maxlength="256" placeholder="Message" #message/>
+          <textarea matInput type="text" maxlength="256" placeholder="Leave a comment" #message></textarea>
           <mat-hint align="end">{{message.value.length}}/256</mat-hint>
         </mat-form-field>
         <div class="validation-wraper"></div>
+        <br>
         <!-- Submit -->
-        <button mat-button>SUBMIT</button>
+        <button mat-button class="mat-elevation-z8">SUBMIT</button>
       </div>
     </form>
   </mat-card>
