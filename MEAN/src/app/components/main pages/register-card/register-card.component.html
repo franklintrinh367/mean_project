@@ -52,16 +52,18 @@
         <div class="validation-wraper">
           <p *ngIf="(confirm.dirty || confirm.touched || password.dirty || password.touched ) && registerForm.errors?.notMatched">Password mismatch</p>
         </div>
-        <label for="account-type">Type of User</label>
-        <mat-radio-group id="account-type">
+        <br>
+        <mat-radio-group>
           <mat-radio-button [value]="modes[0]" checked>{{modes[0]}}</mat-radio-button>
           <mat-radio-button [value]="modes[1]">{{modes[1]}}</mat-radio-button>
         </mat-radio-group>
         <br>
-        <mat-checkbox color="warn" formControlName="checkbox">I agree with the <a href="#">Terms of Service</a></mat-checkbox>
+        <br>
+        <mat-checkbox color="accent" formControlName="checkbox">I agree with the <a href="#">Terms of Service</a></mat-checkbox>
         <div class="validation-wraper">
           <p *ngIf="checkbox.errors?.unChecked && (checkbox.touched)">You must agree with the Terms of Service</p>
         </div>
+        <br>
         <!-- Sign Up Button -->
         <button id="signup-btn" mat-button class="mat-elevation-z8" [disabled]="!registerForm.valid">SIGN UP</button>
       </div>

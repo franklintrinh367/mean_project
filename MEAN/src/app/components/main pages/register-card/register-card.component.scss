@@ -1,12 +1,14 @@
 
+
 mat-card {
     width: 25%;
-    height: 550px;
+    height: 500px;
     margin: 0 auto;
     background-image: url('../../../../assets/login.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
+
 
 .wraper {
     padding-top: 30px;
@@ -33,13 +35,14 @@ mat-card {
 
 mat-radio-button{
     padding-right: 15px;
-    padding-bottom: 10px;
 }
 
 
 .validation-wraper {
-    height: 17px;
+    height: 15px;
+    border: 1px solid transparent;
     color: #ff4444;
     font-style: oblique;
-    font-size: 10px;
+    font-size: 12px;
+    padding-bottom: 8px;
 }

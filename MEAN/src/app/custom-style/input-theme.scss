@@ -1,0 +1,31 @@
+@import '~@angular/material/theming';
+
+@mixin input-theme($theme){
+    $primary: map-get($theme, primary);
+    $accent : map-get($theme, accent);
+
+    .mat-form-field-empty.mat-form-field-label,
+    .mat-radio-label,
+    .mat-checkbox-label{
+        color: mat-color($primary);
+    }
+
+    .mat-form-field-appearance-legacy .mat-form-field-underline {
+        background-color: mat-color($primary);
+    }
+    .mat-checkbox-frame,
+    .mat-radio-outer-circle {
+        border-color: mat-color($primary);
+    }
+
+    a {
+        color: mat-color($primary);
+    }
+
+    .mat-form-field {
+        height: 50px;
+    }
+    .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
+        color: mat-color($primary);
+    }
+}
