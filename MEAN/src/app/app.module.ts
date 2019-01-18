@@ -6,6 +6,7 @@ import {MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import {MatGridListModule} from '@angular/material/grid-list';
 import {HttpClientModule} from '@angular/common/http'
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,7 @@ import { UnderconstructComponent } from './components/main pages/underconstruct/
 import { FooterComponent } from './components/main pages/footer/footer.component';
 import { HomeComponent } from './components/main pages/home/home.component';
 import { ContactUsComponent } from './components/main pages/contact-us/contact-us.component';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { ContactUsComponent } from './components/main pages/contact-us/contact-u
     UnderconstructComponent,
     FooterComponent,
     HomeComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,8 @@ import { ContactUsComponent } from './components/main pages/contact-us/contact-u
     HttpClientModule,
     MatProgressSpinnerModule,
     MatCheckboxModule,
-    MatRadioModule
+    MatRadioModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

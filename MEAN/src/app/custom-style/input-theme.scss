@@ -3,6 +3,7 @@
 @mixin input-theme($theme){
     $primary: map-get($theme, primary);
     $accent : map-get($theme, accent);
+    $warn : map-get($theme , warn);
 
     .mat-form-field-empty.mat-form-field-label,
     .mat-radio-label,
@@ -32,8 +33,7 @@
     .validation-wraper {
         height: 15px;
         border: 1px solid transparent;
-        color: #ff4444;
-        font-style: oblique;
+        color: mat-color($mat-red, A400);
         font-size: 12px;
         padding-bottom: 8px;
     }

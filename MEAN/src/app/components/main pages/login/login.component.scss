@@ -1,8 +1,5 @@
 
-#login-card {
-    width: 25%;
-    height: 500px;
-    margin: 0 auto;
+mat-card {
     background-image: url('../../../../assets/login.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -25,7 +22,7 @@
     text-align: center;
 }
 #login-btn {
-    background-color: #0099CC;
+    background-color: #4285F4;
 }
 
 #signup-btn {
