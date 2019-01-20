@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule
 , MatProgressSpinnerModule, MatCheckboxModule, MatRadioModule} from '@angular/material';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatGridListModule} from '@angular/material/grid-list';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule} from '@angular/common/http';
 import {FlexLayoutModule} from '@angular/flex-layout';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,7 +19,7 @@ import { FooterComponent } from './components/main pages/footer/footer.component
 import { HomeComponent } from './components/main pages/home/home.component';
 import { ContactUsComponent } from './components/main pages/contact-us/contact-us.component';
 import { TestComponent } from './test/test.component';
-import { ClientHomepagesComponent } from './client-homepages/client-homepages.component';
+// import { ClientHomepagesComponent } from './client-homepages/client-homepages.component';
 import { HomePagesComponent } from './components/client pages/home-pages/home-pages.component';
 import { JobDetailsComponent } from './components/client pages/job-details/job-details.component';
 import { NewJobComponent } from './components/client pages/new-job/new-job.component';
@@ -43,7 +43,7 @@ import { CompanyDetailsComponent } from './components/admin pages/company-detail
     HomeComponent,
     ContactUsComponent,
     TestComponent,
-    ClientHomepagesComponent,
+    // ClientHomepagesComponent,
     HomePagesComponent,
     JobDetailsComponent,
     NewJobComponent,
