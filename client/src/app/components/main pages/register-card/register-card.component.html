@@ -1,0 +1,75 @@
+<div class="wraper"
+  
+>
+  <mat-card>
+    <form autocomplete="off" [formGroup]="registerForm">
+      <div class="container">
+        <!-- Full Name input -->
+        <mat-form-field>
+          <input matInput type="text" placeholder="Full Name" formControlName="fullname"/>
+        </mat-form-field>
+        <!-- Fullname validation -->
+        <div class="validation-wraper">
+          <div *ngIf="fullname.invalid && (fullname.dirty || fullname.touched)">
+            <p *ngIf="(fullname.errors | firstErrPipe) === 'required'">Fullname is required</p>
+            <p *ngIf="(fullname.errors | firstErrPipe) === 'minlength'">Minimum of 4 characters</p>
+            <p *ngIf="(fullname.errors | firstErrPipe) === 'maxlength'">Maximum of 30 characters</p>
+            <p *ngIf="(fullname.errors | firstErrPipe) === 'pattern'">Fullname contains only alphabetic characters</p>
+          </div>
+        </div>
+
+        <!-- Email  -->
+        <mat-form-field>
+          <input matInput type="text" placeholder="Email Address" formControlName="email"/>
+        </mat-form-field>
+        <!-- Email validation -->
+        <div class="validation-wraper">
+          <div *ngIf="email.pending"
+          style="width: 15%; margin: 0 auto; padding-top: 4px;">
+            <mat-spinner [diameter]="20"></mat-spinner>
+          </div>
+          <div *ngIf="email.invalid && (email.dirty || email.touched)">
+            <p *ngIf="(email.errors | firstErrPipe) === 'required'">Email is required</p>
+            <p *ngIf="(email.errors | firstErrPipe) === 'pattern'">Invalid email address</p>
+            <p *ngIf="(email.errors | firstErrPipe) === 'emailExisting'">This email has been used</p>
+          </div>
+          <p *ngIf="email.valid" style="color: #00C851">This email can be used</p>
+        </div>
+
+        <!-- Password -->
+        <mat-form-field>
+          <input matInput type="password" placeholder="Password" formControlName="password"/>
+        </mat-form-field>
+        <!-- Password validation -->
+        <div class="validation-wraper">
+          <div *ngIf="password.invalid && (password.dirty || password.touched)">
+            <p *ngIf="password.errors?.required">Password is required</p>
+          </div>
+        </div>
+
+        <!-- Confirm -->
+        <mat-form-field>
+          <input matInput type="password" placeholder="Confirm Password" formControlName="confirm"/>
+        </mat-form-field>
+        <div class="validation-wraper">
+          <p *ngIf="(confirm.dirty || confirm.touched || password.dirty || password.touched ) && registerForm.errors?.notMatched">Password mismatch</p>
+        </div>
+        <br>
+        <mat-radio-group>
+          <mat-radio-button [value]="modes[0]" checked>{{modes[0]}}</mat-radio-button>
+          <mat-radio-button [value]="modes[1]">{{modes[1]}}</mat-radio-button>
+        </mat-radio-group>
+        <br>
+        <br>
+        <mat-checkbox color="accent" formControlName="checkbox">I agree with the <a href="#">Terms of Service</a></mat-checkbox>
+        <div class="validation-wraper">
+          <p *ngIf="checkbox.errors?.unChecked && (checkbox.touched)">You must agree with the Terms of Service</p>
+        </div>
+        <br>
+        <!-- Sign Up Button -->
+        <button id="signup-btn" mat-button class="mat-elevation-z8" [disabled]="!registerForm.valid">SIGN UP</button>
+      </div>
+    </form>
+  </mat-card>
+</div>
+<footer></footer>
