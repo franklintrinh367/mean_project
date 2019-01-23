@@ -6,6 +6,8 @@ import { RegisterCardComponent } from './components/main pages/register-card/reg
 import { ContactUsComponent } from './components/main pages/contact-us/contact-us.component';
 import { TestComponent } from './test/test.component';
 
+/// renata test
+
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'test', component: TestComponent},
