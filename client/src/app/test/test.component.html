@@ -1,0 +1,10 @@
+<button (click)="addItem()">Add List</button>
+<button (click)="removeItem()">Remove List</button>
+
+<div style="width:200px; margin-left: 20px">
+    <ul>
+        <li *ngFor="let list of listItem" [@EnterLeave]>
+            {{list}}
+        </li>
+    </ul>
+</div>
