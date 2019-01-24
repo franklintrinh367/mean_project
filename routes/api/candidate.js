@@ -38,4 +38,18 @@ router.post('/register', (req, res) => {
     }).catch(err => console.log(err))
 })
 
+// Delete Candidate 
+router.delete('/delete/:id', (req, res) => {
+    var id = req.params.id;
+    Candidate.findOneAndDelete({_id: id}, (err, deletedCandidate) => {
+        if (err) {
+            res.status(500).send();
+        } else {
+            res.json(deletedCandidate)
+        }
+    })
+})
+
+
+
 module.exports = router;
