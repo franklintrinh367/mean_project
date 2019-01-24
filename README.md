@@ -19,7 +19,7 @@ Create front-end components in client/ folder
 
 # Commit
 5. git status
-6. git add [what_you_change]
+6. git add [relative_path_of_what_you_change]
 7. git commit -m "your_message_here"
 8. git push
 
