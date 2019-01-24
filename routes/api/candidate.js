@@ -50,6 +50,61 @@ router.delete('/delete/:id', (req, res) => {
     })
 })
 
+// Update Candidate
+router.put('/update/:id', (req, res) => {
+    var id = req.params.id;
+    Candidate.findOne({_id: id}, (err, foundCandidate) => {
+        if (err) {
+            res.status(500).send();
+        } else {
+            if(!foundCandidate) {
+                res.status(404).send();
+            } else {
+                if (req.body.firstName) {
+                    foundCandidate.firstName = req.body.firstName
+                }
+                if (req.body.lastName) {
+                    foundCandidate.lastName = req.body.lastName
+                }
+                if (req.body.education) {
+                    foundCandidate.education = req.body.education
+                }
+                if (req.body.occupation) {
+                    foundCandidate.occupation = req.body.occupation
+                }
+                if (req.body.phoneNumber) {
+                    foundCandidate.phoneNumber = req.body.phoneNumber
+                }
+                if (req.body.linkedIn) {
+                    foundCandidate.linkedIn = req.body.linkedIn
+                }
+                if (req.body.dateOfBirth) {
+                    foundCandidate.dateOfBirth = req.body.dateOfBirth
+                }
+                if (req.body.email) {
+                    foundCandidate.email = req.body.email
+                }
+                if (req.body.password) {
+                    bcrypt.hash(req.body.password, 10, (err, hash) => {
+                        if(err) {
+                            throw err
+                        }
+                        foundCandidate.password = hash
+                    })
+                }
+                foundCandidate.save((err, updatedCandidate) => {
+                    if (err) {
+                        res.status(500).send();
+                    } else {
+                        res.json(updatedCandidate);
+                    }
+                })
+            }
+        }
+    })
+})
+
+
 
 
 module.exports = router;

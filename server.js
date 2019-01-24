@@ -23,6 +23,7 @@ app.use(bodyParser.json())
 
 // Import Routes
 const user = require('./routes/api/user');
+const candidate = require('./routes/api/candidate');
 
 app.get('/', (req, res) => {
   res.send('Server');
@@ -30,6 +31,7 @@ app.get('/', (req, res) => {
 
 // Route config
 app.use('/api/user', user);
+app.use('/candidate', candidate);
 
 // Port Number
 const port = 3000 || process.env.PORT;
