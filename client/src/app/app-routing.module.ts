@@ -6,14 +6,19 @@ import { RegisterCardComponent } from './components/main pages/register-card/reg
 import { ContactUsComponent } from './components/main pages/contact-us/contact-us.component';
 import { TestComponent } from './test/test.component';
 
+import{ CompanyDetailsComponent} from './components/admin pages/company-details/company-details.component';
+
+/// renata test
+
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'test', component: TestComponent},
   {path: 'contact', component: ContactUsComponent},
   {path: 'register', component: RegisterCardComponent},
+  {path: 'test1', component: CompanyDetailsComponent},
   {path: '404', component: UnderconstructComponent},
   {path: 'login', component: LoginComponent},
-  {path: '**', redirectTo: '404'}
+  {path: '**', redirectTo: '404'},
 ];
 
 @NgModule({
