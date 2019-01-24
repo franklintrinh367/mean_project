@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UnderconstructComponent } from './components/main pages/underconstruct/underconstruct.component';
-import { LoginComponent } from './components/main pages/login/login.component';
-import { RegisterCardComponent } from './components/main pages/register-card/register-card.component';
-import { ContactUsComponent } from './components/main pages/contact-us/contact-us.component';
+import { UnderconstructComponent } from './components/main/underconstruct/underconstruct.component';
+import { LoginComponent } from './components/main/login/login.component';
+import { RegisterCardComponent } from './components/main/register-card/register-card.component';
+import { ContactUsComponent } from './components/main/contact-us/contact-us.component';
 import { TestComponent } from './test/test.component';
 
-import{ CompanyDetailsComponent} from './components/admin pages/company-details/company-details.component';
+import { CompanyDetailsComponent} from './components/admin/company-details/company-details.component';
 
 /// renata test
 

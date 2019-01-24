@@ -23,7 +23,7 @@ app.use(bodyParser.json())
 
 // Import Routes
 const user = require('./routes/api/user');
-const candidate = require('./routes/api/candidate');
+const candidate = require('./routes/api/candidate/candidate');
 
 app.get('/', (req, res) => {
   res.send('Server');

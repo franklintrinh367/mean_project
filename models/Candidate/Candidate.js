@@ -39,9 +39,9 @@ const CandidateSchema = new Schema({
         type: String,
         required: true
     }
-}),
+});
 
-const Candidate = module.exports = mongoose.model('Candidate', CandidateSchema);
+module.exports = Candidate = mongoose.model('Candidate', CandidateSchema);
 
 module.exports.getCandidateById = function(id, callback) {
     Candidate.findById(id, callback);
