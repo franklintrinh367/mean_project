@@ -38,6 +38,18 @@ router.post('/register', (req, res) => {
     }).catch(err => console.log(err))
 })
 
+// Get Candidate
+router.get('/get/:id', (req, res) => {
+    var id = req.params.id;
+    Candidate.findById(id, (err, candidateFound) => {
+        if (err) {
+            res.status(500).send();
+        } else {
+            res.json(candidateFound);
+        }
+    })
+})
+
 // Delete Candidate 
 router.delete('/delete/:id', (req, res) => {
     var id = req.params.id;
