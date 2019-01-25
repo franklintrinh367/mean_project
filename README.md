@@ -38,27 +38,27 @@ Create front-end components in client/ folder
       Test:                  
       Validators:
       
-  All folders will have 3 folders:   
+  All folders will have 5 folders:   
   admin / client  /main / candidate  /jc
           
 # Folder: Back-end:
         Models
         Router
-   All folders will have 3 folders:   
+   All folders will have 5 folders:   
   admin / client  /main / candidate  /jc
           
         config -> database connection
         
 # Name:
     - Folder / Components:
-      new_folder
-      Ex:
-      - admin_homepage
-      - client_job_list
-      - jc_homepage
+            new_folder
+                  Ex:
+                  - admin_homepage
+                  - client_job_list
+                  - jc_homepage
       
    -  Variables:
-    aaaAaaa 
+            aaaAaaa 
 # Comments:
   # Don't forget to comment the code
   # Don't create componets with the same name, even if it is inb different folder (Confilct in app.module.ts)
