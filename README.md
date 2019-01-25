@@ -27,3 +27,44 @@ Create front-end components in client/ folder
 9. Go to repo, click "compare/new request" 
 10. Write preview what your changes
 11. Assign s.o for checking
+
+
+**********************************************************************************************************************************
+
+About the structure:
+# Folder: Front-end: 
+      Components:                  
+      Services:
+      Test:                  
+      Validators:
+      
+  All folders will have 3 folders:   
+  admin / client  /main / candidate  /jc
+          
+# Folder: Back-end:
+        Models
+        Router
+   All folders will have 3 folders:   
+  admin / client  /main / candidate  /jc
+          
+        config -> database connection
+        
+# Name:
+    Folder / Components:
+      new_folder
+      Ex:
+      - admin_homepage
+      - client_job_list
+      - jc_homepage
+      
+    Variables:
+    aaaAaaa 
+# Comments:
+  # Don't forget to comment the code
+  # Don't create componets with the same name, even if it is inb different folder (Confilct in app.module.ts)
+  # Don't push a code if it is not running
+  
+          
+        
+          
+      
