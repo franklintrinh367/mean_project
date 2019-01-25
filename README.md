@@ -31,7 +31,7 @@ Create front-end components in client/ folder
 
 **********************************************************************************************************************************
 
-About the structure:
+#About the structure:
 # Folder: Front-end: 
       Components:                  
       Services:
@@ -50,14 +50,14 @@ About the structure:
         config -> database connection
         
 # Name:
-    Folder / Components:
+    - Folder / Components:
       new_folder
       Ex:
       - admin_homepage
       - client_job_list
       - jc_homepage
       
-    Variables:
+   -  Variables:
     aaaAaaa 
 # Comments:
   # Don't forget to comment the code
