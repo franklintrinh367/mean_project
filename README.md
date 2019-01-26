@@ -61,7 +61,9 @@ Create front-end components in client/ folder
             aaaAaaa 
 # Comments:
   Don't forget to comment the code
+  
   Don't create componets with the same name, even if it is inb different folder (Confilct in app.module.ts)
+  
   Don't push a code if it is not running
   
           
