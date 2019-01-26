@@ -4,10 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "client-install": "cd front-end && npm install",
+    "client-install": "cd front_end && npm install",
     "start": "npm run dev",
     "server": "node server.js",
-    "client": "npm start --prefix front-end",
+    "client": "npm start --prefix front_end",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {

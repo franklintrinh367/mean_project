@@ -22,15 +22,15 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())  
 
 // Import Routes
-const user = require('./routes/api/user');
-const candidate = require('./routes/api/candidate/candidate');
+const user = require('./routes/user');
+const candidate = require('./routes/candidate/candidate');
 
 app.get('/', (req, res) => {
   res.send('Server');
 });
 
 // Route config
-app.use('/api/user', user);
+app.use('/user', user);
 app.use('/candidate', candidate);
 
 // Port Number
