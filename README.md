@@ -49,7 +49,7 @@ Create front-end components in client/ folder
           
         config -> database connection
         
-# Name:
+# Names:
     - Folder / Components:
             new_folder
                   Ex:
@@ -60,9 +60,9 @@ Create front-end components in client/ folder
    -  Variables:
             aaaAaaa 
 # Comments:
-  # Don't forget to comment the code
-  # Don't create componets with the same name, even if it is inb different folder (Confilct in app.module.ts)
-  # Don't push a code if it is not running
+  Don't forget to comment the code
+  Don't create componets with the same name, even if it is inb different folder (Confilct in app.module.ts)
+  Don't push a code if it is not running
   
           
         
