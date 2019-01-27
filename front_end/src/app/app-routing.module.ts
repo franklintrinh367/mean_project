@@ -6,7 +6,7 @@ import { RegisterCardComponent } from './components/main/register-card/register-
 import { ContactUsComponent } from './components/main/contact-us/contact-us.component';
 import { TestComponent } from './test/test.component';
 
-import { CompanyDetailsComponent} from './components/admin/company-details/company-details.component';
+// import { CompanyDetailsComponent} from './components/admin/company-details/company-details.component';
 
 /// renata test
 
@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: 'test', component: TestComponent},
   {path: 'contact', component: ContactUsComponent},
   {path: 'register', component: RegisterCardComponent},
-  {path: 'test1', component: CompanyDetailsComponent},
+  // {path: 'test1', component: CompanyDetailsComponent},
   {path: '404', component: UnderconstructComponent},
   {path: 'login', component: LoginComponent},
   {path: '**', redirectTo: '404'},

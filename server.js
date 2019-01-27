@@ -6,7 +6,7 @@ const cors = require('cors');
 
 
 // DB config
-const db = require('./config/database').mongoURI
+const db = require('./back_end/config/database').mongoURI
 
 // Connect to Database
 mongoose.connect(db, { useNewUrlParser: true })
@@ -22,8 +22,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())  
 
 // Import Routes
-const user = require('./routes/user');
-const candidate = require('./routes/candidate/candidate');
+const user = require('./back_end/routes/user');
+const candidate = require('./back_end/routes/candidate/candidate');
 
 app.get('/', (req, res) => {
   res.send('Server');

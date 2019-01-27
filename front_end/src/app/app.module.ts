@@ -24,12 +24,12 @@ import { HomePagesComponent } from './components/client/home-pages/home-pages.co
 import { JobDetailsComponent } from './components/client/job-details/job-details.component';
 import { NewJobComponent } from './components/client/new-job/new-job.component';
 import { EditJobComponent } from './components/client/edit-job/edit-job.component';
-import { NewUserComponent } from './components/admin/new-user/new-user.component';
-import { UserListComponent } from './components/admin/user-list/user-list.component';
-import { UserDetailsComponent } from './components/admin/user-details/user-details.component';
-import { JobListComponent } from './components/admin/job-list/job-list.component';
-import { CompanyListComponent } from './components/admin/company-list/company-list.component';
-import { CompanyDetailsComponent } from './components/admin/company-details/company-details.component';
+// import { NewUserComponent } from './components/admin/new-user/new-user.component';
+// import { UserListComponent } from './components/admin/user-list/user-list.component';
+// import { UserDetailsComponent } from './components/admin/user-details/user-details.component';
+// import { JobListComponent } from './components/admin/job-list/job-list.component';
+// import { CompanyListComponent } from './components/admin/company-list/company-list.component';
+// import { CompanyDetailsComponent } from './components/admin/company-details/company-details.component';
 
 @NgModule({
   declarations: [
@@ -48,12 +48,12 @@ import { CompanyDetailsComponent } from './components/admin/company-details/comp
     JobDetailsComponent,
     NewJobComponent,
     EditJobComponent,
-    NewUserComponent,
-    UserListComponent,
-    UserDetailsComponent,
-    JobListComponent,
-    CompanyListComponent,
-    CompanyDetailsComponent
+    // NewUserComponent,
+    // UserListComponent,
+    // UserDetailsComponent,
+    // JobListComponent,
+    // CompanyListComponent,
+    // CompanyDetailsComponent
   ],
   imports: [
     BrowserModule,

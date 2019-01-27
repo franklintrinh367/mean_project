@@ -3,6 +3,10 @@ const Schema = mongoose.Schema
 
 // Candidate Schema
 const CandidateSchema = new Schema({
+    userId: {
+        type: Number,
+        required: true
+    },
     firstName: {
         type: String,
         required: true 
@@ -26,17 +30,33 @@ const CandidateSchema = new Schema({
     linkedIn: {
         type: String,
         required: true
-    }, 
-    dateOfBirth: {
-        type: String, 
-        required: true
-    }, 
+    },
     email: {
         type: String, 
         required: true
     }, 
-    password: {
+    resume: {
         type: String,
+        data: Buffer
+    },
+    address: {
+        type: String,
+        required: true
+    },
+    city: {
+        type: String,
+        required: true
+    },
+    province: {
+        type: String,
+        required: true
+    },
+    postalCode: {
+        type: String,
+        required: true
+    },
+    allocateStatus: {
+        type: Boolean,
         required: true
     }
 });
