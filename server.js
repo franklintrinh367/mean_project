@@ -6,7 +6,7 @@ const cors = require('cors');
 
 
 // DB config
-const db = require('./back_end/config/database').mongoURI
+const db = require('./back_end/config/keys').mongoURI
 
 // Connect to Database
 mongoose.connect(db, { useNewUrlParser: true })
