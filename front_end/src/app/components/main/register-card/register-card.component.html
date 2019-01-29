@@ -2,20 +2,6 @@
   <mat-card fxFlex.xs="auto">
     <form autocomplete="off" [formGroup]="registerForm">
       <div class="container">
-        <!-- Full Name input -->
-        <mat-form-field>
-          <input matInput type="text" placeholder="Full Name" formControlName="fullname"/>
-        </mat-form-field>
-        <!-- Fullname validation -->
-        <div class="validation-wraper">
-          <div *ngIf="fullname.invalid && (fullname.dirty || fullname.touched)">
-            <p *ngIf="(fullname.errors | firstErrPipe) === 'required'">Fullname is required</p>
-            <p *ngIf="(fullname.errors | firstErrPipe) === 'minlength'">Minimum of 4 characters</p>
-            <p *ngIf="(fullname.errors | firstErrPipe) === 'maxlength'">Maximum of 30 characters</p>
-            <p *ngIf="(fullname.errors | firstErrPipe) === 'pattern'">Fullname contains only alphabetic characters</p>
-          </div>
-        </div>
-
         <!-- Email  -->
         <mat-form-field>
           <input matInput type="text" placeholder="Email Address" formControlName="email"/>
@@ -53,7 +39,7 @@
           <p *ngIf="(confirm.dirty || confirm.touched || password.dirty || password.touched ) && registerForm.errors?.notMatched">Password mismatch</p>
         </div>
         <br>
-        <mat-radio-group>
+        <mat-radio-group formControlName="mode">
           <mat-radio-button [value]="modes[0]" checked>{{modes[0]}}</mat-radio-button>
           <mat-radio-button [value]="modes[1]">{{modes[1]}}</mat-radio-button>
         </mat-radio-group>
@@ -65,7 +51,7 @@
         </div>
         <br>
         <!-- Sign Up Button -->
-        <button id="signup-btn" mat-button class="mat-elevation-z8" [disabled]="!registerForm.valid">SIGN UP</button>
+        <button id="signup-btn" mat-button class="mat-elevation-z8" [disabled]="!registerForm.valid" (click)="signup(email, password, mode)">SIGN UP</button>
       </div>
     </form>
   </mat-card>
