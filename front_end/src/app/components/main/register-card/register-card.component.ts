@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { UserService } from '../../../services/main/user.service';
 import { existingEmailValidator } from '../../../validators/main/existingEmailValidator';
+import { User } from 'src/models/users';
+import { RegisterService } from 'src/app/services/main/register.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +16,12 @@ export class RegisterCardComponent implements OnInit {
 
   private registerForm: FormGroup;
   private modes = ['Candidate', 'Hiring Company'];
-  constructor(private builder: FormBuilder, private userService: UserService) { }
+
+  constructor(
+    private builder: FormBuilder, 
+    private userService: UserService,
+    private registerService: RegisterService,
+    private router : Router) { }
 
   ngOnInit() {
     this.registerForm = this.buildForm();
@@ -21,8 +29,6 @@ export class RegisterCardComponent implements OnInit {
 
   buildForm() {
     return this.builder.group({
-      fullname: ['',[Validators.required, Validators.minLength(4),
-      Validators.maxLength(30), Validators.pattern("[a-zA-Z\\s]+")]],
       email: ['',
       [
       Validators.pattern("[\\w]+@[a-zA-Z\\d]+\\.[a-zA-Z\\d]+\\.?[a-zA-Z\\d]+"),
@@ -33,7 +39,7 @@ export class RegisterCardComponent implements OnInit {
       password: ['', Validators.required],
       confirm: ['', Validators.required],
       checkbox: ['', this.checked()],
-      type: ['', this.checked()]
+      mode: [''] 
     },
     {
       validator: this.matchPassword()
@@ -43,15 +49,13 @@ export class RegisterCardComponent implements OnInit {
 
   get email() { return this.registerForm.get('email');}
 
-  get username() { return this.registerForm.get('username');}
-
-  get fullname() { return this.registerForm.get('fullname');}
-
   get password() { return this.registerForm.get('password');}
 
   get confirm() { return this.registerForm.get('confirm')}
 
   get checkbox() { return this.registerForm.get('checkbox');}
+
+  get mode() { return this.registerForm.get('mode');}
 
   //Match password validator
   matchPassword(): ValidatorFn{
@@ -66,5 +70,14 @@ export class RegisterCardComponent implements OnInit {
     return (control: AbstractControl): {[key: string] : any} | null => {
         return !control.value? {unChecked: true} : null;
     }
+  }
+
+  signup(email, password, mode) {
+    if(!mode.value) mode="Candidate" 
+    let user = new User(email.value, password.value, mode.value);
+    this.registerService.register(user).subscribe(
+      () =>
+      this.router.navigateByUrl('/login')
+    )
   }
 }

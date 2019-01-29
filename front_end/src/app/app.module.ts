@@ -5,7 +5,7 @@ import {MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule
 , MatProgressSpinnerModule, MatCheckboxModule, MatRadioModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatGridListModule} from '@angular/material/grid-list';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http'; 
 import {FlexLayoutModule} from '@angular/flex-layout';
 
 import { AppRoutingModule } from './app-routing.module';

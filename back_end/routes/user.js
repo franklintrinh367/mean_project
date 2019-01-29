@@ -12,42 +12,54 @@ const User = require('../models/User');
 
 // User Register
 router.post('/register', (req, res) => {
-    const {username, email, password} = req.body
+    console.log(req.body.email + " " + req.body.role)
+    const {email, password, role} = req.body
+    const newUser = new User({
+        email: email,
+        password: password,
+        role: role
+    })
+    bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(newUser.password, salt, (err, hash) => {
+        // Store hash in your password DB.
+        if(err){
+            throw err
+        }
+        newUser.password = hash;
+        newUser.save()
+            .then(user => res.json(user))
+            .catch(err => console.log(err))
+    })
+    });  
+})
 
-    User.findOne().or([{ email: email }, { username: username} ])
-        .then(user => {
-            if(user){
-                return res.status(400).json({user: 'Username or email is existed'})
-            }else{
-                const newUser = new User({
-                    username: username,
-                    email: email,
-                    password: password,
-                })
-                bcrypt.genSalt(10, (err, salt) => {
-                bcrypt.hash(newUser.password, salt, (err, hash) => {
-                    // Store hash in your password DB.
-                    if(err){
-                        throw err
-                    }
-                    newUser.password = hash
-                    newUser.save()
-                        .then(user => res.json(user))
-                        .catch(err => console.log(err))
-                })
-                });   
-            }
-        })
+//Look for existing email
+router.get('/find/:email', (req, res) => {
+    let email = req.params.email;
+    User.findOne({email}).then(
+        user => res.json(user)
+    )
+})
+//Delete user
+router.delete('/delete/:id', (req, res) => {
+    let id = req.params.id;
+    User.findOneAndDelete({_id: id}).then(
+        user => res.json(user)
+    )
+    .catch(err => {
+        console.log("some err : " + err)
+    })
 })
 
 // User Login
 router.post('/login', (req, res) => {
-    const {input, password} = req.body
+    const {email, password} = req.body
+    console.log(email + "&" +password);
 
-    User.findOne().or([{ email: input }, { username: input} ])
+    User.findOne({email})
         .then(user => {
             if(!user){
-                return res.status(400).json({user: 'User cannot be found'})
+                return res.status(400).json({msg: 'User cannot be found'})
             }else{
                 bcrypt.compare(password, user.password)
                     .then(isMatch => {
@@ -65,11 +77,11 @@ router.post('/login', (req, res) => {
                                 (err, token) => {
                                   res.json({
                                     success: true,
-                                    token: 'Bearer '+token
+                                    token: token
                                   })
                               });
                         }else{
-                            return res.status(400).json({password: 'Password is wrong'})
+                            return res.status(400).json({msg: 'Password is wrong'})
                         }
                     })
             }

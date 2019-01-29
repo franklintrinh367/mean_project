@@ -5,17 +5,18 @@
     <div class="container">
       <!-- Login Input-->
       <mat-form-field>
-        <input matInput color="primary" type="text" placeholder="Login">
+        <input matInput color="primary" type="text" placeholder="Login" #email>
       </mat-form-field>
-      <div class="validation-wraper"></div>
       <!-- Password Input -->
       <mat-form-field>
-        <input matInput type="text" placeholder="Password">
+        <input matInput type="password" placeholder="Password" #pwd>
       </mat-form-field>
-      <div class="validation-wraper"></div>
+      <div class="validation-wraper">
+        {{error}}
+      </div>
       <!-- Login Button, Signup Button -->
       <div id="login-btn">
-        <button class="button-style mat-elevation-z8" mat-button>LOGIN</button>
+        <button class="button-style mat-elevation-z8" mat-button (click)="login(email.value, pwd.value)">LOGIN</button>
       </div>
       <br>
       <div id="signup-btn">
