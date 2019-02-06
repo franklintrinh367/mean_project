@@ -1,18 +1,3 @@
-
-mat-card {
-    background-image: url('../../../../assets/login.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-
-:host {
-    display: block;
-    background-image: url('../../../../assets/login-bg.jpg');
-    background-size: cover;
-    width: 100%;
-}
-
 .container > *{
     width: 100%;
 }
@@ -24,6 +9,7 @@ mat-card {
 }
 #login-btn {
     background-color: #4285F4;
+    color: white;
 }
 
 #signup-btn {
@@ -34,7 +20,6 @@ mat-card {
     width: 100%;
     height: 50px;
     font-size: 15px;
-    color: white;
 }
 
 a {

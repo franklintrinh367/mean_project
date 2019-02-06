@@ -1,0 +1,18 @@
+<div *ngIf="user">
+<h1>Hi {{user.username}}!</h1>
+<h1>Thanks for signing up! Your account has been successfully activated!!!</h1>
+
+<table>
+    <tr>
+        <th>Your Email:</th>
+        <td>{{user.email}}</td>
+    </tr>
+
+    <tr>
+        <th>Your username: </th>
+        <td>{{user.username}}</td>
+    </tr>
+</table>
+<br><br>
+<button mat-button routerLink="/" class="mat-elevation-z8">Go back to login</button>
+</div>

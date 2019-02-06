@@ -1,34 +1,19 @@
-$enable-shadows: true;
-
-nav {
-    background-color: #0099CC;
-    width: 1360px;
-    height: 70px;
-}
-
-#title {
+span, p{
+    cursor: pointer;
     color: white;
-    font-size: 30px;
 }
 
-#login {
+#profile-btn {
     color: white;
-    margin-left: 100px;
-    width: 120px;
-    height: 50px;
-}
-#signup {
-    color: #01579b;
-    background-color: white;
-    width: 120px;
-    height: 50px;
-}
-
-button {
-    width: 150px;
-}
-
-.link-text {
     font-size: 20px;
-    color: white;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+mat-toolbar {
+    background-color: rgba(0, 0,0, 0.5);
+    position: fixed;
+    z-index: 1;
 }
