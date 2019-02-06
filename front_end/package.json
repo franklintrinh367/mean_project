@@ -25,6 +25,8 @@
     "@angular/router": "~7.0.0",
     "bootstrap": "^4.2.1",
     "core-js": "^2.5.4",
+    "nodemailer": "^5.1.1",
+    "npm": "^6.7.0",
     "roboto-fontface": "^0.10.0",
     "rxjs": "~6.3.3",
     "webpack-dev-server": ">=3.1.11",

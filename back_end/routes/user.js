@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken');
-const passport = require('passport')
+const nodemailer = require('nodemailer');
 
 // Get the secret key
 const secretOrKey = require('../config/keys').secretOrKey
@@ -12,38 +12,131 @@ const User = require('../models/User');
 
 // User Register
 router.post('/register', (req, res) => {
-    console.log(req.body.email + " " + req.body.role)
-    const {email, password, role} = req.body
+    const {email, password, username, activated, role} = req.body
     const newUser = new User({
         email: email,
         password: password,
-        role: role
+        username: username,
+        activated : activated,
+        role : role
     })
+    //Hash password
     bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(newUser.password, salt, (err, hash) => {
-        // Store hash in your password DB.
-        if(err){
-            throw err
-        }
-        newUser.password = hash;
-        newUser.save()
-            .then(user => res.json(user))
-            .catch(err => console.log(err))
-    })
-    });  
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+            // Store hash in your password DB.
+            if(err){
+                throw err
+            }
+            newUser.password = hash;
+            newUser.save()
+                .then(user => res.json(user))
+                .catch(err => console.log(err))
+        })
+        });
 })
 
-//Look for existing email
-router.get('/find/:email', (req, res) => {
+//sendEmail
+router.get('/send/:id&:email', async (req, res)=>{
+    //create new hash refers to user's id
+    let id = req.params.id;
     let email = req.params.email;
-    User.findOne({email}).then(
-        user => res.json(user)
+    bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(id, salt, (err, hash) => {
+    //***important line, don't change this, sometimes bcrypt produces hash with
+    //slash which will break the url
+    hash = hash.replace('/', '.')
+
+    let transporter = nodemailer.createTransport({
+        host: 'smtp.mail.com',
+        port: 587,
+        sercure: false,
+        auth: {
+            user: 'jc-consulting@mail.com',
+            pass: 'computerprograming'
+        }
+    });
+
+    let msg = 'Welcome to JC Consulting, here is the invitation link:\n'
+    + `http://localhost:3000/user/verify/${hash}`;
+
+    let mailOptions = {
+        from: 'jc-consulting@mail.com',
+        to: email,
+        subject: 'Welcome to JC-Consulting',
+        text: msg
+    };
+
+    transporter.sendMail(mailOptions, (err, info) =>{
+        if(err) console.log(err);
+        console.log(info);
+        User.findByIdAndUpdate(id,    
+            {
+                $set: {
+                    hash: hash
+                }
+            }).then().catch(err => console.log(err))
+    })
+
+})
+})
+})
+
+//verify email
+router.get('/verify/:hash', (req, res) =>{
+    const hash = req.params.hash;
+    User.findOneAndUpdate(hash,
+        {
+            $set: {
+                activated: true
+            }
+        },
+
+        {returnNewDocument : true}
+        ).then(
+            () => 
+            res.redirect(`http://localhost:4200/success/${hash}`)
+        )
+
+})
+
+//find user By ID
+router.get('/findUserByHash/:hash', (req, res) => {
+    let hash = req.params.hash;
+    User.findOneAndUpdate(
+        {hash},
+        {
+            $unset: {
+                hash: ""
+            }
+        }
+        ).then(
+        user => {
+            res.json(user)
+        }
+    ).catch(
+        err => console.log(err)
+    )
+})
+
+//Look for existing email or username
+router.get('/find/:obj', (req, res) => {
+    let obj = req.params.obj;
+    User.findOne({
+        $or : [
+            {email: obj},
+            {username: obj}
+        ]
+    }).then(
+        result => {
+            res.json(result)
+        }
+    ).catch(
+        err => console.log(err)
     )
 })
 //Delete user
-router.delete('/delete/:id', (req, res) => {
-    let id = req.params.id;
-    User.findOneAndDelete({_id: id}).then(
+router.delete('/delete/', (req, res) => {
+    User.deleteMany({}).then(
         user => res.json(user)
     )
     .catch(err => {
@@ -54,9 +147,10 @@ router.delete('/delete/:id', (req, res) => {
 // User Login
 router.post('/login', (req, res) => {
     const {email, password} = req.body
-    console.log(email + "&" +password);
 
-    User.findOne({email})
+    User.findOne({
+        email: email
+    })
         .then(user => {
             if(!user){
                 return res.status(400).json({msg: 'User cannot be found'})
@@ -66,8 +160,8 @@ router.post('/login', (req, res) => {
                         if(isMatch){
                             const payload = {
                                 id: user.id,
-                                username: user.username,
-                                email: user.email
+                                email: user.email,
+                                username: user.username
                               }
                               // set token
                             jwt.sign(
@@ -81,7 +175,7 @@ router.post('/login', (req, res) => {
                                   })
                               });
                         }else{
-                            return res.status(400).json({msg: 'Password is wrong'})
+                            return res.status(400).json({msg: 'Invalid username or password'})
                         }
                     })
             }

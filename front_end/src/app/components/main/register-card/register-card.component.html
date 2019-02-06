@@ -2,6 +2,26 @@
   <mat-card fxFlex.xs="auto">
     <form autocomplete="off" [formGroup]="registerForm">
       <div class="container">
+        <!-- Username -->
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput type="text" class="form-control" formControlName="username" placeholder="Username">
+          </mat-form-field>
+          <div class="validation-wraper">
+            <div *ngIf="username.pending"
+            style="width: 15%; margin: 0 auto; padding-top: 4px;">
+              <mat-spinner [diameter]="20"></mat-spinner>
+            </div>
+            <div *ngIf="username.invalid && (username.dirty || username.touched)">
+              <p *ngIf="(username.errors | firstErrPipe) === 'required'">Username is required</p>
+              <p *ngIf="(username.errors | firstErrPipe) === 'minlength'">Minimum of 6 characters</p>
+              <p *ngIf="(username.errors | firstErrPipe) === 'pattern'">Username contains alphabetic characters, numbers and underscore</p>
+              <p *ngIf="(username.errors | firstErrPipe) === 'maxlength'">Maximum of 25 characters</p>
+              <p *ngIf="(username.errors | firstErrPipe) === 'userExisting'">Username is taken!!!</p>
+            </div>
+            <p *ngIf="username.valid" style="color: green">This username can be used</p>
+          </div>
+        </div>
         <!-- Email  -->
         <mat-form-field>
           <input matInput type="text" placeholder="Email Address" formControlName="email"/>
@@ -17,7 +37,7 @@
             <p *ngIf="(email.errors | firstErrPipe) === 'pattern'">Invalid email address</p>
             <p *ngIf="(email.errors | firstErrPipe) === 'emailExisting'">This email has been used</p>
           </div>
-          <p *ngIf="email.valid" style="color: #00C851">This email can be used</p>
+          <p *ngIf="email.valid" style="color: green">This email can be used</p>
         </div>
 
         <!-- Password -->
@@ -51,7 +71,7 @@
         </div>
         <br>
         <!-- Sign Up Button -->
-        <button id="signup-btn" mat-button class="mat-elevation-z8" [disabled]="!registerForm.valid" (click)="signup(email, password, mode)">SIGN UP</button>
+        <button id="signup-btn" mat-button class="mat-elevation-z8" [disabled]="!registerForm.valid" (click)="signup(email, password, username, false, mode)">SIGN UP</button>
       </div>
     </form>
   </mat-card>

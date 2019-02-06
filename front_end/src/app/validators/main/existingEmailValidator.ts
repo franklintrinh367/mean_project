@@ -11,7 +11,7 @@ export function existingEmailValidator(userService: UserService) : AsyncValidato
                 () =>{
                     if(!control.value)
                         return of(null)
-                    return userService.findEmail(control.value).pipe(
+                    return userService.find(control.value).pipe(
                         map(
                             email => {return email? {emailExisting: true} : null}
                         )

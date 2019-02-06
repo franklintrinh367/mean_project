@@ -7,14 +7,9 @@ import { AuthenticateService } from 'src/app/services/authenticate.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  private token: any = localStorage.getItem('auth-token');
-  constructor(private auth: AuthenticateService) { }
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  logout() {
-    this.auth.logout();
   }
 
 }

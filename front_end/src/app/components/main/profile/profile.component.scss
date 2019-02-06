@@ -1,0 +1,27 @@
+.spacer {
+    flex: 1 1;
+}
+
+.button-style {
+    width: 100%;
+    height: 50px;
+    font-size: 15px;
+    background-color: #4285F4;
+    color: white;
+}
+
+.wraper {
+    padding-top: 50px;
+    padding-bottom: 70px;
+}
+
+#edit {
+    width: 40%;
+    margin: 0 auto;
+}
+
+mat-card {
+    height: 100%;
+    width: 500px;
+    background-color: #E0E0E0;
+}

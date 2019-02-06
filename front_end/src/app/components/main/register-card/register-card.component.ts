@@ -5,6 +5,7 @@ import { existingEmailValidator } from '../../../validators/main/existingEmailVa
 import { User } from 'src/models/users';
 import { RegisterService } from 'src/app/services/main/register.service';
 import { Router } from '@angular/router';
+import { existingUserValidator } from 'src/app/validators/main/existingUserValidator';
 
 
 @Component({
@@ -29,6 +30,15 @@ export class RegisterCardComponent implements OnInit {
 
   buildForm() {
     return this.builder.group({
+      username: ['',
+      [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.pattern("[\\w]+"),
+        Validators.maxLength(25)
+      ],
+      [existingUserValidator(this.userService)]
+    ],
       email: ['',
       [
       Validators.pattern("[\\w]+@[a-zA-Z\\d]+\\.[a-zA-Z\\d]+\\.?[a-zA-Z\\d]+"),
@@ -57,6 +67,8 @@ export class RegisterCardComponent implements OnInit {
 
   get mode() { return this.registerForm.get('mode');}
 
+  get username() { return this.registerForm.get('username')}
+
   //Match password validator
   matchPassword(): ValidatorFn{
     return (control: FormGroup) : {[key: string] : any} | null => {
@@ -72,12 +84,16 @@ export class RegisterCardComponent implements OnInit {
     }
   }
 
-  signup(email, password, mode) {
-    if(!mode.value) mode="Candidate" 
-    let user = new User(email.value, password.value, mode.value);
+  signup(email, password, username, activated, role) {
+    if(!role.value) role.value="Candidate";
+    let user = new User(email.value, password.value, username.value, activated, role.value);
     this.registerService.register(user).subscribe(
-      () =>
-      this.router.navigateByUrl('/login')
+      user => 
+      {
+        this.userService.sendEmail(user._id, user.email).subscribe();
+        window.confirm(`A verification email has been sent to email ${user.email}`);
+        this.router.navigateByUrl('/login')
+      }
     )
   }
 }

@@ -9,6 +9,7 @@
     .mat-radio-label,
     .mat-checkbox-label, mat-card-title, label{
         color: mat-color($primary);
+        font-size: 12px;
     }
 
     .mat-form-field-appearance-legacy .mat-form-field-underline {
@@ -25,14 +26,15 @@
 
     .mat-form-field {
         width: 100%;
-        height: 50px;
+        height: 40px;
+        font-size: 12px;
     }
     .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
         color: mat-color($primary);
     }
 
     .validation-wraper {
-        height: 15px;
+        height: 30px;
         border: 1px solid transparent;
         color: mat-color($mat-red, A400);
         font-size: 12px;

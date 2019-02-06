@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { AuthenticateService } from '../services/authenticate.service';
 
 @Component({
   selector: 'app-test',
@@ -24,9 +25,12 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 export class TestComponent implements OnInit {
   listItem = [];
   list_order: number = 1;
-  constructor() { }
+  private token : String
+  constructor(private auth: AuthenticateService) { }
 
   ngOnInit() {
+    this.token = this.auth.getTokenDetails();
+    console.log(this.token);
   }
 
   addItem(){

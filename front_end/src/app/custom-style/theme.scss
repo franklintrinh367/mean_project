@@ -3,9 +3,9 @@
 @import '../custom-style/mat-card-style.scss';
 @include mat-core();
 
-$primary: mat-palette($mat-gray, 100, 500, 700);
+$primary: mat-palette($mat-brown, 500, 700, 900);
 $accent: mat-palette($mat-orange);
-$warn: mat-palette($mat-indigo, 50);
+$warn: mat-palette($mat-brown, 500);
 
 $custom-theme : mat-light-theme(
     $primary,

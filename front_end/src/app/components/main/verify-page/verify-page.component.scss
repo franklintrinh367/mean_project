@@ -1,0 +1,20 @@
+h1, h2, h3,  a{
+    color: green;
+}
+
+table tr {
+    text-align: left;
+}
+
+:host {
+    display: block;
+    height: 700px;
+    background-color: white;
+    background-size: cover;
+}
+
+button {
+    background-color: green;
+    color: white;
+    margin-left: 10px;
+}
