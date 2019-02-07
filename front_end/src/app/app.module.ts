@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule
 , MatProgressSpinnerModule, MatCheckboxModule, MatRadioModule,
-MatToolbarModule, MatMenuModule, MatDividerModule, MatListModule} from '@angular/material';
+MatToolbarModule, MatMenuModule, MatDividerModule, MatListModule, MatIconModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {HttpClientModule} from '@angular/common/http'; 
@@ -27,6 +27,8 @@ import { EditJobComponent } from './components/client/edit-job/edit-job.componen
 import { NavbarComponent } from './components/main/navbar/navbar.component';
 import { ProfileComponent } from './components/main/profile/profile.component';
 import { VerifyPageComponent } from './components/main/verify-page/verify-page.component';
+import { ClientHomepagesComponent } from './components/client-pages/client-homepages/client-homepages.component';
+import { ClientRegisterPageComponent } from './components/client-pages/client-register-page/client-register-page.component';
 // import { NewUserComponent } from './components/admin/new-user/new-user.component';
 // import { UserListComponent } from './components/admin/user-list/user-list.component';
 // import { UserDetailsComponent } from './components/admin/user-details/user-details.component';
@@ -53,6 +55,8 @@ import { VerifyPageComponent } from './components/main/verify-page/verify-page.c
     NavbarComponent,
     ProfileComponent,
     VerifyPageComponent,
+    ClientHomepagesComponent,
+    ClientRegisterPageComponent,
     // NewUserComponent,
     // UserListComponent,
     // UserDetailsComponent,
@@ -74,6 +78,7 @@ import { VerifyPageComponent } from './components/main/verify-page/verify-page.c
     HttpClientModule,
     MatProgressSpinnerModule,
     MatCheckboxModule,
+    MatIconModule,
     MatRadioModule,
     FlexLayoutModule,
     MatToolbarModule,

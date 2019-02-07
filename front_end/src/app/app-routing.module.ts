@@ -11,6 +11,7 @@ import { UserAuthService } from './services/user-auth.service';
 import { LogoutService } from './services/logout.service';
 import { ProfileComponent } from './components/main/profile/profile.component';
 import { VerifyPageComponent } from './components/main/verify-page/verify-page.component';
+import { ClientRegisterPageComponent } from './components/client-pages/client-register-page/client-register-page.component';
 
 // import { CompanyDetailsComponent} from './components/admin/company-details/company-details.component';
 
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: '404', component: UnderconstructComponent},
   {path: 'login', component: LoginComponent, canActivate: [LogoutService]},
   {path: '**', redirectTo: '404'},
+  {path: 'client-register', component: ClientRegisterPageComponent }
 ];
 
 @NgModule({
