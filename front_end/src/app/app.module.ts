@@ -57,12 +57,9 @@ import { HeaderComponent } from './components/main/header/header.component';
     NavbarComponent,
     ProfileComponent,
     VerifyPageComponent,
-<<<<<<< HEAD
     HeaderComponent,
-=======
     ClientHomepagesComponent,
     ClientRegisterPageComponent,
->>>>>>> 2333795dcacd2b0e43f2a59cff87ab2c784c3971
     // NewUserComponent,
     // UserListComponent,
     // UserDetailsComponent,
