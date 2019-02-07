@@ -6,10 +6,6 @@ var UserSchema = new Schema({
         type: String,
         required: true
     },
-    role: {
-        type: String,
-        required: true
-    },
     username : {
         type: String,
         required: true
@@ -18,12 +14,18 @@ var UserSchema = new Schema({
         type: String,
         required: true,
     },
-    
+    role: {
+        type: String,
+        required: true
+    },
     activated : {
         type: Boolean,
         required : true
     },
-
+    details: {
+        type: Object,
+        required: true,
+    },
     hash: {
         type: String
     }

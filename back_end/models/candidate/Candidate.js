@@ -31,14 +31,14 @@ const CandidateSchema = new Schema({
         type: String,
         required: true
     },
-    email: {
-        type: String, 
-        required: true
-    }, 
-    resume: {
-        type: String,
-        data: Buffer
-    },
+    // email: {
+    //     type: String, 
+    //     required: true
+    // }, 
+    // resume: {
+    //     type: String,
+    //     data: Buffer
+    // },
     address: {
         type: String,
         required: true
