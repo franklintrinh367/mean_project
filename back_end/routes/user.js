@@ -9,16 +9,47 @@ const secretOrKey = require('../config/keys').secretOrKey
 
 // Load User model
 const User = require('../models/User');
+const Candidate = require('../models/candidate/Candidate')
 
 // User Register
 router.post('/register', (req, res) => {
+    // get field input
     const {email, password, username, activated, role} = req.body
+    // instantiate details field
+    let details = {}
+    // get params from role candidate
+    if(role == 'candidate'){
+        const { 
+            firstName, lastName, education, occupation, 
+            phoneNumber, linkedIn, address,
+            city, province, postalCode, allocateStatus 
+        } = req.body
+        details =  new Candidate({
+            firstName: firstName,
+            lastName: lastName,
+            education: education,
+            occupation: occupation,
+            phoneNumber: phoneNumber,
+            linkedIn: linkedIn,
+            // resume: resume,
+            address: address,
+            city: city,
+            province: province,
+            postalCode: postalCode,
+            allocateStatus: allocateStatus,
+        })
+    }
+    // get params from role candidate
+    if(role == 'company'){
+
+    }
     const newUser = new User({
         email: email,
         password: password,
         username: username,
         activated : activated,
-        role : role
+        role : role,
+        details: details,
     })
     //Hash password
     bcrypt.genSalt(10, (err, salt) => {
@@ -148,12 +179,10 @@ router.delete('/delete/', (req, res) => {
 router.post('/login', (req, res) => {
     const {email, password} = req.body
 
-    User.findOne({
-        email: email
-    })
+    User.findOne().or([{email: email}, {username: username}])
         .then(user => {
             if(!user){
-                return res.status(400).json({msg: 'User cannot be found'})
+                return res.status(400).json({msg: 'User or email cannot be found'})
             }else{
                 bcrypt.compare(password, user.password)
                     .then(isMatch => {
