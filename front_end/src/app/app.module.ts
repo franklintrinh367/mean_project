@@ -33,6 +33,8 @@ import { VerifyPageComponent } from './components/main/verify-page/verify-page.c
 // import { JobListComponent } from './components/admin/job-list/job-list.component';
 // import { CompanyListComponent } from './components/admin/company-list/company-list.component';
 // import { CompanyDetailsComponent } from './components/admin/company-details/company-details.component';
+import { HeaderComponent } from './components/main/header/header.component';
+
 
 @NgModule({
   declarations: [
@@ -53,6 +55,7 @@ import { VerifyPageComponent } from './components/main/verify-page/verify-page.c
     NavbarComponent,
     ProfileComponent,
     VerifyPageComponent,
+    HeaderComponent,
     // NewUserComponent,
     // UserListComponent,
     // UserDetailsComponent,
