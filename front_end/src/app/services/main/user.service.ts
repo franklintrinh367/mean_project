@@ -36,4 +36,11 @@ export class UserService {
   public findUserByHash(hash: String) : Observable<User> {
     return this.http.get<User>(`${this.baseUrl}/findUserByHash/${hash}`);
   }
+
+  //get all Users
+  public getUser():Observable<User[]>{
+    return this.http.get<User[]>(this.baseUrl);
+  }
+
+  
 }
