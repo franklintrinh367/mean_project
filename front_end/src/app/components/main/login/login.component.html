@@ -1,6 +1,6 @@
 <br>
-<div class="wraper" fxLayout="column" fxLayoutAlign="center center">
-<mat-card class="mat-elevation-z8">
+<div class="wraper" fxLayout="row wrap" fxLayoutAlign="center center">  
+  <mat-card class="mat-elevation-z8">
   <form autocomplete="off" [formGroup]="loginForm">
     <div class="container">
       <!-- Login Input-->
@@ -23,22 +23,22 @@
         </div>
         <ng-template #elseBlock>
           <div *ngIf="error">{{this.error}}</div>
-        </ng-template>        
+        </ng-template>
       </div>
       <!-- Login Button, Signup Button -->
       <div id="login-btn">
-        <button class="button-style mat-elevation-z8" mat-button (click)="login(email.value, password.value)
-        " [disabled]="loginForm.invalid">LOGIN</button>
+        <button class="button-style mat-elevation-z8" mat-button (click)="login(email.value, password.value)" [disabled]="loginForm.invalid">
+          Login
+        </button>
       </div>
       <br>
       <div id="signup-btn">
       <button routerLink="/register" class="button-style mat-elevation-z8" mat-button mat-elevation-z8>SIGN UP</button>
       </div>
       <br>
-      <a href="#">Forgot Your Password?</a>
+      <a routerLink="/forgot-password">Forgot Your Password?</a>
     </div>
   </form>
 </mat-card>
 </div>
 <br>
-<footer></footer>

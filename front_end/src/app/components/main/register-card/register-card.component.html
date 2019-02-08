@@ -1,5 +1,5 @@
-<div class="wraper" fxLayout="column" fxLayoutAlign="center center">
-  <mat-card fxFlex.xs="auto">
+<div class="wraper" fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card>
     <form autocomplete="off" [formGroup]="registerForm">
       <div class="container">
         <!-- Username -->
@@ -71,9 +71,8 @@
         </div>
         <br>
         <!-- Sign Up Button -->
-        <button id="signup-btn" mat-button class="mat-elevation-z8" [disabled]="!registerForm.valid" (click)="signup(email, password, username, false, mode)">SIGN UP</button>
+        <button id="signup-btn" type="button" mat-button class="mat-elevation-z8" [disabled]="!registerForm.valid" (click)="signup(email, password, username, false, mode)">SIGN UP</button>
       </div>
     </form>
   </mat-card>
 </div>
-<footer></footer>
