@@ -5,10 +5,13 @@
     <p routerLink="/contact">Contact us</p>
     <span class="spacer"></span>
     <button id="profile-btn" mat-button [matMenuTriggerFor]="profile">{{this.token.username}}</button>
+    
     <mat-menu #profile="matMenu" class="mat-elevation-z8">
       <button mat-menu-item routerLink="/profile">Profile</button>
       <button mat-menu-item>Setting</button>
       <button mat-button (click)="logout()" >Log out</button>
     </mat-menu>
+
+    <button mat-button id="profile-btn" (click)="openDialog()">{{this.token.username}}</button>
   </mat-toolbar-row>
 </mat-toolbar>

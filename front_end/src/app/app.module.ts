@@ -39,6 +39,13 @@ import { ClientJobDetailsPageComponent } from './components/client-pages/client-
 // Abdal --- this is the import related to the material. 
 import { MaterialModule } from './module/material/material.module';
 
+//Admin Pages
+import { AdminHomepageComponent } from './components/admin-pages/admin-homepage/admin-homepage.component';
+import { AdminNewUserComponent } from './components/admin-pages/admin-new-user/admin-new-user.component';
+import { AdminUserListComponent } from './components/admin-pages/admin-user-list/admin-user-list.component';
+import { AdminManageJobsComponent } from './components/admin-pages/admin-manage-jobs/admin-manage-jobs.component';
+import { AdminCompanyListComponent } from './components/admin-pages/admin-company-list/admin-company-list.component';
+
 
 @NgModule({
   declarations: [
@@ -60,16 +67,20 @@ import { MaterialModule } from './module/material/material.module';
     ProfileComponent,
     VerifyPageComponent,
     HeaderComponent,
+    // company Pages
     ClientHomepagesComponent,
     ClientRegisterPageComponent,
     ClientNewJobPageComponent,
     ClientJobDetailsPageComponent,
-    // NewUserComponent,
-    // UserListComponent,
-    // UserDetailsComponent,
-    // JobListComponent,
-    // CompanyListComponent,
-    // CompanyDetailsComponent
+
+
+    //Admin Pages
+    AdminHomepageComponent,
+    AdminNewUserComponent,
+    AdminUserListComponent,
+    AdminManageJobsComponent,
+    AdminCompanyListComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -85,4 +96,4 @@ import { MaterialModule } from './module/material/material.module';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

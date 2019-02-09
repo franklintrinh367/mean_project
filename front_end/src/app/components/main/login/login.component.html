@@ -1,18 +1,16 @@
-<div class="background">
-  <br>
-  <div class="wraper" fxLayout="column" fxLayoutAlign="center center">
+<br>
+<div class="wraper" fxLayout="row wrap" fxLayoutAlign="center center">  
   <mat-card class="mat-elevation-z8">
-    <form autocomplete="off" [formGroup]="loginForm">
-      <div class="container">
-        <!-- Login Input-->
-        <mat-form-field>
-          <input matInput color="primary" type="text" placeholder="Email" formControlName="email">
-        </mat-form-field>
-        <div class="validation-wraper">
-          <div *ngIf="email.invalid && (email.dirty || email.touched)">
-            <div *ngIf="(email.errors | firstErrPipe ) === 'pattern'">Invalid email address</div>
-            <div *ngIf="(email.errors | firstErrPipe ) === 'required'">Field cannot be empty</div>
-          </div>
+  <form autocomplete="off" [formGroup]="loginForm">
+    <div class="container">
+      <!-- Login Input-->
+      <mat-form-field>
+        <input matInput color="primary" type="text" placeholder="Email" formControlName="email">
+      </mat-form-field>
+      <div class="validation-wraper">
+        <div *ngIf="email.invalid && (email.dirty || email.touched)">
+          <div *ngIf="(email.errors | firstErrPipe ) === 'pattern'">Invalid email address</div>
+          <div *ngIf="(email.errors | firstErrPipe ) === 'required'">Field cannot be empty</div>
         </div>
         <!-- Password Input -->
         <mat-form-field>
@@ -26,20 +24,24 @@
             <div *ngIf="error">{{this.error}}</div>
           </ng-template>        
         </div>
-        <!-- Login Button, Signup Button -->
-        <div id="login-btn">
-          <button class="button-style mat-elevation-z8" mat-button (click)="login(email.value, password.value)
-          " [disabled]="loginForm.invalid">LOGIN</button>
-        </div>
-        <br>
-        <div id="signup-btn">
-        <button routerLink="/register" class="button-style mat-elevation-z8" mat-button mat-elevation-z8>SIGN UP</button>
-        </div>
-        <br>
-        <a href="#">Forgot Your Password?</a>
+        <ng-template #elseBlock>
+          <div *ngIf="error">{{this.error}}</div>
+        </ng-template>
       </div>
-    </form>
-  </mat-card>
-  </div>
-  <br>
+      <!-- Login Button, Signup Button -->
+      <div id="login-btn">
+        <button class="button-style mat-elevation-z8" mat-button (click)="login(email.value, password.value)" [disabled]="loginForm.invalid">
+          Login
+        </button>
+      </div>
+      <br>
+      <div id="signup-btn">
+      <button routerLink="/register" class="button-style mat-elevation-z8" mat-button mat-elevation-z8>SIGN UP</button>
+      </div>
+      <br>
+      <a routerLink="/forgot-password">Forgot Your Password?</a>
+    </div>
+  </form>
+</mat-card>
 </div>
+<br>

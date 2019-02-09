@@ -90,9 +90,14 @@ export class RegisterCardComponent implements OnInit {
     this.registerService.register(user).subscribe(
       user => 
       {
-        this.userService.sendEmail(user._id, user.email).subscribe();
+        //note, subscribing userService then navigate it to another
+        //address will leave the subscription uncancelled
+        //that's why i unsubscribe it after subscribe
+        //conventionally, angular will unsubscribe it automatically for us
+        //as long as there is no navigation intervene the process
+        this.userService.sendEmail(user._id, user.email).subscribe().unsubscribe()
         window.confirm(`A verification email has been sent to email ${user.email}`);
-        this.router.navigateByUrl('/login')
+        this.router.navigateByUrl('/login');
       }
     )
   }

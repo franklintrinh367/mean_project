@@ -15,9 +15,16 @@ import { ClientRegisterPageComponent } from './components/client-pages/client-re
 import { ClientNewJobPageComponent } from './components/client-pages/client-new-job-page/client-new-job-page.component';
 import { ClientJobDetailsPageComponent } from './components/client-pages/client-job-details-page/client-job-details-page.component';
 
+//Admin Pages
+import { AdminHomepageComponent } from './components/admin-pages/admin-homepage/admin-homepage.component';
+import { AdminNewUserComponent } from './components/admin-pages/admin-new-user/admin-new-user.component';
+import { AdminUserListComponent } from './components/admin-pages/admin-user-list/admin-user-list.component';
+import {AdminManageJobsComponent } from './components/admin-pages/admin-manage-jobs/admin-manage-jobs.component';
+import { AdminCompanyListComponent } from './components/admin-pages/admin-company-list/admin-company-list.component';
+
+
 // import { CompanyDetailsComponent} from './components/admin/company-details/company-details.component';
 
-/// renata test
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [UserAuthService]},
@@ -33,6 +40,15 @@ const routes: Routes = [
   {path: 'client-job-details', component: ClientJobDetailsPageComponent },
   
   // {path: 'test1', component: CompanyDetailsComponent},
+
+  //Admin Pages Router
+  { path: 'adminPages', component: AdminHomepageComponent},
+  { path: 'admin_new_user', component: AdminNewUserComponent},
+  { path: 'admin_userList', component: AdminUserListComponent},
+  { path: 'admin_companyList', component: AdminCompanyListComponent},
+  { path: 'admin_mamangeJobs', component: AdminManageJobsComponent},
+
+
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: '404', component: UnderconstructComponent},
   {path: 'login', component: LoginComponent, canActivate: [LogoutService]},
