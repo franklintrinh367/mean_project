@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
+import { MatDialog } from '@angular/material';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'navbar',
@@ -9,7 +11,10 @@ import { AuthenticateService } from 'src/app/services/authenticate.service';
 export class NavbarComponent implements OnInit {
 
   private token: String;
-  constructor(private auth: AuthenticateService) { }
+  constructor(
+    private auth: AuthenticateService,
+    private dialog: MatDialog
+    ) { }
 
   ngOnInit() {
     this.token = this.auth.getTokenDetails();
@@ -17,6 +22,16 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.auth.logout();
+  }
+
+  openDialog(){
+    this.dialog.open(DialogComponent, {
+      data: {
+        field1: 'Profile',
+        field2: 'Settings',
+        field3: 'Logout'
+      }
+    })
   }
 
 }
