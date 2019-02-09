@@ -2,15 +2,11 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const JCSchema = new Schema({
-  userID: {
-    type: Number,
-    required: true
-  },
-  firstName: {
+  jcFirstName: {
     type: String,
     required: true
   },
-  lastName: {
+  jcLastName: {
     type: String,
     required: true
   }

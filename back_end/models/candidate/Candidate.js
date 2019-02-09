@@ -3,79 +3,54 @@ const Schema = mongoose.Schema
 
 // Candidate Schema
 const CandidateSchema = new Schema({
-    userId: {
-        type: Number,
-        required: true
-    },
-    firstName: {
+    canFirstName: {
         type: String,
         required: true 
     },
-    lastName: {
+    canLastName: {
         type: String, 
         required: true 
     }, 
-    education: {
+    canEducation: {
         type: String,
         required: true 
     }, 
-    occupation: {
+    canOccupation: {
         type: String,
         required: true
     },
-    phoneNumber: {
+    canPhone: {
         type: Number,
         required: true
     },
-    linkedIn: {
+    canLinkedIn: {
         type: String,
         required: true
     },
-    // email: {
-    //     type: String, 
-    //     required: true
-    // }, 
     // resume: {
     //     type: String,
     //     data: Buffer
     // },
-    address: {
+    canAddress: {
         type: String,
         required: true
     },
-    city: {
+    canCity: {
         type: String,
         required: true
     },
-    province: {
+    canProvince: {
         type: String,
         required: true
     },
-    postalCode: {
+    canPostalCode: {
         type: String,
         required: true
     },
-    allocateStatus: {
+    canAllocateStatus: {
         type: Boolean,
         required: true
     }
 });
 
-module.exports = Candidate = mongoose.model('Candidate', CandidateSchema);
-
-module.exports.getCandidateById = function(id, callback) {
-    Candidate.findById(id, callback);
-}
-
-module.exports.getCandidateByUsername = function(username, callback) {
-    const query = {username: username};
-    Candidate.findOne(query, callback);
-}
-
-module.exports.addCandidate = function(newCandidate, callback) {
-    // to be coded here
-}
-
-module.exports.comparePassword = function(candidatePassword, password, callback) {
-    // to be coded here
-}
+module.exports = Candidate = mongoose.model('candidate', CandidateSchema)

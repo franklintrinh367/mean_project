@@ -1,39 +1,73 @@
 const express = require('express');
-var router = express.Router();
-var ObjectId = require('mongoose').Types.ObjectId;
+const router = express.Router();
 
 // declare variable for clients 
-var { Admins } = require('../../models/admin/admin');
+const Admin = require('../../models/admin/admin');
 
-router.get('/', (req, res) => {
-    Admins.find((err, docs) => {
-        if (!err) { res.send(docs);}
-        else { console.log('Error in Retrieving Clients :' + JSON.stringify(err, undefined, 2));
-    }
+// get all admins
+router.get('/get/all', (req, res) => {
+    Admin.find({role: 'admin'}, (err, admins) => {
+        if(err){
+            res.status(400).send({error: err})
+        }
+        if(companies){
+            res.status(200).json(admins)
+        }
     })
 })
 
-router.get('/:id', (req, res) => {
-    if(!ObjectId.isValid(req.params.id))
-       return res.status(400).send(`No record with given id : ${req.params.id}`);
-       Admins.findById(req.params.id, (err, doc) => {
-           if(!err) { res.send(doc);}
-           else { console.log("Error in Retrieving Clients"+ JSON.stringify(err, undefined, 2));}
-       });
-   });
-   
-// -> Code to post into the database using post
-
-router.post('/', (req, res) => {
-    var adminController = new Admins({
-        adminFirstName: req.body.adminFirstName,
-        adminLastName: req.body.adminLastName
-    });
-    adminController.save((err, doc) => {
-        if (!err) { res.send(doc);}
-        else { console.log('Error in Saving Admin:' + JSON.stringify(err, undefined, 2)); }
-    });
+// get admin by ID
+router.get('/get/:id', (req, res) => {
+    let id = req.params.id;
+    Admin.findById({_id: id}, (err, admin) => {
+        if (err) {
+            res.status(400).json({error: "Admin not found"})
+        } else {
+            res.status(200).json({admin: admin})
+        }
+    })
 });
+
+// delete admin
+router.delete('/delete/:id', (req, res) => {
+    var id = req.params.id;
+    Admin.findOneAndDelete({_id: id}, (err, admin) => {
+        if (err) {
+            res.status(400).json({error: "Admin not found"})
+        } else {
+            res.status(200).json({admin: admin})
+        }
+    })
+})
+
+// update admin
+router.put('/update/:id', (req, res) => {
+    var id = req.params.id;
+    Admin.findOne({_id: id}, (err, admin) => {
+        if (err) {
+            res.status(400).json({error: "Admin not found"})
+        } else {
+            if (req.body.adminFirstName) {
+                admin.adminFirstName = req.body.compadminFirstNameName
+            }
+            if (req.body.adminLastName) {
+                admin.adminLastName = req.body.adminLastName
+            }
+            if (req.body.password) {
+                bcrypt.hash(req.body.password, 10, (err, hash) => {
+                    if(err) {
+                        res.status(400).json({error: err})
+                    }
+                    admin.password = hash
+                })
+            }
+            admin.save()
+                .then(Admin => res.status(200).json({Admin: Admin}))
+                .catch(err => res.status(400).json({error: err}))
+        }
+    })
+})
+
 
 // -> Exports the router
 module.exports = router;

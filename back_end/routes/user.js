@@ -7,9 +7,11 @@ const nodemailer = require('nodemailer');
 // Get the secret key
 const secretOrKey = require('../config/keys').secretOrKey
 
-// Load User model
+// Load models
 const User = require('../models/User');
 const Candidate = require('../models/candidate/Candidate')
+const Company = require('../models/company/Company')
+const Admin = require('../models/admin/Admin')
 
 // User Register
 router.post('/register', (req, res) => {
@@ -19,37 +21,60 @@ router.post('/register', (req, res) => {
     let details = {}
     // get params from role candidate
     if(role == 'candidate'){
-        const { 
-            firstName, lastName, education, occupation, 
-            phoneNumber, linkedIn, address,
-            city, province, postalCode, allocateStatus 
+        let { 
+            canFirstName, canLastName, canEducation, canOccupation, 
+            canPhone, canLinkedIn, canAddress,
+            canCity, canProvince, canPostalCode, canAllocateStatus 
         } = req.body
         details =  new Candidate({
-            firstName: firstName,
-            lastName: lastName,
-            education: education,
-            occupation: occupation,
-            phoneNumber: phoneNumber,
-            linkedIn: linkedIn,
-            // resume: resume,
-            address: address,
-            city: city,
-            province: province,
-            postalCode: postalCode,
-            allocateStatus: allocateStatus,
+            canFirstName,
+            canLastName,
+            canEducation,
+            canOccupation,
+            canPhone,
+            canLinkedIn,
+            // resume,
+            canAddress,
+            canCity,
+            canProvince,
+            canPostalCode,
+            canAllocateStatus,
         })
     }
-    // get params from role candidate
+    // get params from role company
     if(role == 'company'){
-
+        let {
+            compName, compCRANumber, compAddress,
+            compCity, compCode, compPhone, compContact
+        } = req.body
+        details = new Company({
+            compName,
+            compCRANumber,
+            compAddress,
+            compCity,
+            compCode,
+            compProvince,
+            compPhone,
+            compContact,
+        });
     }
+
+    // get params from role admin
+    if(role == 'admin'){
+        let { adminFirstName, adminLastName } = req.body
+        details = new Admin({
+            adminFirstName,
+            adminLastName
+        })
+    }
+
     const newUser = new User({
-        email: email,
-        password: password,
-        username: username,
-        activated : activated,
-        role : role,
-        details: details,
+        email,
+        password,
+        username,
+        activated,
+        role,
+        details,
     })
     //Hash password
     bcrypt.genSalt(10, (err, salt) => {
@@ -61,9 +86,21 @@ router.post('/register', (req, res) => {
             newUser.password = hash;
             newUser.save()
                 .then(user => res.json(user))
-                .catch(err => console.log(err))
+                .catch(err => res.json(err))
         })
         });
+})
+
+// get all users
+router.get('/all', (req, res) => {
+    User.find({}, (err, users) => {
+        if(err){
+            res.status(400).send({error: err})
+        }
+        if(users){
+            res.status(200).json(users)
+        }
+    })
 })
 
 //sendEmail
@@ -72,44 +109,43 @@ router.get('/send/:id&:email', async (req, res)=>{
     let id = req.params.id;
     let email = req.params.email;
     bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(id, salt, (err, hash) => {
-    //***important line, don't change this, sometimes bcrypt produces hash with
-    //slash which will break the url
-    hash = hash.replace('/', '.')
+        bcrypt.hash(id, salt, (err, hash) => {
+        //***important line, don't change this, sometimes bcrypt produces hash with
+        //slash which will break the url
+        hash = hash.replace('/', '.')
 
-    let transporter = nodemailer.createTransport({
-        host: 'smtp.mail.com',
-        port: 587,
-        sercure: false,
-        auth: {
-            user: 'jc-consulting@mail.com',
-            pass: 'computerprograming'
-        }
-    });
+        let transporter = nodemailer.createTransport({
+            host: 'smtp.mail.com',
+            port: 587,
+            sercure: false,
+            auth: {
+                user: 'jc-consulting@mail.com',
+                pass: 'computerprograming'
+            }
+        });
 
-    let msg = 'Welcome to JC Consulting, here is the invitation link:\n'
-    + `http://localhost:3000/user/verify/${hash}`;
+        let msg = 'Welcome to JC Consulting, here is the invitation link:\n'
+        + `http://localhost:3000/user/verify/${hash}`;
 
-    let mailOptions = {
-        from: 'jc-consulting@mail.com',
-        to: email,
-        subject: 'Welcome to JC-Consulting',
-        text: msg
-    };
+        let mailOptions = {
+            from: 'jc-consulting@mail.com',
+            to: email,
+            subject: 'Welcome to JC-Consulting',
+            text: msg
+        };
 
-    transporter.sendMail(mailOptions, (err, info) =>{
-        if(err) console.log(err);
-        console.log(info);
-        User.findByIdAndUpdate(id,    
-            {
-                $set: {
-                    hash: hash
-                }
-            }).then().catch(err => console.log(err))
+        transporter.sendMail(mailOptions, (err, info) => {
+            if(err) console.log(err);
+            console.log(info);
+            User.findByIdAndUpdate(id,    
+                {
+                    $set: {
+                        hash: hash
+                    }
+                }).then().catch(err => console.log(err))
+        })
     })
-
-})
-})
+    })
 })
 
 //verify email
@@ -165,15 +201,6 @@ router.get('/find/:obj', (req, res) => {
         err => console.log(err)
     )
 })
-//Delete user
-router.delete('/delete/', (req, res) => {
-    User.deleteMany({}).then(
-        user => res.json(user)
-    )
-    .catch(err => {
-        console.log("some err : " + err)
-    })
-})
 
 // User Login
 router.post('/login', (req, res) => {
@@ -182,7 +209,7 @@ router.post('/login', (req, res) => {
     User.findOne().or([{email: email}, {username: username}])
         .then(user => {
             if(!user){
-                return res.status(400).json({msg: 'User or email cannot be found'})
+                return res.status(400).json({msg: 'Username or email cannot be found'})
             }else{
                 bcrypt.compare(password, user.password)
                     .then(isMatch => {
@@ -213,4 +240,5 @@ router.post('/login', (req, res) => {
             return res.status(400).json(err)
         })
 })
+
 module.exports = router;

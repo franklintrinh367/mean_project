@@ -1,0 +1,91 @@
+const express = require('express');
+const router = express.Router();
+
+// declare variable for clients 
+const User = require('../../models/User');
+
+// get all companies
+router.get('/get/all', (req, res) => {
+    User.find({role: 'company'}, (err, companies) => {
+        if(err){
+            res.status(400).send({error: err})
+        }
+        if(companies){
+            res.status(200).json(companies)
+        }
+    })
+})
+
+// get company by ID
+router.get('/get/:id', (req, res) => {
+    let id = req.params.id;
+    User.findById({_id: id}, (err, company) => {
+        if (err) {
+            res.status(400).json({error: "Company not found"})
+        } else {
+            res.status(200).json({company: company})
+        }
+    })
+});
+
+// delete company
+router.delete('/delete/:id', (req, res) => {
+    var id = req.params.id;
+    User.findOneAndDelete({_id: id}, (err, company) => {
+        if (err) {
+            res.status(400).json({error: "Company not found"})
+        } else {
+            res.status(200).json({company: company})
+        }
+    })
+})
+
+// update company
+router.put('/update/:id', (req, res) => {
+    var id = req.params.id;
+    User.findOne({_id: id}, (err, company) => {
+        if (err) {
+            res.status(400).json({error: "Company not found"})
+        } else {
+            if (req.body.compName) {
+                company.compName = req.body.compName
+            }
+            if (req.body.compCRANumber) {
+                company.compCRANumber = req.body.compCRANumber
+            }
+            if (req.body.compAddress) {
+                company.compAddress = req.body.compAddress
+            }
+            if (req.body.compCity) {
+                company.compCity = req.body.compCity
+            }
+            if (req.body.compCode) {
+                company.compCode = req.body.compCode
+            }
+            if (req.body.compProvince) {
+                company.compProvince = req.body.compProvince
+            }
+            if (req.body.compPhone) {
+                company.compPhone = req.body.compPhone
+            }
+            if (req.body.compContact) {
+                company.compContact = req.body.compContact
+            }
+            if (req.body.password) {
+                bcrypt.hash(req.body.password, 10, (err, hash) => {
+                    if(err) {
+                        res.status(400).json({error: err})
+                    }
+                    company.password = hash
+                })
+            }
+            company.save()
+                .then(user => res.status(200).json({user: user}))
+                .catch(err => res.status(400).json({error: err}))
+        }
+    })
+})
+
+
+// -> Exports the router
+module.exports = router;

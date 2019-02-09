@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
 // Client Schema 
-const companySchema = new Schema({
-    companyName: {
+const CompanySchema = new Schema({
+    compName: {
         type: String, 
         requried: true      
     },
-    CRANumber: {
+    compCRANumber: {
         type: Number, 
         required: true
     }, 
@@ -23,10 +23,6 @@ const companySchema = new Schema({
         type: String,
         required: true
     },
-    password: {
-        type: String, 
-        required: true
-    }, 
     compProvince: {
         type: String,
         requried: true
@@ -41,4 +37,4 @@ const companySchema = new Schema({
     }
 })
 
-const Client = module.exports = mongoose.model('company', companySchema);
+module.exports = Company = mongoose.model('company', CompanySchema)

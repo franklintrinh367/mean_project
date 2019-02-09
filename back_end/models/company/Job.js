@@ -1,33 +1,23 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
-// Client Schema 
-
-const jobSchema = new Schema({
-    jobId:{
+const JobSchema = new Schema({
+    companyID:{
         type: Number, 
         required: true
     },
-    compID :{
-        type: Number, 
-        required: true
-    },
-
     jobStatus: {
-        type: String, 
+        type: Boolean, 
         required: true
     }, 
-
     jobPostDate: {
         type: Date,
         required: true
     },
-
     jobEndDate: {
         type: Date,
         required: true
     },
-
     jobPosition: {
         type: Number,
         required: true
@@ -35,8 +25,7 @@ const jobSchema = new Schema({
     jobDescritpion: {
         type: String, 
         required: true
-    }, 
-
+    },
     jobActivate: {
         type: Boolean,
         requried: true
@@ -48,7 +37,8 @@ const jobSchema = new Schema({
     compContact: {
         type: Number, 
         required: true
-    }
+    },
+    match: []
 })
 
-const Client = module.exports = mongoose.model('company', companySchema);
+module.exports = Job = mongoose.model('jobs', JobSchema);
