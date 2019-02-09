@@ -1,9 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule
-, MatProgressSpinnerModule, MatCheckboxModule, MatRadioModule,
-MatToolbarModule, MatMenuModule, MatDividerModule, MatListModule, MatIconModule, MatTableModule, MatTabsModule, MatSelectModule} from '@angular/material';
+
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {HttpClientModule} from '@angular/common/http'; 
@@ -36,6 +34,10 @@ import { ClientRegisterPageComponent } from './components/client-pages/client-re
 // import { CompanyListComponent } from './components/admin/company-list/company-list.component';
 // import { CompanyDetailsComponent } from './components/admin/company-details/company-details.component';
 import { HeaderComponent } from './components/main/header/header.component';
+import { ClientNewJobPageComponent } from './components/client-pages/client-new-job-page/client-new-job-page.component';
+import { ClientJobDetailsPageComponent } from './components/client-pages/client-job-details-page/client-job-details-page.component';
+// Abdal --- this is the import related to the material. 
+import { MaterialModule } from './module/material/material.module';
 
 //Admin Pages
 import { AdminHomepageComponent } from './components/admin-pages/admin-homepage/admin-homepage.component';
@@ -65,8 +67,12 @@ import { AdminCompanyListComponent } from './components/admin-pages/admin-compan
     ProfileComponent,
     VerifyPageComponent,
     HeaderComponent,
+    // company Pages
     ClientHomepagesComponent,
     ClientRegisterPageComponent,
+    ClientNewJobPageComponent,
+    ClientJobDetailsPageComponent,
+
 
     //Admin Pages
     AdminHomepageComponent,
@@ -75,39 +81,17 @@ import { AdminCompanyListComponent } from './components/admin-pages/admin-compan
     AdminManageJobsComponent,
     AdminCompanyListComponent,
 
-
-    // NewUserComponent,
-    // UserListComponent,
-    // UserDetailsComponent,
-    // JobListComponent,
-    // CompanyListComponent,
-    // CompanyDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
     BrowserAnimationsModule,
-    MatCardModule,
     MatGridListModule,
-    MatButtonModule,
     HttpClientModule,
-    MatProgressSpinnerModule,
-    MatCheckboxModule,
-    MatIconModule,
-    MatRadioModule,
     FlexLayoutModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatDividerModule,
-    MatListModule,
-    MatTableModule,
-    BrowserAnimationsModule,
-    MatTabsModule,
-    MatSelectModule
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

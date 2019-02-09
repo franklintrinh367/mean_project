@@ -1,0 +1,59 @@
+<div class="wraper" fxLayout="column" fxLayoutAlign="center center">
+    <mat-card fxFlex.xs="auto">
+      <span> Post a new Job</span>
+      <form autocomplete="off" [formGroup]="service.form">
+        <mat-grid-list cols="2" rowHeight="500px">
+          <mat-grid-tile>
+  
+        <div class="container">
+          <!-- Username -->
+            
+          <mat-form-field>
+            <input formControlName="jobId" matInput placeholder="Job Id *" #jobId>
+          </mat-form-field>
+              
+          <mat-form-field>
+            <input formControlName="jobPosition" matInput placeholder="Position *" #jobPosition>
+            <mat-icon matSuffix></mat-icon>
+            <mat-error>Position </mat-error> 
+          </mat-form-field>
+                
+          <mat-form-field hidden>
+              <input formControlName="jobPostDate" matInput placeholder=" " #jobPostDate>
+              <span> {{ this.service.form.controls['jobPostDate'].setValue(today) }}</span>
+            </mat-form-field>
+            
+         <mat-form-field>
+            <input matInput [matDatepicker]="picker" formControlName="jobEndDate" placeholder="Expiration Date" #jobEndDate>
+            <mat-datepicker-toggle matSuffix [for]="picker">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+                    
+         <mat-form-field>
+            <mat-select placeholder="Status of the job" formControlName="jobStatus">
+                <mat-option *ngFor="let stat of status" [value]="stat.value">
+                  {{stat.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+                    
+         <mat-form-field>
+            <textarea formControlName="jobDescription" matInput placeholder="Description" rows="4" cols="10" #jobDescription> </textarea>
+              <mat-icon matSuffix>location_city</mat-icon>
+         </mat-form-field>
+       
+         <div class="container">
+            <div class="button-row">
+                <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Submit</button>
+                <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+            </div>
+          </div>
+    
+       
+        </div>
+      </mat-grid-tile>    </mat-grid-list>
+      </form> 
+    </mat-card>
+  
