@@ -12,14 +12,17 @@
           <div *ngIf="(email.errors | firstErrPipe ) === 'pattern'">Invalid email address</div>
           <div *ngIf="(email.errors | firstErrPipe ) === 'required'">Field cannot be empty</div>
         </div>
-      </div>
-      <!-- Password Input -->
-      <mat-form-field>
-        <input matInput type="password" placeholder="Password" formControlName="password">
-      </mat-form-field>
-      <div class="validation-wraper">
-        <div *ngIf="password.invalid && (password.dirty || password.touched) else elseBlock" >
-          <div *ngIf="(password.errors | firstErrPipe ) === 'required'">Field cannot be empty</div>
+        <!-- Password Input -->
+        <mat-form-field>
+          <input matInput type="password" placeholder="Password" formControlName="password">
+        </mat-form-field>
+        <div class="validation-wraper">
+          <div *ngIf="password.invalid && (password.dirty || password.touched) else elseBlock" >
+            <div *ngIf="(password.errors | firstErrPipe ) === 'required'">Field cannot be empty</div>
+          </div>
+          <ng-template #elseBlock>
+            <div *ngIf="error">{{this.error}}</div>
+          </ng-template>        
         </div>
         <ng-template #elseBlock>
           <div *ngIf="error">{{this.error}}</div>

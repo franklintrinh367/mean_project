@@ -1,51 +1,51 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs')
-const Candidate = require('../../models/candidate/Candidate');
+const User = require('../../models/User');
 
 // Candidate Register 
-router.post('/register', (req, res) => {
-    const {firstName, lastName, education, occupation, 
-    phoneNumber, linkedIn, dateOfBirth, email, password} = req.body
+// router.post('/register', (req, res) => {
+//     const { firstName, lastName, education, occupation, 
+//     phoneNumber, linkedIn, dateOfBirth } = req.body
 
-    Candidate.findOne({email})
-        .then(candidate => {
-            if(candidate) {
-                return res.status(400).json({email: 'Email is existed'})
-            } else {
-                const newCandidate = new Candidate({
-                    firstName: firstName,
-                    lastName: lastName,
-                    education: education,
-                    occupation: occupation,
-                    phoneNumber: phoneNumber,
-                    linkedIn: linkedIn,
-                    dateOfBirth: dateOfBirth,
-                    email: email,
-                    password: password
-                })
-                bcrypt.hash(newCandidate.password, 10, (err, hash) => {
-                    // Store hash in your password DB
-                    if(err) {
-                        throw err
-                    }
-                    newCandidate.password = hash
-                    newCandidate.save()
-                        .then(candidate => res.json(candidate))
-                        .catch(err => console.log(err))
-                })
-            }
-    }).catch(err => console.log(err))
-})
+//     User.findOne({email})
+//         .then(candidate => {
+//             if(candidate) {
+//                 return res.status(400).json({email: 'Email is existed'})
+//             } else {
+//                 const newCandidate = new Candidate({
+//                     firstName: firstName,
+//                     lastName: lastName,
+//                     education: education,
+//                     occupation: occupation,
+//                     phoneNumber: phoneNumber,
+//                     linkedIn: linkedIn,
+//                     dateOfBirth: dateOfBirth,
+//                     // email: email,
+//                     password: password
+//                 })
+//                 bcrypt.hash(newCandidate.password, 10, (err, hash) => {
+//                     // Store hash in your password DB
+//                     if(err) {
+//                         throw err
+//                     }
+//                     newCandidate.password = hash
+//                     newCandidate.save()
+//                         .then(candidate => res.json(candidate))
+//                         .catch(err => console.log(err))
+//                 })
+//             }
+//     }).catch(err => console.log(err))
+// })
 
 // Get Candidate
 router.get('/get/:id', (req, res) => {
-    var id = req.params.id;
-    Candidate.findById(id, (err, candidateFound) => {
+    let id = req.params.id;
+    User.findById({_id: id}, (err, candidate) => {
         if (err) {
-            res.status(500).send();
+            res.status(400).json({error: "User not found"})
         } else {
-            res.json(candidateFound);
+            res.json(candidate);
         }
     })
 })
@@ -53,11 +53,11 @@ router.get('/get/:id', (req, res) => {
 // Delete Candidate 
 router.delete('/delete/:id', (req, res) => {
     var id = req.params.id;
-    Candidate.findOneAndDelete({_id: id}, (err, deletedCandidate) => {
+    User.findOneAndDelete({_id: id}, (err, candidate) => {
         if (err) {
-            res.status(500).send();
+            res.status(400).json({error: "User not found"})
         } else {
-            res.json(deletedCandidate)
+            res.json(candidate)
         }
     })
 })
@@ -65,9 +65,9 @@ router.delete('/delete/:id', (req, res) => {
 // Update Candidate
 router.put('/update/:id', (req, res) => {
     var id = req.params.id;
-    Candidate.findOne({_id: id}, (err, foundCandidate) => {
+    User.findOne({_id: id}, (err, foundCandidate) => {
         if (err) {
-            res.status(500).send();
+            res.status(400).json({error: "User not found"})
         } else {
             if(!foundCandidate) {
                 res.status(404).send();
@@ -104,11 +104,11 @@ router.put('/update/:id', (req, res) => {
                         foundCandidate.password = hash
                     })
                 }
-                foundCandidate.save((err, updatedCandidate) => {
+                foundCandidate.save((err, candidate) => {
                     if (err) {
-                        res.status(500).send();
+                        res.status(400).json({error: "User not found"})
                     } else {
-                        res.json(updatedCandidate);
+                        res.json(candidate);
                     }
                 })
             }

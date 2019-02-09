@@ -66,6 +66,16 @@ Create front-end components in client/ folder
   
   Don't push a code if it is not running
   
+  # Testing email verification"
+  In case anyone gets to this part and want to test email verification. For some reason, all the mail host limit number of emails
+  can be sent. So after a few emails, you will be blocked from the host for like 15 minutes.
+      Go to Ethereal.mail:
+      
+      Go to JC back-end -> user.js -> { 
+            in the sendEmail session, there will be fake email and password, use that to login onto ethereal.mail.
+            That site will contain your verification email regardess of the receiver is real or fake
+      }
+  
           
         
           
