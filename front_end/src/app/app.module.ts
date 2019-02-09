@@ -112,4 +112,4 @@ import { AdminCompanyListComponent } from './components/admin-pages/admin-compan
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
