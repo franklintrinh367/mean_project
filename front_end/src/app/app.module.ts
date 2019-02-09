@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule
 , MatProgressSpinnerModule, MatCheckboxModule, MatRadioModule,
-MatToolbarModule, MatMenuModule, MatDividerModule, MatListModule, MatIconModule} from '@angular/material';
+MatToolbarModule, MatMenuModule, MatDividerModule, MatListModule, MatIconModule, MatTableModule, MatTabsModule, MatSelectModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {HttpClientModule} from '@angular/common/http'; 
@@ -37,6 +37,13 @@ import { ClientRegisterPageComponent } from './components/client-pages/client-re
 // import { CompanyDetailsComponent } from './components/admin/company-details/company-details.component';
 import { HeaderComponent } from './components/main/header/header.component';
 
+//Admin Pages
+import { AdminHomepageComponent } from './components/admin-pages/admin-homepage/admin-homepage.component';
+import { AdminNewUserComponent } from './components/admin-pages/admin-new-user/admin-new-user.component';
+import { AdminUserListComponent } from './components/admin-pages/admin-user-list/admin-user-list.component';
+import { AdminManageJobsComponent } from './components/admin-pages/admin-manage-jobs/admin-manage-jobs.component';
+import { AdminCompanyListComponent } from './components/admin-pages/admin-company-list/admin-company-list.component';
+
 
 @NgModule({
   declarations: [
@@ -60,6 +67,15 @@ import { HeaderComponent } from './components/main/header/header.component';
     HeaderComponent,
     ClientHomepagesComponent,
     ClientRegisterPageComponent,
+
+    //Admin Pages
+    AdminHomepageComponent,
+    AdminNewUserComponent,
+    AdminUserListComponent,
+    AdminManageJobsComponent,
+    AdminCompanyListComponent,
+
+
     // NewUserComponent,
     // UserListComponent,
     // UserDetailsComponent,
@@ -87,9 +103,13 @@ import { HeaderComponent } from './components/main/header/header.component';
     MatToolbarModule,
     MatMenuModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    MatTableModule,
+    BrowserAnimationsModule,
+    MatTabsModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
