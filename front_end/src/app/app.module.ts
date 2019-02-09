@@ -1,9 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule
-, MatProgressSpinnerModule, MatCheckboxModule, MatRadioModule,
-MatToolbarModule, MatMenuModule, MatDividerModule, MatListModule, MatIconModule} from '@angular/material';
+
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {HttpClientModule} from '@angular/common/http'; 
@@ -36,6 +34,10 @@ import { ClientRegisterPageComponent } from './components/client-pages/client-re
 // import { CompanyListComponent } from './components/admin/company-list/company-list.component';
 // import { CompanyDetailsComponent } from './components/admin/company-details/company-details.component';
 import { HeaderComponent } from './components/main/header/header.component';
+import { ClientNewJobPageComponent } from './components/client-pages/client-new-job-page/client-new-job-page.component';
+import { ClientJobDetailsPageComponent } from './components/client-pages/client-job-details-page/client-job-details-page.component';
+// Abdal --- this is the import related to the material. 
+import { MaterialModule } from './module/material/material.module';
 
 
 @NgModule({
@@ -60,6 +62,8 @@ import { HeaderComponent } from './components/main/header/header.component';
     HeaderComponent,
     ClientHomepagesComponent,
     ClientRegisterPageComponent,
+    ClientNewJobPageComponent,
+    ClientJobDetailsPageComponent,
     // NewUserComponent,
     // UserListComponent,
     // UserDetailsComponent,
@@ -72,22 +76,11 @@ import { HeaderComponent } from './components/main/header/header.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
     BrowserAnimationsModule,
-    MatCardModule,
     MatGridListModule,
-    MatButtonModule,
     HttpClientModule,
-    MatProgressSpinnerModule,
-    MatCheckboxModule,
-    MatIconModule,
-    MatRadioModule,
     FlexLayoutModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatDividerModule,
-    MatListModule
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

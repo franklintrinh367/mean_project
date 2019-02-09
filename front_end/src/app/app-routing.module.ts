@@ -12,6 +12,8 @@ import { LogoutService } from './services/logout.service';
 import { ProfileComponent } from './components/main/profile/profile.component';
 import { VerifyPageComponent } from './components/main/verify-page/verify-page.component';
 import { ClientRegisterPageComponent } from './components/client-pages/client-register-page/client-register-page.component';
+import { ClientNewJobPageComponent } from './components/client-pages/client-new-job-page/client-new-job-page.component';
+import { ClientJobDetailsPageComponent } from './components/client-pages/client-job-details-page/client-job-details-page.component';
 
 // import { CompanyDetailsComponent} from './components/admin/company-details/company-details.component';
 
@@ -24,12 +26,18 @@ const routes: Routes = [
   {path: 'register', component: RegisterCardComponent, canActivate: [LogoutService]},
   {path: 'profile', component: ProfileComponent, canActivate: [UserAuthService]},
   {path: 'success/:hash', component: VerifyPageComponent},
+  
+  // clients
+  {path: 'client_register', component: ClientRegisterPageComponent },
+  {path: 'new-jobs', component: ClientNewJobPageComponent },
+  {path: 'client-job-details', component: ClientJobDetailsPageComponent },
+  
   // {path: 'test1', component: CompanyDetailsComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: '404', component: UnderconstructComponent},
   {path: 'login', component: LoginComponent, canActivate: [LogoutService]},
   {path: '**', redirectTo: '404'},
-  {path: 'client-register', component: ClientRegisterPageComponent }
+  
 ];
 
 @NgModule({

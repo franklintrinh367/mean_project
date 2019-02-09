@@ -2,33 +2,43 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
 // Client Schema 
-const companySchema = new Schema({
-    companyName: {
-        type: String, 
-        requried: true      
-    },
-    CRANumber: {
+
+const jobSchema = new Schema({
+    jobId:{
         type: Number, 
         required: true
-    }, 
-    compAddress: {
-        type: String,
+    },
+    compID :{
+        type: Number, 
         required: true
     },
-    compCity: {
-        type: String,
-        required: true
-    },
-    compCode: {
-        type: String,
-        required: true
-    },
-    password: {
+
+    jobStatus: {
         type: String, 
         required: true
     }, 
-    compProvince: {
-        type: String,
+
+    jobPostDate: {
+        type: Date,
+        required: true
+    },
+
+    jobEndDate: {
+        type: Date,
+        required: true
+    },
+
+    jobPosition: {
+        type: Number,
+        required: true
+    },
+    jobDescritpion: {
+        type: String, 
+        required: true
+    }, 
+
+    jobActivate: {
+        type: Boolean,
         requried: true
     },
     compPhone: {
