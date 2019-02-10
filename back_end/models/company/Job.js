@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
 const JobSchema = new Schema({
-    companyID:{
-        type: Number, 
-        required: true
+    companyID: {
+        type: Schema.Types.ObjectId, 
+        ref: 'User'
     },
     jobStatus: {
         type: Boolean, 
@@ -30,15 +30,14 @@ const JobSchema = new Schema({
         type: Boolean,
         requried: true
     },
-    compPhone: {
-        type: Number, 
-        required: true
-    },
-    compContact: {
-        type: Number, 
-        required: true
-    },
-    match: []
+    candidatesMatch: [
+       { 
+           candidate: {
+                type: Schema.Types.ObjectId,
+                ref: 'User',
+            }
+        }
+    ]
 })
 
-module.exports = Job = mongoose.model('jobs', JobSchema);
+module.exports = Job = mongoose.model('Job', JobSchema);

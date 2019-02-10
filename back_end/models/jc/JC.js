@@ -12,4 +12,4 @@ const JCSchema = new Schema({
   }
 })
 
-module.exports = JC = mongoose.model('jc', JCSchema)
+module.exports = JC = mongoose.model('JC', JCSchema)

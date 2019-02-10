@@ -4,12 +4,12 @@ const Schema = mongoose.Schema
 const AdminSchema = new Schema({
   adminFirstName: { 
     type: String, 
-    require: true 
+    require: true,
   },
   adminLastName: { 
     type: String, 
-    require: true
+    require: true,
   },
 })
 
-module.exports = Admin = mongoose.model('admin', AdminSchema)
+module.exports = Admin = mongoose.model('Admin', AdminSchema)

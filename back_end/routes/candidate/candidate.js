@@ -1,13 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs')
+
+// get User model
 const User = require('../../models/User');
 
 // Get all Candidates
 router.get('/get/all', (req, res) => {
     User.find({role: 'candidate'}, (err, candidates) => {
         if(err){
-            res.status(400).send({error: err})
+            res.status(400).send({error: "Candidate not found"})
         }
         if(candidates){
             res.status(200).json(candidates)
@@ -16,23 +18,11 @@ router.get('/get/all', (req, res) => {
 })
 
 // Get Candidate by ID
-router.get('/get/:id', (req, res) => {
-    let id = req.params.id;
-    User.findById({_id: id}, (err, candidate) => {
+router.get('/get/:candidateID', (req, res) => {
+    let {candidateID} = req.params;
+    User.findById({_id: candidateID}, (err, candidate) => {
         if (err) {
-            res.status(400).json({error: "User not found"})
-        } else {
-            res.status(200).json({candidate: candidate})
-        }
-    })
-})
-
-// Delete Candidate 
-router.delete('/delete/:id', (req, res) => {
-    var id = req.params.id;
-    User.findOneAndDelete({_id: id}, (err, candidate) => {
-        if (err) {
-            res.status(400).json({error: "User not found"})
+            res.status(400).json({error: "Candidate not found"})
         } else {
             res.status(200).json({candidate: candidate})
         }
@@ -40,9 +30,9 @@ router.delete('/delete/:id', (req, res) => {
 })
 
 // Update Candidate
-router.put('/update/:id', (req, res) => {
-    var id = req.params.id;
-    User.findOne({_id: id}, (err, candidate) => {
+router.put('/update/:candidateID', (req, res) => {
+    var {candidateID} = req.params;
+    User.findOne({_id: candidateID}, (err, candidate) => {
         if (err) {
             res.status(400).json({error: "User not found"})
         } else {
@@ -79,7 +69,7 @@ router.put('/update/:id', (req, res) => {
                 })
             }
             candidate.save()
-                .then(user => res.status(200).json({user: user}))
+                .then(user => res.status(200).json({candidate: candidate}))
                 .catch(err => res.status(400).json({err: err}))
         }
     })
