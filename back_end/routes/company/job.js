@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-// declare variable job Object 
+// get Job model
 const Job = require('../../models/company/Job');
 
 // get all Jobs
@@ -10,16 +10,16 @@ router.get('/get/all', (req, res) => {
         if(err){
             res.status(400).send({error: err})
         }
-        if(companies){
+        if(jobs){
             res.status(200).json(jobs)
         }
     })
 })
 
 // get Job by ID
-router.get('/get/:id', (req, res) => {
-    let id = req.params.id;
-    Job.findById({_id: id}, (err, job) => {
+router.get('/get/:jobID', (req, res) => {
+    let { jobID } = req.params;
+    Job.findById({_id: jobID}, (err, job) => {
         if (err) {
             res.status(400).json({error: "Job not found"})
         } else {
@@ -29,9 +29,11 @@ router.get('/get/:id', (req, res) => {
 });
 
 // delete Job
-router.delete('/delete/:id', (req, res) => {
-    var id = req.params.id;
-    Job.findOneAndDelete({_id: id}, (err, job) => {
+router.delete('/delete/:jobID', (req, res) => {
+     // get jobID from url   
+    var { jobID } = req.params;
+
+    Job.findOneAndDelete({_id: jobID}, (err, job) => {
         if (err) {
             res.status(400).json({error: "Job not found"})
         } else {
@@ -41,33 +43,75 @@ router.delete('/delete/:id', (req, res) => {
 })
 
 // update Job
-router.put('/update/:id', (req, res) => {
-    var id = req.params.id;
-    Job.findOne({_id: id}, (err, Job) => {
+router.put('/update/:jobID', (req, res) => {
+    // get jobID from url
+    let { jobID } = req.params;
+
+    Job.findOne({_id: jobID}, (err, job) => {
         if (err) {
             res.status(400).json({error: "Job not found"})
         } else {
-            if (req.body.JobFirstName) {
-                Job.JobFirstName = req.body.compJobFirstNameName
+            if (req.body.jobFirstName) {
+                job.JobFirstName = req.body.compJobFirstNameName
             }
-            if (req.body.JobLastName) {
-                Job.JobLastName = req.body.JobLastName
+            if (req.body.jobLastName) {
+                job.JobLastName = req.body.JobLastName
             }
             if (req.body.password) {
                 bcrypt.hash(req.body.password, 10, (err, hash) => {
                     if(err) {
                         res.status(400).json({error: err})
                     }
-                    Job.password = hash
+                    job.password = hash
                 })
             }
-            Job.save()
-                .then(Job => res.status(200).json({Job: Job}))
+            job.save()
+                .then(job => res.status(200).json({job: job}))
                 .catch(err => res.status(400).json({error: err}))
         }
     })
 })
 
+// create a Job
+router.post('/create', (req, res) => {
+    // get key companyID from header
+    let companyID = req.get('companyID')
 
-// -> Exports the router
+    let {
+        jobStatus, jobPostDate, jobEndDate, jobPosition, 
+        jobDescritpion, jobActivate, compContact, compPhone
+    } = req.body
+    let newJob = new Job({
+        companyID,
+        jobStatus,
+        jobPostDate,
+        jobEndDate,
+        jobPosition,
+        jobDescritpion,
+        jobActivate,
+        compPhone,
+        compContact,
+        candidatesMatch: []
+    })
+    newJob.save()
+        .then(job => res.status(200).json({job: job}))
+        .catch(err => res.status(400).json({error: err}))
+})
+
+// apply for a job
+router.post('/apply/:jobID', (req, res) => {
+    // get jobID from url
+    let { jobID } = req.params
+    // get candidateID from header
+    let candidateID = req.get('candidateID')
+
+    Job.findById({_id: jobID})
+        .then(job => {
+            job.candidatesMatch.unshift({candidate: candidateID})
+            job.save().then(job => res.status(200).json({job: job}))
+        })
+        .catch(err => res.status(400).json({error: err}))
+
+})
+
 module.exports = router;

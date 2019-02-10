@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-// declare variable for clients 
+// get User model 
 const User = require('../../models/User');
 
 // get all companies
@@ -17,9 +17,10 @@ router.get('/get/all', (req, res) => {
 })
 
 // get company by ID
-router.get('/get/:id', (req, res) => {
-    let id = req.params.id;
-    User.findById({_id: id}, (err, company) => {
+router.get('/get/:companyID', (req, res) => {
+    let { companyID } = req.params;
+
+    User.findById({_id: companyID}, (err, company) => {
         if (err) {
             res.status(400).json({error: "Company not found"})
         } else {
@@ -28,22 +29,11 @@ router.get('/get/:id', (req, res) => {
     })
 });
 
-// delete company
-router.delete('/delete/:id', (req, res) => {
-    var id = req.params.id;
-    User.findOneAndDelete({_id: id}, (err, company) => {
-        if (err) {
-            res.status(400).json({error: "Company not found"})
-        } else {
-            res.status(200).json({company: company})
-        }
-    })
-})
-
 // update company
-router.put('/update/:id', (req, res) => {
-    var id = req.params.id;
-    User.findOne({_id: id}, (err, company) => {
+router.put('/update/:companyID', (req, res) => {
+    let { companyID } = req.params;
+
+    User.findOne({_id: companyID}, (err, company) => {
         if (err) {
             res.status(400).json({error: "Company not found"})
         } else {
@@ -86,6 +76,4 @@ router.put('/update/:id', (req, res) => {
     })
 })
 
-
-// -> Exports the router
 module.exports = router;

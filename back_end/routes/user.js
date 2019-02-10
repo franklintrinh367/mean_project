@@ -45,7 +45,7 @@ router.post('/register', (req, res) => {
     if(role == 'company'){
         let {
             compName, compCRANumber, compAddress,
-            compCity, compCode, compPhone, compContact
+            compCity, compCode, compPhone, compContact, compProvince
         } = req.body
         details = new Company({
             compName,
@@ -64,7 +64,7 @@ router.post('/register', (req, res) => {
         let { adminFirstName, adminLastName } = req.body
         details = new Admin({
             adminFirstName,
-            adminLastName
+            adminLastName,
         })
     }
 

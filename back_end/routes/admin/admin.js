@@ -1,25 +1,25 @@
 const express = require('express');
 const router = express.Router();
 
-// declare variable for clients 
-const Admin = require('../../models/admin/admin');
+// get Admin model
+const User = require('../../models/User');
 
 // get all admins
 router.get('/get/all', (req, res) => {
-    Admin.find({role: 'admin'}, (err, admins) => {
+    User.find({role: 'admin'}, (err, admins) => {
         if(err){
-            res.status(400).send({error: err})
+            res.status(400).send({error: "Admin not found"})
         }
-        if(companies){
+        if(admins){
             res.status(200).json(admins)
         }
     })
 })
 
 // get admin by ID
-router.get('/get/:id', (req, res) => {
-    let id = req.params.id;
-    Admin.findById({_id: id}, (err, admin) => {
+router.get('/get/:adminID', (req, res) => {
+    let {adminID} = req.params;
+    User.findById({_id: adminID}, (err, admin) => {
         if (err) {
             res.status(400).json({error: "Admin not found"})
         } else {
@@ -28,22 +28,10 @@ router.get('/get/:id', (req, res) => {
     })
 });
 
-// delete admin
-router.delete('/delete/:id', (req, res) => {
-    var id = req.params.id;
-    Admin.findOneAndDelete({_id: id}, (err, admin) => {
-        if (err) {
-            res.status(400).json({error: "Admin not found"})
-        } else {
-            res.status(200).json({admin: admin})
-        }
-    })
-})
-
 // update admin
-router.put('/update/:id', (req, res) => {
-    var id = req.params.id;
-    Admin.findOne({_id: id}, (err, admin) => {
+router.put('/update/:adminID', (req, res) => {
+    var {adminID} = req.params;
+    User.findOne({_id: adminID}, (err, admin) => {
         if (err) {
             res.status(400).json({error: "Admin not found"})
         } else {
@@ -62,7 +50,7 @@ router.put('/update/:id', (req, res) => {
                 })
             }
             admin.save()
-                .then(Admin => res.status(200).json({Admin: Admin}))
+                .then(admin => res.status(200).json({admin: admin}))
                 .catch(err => res.status(400).json({error: err}))
         }
     })
