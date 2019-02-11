@@ -4,6 +4,10 @@ const bcrypt = require('bcryptjs')
 
 // get User model
 const User = require('../../models/User');
+// get Job model
+const Job = require('../../models/company/Job')
+// get Candidate model
+const Candidate = require('../../models/candidate/Candidate')
 
 // Get all Candidates
 router.get('/get/all', (req, res) => {
@@ -24,7 +28,7 @@ router.get('/get/:candidateID', (req, res) => {
         if (err) {
             res.status(400).json({error: "Candidate not found"})
         } else {
-            res.status(200).json({candidate: candidate})
+            res.status(200).json(candidate)
         }
     })
 })
@@ -69,10 +73,32 @@ router.put('/update/:candidateID', (req, res) => {
                 })
             }
             candidate.save()
-                .then(user => res.status(200).json({candidate: candidate}))
+                .then(user => res.status(200).json(candidate))
                 .catch(err => res.status(400).json({err: err}))
         }
     })
+})
+
+// apply for a job
+router.post('/apply/:jobID', (req, res) => {
+    // get jobID from url
+    let { jobID } = req.params
+    // get candidateID from header
+    let candidateID = req.get('candidateID')
+
+    Job.findById({_id: jobID})
+        .then(job => {
+            job.candidatesMatch.unshift(candidateID)
+            job.save().then(job => res.status(200).json(job))
+        })
+        .catch(err => res.status(400).json({error: err}))
+    
+    User.findById({_id: candidateID})
+        .then(candidate => {
+            candidate.details.appliedJobs.unshift(jobID)
+            candidate.save().then(candidate => res.status(200).json(candidate))
+        })
+        .catch(err => res.status(400).json({error: err}))
 })
 
 module.exports = router;

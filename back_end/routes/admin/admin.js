@@ -23,7 +23,7 @@ router.get('/get/:adminID', (req, res) => {
         if (err) {
             res.status(400).json({error: "Admin not found"})
         } else {
-            res.status(200).json({admin: admin})
+            res.status(200).json(admin)
         }
     })
 });
@@ -50,7 +50,7 @@ router.put('/update/:adminID', (req, res) => {
                 })
             }
             admin.save()
-                .then(admin => res.status(200).json({admin: admin}))
+                .then(admin => res.status(200).json(admin))
                 .catch(err => res.status(400).json({error: err}))
         }
     })

@@ -3,6 +3,7 @@ const router = express.Router();
 
 // get Job model
 const Job = require('../../models/company/Job');
+const User = require('../../models/User')
 
 // get all Jobs
 router.get('/get/all', (req, res) => {
@@ -23,7 +24,7 @@ router.get('/get/:jobID', (req, res) => {
         if (err) {
             res.status(400).json({error: "Job not found"})
         } else {
-            res.status(200).json({job: job})
+            res.status(200).json(job)
         }
     })
 });
@@ -37,7 +38,7 @@ router.delete('/delete/:jobID', (req, res) => {
         if (err) {
             res.status(400).json({error: "Job not found"})
         } else {
-            res.status(200).json({job: job})
+            res.status(200).json(job)
         }
     })
 })
@@ -49,7 +50,7 @@ router.put('/update/:jobID', (req, res) => {
 
     Job.findOne({_id: jobID}, (err, job) => {
         if (err) {
-            res.status(400).json({error: "Job not found"})
+            res.status(400).json({error: err})
         } else {
             if (req.body.jobFirstName) {
                 job.JobFirstName = req.body.compJobFirstNameName
@@ -66,7 +67,7 @@ router.put('/update/:jobID', (req, res) => {
                 })
             }
             job.save()
-                .then(job => res.status(200).json({job: job}))
+                .then(job => res.status(200).json(job))
                 .catch(err => res.status(400).json({error: err}))
         }
     })
@@ -94,24 +95,8 @@ router.post('/create', (req, res) => {
         candidatesMatch: []
     })
     newJob.save()
-        .then(job => res.status(200).json({job: job}))
-        .catch(err => res.status(400).json({error: err}))
-})
-
-// apply for a job
-router.post('/apply/:jobID', (req, res) => {
-    // get jobID from url
-    let { jobID } = req.params
-    // get candidateID from header
-    let candidateID = req.get('candidateID')
-
-    Job.findById({_id: jobID})
-        .then(job => {
-            job.candidatesMatch.unshift({candidate: candidateID})
-            job.save().then(job => res.status(200).json({job: job}))
-        })
-        .catch(err => res.status(400).json({error: err}))
-
+        .then(job => res.status(200).json(job))
+        .catch(err => res.status(400).json({error: err}))    
 })
 
 module.exports = router;

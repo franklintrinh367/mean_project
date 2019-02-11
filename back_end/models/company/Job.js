@@ -32,10 +32,8 @@ const JobSchema = new Schema({
     },
     candidatesMatch: [
        { 
-           candidate: {
-                type: Schema.Types.ObjectId,
-                ref: 'User',
-            }
+            type: Schema.Types.ObjectId,
+            ref: 'User',
         }
     ]
 })
