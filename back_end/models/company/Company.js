@@ -34,7 +34,13 @@ const CompanySchema = new Schema({
     compContact: {
         type: Number, 
         required: true
-    }
+    },
+    createdJobs: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Job',
+        }
+    ]
 })
 
 module.exports = Company = mongoose.model('Company', CompanySchema)

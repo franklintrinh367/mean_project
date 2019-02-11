@@ -3,6 +3,8 @@ const router = express.Router();
 
 // get User model 
 const User = require('../../models/User');
+// get Job model
+const Job = require('../../models/company/Job')
 
 // get all companies
 router.get('/get/all', (req, res) => {
@@ -24,7 +26,7 @@ router.get('/get/:companyID', (req, res) => {
         if (err) {
             res.status(400).json({error: "Company not found"})
         } else {
-            res.status(200).json({company: company})
+            res.status(200).json(company)
         }
     })
 });
@@ -70,10 +72,23 @@ router.put('/update/:companyID', (req, res) => {
                 })
             }
             company.save()
-                .then(user => res.status(200).json({user: user}))
+                .then(user => res.status(200).json(user))
                 .catch(err => res.status(400).json({error: err}))
         }
     })
+})
+
+// get all the jobs created by company
+router.get('/jobs', (req, res) => {
+    let companyID = req.get('companyID')
+    Job.find({companyID: companyID}).populate('candidatesMatch')
+        .exec((err, job) => {
+            if(err){
+                res.status(400).json({error: err})
+            }else{
+                res.status(200).json(job)
+            }        
+        })
 })
 
 module.exports = router;

@@ -50,7 +50,13 @@ const CandidateSchema = new Schema({
     canAllocateStatus: {
         type: Boolean,
         required: true
-    }
+    },
+    appliedJobs: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Job',
+        }
+    ]
 });
 
 module.exports = Candidate = mongoose.model('Candidate', CandidateSchema)

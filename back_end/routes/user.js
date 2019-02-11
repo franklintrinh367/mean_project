@@ -3,6 +3,8 @@ const router = express.Router();
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 // Get the secret key
 const secretOrKey = require('../config/keys').secretOrKey
@@ -39,6 +41,7 @@ router.post('/register', (req, res) => {
             canProvince,
             canPostalCode,
             canAllocateStatus,
+            appliedJobs: [],
         })
     }
     // get params from role company
@@ -69,6 +72,7 @@ router.post('/register', (req, res) => {
     }
 
     const newUser = new User({
+        // _id: new mongoose.Types.ObjectId,
         email,
         password,
         username,
