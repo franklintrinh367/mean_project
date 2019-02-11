@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 
 // load models
 const User = require('../models/User')
-const Job = require('../../models/Job')
+const Job = require('../models/Job')
 
 // Get all Candidates
 router.get('/get/all', (req, res) => {

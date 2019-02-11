@@ -3,7 +3,7 @@ const router = express.Router()
 
 // load models
 const User = require('../models/User')
-const Job = require('../../models/Job')
+const Job = require('../models/Job')
 
 // get all companies
 router.get('/get/all', (req, res) => {

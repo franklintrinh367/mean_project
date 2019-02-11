@@ -133,12 +133,12 @@ router.get('/send/:id&:email', async (req, res) => {
       hash = hash.replace('/', '.')
 
       let transporter = nodemailer.createTransport({
-        host: 'smtp.mail.com',
+        host: 'smtp.ethereal.email',
         port: 587,
         sercure: false,
         auth: {
-          user: 'jc-consulting@mail.com',
-          pass: 'computerprograming',
+          user: 'qmd7pribn7xbj2qv@ethereal.email',
+          pass: 'CPMw2sRq3emkAKGmNr',
         },
       })
 
@@ -147,7 +147,7 @@ router.get('/send/:id&:email', async (req, res) => {
         `http://localhost:3000/user/verify/${hash}`
 
       let mailOptions = {
-        from: 'jc-consulting@mail.com',
+        from: 'qmd7pribn7xbj2qv@ethereal.email',
         to: email,
         subject: 'Welcome to JC-Consulting',
         text: msg,
@@ -174,9 +174,7 @@ router.get('/verify/:hash', (req, res) => {
   User.findOneAndUpdate(
     hash,
     {
-      $set: {
-        activated: true,
-      },
+      activated: true,
     },
 
     { returnNewDocument: true }
@@ -217,7 +215,7 @@ router.post('/login', (req, res) => {
   const { email, password } = req.body
 
   User.findOne()
-    .or([{ email: email }, { username: username }])
+    .or([{ email: email }, { username: email }])
     .then(user => {
       if (!user) {
         return res
@@ -252,6 +250,15 @@ router.post('/login', (req, res) => {
     .catch(err => {
       return res.status(400).json(err)
     })
+})
+
+//Delete All, for testing purpose only. Can be deleted
+router.delete('/delete', (res, req) => {
+  User.deleteMany({})
+    .then(info => {
+      res.json(info)
+    })
+    .catch(err => res.json(err))
 })
 
 module.exports = router

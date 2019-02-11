@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { UserService } from 'src/app/services/main/user.service'
 import { AuthenticateService } from 'src/app/services/authenticate.service'
 import { MatDialogRef } from '@angular/material'
@@ -24,32 +24,27 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      email: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(
-            '[\\w]+@[a-zA-Z\\d]+\\.[a-zA-Z\\d]+\\.?[a-zA-Z\\d]+'
-          ),
-        ],
-      ],
+      email: ['', [Validators.required]],
       password: ['', Validators.required],
     })
   }
 
-  public login(email, password) {
-    this.userService.login(email, password).subscribe(
-      result => {
-        if (result) {
-          this.auth.saveToken(result['token'])
-          window.location.assign('home')
+  public login(email: String, password: String) {
+    if (!this.loginForm.valid) {
+      this.validateAllField(this.loginForm)
+    } else
+      this.userService.login(email, password).subscribe(
+        result => {
+          if (result) {
+            this.auth.saveToken(result['token'])
+            window.location.assign('home')
+          }
+        },
+        err => {
+          console.log(err)
+          this.error = err.error.msg
         }
-      },
-      err => {
-        console.log(err)
-        this.error = err.error.msg
-      }
-    )
+      )
   }
 
   closeDialog(cmd: String) {
@@ -72,5 +67,16 @@ export class LoginComponent implements OnInit {
   }
   public get password() {
     return this.loginForm.get('password')
+  }
+
+  validateAllField(fg: FormGroup): void {
+    Object.entries(fg).forEach(field => {
+      if (field[0] === 'controls') {
+        Object.keys(field[1]).forEach(value => {
+          const control = fg.get(value)
+          control.markAsDirty({ onlySelf: true })
+        })
+      }
+    })
   }
 }

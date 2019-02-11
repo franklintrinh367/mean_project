@@ -1,17 +1,22 @@
 @import '~@angular/material/theming';
 
-@mixin card-theme($theme){
-    $primary: map-get($theme, primary);
-    $accent: map-get($theme , accent );
+@mixin card-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
 
-    div.mat-card-header-text { 
-        margin: 0;
-    }
+  div.mat-card-header-text {
+    margin: 0;
+  }
 
-    .mat-card {
-        background-color:  #E0E0E0;
-        width: 350px;
-        height: 100%;
-    }
-    
+  .mat-card {
+    background-color: #e0e0e0;
+    width: 350px;
+    height: 100%;
+    padding: 0 !important;
+  }
+
+  .mat-card-content,
+  .mat-card-header {
+    padding: 16px !important;
+  }
 }
