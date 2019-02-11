@@ -6,6 +6,9 @@ import {
   ValidatorFn,
   AbstractControl,
 } from '@angular/forms'
+import { Candidate } from '../../../models/candidates/candidate'
+import { CandidateService } from '../../../services/candidate/candidate.service'
+
 @Component({
   selector: 'app-candidate-register-page',
   templateUrl: './candidate-register-page.component.html',
@@ -13,12 +16,16 @@ import {
 })
 export class CandidateRegisterPageComponent implements OnInit {
   private candidateRegisterForm: FormGroup
+  candidate: Candidate
 
-  constructor(private builder: FormBuilder) {}
+  constructor(
+    private builder: FormBuilder,
+    private candidateService: CandidateService
+  ) {}
 
   ngOnInit() {
     this.candidateRegisterForm = this.builder.group({
-      canId: ['', [Validators.required]],
+      canId: [''],
       canFirstName: ['', [Validators.required]],
       canLastName: ['', [Validators.required]],
       canEducation: ['', [Validators.required]],
@@ -46,6 +53,9 @@ export class CandidateRegisterPageComponent implements OnInit {
     })
   }
 
+  get canId() {
+    return this.candidateRegisterForm.get('canId')
+  }
   get canFirstName() {
     return this.candidateRegisterForm.get('canFirstName')
   }
@@ -81,5 +91,25 @@ export class CandidateRegisterPageComponent implements OnInit {
   }
   get canPostalCode() {
     return this.candidateRegisterForm.get('canPostalCode')
+  }
+
+  signup() {
+    this.candidate = {
+      canId: this.canId.value,
+      canFirstName: this.canFirstName.value,
+      canLastName: this.canLastName.value,
+      canEducation: this.canEducation.value,
+      canActualJob: this.canActualJob.value,
+      canLink: this.canLink.value,
+      canPhone: this.canPhone.value,
+      canResume: this.canResume.value,
+      canPicture: this.canPicture.value,
+      canAddress: this.canAddress.value,
+      canCity: this.canCity.value,
+      canProvince: this.canProvince.value,
+      canPostalCode: this.canPostalCode.value,
+    }
+    console.log(this.candidate)
+    this.candidateService.register(this.candidate).subscribe()
   }
 }
