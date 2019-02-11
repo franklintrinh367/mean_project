@@ -38,6 +38,7 @@ import { ClientNewJobPageComponent } from './components/client-pages/client-new-
 import { ClientJobDetailsPageComponent } from './components/client-pages/client-job-details-page/client-job-details-page.component'
 // Abdal --- this is the import related to the material.
 import { MaterialModule } from './module/material/material.module'
+import { MatButtonModule } from '@angular/material/button'
 
 //Admin Pages
 import { AdminHomepageComponent } from './components/admin-pages/admin-homepage/admin-homepage.component'
@@ -99,6 +100,7 @@ import { CandidateRegisterPageComponent } from './components/candidate-pages/can
     MaterialModule,
     MatProgressBarModule,
     LoaderModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
