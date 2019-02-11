@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 // load models
-const Job = require('../../models/Job')
+const Job = require('../models/Job')
 
 // get all Jobs
 router.get('/get/all', (req, res) => {
