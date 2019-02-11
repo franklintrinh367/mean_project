@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { FormBuilder, Validators, FormGroup } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { UserService } from 'src/app/services/main/user.service'
 import { AuthenticateService } from 'src/app/services/authenticate.service'
 import { MatDialogRef } from '@angular/material'
