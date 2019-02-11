@@ -109,7 +109,8 @@ export class CandidateRegisterPageComponent implements OnInit {
       canProvince: this.canProvince.value,
       canPostalCode: this.canPostalCode.value,
     }
-    console.log(this.candidate)
-    this.candidateService.register(this.candidate).subscribe()
+    this.candidateService
+      .register(this.candidate)
+      .subscribe(candidate => console.log(candidate))
   }
 }
