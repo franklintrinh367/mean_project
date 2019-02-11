@@ -8,11 +8,11 @@ import {
 } from '@angular/forms'
 import { UserService } from '../../../services/main/user.service'
 import { existingEmailValidator } from '../../../validators/main/existingEmailValidator'
-import { User } from 'src/models/users'
-import { RegisterService } from 'src/app/services/main/register.service'
 import { Router } from '@angular/router'
-import { existingUserValidator } from 'src/app/validators/main/existingUserValidator'
 import { MatDialogRef } from '@angular/material'
+import { RegisterService } from 'src/app/services/main/register.service'
+import { existingUserValidator } from 'src/app/validators/main/existingUserValidator'
+import { User } from 'src/models/users'
 
 @Component({
   selector: 'register-card',

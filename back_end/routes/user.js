@@ -130,7 +130,7 @@ router.get('/send/:id&:email', async (req, res) => {
     bcrypt.hash(id, salt, (err, hash) => {
       //***important line, don't change this, sometimes bcrypt produces hash with
       //slash which will break the url
-      hash = hash.replace('/', '.')
+      hash = hash.replace(/\//g, '.')
 
       let transporter = nodemailer.createTransport({
         host: 'smtp.ethereal.email',
