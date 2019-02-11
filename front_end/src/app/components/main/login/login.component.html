@@ -1,4 +1,4 @@
-<br>
+<loader></loader>
 <div class="wraper" fxLayout="row wrap" fxLayoutAlign="center center">  
   <mat-card class="mat-elevation-z8">
   <form autocomplete="off" [formGroup]="loginForm">
@@ -12,6 +12,7 @@
           <div *ngIf="(email.errors | firstErrPipe ) === 'pattern'">Invalid email address</div>
           <div *ngIf="(email.errors | firstErrPipe ) === 'required'">Field cannot be empty</div>
         </div>
+      </div>
         <!-- Password Input -->
         <mat-form-field>
           <input matInput type="password" placeholder="Password" formControlName="password">
@@ -24,10 +25,6 @@
             <div *ngIf="error">{{this.error}}</div>
           </ng-template>        
         </div>
-        <ng-template #elseBlock>
-          <div *ngIf="error">{{this.error}}</div>
-        </ng-template>
-      </div>
       <!-- Login Button, Signup Button -->
       <div id="login-btn">
         <button class="button-style mat-elevation-z8" mat-button (click)="login(email.value, password.value)" [disabled]="loginForm.invalid">
@@ -36,12 +33,11 @@
       </div>
       <br>
       <div id="signup-btn">
-      <button routerLink="/register" class="button-style mat-elevation-z8" mat-button mat-elevation-z8>SIGN UP</button>
+      <button  (click)="closeDialog('signup')" class="button-style mat-elevation-z8" mat-button mat-elevation-z8>SIGN UP</button>
       </div>
       <br>
-      <a routerLink="/forgot-password">Forgot Your Password?</a>
+      <a (click)="closeDialog('forgot')">Forgot Your Password?</a>
     </div>
   </form>
 </mat-card>
 </div>
-<br>

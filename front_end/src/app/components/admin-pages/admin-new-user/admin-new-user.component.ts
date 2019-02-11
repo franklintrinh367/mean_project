@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../services/main/user.service';
-import { Observable } from 'rxjs/Observable';
-//import 'rxjs/add/observable/of';
 import {DataSource} from '@angular/cdk/collections';
 import { User } from '../../../../models/users';
 
@@ -35,7 +33,7 @@ roles : Role []= [
     constructor(private userService: UserService) {
       super();
     }
-    connect(): Observable<User[]> {
+    connect(){
       return this.userService.getUser();
     }
     disconnect() {}

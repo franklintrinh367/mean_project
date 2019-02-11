@@ -1,6 +1,7 @@
 @import '~@angular/material/theming';
 @import '../custom-style/input-theme.scss';
 @import '../custom-style/mat-card-style.scss';
+@import '../custom-style/dialog-style.scss';
 @include mat-core();
 
 $primary: mat-palette($mat-brown, 500, 700, 900);
@@ -16,3 +17,4 @@ $custom-theme : mat-light-theme(
 @include angular-material-theme($custom-theme);
 @include input-theme($custom-theme);
 @include card-theme($custom-theme);
+@include dialog-style($custom-theme);

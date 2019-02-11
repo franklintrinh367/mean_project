@@ -22,7 +22,8 @@ import * as Material from '@angular/material'
     Material.MatGridListModule,
     Material.MatSelectModule,
     Material.MatDatepickerModule,
-    Material.MatNativeDateModule
+    Material.MatNativeDateModule,
+    Material.MatDialogModule
      ],
   exports: [
     Material.MatTableModule,
@@ -42,8 +43,7 @@ import * as Material from '@angular/material'
     Material.MatSelectModule,
     Material.MatDatepickerModule,
     Material.MatNativeDateModule,
-    
-
+    Material.MatDialogModule
     ]
 })
 

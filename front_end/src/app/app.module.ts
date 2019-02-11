@@ -45,6 +45,10 @@ import { AdminNewUserComponent } from './components/admin-pages/admin-new-user/a
 import { AdminUserListComponent } from './components/admin-pages/admin-user-list/admin-user-list.component';
 import { AdminManageJobsComponent } from './components/admin-pages/admin-manage-jobs/admin-manage-jobs.component';
 import { AdminCompanyListComponent } from './components/admin-pages/admin-company-list/admin-company-list.component';
+import { LoaderComponent } from './components/main/loader/loader.component';
+import { MatProgressBarModule } from '@angular/material';
+import { LoaderModule } from './module/loader-module';
+import { ForgotPasswordComponent } from './components/main/forgot-password/forgot-password.component';
 
 
 @NgModule({
@@ -58,6 +62,8 @@ import { AdminCompanyListComponent } from './components/admin-pages/admin-compan
     HomeComponent,
     ContactUsComponent,
     TestComponent,
+    LoaderComponent,
+    ForgotPasswordComponent,
     // ClientHomepagesComponent,
     HomePagesComponent,
     JobDetailsComponent,
@@ -92,8 +98,11 @@ import { AdminCompanyListComponent } from './components/admin-pages/admin-compan
     HttpClientModule,
     FlexLayoutModule,
     MaterialModule,
+    MatProgressBarModule,
+    LoaderModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { UserService } from 'src/app/services/main/user.service';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
+import { MatDialogRef } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,9 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private auth: AuthenticateService) { }
+    private auth: AuthenticateService,
+    private dialogRef : MatDialogRef<LoginComponent>,
+    private router: Router) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -42,6 +46,16 @@ export class LoginComponent implements OnInit {
         this.error = err.error.msg;
       }
     )
+  }
+
+  closeDialog(cmd: String){
+    this.dialogRef.close();
+    switch(cmd) {
+      case "signup" : this.router.navigateByUrl('/register'); break;
+      case "forgot" : this.router.navigateByUrl('/forgot-password'); break;
+      default  : this.router.navigateByUrl('/'); break;
+    }
+
   }
 
   public get email() { return this.loginForm.get('email')}
