@@ -11,9 +11,9 @@ const secretOrKey = require('../config/keys').secretOrKey
 
 // Load models
 const User = require('../models/User')
-const Candidate = require('../models/candidate/Candidate')
-const Company = require('../models/company/Company')
-const Admin = require('../models/admin/Admin')
+const Candidate = require('../models/Candidate')
+const Company = require('../models/Company')
+const Admin = require('../models/Admin')
 
 // User Register
 router.post('/register', (req, res) => {
@@ -86,7 +86,6 @@ router.post('/register', (req, res) => {
   }
 
   const newUser = new User({
-    // _id: new mongoose.Types.ObjectId,
     email,
     password,
     username,
