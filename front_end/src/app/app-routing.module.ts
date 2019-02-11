@@ -21,13 +21,15 @@ import { AdminNewUserComponent } from './components/admin-pages/admin-new-user/a
 import { AdminUserListComponent } from './components/admin-pages/admin-user-list/admin-user-list.component';
 import {AdminManageJobsComponent } from './components/admin-pages/admin-manage-jobs/admin-manage-jobs.component';
 import { AdminCompanyListComponent } from './components/admin-pages/admin-company-list/admin-company-list.component';
+import { ForgotPasswordComponent } from './components/main/forgot-password/forgot-password.component';
 
 
 // import { CompanyDetailsComponent} from './components/admin/company-details/company-details.component';
 
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent, canActivate: [UserAuthService]},
+  {path: 'home', component: HomeComponent},
+  {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'test', component: TestComponent},
   {path: 'contact', component: ContactUsComponent},
   {path: 'register', component: RegisterCardComponent, canActivate: [LogoutService]},
@@ -49,7 +51,7 @@ const routes: Routes = [
   { path: 'admin_mamangeJobs', component: AdminManageJobsComponent},
 
 
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: '404', component: UnderconstructComponent},
   {path: 'login', component: LoginComponent, canActivate: [LogoutService]},
   {path: '**', redirectTo: '404'},
