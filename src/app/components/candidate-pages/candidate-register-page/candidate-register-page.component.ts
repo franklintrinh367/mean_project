@@ -19,22 +19,24 @@ export class CandidateRegisterPageComponent implements OnInit {
   ngOnInit() {
     this.candidateRegisterForm = this.builder.group({
       canId: ['', [Validators.required]],
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      education: ['', [Validators.required]],
-      occupation: ['', [Validators.required]],
-      linkedInURL: [''],
-      phoneNumber: [
+      canFirstName: ['', [Validators.required]],
+      canLastName: ['', [Validators.required]],
+      canEducation: ['', [Validators.required]],
+      canActualJob: ['', [Validators.required]],
+      canLink: [''],
+      canPhone: [
         '',
         [
           Validators.required,
           Validators.pattern('^\\d{3}[-]?\\d{3}[-]?\\d{4}$'),
         ],
       ],
-      address: ['', [Validators.required]],
-      city: ['', [Validators.required]],
-      province: ['', [Validators.required]],
-      postalCode: [
+      canResume: [''],
+      canPicture: [''],
+      canAddress: ['', [Validators.required]],
+      canCity: ['', [Validators.required]],
+      canProvince: ['', [Validators.required]],
+      canPostalCode: [
         '',
         [
           Validators.required,
@@ -44,31 +46,40 @@ export class CandidateRegisterPageComponent implements OnInit {
     })
   }
 
-  get firstName() {
-    return this.candidateRegisterForm.get('firstName')
+  get canFirstName() {
+    return this.candidateRegisterForm.get('canFirstName')
   }
-  get lastName() {
-    return this.candidateRegisterForm.get('lastName')
+  get canLastName() {
+    return this.candidateRegisterForm.get('canLastName')
   }
-  get education() {
-    return this.candidateRegisterForm.get('education')
+  get canEducation() {
+    return this.candidateRegisterForm.get('canEducation')
   }
-  get occupation() {
-    return this.candidateRegisterForm.get('occupation')
+  get canActualJob() {
+    return this.candidateRegisterForm.get('canActualJob')
   }
-  get phoneNumber() {
-    return this.candidateRegisterForm.get('phoneNumber')
+  get canLink() {
+    return this.candidateRegisterForm.get('canLink')
   }
-  get address() {
-    return this.candidateRegisterForm.get('address')
+  get canPhone() {
+    return this.candidateRegisterForm.get('canPhone')
   }
-  get city() {
-    return this.candidateRegisterForm.get('city')
+  get canResume() {
+    return this.candidateRegisterForm.get('canResume')
   }
-  get province() {
-    return this.candidateRegisterForm.get('province')
+  get canPicture() {
+    return this.candidateRegisterForm.get('canPicture')
   }
-  get postalCode() {
-    return this.candidateRegisterForm.get('postalCode')
+  get canAddress() {
+    return this.candidateRegisterForm.get('canAddress')
+  }
+  get canCity() {
+    return this.candidateRegisterForm.get('canCity')
+  }
+  get canProvince() {
+    return this.candidateRegisterForm.get('canProvince')
+  }
+  get canPostalCode() {
+    return this.candidateRegisterForm.get('canPostalCode')
   }
 }
