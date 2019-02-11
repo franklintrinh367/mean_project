@@ -5,7 +5,7 @@
 2. Run 'npm start' for starting app
 
 # Front-end
-Create front-end components in front_end/ folder
+Create front-end components in src/ folder
 
 # Git Instructions
 # Before coding
