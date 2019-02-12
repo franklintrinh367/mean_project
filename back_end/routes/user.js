@@ -212,10 +212,10 @@ router.get('/find/:obj', (req, res) => {
 
 // User Login
 router.post('/login', (req, res) => {
-  const { email, password } = req.body
+  const { inputLogin, password } = req.body
 
   User.findOne()
-    .or([{ email: email }, { username: email }])
+    .or([{ email: inputLogin }, { username: inputLogin }])
     .then(user => {
       if (!user) {
         return res

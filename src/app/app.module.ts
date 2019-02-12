@@ -38,6 +38,7 @@ import { ClientNewJobPageComponent } from './components/client-pages/client-new-
 import { ClientJobDetailsPageComponent } from './components/client-pages/client-job-details-page/client-job-details-page.component'
 // Abdal --- this is the import related to the material.
 import { MaterialModule } from './module/material/material.module'
+import { MatButtonModule } from '@angular/material/button'
 
 //Admin Pages
 import { AdminHomepageComponent } from './components/admin-pages/admin-homepage/admin-homepage.component'
@@ -49,6 +50,7 @@ import { LoaderComponent } from './components/main/loader/loader.component'
 import { MatProgressBarModule } from '@angular/material'
 import { LoaderModule } from './module/loader-module'
 import { ForgotPasswordComponent } from './components/main/forgot-password/forgot-password.component'
+import { CandidateRegisterPageComponent } from './components/candidate-pages/candidate-register-page/candidate-register-page.component'
 
 @NgModule({
   declarations: [
@@ -84,6 +86,7 @@ import { ForgotPasswordComponent } from './components/main/forgot-password/forgo
     AdminUserListComponent,
     AdminManageJobsComponent,
     AdminCompanyListComponent,
+    CandidateRegisterPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -97,6 +100,7 @@ import { ForgotPasswordComponent } from './components/main/forgot-password/forgo
     MaterialModule,
     MatProgressBarModule,
     LoaderModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

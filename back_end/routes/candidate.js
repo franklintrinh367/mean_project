@@ -5,6 +5,29 @@ const bcrypt = require('bcryptjs')
 // load models
 const User = require('../models/User')
 const Job = require('../models/Job')
+const Candidate = require('../models/Candidate')
+
+// Add new Candidate
+router.post('/register', (req, res) => {
+  let newCandidate = new Candidate({
+    canId: req.body.canId,
+    canFirstName: req.body.canFirstName,
+    canLastName: req.body.canLastName,
+    canEducation: req.body.canEducation,
+    canActualJob: req.body.canActualJob,
+    canPhone: req.body.canPhone,
+    canLink: req.body.canLink,
+    canResume: req.body.canResume,
+    canAddress: req.body.canAddress,
+    canCity: req.body.canCity,
+    canProvince: req.body.canProvince,
+    canPostalCode: req.body.canPostalCode,
+  })
+  newCandidate
+    .save()
+    .then(candidate => res.json(candidate))
+    .catch(err => res.json(err))
+})
 
 // Get all Candidates
 router.get('/get/all', (req, res) => {

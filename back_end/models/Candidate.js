@@ -3,6 +3,10 @@ const Schema = mongoose.Schema
 
 // Candidate Schema
 const CandidateSchema = new Schema({
+  canId: {
+    type: String,
+    required: false,
+  },
   canFirstName: {
     type: String,
     required: true,
@@ -15,7 +19,7 @@ const CandidateSchema = new Schema({
     type: String,
     required: true,
   },
-  canOccupation: {
+  canActualJob: {
     type: String,
     required: true,
   },
@@ -25,12 +29,12 @@ const CandidateSchema = new Schema({
   },
   canLinkedIn: {
     type: String,
-    required: true,
+    required: false,
   },
-  // resume: {
-  //     type: String,
-  //     data: Buffer
-  // },
+  canResume: {
+    type: String,
+    data: Buffer,
+  },
   canAddress: {
     type: String,
     required: true,
@@ -49,7 +53,7 @@ const CandidateSchema = new Schema({
   },
   canAllocateStatus: {
     type: Boolean,
-    required: true,
+    //required: true,
   },
   appliedJobs: [
     {

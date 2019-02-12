@@ -23,6 +23,9 @@ import { AdminManageJobsComponent } from './components/admin-pages/admin-manage-
 import { AdminCompanyListComponent } from './components/admin-pages/admin-company-list/admin-company-list.component'
 import { ForgotPasswordComponent } from './components/main/forgot-password/forgot-password.component'
 
+// Candidate Pages
+import { CandidateRegisterPageComponent } from './components/candidate-pages/candidate-register-page/candidate-register-page.component'
+
 // import { CompanyDetailsComponent} from './components/admin/company-details/company-details.component';
 
 const routes: Routes = [
@@ -31,7 +34,7 @@ const routes: Routes = [
   { path: 'test', component: TestComponent },
   { path: 'contact', component: ContactUsComponent },
   {
-    path: 'hLRcBFvNPz',
+    path: 'register',
     component: RegisterCardComponent,
     canActivate: [LogoutService],
   },
@@ -56,13 +59,12 @@ const routes: Routes = [
   { path: 'admin_companyList', component: AdminCompanyListComponent },
   { path: 'admin_mamangeJobs', component: AdminManageJobsComponent },
 
+  // Candidate Routes
+  { path: 'candidate_register', component: CandidateRegisterPageComponent },
+
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '404', component: UnderconstructComponent },
-  {
-    path: 'yqb4RW8dyY',
-    component: LoginComponent,
-    canActivate: [LogoutService],
-  },
+  { path: 'login', component: LoginComponent, canActivate: [LogoutService] },
   { path: '**', redirectTo: '404' },
 ]
 
