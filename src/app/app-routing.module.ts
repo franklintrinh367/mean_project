@@ -54,7 +54,7 @@ const routes: Routes = [
 
   //Admin Pages Router
   { path: 'adminPages', component: AdminHomepageComponent },
-  { path: 'admin_new_user', component: AdminNewUserComponent },
+  { path: 'admin_newUser', component: AdminNewUserComponent },
   { path: 'admin_userList', component: AdminUserListComponent },
   { path: 'admin_companyList', component: AdminCompanyListComponent },
   { path: 'admin_mamangeJobs', component: AdminManageJobsComponent },
