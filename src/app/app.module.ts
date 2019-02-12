@@ -51,7 +51,12 @@ import { MatProgressBarModule } from '@angular/material'
 import { LoaderModule } from './module/loader-module'
 import { ForgotPasswordComponent } from './components/main/forgot-password/forgot-password.component'
 import { CandidateRegisterPageComponent } from './components/candidate-pages/candidate-register-page/candidate-register-page.component'
+<<<<<<< HEAD
 import { ResetPasswordComponent } from './components/main/reset-password/reset-password.component'
+=======
+import { ClientService } from './services/client/client.service'
+import { JobService } from './services/jobs/job.service'
+>>>>>>> 5ddc5ac741973c316ac0e3588ecbb3780383e0a1
 
 @NgModule({
   declarations: [
@@ -104,7 +109,8 @@ import { ResetPasswordComponent } from './components/main/reset-password/reset-p
     LoaderModule,
     MatButtonModule,
   ],
-  providers: [],
+  providers: [ClientService, JobService],
   bootstrap: [AppComponent],
+  entryComponents: [ClientNewJobPageComponent],
 })
 export class AppModule {}
