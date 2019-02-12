@@ -51,6 +51,8 @@ import { MatProgressBarModule } from '@angular/material'
 import { LoaderModule } from './module/loader-module'
 import { ForgotPasswordComponent } from './components/main/forgot-password/forgot-password.component'
 import { CandidateRegisterPageComponent } from './components/candidate-pages/candidate-register-page/candidate-register-page.component'
+import { ClientService } from './services/client/client.service'
+import { JobService } from './services/jobs/job.service'
 
 @NgModule({
   declarations: [
@@ -102,7 +104,8 @@ import { CandidateRegisterPageComponent } from './components/candidate-pages/can
     LoaderModule,
     MatButtonModule,
   ],
-  providers: [],
+  providers: [ClientService, JobService],
   bootstrap: [AppComponent],
+  entryComponents: [ClientNewJobPageComponent],
 })
 export class AppModule {}

@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core'
+import { CommonModule } from '@angular/common'
 import * as Material from '@angular/material'
-  
+
 @NgModule({
   declarations: [],
   imports: [
@@ -23,8 +23,10 @@ import * as Material from '@angular/material'
     Material.MatSelectModule,
     Material.MatDatepickerModule,
     Material.MatNativeDateModule,
-    Material.MatDialogModule
-     ],
+    Material.MatDialogModule,
+    Material.MatPaginatorModule,
+    Material.MatSortModule,
+  ],
   exports: [
     Material.MatTableModule,
     Material.MatFormFieldModule,
@@ -43,8 +45,9 @@ import * as Material from '@angular/material'
     Material.MatSelectModule,
     Material.MatDatepickerModule,
     Material.MatNativeDateModule,
-    Material.MatDialogModule
-    ]
+    Material.MatDialogModule,
+    Material.MatPaginatorModule,
+    Material.MatSortModule,
+  ],
 })
-
-export class MaterialModule { }
+export class MaterialModule {}
