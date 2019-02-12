@@ -51,6 +51,7 @@ import { MatProgressBarModule } from '@angular/material'
 import { LoaderModule } from './module/loader-module'
 import { ForgotPasswordComponent } from './components/main/forgot-password/forgot-password.component'
 import { CandidateRegisterPageComponent } from './components/candidate-pages/candidate-register-page/candidate-register-page.component'
+import { ResetPasswordComponent } from './components/main/reset-password/reset-password.component'
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { CandidateRegisterPageComponent } from './components/candidate-pages/can
     ContactUsComponent,
     TestComponent,
     LoaderComponent,
+    ResetPasswordComponent,
     ForgotPasswordComponent,
     // ClientHomepagesComponent,
     HomePagesComponent,

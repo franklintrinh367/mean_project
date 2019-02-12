@@ -8,6 +8,11 @@ const Schema = mongoose.Schema
 
 // Get the secret key
 const secretOrKey = require('../config/keys').secretOrKey
+// nodemailer setup variables
+const jc_email = 'qmd7pribn7xbj2qv@ethereal.email'
+const jc_pass = 'CPMw2sRq3emkAKGmNr'
+const jc_host = 'smtp.ethereal.email'
+const jc_port = 587
 
 // Load models
 const User = require('../models/User')
@@ -133,12 +138,12 @@ router.get('/send/:id&:email', async (req, res) => {
       hash = hash.replace(/\//g, '.')
 
       let transporter = nodemailer.createTransport({
-        host: 'smtp.ethereal.email',
-        port: 587,
+        host: jc_host,
+        port: jc_port,
         sercure: false,
         auth: {
-          user: 'qmd7pribn7xbj2qv@ethereal.email',
-          pass: 'CPMw2sRq3emkAKGmNr',
+          user: jc_email,
+          pass: jc_pass,
         },
       })
 
@@ -147,7 +152,7 @@ router.get('/send/:id&:email', async (req, res) => {
         `http://localhost:3000/user/verify/${hash}`
 
       let mailOptions = {
-        from: 'qmd7pribn7xbj2qv@ethereal.email',
+        from: jc_email,
         to: email,
         subject: 'Welcome to JC-Consulting',
         text: msg,
@@ -157,9 +162,7 @@ router.get('/send/:id&:email', async (req, res) => {
         if (err) console.log(err)
         console.log(info)
         User.findByIdAndUpdate(id, {
-          $set: {
-            hash: hash,
-          },
+          hash: hash,
         })
           .then()
           .catch(err => console.log(err))
@@ -184,14 +187,9 @@ router.get('/verify/:hash', (req, res) => {
 //find user By ID
 router.get('/findUserByHash/:hash', (req, res) => {
   let hash = req.params.hash
-  User.findOneAndUpdate(
-    { hash },
-    {
-      $unset: {
-        hash: '',
-      },
-    }
-  )
+  User.findOneAndUpdate(hash, {
+    hash: '',
+  })
     .then(user => {
       res.json(user)
     })
@@ -214,8 +212,9 @@ router.get('/find/:obj', (req, res) => {
 router.post('/login', (req, res) => {
   const { inputLogin, password } = req.body
 
-  User.findOne()
-    .or([{ email: inputLogin }, { username: inputLogin }])
+  User.findOne({
+    $or: [{ email: inputLogin }, { username: inputLogin }],
+  })
     .then(user => {
       if (!user) {
         return res
@@ -260,5 +259,57 @@ router.delete('/delete', (res, req) => {
     })
     .catch(err => res.json(err))
 })
+
+//send Reset Password Link via email
+router.post('/sendResetPassword', (req, res) => {
+  let user = req.body
+  let transporter = returnTransporter()
+  //Create a hash to include in a link
+  bcrypt.genSalt(10, (err, salt) => {
+    if (err) console.log(err)
+    bcrypt.hash(user._id, salt, (err, hash) => {
+      if (err) console.log(err)
+      hash = hash.replace(/\//g, '.')
+      let msg =
+        'Here is the link to reset your password\n' +
+        `http://localhost:4200/resetPassword/${hash}`
+
+      let mailOptions = {
+        from: jc_email,
+        to: user.email,
+        subject: 'JC Consulting- Reset Password',
+        text: msg,
+      }
+
+      //set the link to expire in 1 hour
+      transporter.sendMail(mailOptions, (err, info) => {
+        if (err) console.log(err)
+        let payload = {
+          hash: hash,
+        }
+
+        jwt.sign(payload, secretOrKey, { expiresIn: 3600 }, (err, token) => {
+          res.json({
+            success: true,
+            token: token,
+          })
+        })
+      })
+    })
+  })
+})
+
+//functions to create Transporter
+function returnTransporter() {
+  return nodemailer.createTransport({
+    host: jc_host,
+    port: jc_port,
+    sercure: false,
+    auth: {
+      user: jc_email,
+      pass: jc_pass,
+    },
+  })
+}
 
 module.exports = router

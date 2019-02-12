@@ -1,22 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthenticateService } from 'src/app/services/authenticate.service';
+import { Component, OnInit } from '@angular/core'
+import { AuthenticateService } from 'src/app/services/authenticate.service'
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-
-  private token : any;
-  constructor(private authService : AuthenticateService) { }
+  private token: any
+  constructor(private authService: AuthenticateService) {}
 
   ngOnInit() {
-    this.token = this.authService.getTokenDetails();
+    this.token = this.authService.getTokenDetails('auth-token')
   }
 
-  public get username() {return this.token.username;}
+  public get username() {
+    return this.token.username
+  }
 
-  public get email() { return this.token.email;}
-
+  public get email() {
+    return this.token.email
+  }
 }

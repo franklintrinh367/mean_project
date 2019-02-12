@@ -30,13 +30,14 @@ export class LoginComponent implements OnInit {
   }
 
   public login(email: String, password: String) {
+    console.log(email + ' ' + password)
     if (!this.loginForm.valid) {
       this.validateAllField(this.loginForm)
     } else
       this.userService.login(email, password).subscribe(
         result => {
           if (result) {
-            this.auth.saveToken(result['token'])
+            this.auth.saveToken(result['token'], 'auth-token')
             window.location.assign('home')
           }
         },

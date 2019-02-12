@@ -13,10 +13,10 @@ export class NavbarComponent implements OnInit {
   constructor(private auth: AuthenticateService, private dialog: MatDialog) {}
 
   ngOnInit() {
-    this.token = this.auth.getTokenDetails()
+    this.token = this.auth.getTokenDetails('auth-token')
   }
 
   logout() {
-    this.auth.logout()
+    this.auth.logout('auth-token')
   }
 }
