@@ -10,7 +10,7 @@ export class AuthenticateService {
 
   constructor(private router: Router) {}
 
-  saveToken(token: string, name: string): void {
+  saveToken(token: string, name: string, optional?: string): void {
     localStorage.setItem(name, token)
     this.token = token.toString()
   }

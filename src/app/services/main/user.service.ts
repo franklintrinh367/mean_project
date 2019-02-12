@@ -58,4 +58,17 @@ export class UserService {
       options
     )
   }
+
+  //change password
+  public changePassword(id: String, newP: String): Observable<User> {
+    console.log(id)
+    let options = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    }
+    return this.http.post<User>(
+      `${this.baseUrl}/change-password`,
+      JSON.stringify({ id: id, pass: newP }),
+      options
+    )
+  }
 }
