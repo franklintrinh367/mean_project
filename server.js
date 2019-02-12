@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
 app.use('/user', user)
 app.use('/candidate', candidate)
 app.use('/company', company)
-app.use('/job', job)
+app.use('/jobs', job)
 app.use('/admin', admin)
 // Port Number
 const port = 3000 || process.env.PORT
