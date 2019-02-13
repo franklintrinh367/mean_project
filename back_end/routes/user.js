@@ -184,14 +184,11 @@ router.get('/verify/:hash', (req, res) => {
 //find user By ID
 router.get('/findUserByHash/:hash', (req, res) => {
   let hash = req.params.hash
-  User.findOneAndUpdate(
-    { hash },
-    {
-      $unset: {
-        hash: '',
-      },
-    }
-  )
+  User.findOneAndUpdate(hash, {
+    $unset: {
+      hash: '',
+    },
+  })
     .then(user => {
       res.json(user)
     })
