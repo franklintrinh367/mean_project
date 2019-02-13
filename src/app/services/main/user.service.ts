@@ -48,6 +48,29 @@ export class UserService {
     return this.http.get<User[]>(this.baseUrl)
   }
 
+  //send ResetPassword
+  public sendResetPassword(user: User): Observable<User> {
+    let options = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    }
+
+    return this.http.post<User>(
+      `${this.baseUrl}/sendResetPassword`,
+      JSON.stringify(user),
+      options
+    )
+  }
+
+  //change password
+  public changePassword(id: String, newP: String): Observable<User> {
+    console.log(id)
+    let options = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    }
+    return this.http.post<User>(
+      `${this.baseUrl}/change-password`,
+      JSON.stringify({ id: id, pass: newP }),
+      options
   // Submit feedback
   submit(feedback: Feedback): Observable<Feedback> {
     const httpOptions = {

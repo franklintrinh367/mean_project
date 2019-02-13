@@ -52,6 +52,7 @@ import {
 import { LoaderModule } from './module/loader-module'
 import { ForgotPasswordComponent } from './components/main/forgot-password/forgot-password.component'
 import { CandidateRegisterPageComponent } from './components/candidate-pages/candidate-register-page/candidate-register-page.component'
+import { ResetPasswordComponent } from './components/main/reset-password/reset-password.component'
 import { AdminUserDetailsComponent } from './components/admin-pages/admin-user-details/admin-user-details.component'
 import { AdminJobsDetailsComponent } from './components/admin-pages/admin-jobs-details/admin-jobs-details.component'
 import { AdminCompanyDetailsComponent } from './components/admin-pages/admin-company-details/admin-company-details.component'
@@ -70,6 +71,7 @@ import { JobService } from './services/jobs/job.service'
     ContactUsComponent,
     TestComponent,
     LoaderComponent,
+    ResetPasswordComponent,
     ForgotPasswordComponent,
 
     // ClientHomepagesComponent,
