@@ -1,11 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  ValidatorFn,
-  AbstractControl,
-} from '@angular/forms'
+import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Candidate } from '../../../models/candidates/candidate'
 import { CandidateService } from '../../../services/candidate/candidate.service'
 

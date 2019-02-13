@@ -51,9 +51,6 @@ export class LoginComponent implements OnInit {
   closeDialog(cmd: String) {
     this.dialogRef.close()
     switch (cmd) {
-      case 'signup':
-        this.router.navigateByUrl('/register')
-        break
       case 'forgot':
         this.router.navigateByUrl('/forgot-password')
         break
