@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { User } from 'src/models/users'
-import { debounceTime, map } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +18,7 @@ export class UserService {
   //Login
   public login(email, password): Observable<User> {
     let user = {
-      email: email,
+      inputLogin: email,
       password: password,
     }
     let options = {
