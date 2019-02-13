@@ -26,6 +26,8 @@ router.post('/register', (req, res) => {
   const { email, password, username, activated, role } = req.body
   // instantiate details field
   let details = {}
+  //visit count
+  let visited = 0
   // get params from role candidate
   if (role == 'candidate') {
     let {
@@ -95,6 +97,7 @@ router.post('/register', (req, res) => {
     password,
     username,
     activated,
+    visited,
     role,
     details,
   })
@@ -223,23 +226,31 @@ router.post('/login', (req, res) => {
       } else {
         bcrypt.compare(password, user.password).then(isMatch => {
           if (isMatch) {
-            const payload = {
-              id: user.id,
-              email: user.email,
-              username: user.username,
-            }
-            // set token
-            jwt.sign(
-              payload,
-              secretOrKey,
-              { expiresIn: 3600 },
-              (err, token) => {
-                res.json({
-                  success: true,
-                  token: token,
-                })
-              }
-            )
+            let count = user.visited + 1
+            console.log(count)
+            User.findByIdAndUpdate(user._id, { visited: count })
+              .then(() => {
+                const payload = {
+                  id: user.id,
+                  email: user.email,
+                  username: user.username,
+                  visited: count,
+                  role: user.role,
+                }
+                // set token
+                jwt.sign(
+                  payload,
+                  secretOrKey,
+                  { expiresIn: 3600 },
+                  (err, token) => {
+                    res.json({
+                      success: true,
+                      token: token,
+                    })
+                  }
+                )
+              })
+              .catch(err => console.log(err))
           } else {
             return res.status(400).json({ msg: 'Invalid username or password' })
           }
