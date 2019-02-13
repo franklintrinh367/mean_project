@@ -71,6 +71,9 @@ export class UserService {
       `${this.baseUrl}/change-password`,
       JSON.stringify({ id: id, pass: newP }),
       options
+    )
+  }
+
   // Submit feedback
   submit(feedback: Feedback): Observable<Feedback> {
     const httpOptions = {
