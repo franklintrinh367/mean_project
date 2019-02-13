@@ -1,0 +1,38 @@
+.container > * {
+  width: 100%;
+}
+
+.wraper {
+  text-align: center;
+  font-size: 16px;
+  padding-top: 50px;
+  padding-bottom: 70px;
+}
+.button-style {
+  width: auto;
+  height: 50px;
+  padding: 10px;
+  margin: 10px;
+  font-size: 15px;
+  color: white;
+  background-color: darkblue;
+}
+.button-style1 {
+  width: auto;
+  height: 35px;
+  font-size: 10px;
+  color: white;
+  background-color: darkblue;
+  margin-left: 10px;
+}
+a {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.column-size {
+  width: auto;
+}
+mat-card {
+  width: 1000px;
+}

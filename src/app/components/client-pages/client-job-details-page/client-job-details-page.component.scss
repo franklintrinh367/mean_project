@@ -1,6 +1,8 @@
 .wraper {
   padding-top: 50px;
   padding-bottom: 70px;
+  width: auto;
+
 }
 
 .container > * {
@@ -36,6 +38,9 @@ mat-card {
 .search-div {
   margin: 10px;
 }
+.search-div button a {
+  text-decoration-line: none;
+}
 .search-form-field {
   width: 60%;
   margin-left: 10px;
@@ -58,6 +63,7 @@ mat-card {
 .search-form-field div.mat-form-field-suffix button {
   height: 32px;
   width: 32px;
+
 }
 
 .divider {
