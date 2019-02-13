@@ -55,6 +55,8 @@ import { CandidateRegisterPageComponent } from './components/candidate-pages/can
 import { AdminUserDetailsComponent } from './components/admin-pages/admin-user-details/admin-user-details.component'
 import { AdminJobsDetailsComponent } from './components/admin-pages/admin-jobs-details/admin-jobs-details.component'
 import { AdminCompanyDetailsComponent } from './components/admin-pages/admin-company-details/admin-company-details.component'
+import { ClientService } from './services/client/client.service'
+import { JobService } from './services/jobs/job.service'
 
 @NgModule({
   declarations: [
@@ -115,7 +117,8 @@ import { AdminCompanyDetailsComponent } from './components/admin-pages/admin-com
     MatPaginatorModule,
     MatTableModule,
   ],
-  providers: [],
+  providers: [ClientService, JobService],
   bootstrap: [AppComponent],
+  entryComponents: [ClientNewJobPageComponent],
 })
 export class AppModule {}
