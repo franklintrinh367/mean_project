@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
+import { Feedback } from 'src/app/models/others/feedback'
+import { FeedbackService } from 'src/app/services/feedback.service'
 
 @Component({
   selector: 'app-contact-us',
@@ -8,8 +10,12 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 })
 export class ContactUsComponent implements OnInit {
   private feedbackForm: FormGroup
+  feedback: Feedback
   private modes = ['Email', 'Phone']
-  constructor(private builder: FormBuilder) {}
+  constructor(
+    private builder: FormBuilder,
+    private feedbackService: FeedbackService
+  ) {}
 
   ngOnInit() {
     this.feedbackForm = this.builder.group({
@@ -52,6 +58,13 @@ export class ContactUsComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.preferedMode.value)
+    this.feedback = {
+      name: this.name.value,
+      email: this.email.value,
+      phone: this.phone.value,
+      preferedMode: this.preferedMode.value,
+      comment: this.comment.value,
+    }
+    this.feedbackService.submit(this.feedback).subscribe()
   }
 }
