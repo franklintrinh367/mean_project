@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { User } from 'src/models/users'
 import { debounceTime, map } from 'rxjs/operators'
+import { Feedback } from '../../models/others/feedback'
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,7 @@ export class UserService {
   public find(obj: String): Observable<User> {
     return this.http.get<User>(`${this.baseUrl}/find/${obj}`)
   }
+
   //Login
   public login(email, password): Observable<User> {
     let user = {
@@ -44,5 +46,17 @@ export class UserService {
   //get all Users
   public getUser(): Observable<User[]> {
     return this.http.get<User[]>(this.baseUrl)
+  }
+
+  // Submit feedback
+  submit(feedback: Feedback): Observable<Feedback> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    }
+    return this.http.post<Feedback>(
+      this.baseUrl + '/submit',
+      feedback,
+      httpOptions
+    )
   }
 }

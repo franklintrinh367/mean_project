@@ -1,21 +1,28 @@
-
 .logo {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 li {
-    display: inline-block;
+  display: inline-block;
 }
 
 a {
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-    font-size: 13px;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  font-size: 13px;
 }
 
 ul {
-    padding-left: 0;
+  padding-left: 0;
 }
 
+.sm-height {
+  height: 40px;
+}
+
+.mx-width {
+  max-width: 75%;
+  margin: auto;
+}
