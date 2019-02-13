@@ -22,7 +22,7 @@ export class ResetPasswordAuthService implements CanActivate {
       let compare = route.paramMap.get('hash')
       let token = this.auth.getTokenDetails('forgot-password-token')
       if (token.hash !== compare) {
-        this.router.navigateByUrl('/')
+        this.router.navigateByUrl('/404')
         return false
       }
     }

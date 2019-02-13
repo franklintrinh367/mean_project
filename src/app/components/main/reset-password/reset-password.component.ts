@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { Router } from '@angular/router'
+import { UserService } from 'src/app/services/main/user.service'
+import { AuthenticateService } from 'src/app/services/authenticate.service'
 
 @Component({
   selector: 'app-reset-password',
@@ -8,7 +10,11 @@ import { ActivatedRoute } from '@angular/router'
 })
 export class ResetPasswordComponent implements OnInit {
   private err: String
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private auth: AuthenticateService
+  ) {}
 
   ngOnInit() {}
 
@@ -18,6 +24,14 @@ export class ResetPasswordComponent implements OnInit {
       this.err = 'Fields cannot be empty'
     else if (newP !== confirm) this.err = "Password doesn't match"
     else {
+      let token = this.auth.getTokenDetails('forgot-password-token')
+      console.log(token)
+      this.userService.changePassword(token.id, newP).subscribe(res => {
+        if (res) {
+          window.confirm(res['msg'])
+          this.router.navigateByUrl('/')
+        }
+      })
     }
   }
 }

@@ -26,6 +26,7 @@ import { ForgotPasswordComponent } from './components/main/forgot-password/forgo
 // Candidate Pages
 import { CandidateRegisterPageComponent } from './components/candidate-pages/candidate-register-page/candidate-register-page.component'
 import { ResetPasswordComponent } from './components/main/reset-password/reset-password.component'
+import { ResetPasswordAuthService } from './services/reset-password-auth.service'
 
 // import { CompanyDetailsComponent} from './components/admin/company-details/company-details.component';
 
@@ -45,7 +46,11 @@ const routes: Routes = [
     canActivate: [UserAuthService],
   },
 
-  { path: 'reset-password/:hash', component: ResetPasswordComponent },
+  {
+    path: 'reset-password/:hash',
+    component: ResetPasswordComponent,
+    canActivate: [ResetPasswordAuthService],
+  },
   { path: 'success/:hash', component: VerifyPageComponent },
 
   // clients

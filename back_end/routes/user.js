@@ -272,7 +272,7 @@ router.post('/sendResetPassword', (req, res) => {
       hash = hash.replace(/\//g, '.')
       let msg =
         'Here is the link to reset your password\n' +
-        `http://localhost:4200/resetPassword/${hash}`
+        `http://localhost:4200/reset-password/${hash}`
 
       let mailOptions = {
         from: jc_email,
@@ -285,6 +285,7 @@ router.post('/sendResetPassword', (req, res) => {
       transporter.sendMail(mailOptions, (err, info) => {
         if (err) console.log(err)
         let payload = {
+          id: user._id,
           hash: hash,
         }
 
@@ -295,6 +296,21 @@ router.post('/sendResetPassword', (req, res) => {
           })
         })
       })
+    })
+  })
+})
+
+//Update password
+router.post('/change-password', (req, res) => {
+  let id = req.body.id
+  let pass = req.body.pass
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(pass, salt, (err, hash) => {
+      User.findByIdAndUpdate(id, {
+        password: hash,
+      })
+        .then(res.json({ msg: 'Password was succesfully updated' }))
+        .catch(err => console.log(err))
     })
   })
 })
