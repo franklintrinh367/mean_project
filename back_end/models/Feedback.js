@@ -18,7 +18,7 @@ var FeedbackSchema = new Schema({
     type: String,
     required: true,
   },
-  message: {
+  comment: {
     type: String,
     required: true,
   },

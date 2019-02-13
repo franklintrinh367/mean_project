@@ -14,6 +14,7 @@ const User = require('../models/User')
 const Candidate = require('../models/Candidate')
 const Company = require('../models/Company')
 const Admin = require('../models/Admin')
+const Feedback = require('../models/Feedback')
 
 // User Register
 router.post('/register', (req, res) => {
@@ -255,6 +256,21 @@ router.delete('/delete', (res, req) => {
     .then(info => {
       res.json(info)
     })
+    .catch(err => res.json(err))
+})
+
+// Send Feedback
+router.post('/submit', (req, res) => {
+  let feedback = new Feedback({
+    name: req.body.name,
+    email: req.body.email,
+    phone: req.body.phone,
+    preferedMode: req.body.preferedMode,
+    comment: req.body.comment,
+  })
+  feedback
+    .save()
+    .then(feedback => res.json(feedback))
     .catch(err => res.json(err))
 })
 
