@@ -11,6 +11,7 @@ import { UserService } from '../../../services/main/user.service'
 
 //Material design
 import { MatTableDataSource } from '@angular/material'
+import { MatPaginatorModule } from '@angular/material'
 
 const users: any[] = [
   { _id: '1', username: 'AAA', email: 'AAA@AAA', role: 'AAA' },

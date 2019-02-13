@@ -27,12 +27,7 @@ import { ProfileComponent } from './components/main/profile/profile.component'
 import { VerifyPageComponent } from './components/main/verify-page/verify-page.component'
 import { ClientHomepagesComponent } from './components/client-pages/client-homepages/client-homepages.component'
 import { ClientRegisterPageComponent } from './components/client-pages/client-register-page/client-register-page.component'
-// import { NewUserComponent } from './components/admin/new-user/new-user.component';
-// import { UserListComponent } from './components/admin/user-list/user-list.component';
-// import { UserDetailsComponent } from './components/admin/user-details/user-details.component';
-// import { JobListComponent } from './components/admin/job-list/job-list.component';
-// import { CompanyListComponent } from './components/admin/company-list/company-list.component';
-// import { CompanyDetailsComponent } from './components/admin/company-details/company-details.component';
+
 import { HeaderComponent } from './components/main/header/header.component'
 import { ClientNewJobPageComponent } from './components/client-pages/client-new-job-page/client-new-job-page.component'
 import { ClientJobDetailsPageComponent } from './components/client-pages/client-job-details-page/client-job-details-page.component'
@@ -47,10 +42,19 @@ import { AdminUserListComponent } from './components/admin-pages/admin-user-list
 import { AdminManageJobsComponent } from './components/admin-pages/admin-manage-jobs/admin-manage-jobs.component'
 import { AdminCompanyListComponent } from './components/admin-pages/admin-company-list/admin-company-list.component'
 import { LoaderComponent } from './components/main/loader/loader.component'
-import { MatProgressBarModule } from '@angular/material'
+import {
+  MatProgressBarModule,
+  MatPaginatorModule,
+  MatTableModule,
+  MatSort,
+  MatTableDataSource,
+} from '@angular/material'
 import { LoaderModule } from './module/loader-module'
 import { ForgotPasswordComponent } from './components/main/forgot-password/forgot-password.component'
 import { CandidateRegisterPageComponent } from './components/candidate-pages/candidate-register-page/candidate-register-page.component'
+import { AdminUserDetailsComponent } from './components/admin-pages/admin-user-details/admin-user-details.component'
+import { AdminJobsDetailsComponent } from './components/admin-pages/admin-jobs-details/admin-jobs-details.component'
+import { AdminCompanyDetailsComponent } from './components/admin-pages/admin-company-details/admin-company-details.component'
 
 @NgModule({
   declarations: [
@@ -65,6 +69,7 @@ import { CandidateRegisterPageComponent } from './components/candidate-pages/can
     TestComponent,
     LoaderComponent,
     ForgotPasswordComponent,
+
     // ClientHomepagesComponent,
     HomePagesComponent,
     JobDetailsComponent,
@@ -74,7 +79,8 @@ import { CandidateRegisterPageComponent } from './components/candidate-pages/can
     ProfileComponent,
     VerifyPageComponent,
     HeaderComponent,
-    // company Pages
+
+    // Company Pages
     ClientHomepagesComponent,
     ClientRegisterPageComponent,
     ClientNewJobPageComponent,
@@ -86,6 +92,11 @@ import { CandidateRegisterPageComponent } from './components/candidate-pages/can
     AdminUserListComponent,
     AdminManageJobsComponent,
     AdminCompanyListComponent,
+    AdminUserDetailsComponent,
+    AdminJobsDetailsComponent,
+    AdminCompanyDetailsComponent,
+
+    //Candidate Pages
     CandidateRegisterPageComponent,
   ],
   imports: [
@@ -101,6 +112,8 @@ import { CandidateRegisterPageComponent } from './components/candidate-pages/can
     MatProgressBarModule,
     LoaderModule,
     MatButtonModule,
+    MatPaginatorModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

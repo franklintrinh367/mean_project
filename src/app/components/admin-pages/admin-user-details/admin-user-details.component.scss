@@ -5,7 +5,6 @@
 .wraper {
   text-align: center;
   font-size: 16px;
-  width: 100%;
 }
 .button-style {
   width: 100%;
@@ -16,22 +15,12 @@
   color: white;
   background-color: darkblue;
 }
-.button-style1 {
-  width: 100%;
-  height: 35px;
-  font-size: 10px;
-  color: white;
-  background-color: darkblue;
-  margin-left: 10px;
-}
+
 a {
   font-size: 14px;
   cursor: pointer;
 }
 
-.column-size {
-  width: auto;
-}
-mat-card {
-  width: 1000px;
+span {
+  font-size: 20px;
 }
