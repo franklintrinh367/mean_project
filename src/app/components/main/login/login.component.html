@@ -1,43 +1,64 @@
-<loader></loader>
-<div class="wraper" fxLayout="row wrap" fxLayoutAlign="center center">  
-  <mat-card class="mat-elevation-z8">
-  <form autocomplete="off" [formGroup]="loginForm">
-    <div class="container">
-      <!-- Login Input-->
-      <mat-form-field>
-        <input matInput color="primary" type="text" placeholder="Email" formControlName="email">
-      </mat-form-field>
-      <div class="validation-wraper">
-        <div *ngIf="email.invalid && (email.dirty || email.touched)">
-          <div *ngIf="(email.errors | firstErrPipe ) === 'pattern'">Invalid email address</div>
-          <div *ngIf="(email.errors | firstErrPipe ) === 'required'">Field cannot be empty</div>
-        </div>
-      </div>
-        <!-- Password Input -->
+<mat-card class="mat-elevation-z8" style="text-align: center">
+  <loader></loader>
+  <mat-card-content>
+    <form autocomplete="off" [formGroup]="loginForm">
+      <div class="container">
+        <!-- Login Input-->
         <mat-form-field>
-          <input matInput type="password" placeholder="Password" formControlName="password">
+          <input
+            matInput
+            color="primary"
+            type="text"
+            placeholder="Email or Username"
+            formControlName="email"
+          />
         </mat-form-field>
         <div class="validation-wraper">
-          <div *ngIf="password.invalid && (password.dirty || password.touched) else elseBlock" >
-            <div *ngIf="(password.errors | firstErrPipe ) === 'required'">Field cannot be empty</div>
+          <div *ngIf="email.invalid && (email.dirty || email.touched)">
+            <div *ngIf="(email.errors | firstErrPipe) === 'required'">
+              Field cannot be empty
+            </div>
+          </div>
+        </div>
+        <!-- Password Input -->
+        <mat-form-field>
+          <input
+            matInput
+            type="password"
+            placeholder="Password"
+            formControlName="password"
+          />
+        </mat-form-field>
+        <div class="validation-wraper">
+          <div
+            *ngIf="
+              password.invalid && (password.dirty || password.touched);
+              else elseBlock
+            "
+          >
+            <div *ngIf="(password.errors | firstErrPipe) === 'required'">
+              Field cannot be empty
+            </div>
           </div>
           <ng-template #elseBlock>
-            <div *ngIf="error">{{this.error}}</div>
-          </ng-template>        
+            <div *ngIf="error">{{ this.error }}</div>
+          </ng-template>
         </div>
-      <!-- Login Button, Signup Button -->
-      <div id="login-btn">
-        <button class="button-style mat-elevation-z8" mat-button (click)="login(email.value, password.value)" [disabled]="loginForm.invalid">
-          Login
-        </button>
+        <!-- Login Button, Signup Button -->
+        <div id="login-btn">
+          <button
+            type="submit"
+            class="button-style mat-elevation-z8"
+            mat-button
+            (click)="login(email.value, password.value)"
+          >
+            LOGIN
+          </button>
+        </div>
+        <br />
+        <br />
+        <a (click)="closeDialog('forgot')">Forgot Your Password?</a>
       </div>
-      <br>
-      <div id="signup-btn">
-      <button  (click)="closeDialog('signup')" class="button-style mat-elevation-z8" mat-button mat-elevation-z8>SIGN UP</button>
-      </div>
-      <br>
-      <a (click)="closeDialog('forgot')">Forgot Your Password?</a>
-    </div>
-  </form>
+    </form>
+  </mat-card-content>
 </mat-card>
-</div>

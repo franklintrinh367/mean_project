@@ -1,18 +1,77 @@
-<div style="padding: 5px;">
-  
-  <nav mat-tab-nav-bar >
-      <a mat-tab-link
-         *ngFor="let routeLink of routeLinks; let i = index;"
-         [routerLink]="routeLink.link"
-         routerLinkActive
-         #rla="routerLinkActive"
-         (click)="activeLinkIndex = i"
-         [routerLinkActiveOptions]="{exact: true}"
-         [class] = getActiveClass(i)
-      >
-          {{routeLink.label}}
-      </a>
-  </nav>
+<div class="wraper" fxLayout="column" fxLayoutAlign="center center">
+  <mat-card fxFlex.xs="auto">
+    <mat-card-content>
+      <div class="container">
+        <span> Home Page</span>
 
-  <router-outlet></router-outlet>
+        <button
+          mat-raised-button
+          class="button-style"
+          [matMenuTriggerFor]="main"
+        >
+          Main Menu
+        </button>
+        <br />
+
+        <button
+          mat-raised-button
+          class="button-style"
+          [matMenuTriggerFor]="users"
+        >
+          Users Menu
+        </button>
+
+        <button
+          mat-raised-button
+          class="button-style"
+          [matMenuTriggerFor]="company"
+        >
+          Companies Menu
+        </button>
+
+        <button
+          mat-raised-button
+          class="button-style"
+          [matMenuTriggerFor]="jobs"
+        >
+          Jobs Menu
+        </button>
+      </div>
+
+      <mat-menu #main="matMenu" class="menu-style">
+        <button mat-menu-item [matMenuTriggerFor]="users">Users</button>
+        <button mat-menu-item [matMenuTriggerFor]="company">Companies</button>
+        <button mat-menu-item [matMenuTriggerFor]="jobs">Jobs</button>
+      </mat-menu>
+
+      <mat-menu #users="matMenu">
+        <button mat-menu-item>
+          <a routerLink="/admin_newUser"> Add New User</a>
+        </button>
+        <button mat-menu-item>
+          <a routerLink="/admin_userList"> List Users</a>
+        </button>
+        <button mat-menu-item>
+          <a routerLink="/adminEditUser"> Edi Users</a>
+        </button>
+      </mat-menu>
+
+      <mat-menu #company="matMenu">
+        <button mat-menu-item>
+          <a routerLink="/adminListCompany">List Comapies</a>
+        </button>
+        <button mat-menu-item>
+          <a routerLink="/adminEditCompany">Edit Companies</a>
+        </button>
+      </mat-menu>
+      <mat-menu #jobs="matMenu">
+        <button mat-menu-item>
+          <a routerLink="/adminListJobs">List jobs</a>
+        </button>
+        <button mat-menu-item>
+          <a routerLink="/adminEditJobs">Edit Jobs</a>
+        </button>
+      </mat-menu>
+    </mat-card-content>
+  </mat-card>
 </div>

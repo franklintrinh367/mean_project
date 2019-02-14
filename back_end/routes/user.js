@@ -8,12 +8,18 @@ const Schema = mongoose.Schema
 
 // Get the secret key
 const secretOrKey = require('../config/keys').secretOrKey
+// nodemailer setup variables
+const jc_email = 'qmd7pribn7xbj2qv@ethereal.email'
+const jc_pass = 'CPMw2sRq3emkAKGmNr'
+const jc_host = 'smtp.ethereal.email'
+const jc_port = 587
 
 // Load models
 const User = require('../models/User')
 const Candidate = require('../models/Candidate')
 const Company = require('../models/Company')
 const Admin = require('../models/Admin')
+const Feedback = require('../models/Feedback')
 
 // User Register
 router.post('/register', (req, res) => {
@@ -21,6 +27,8 @@ router.post('/register', (req, res) => {
   const { email, password, username, activated, role } = req.body
   // instantiate details field
   let details = {}
+  //visit count
+  let visited = 0
   // get params from role candidate
   if (role == 'candidate') {
     let {
@@ -90,6 +98,7 @@ router.post('/register', (req, res) => {
     password,
     username,
     activated,
+    visited,
     role,
     details,
   })
@@ -130,15 +139,15 @@ router.get('/send/:id&:email', async (req, res) => {
     bcrypt.hash(id, salt, (err, hash) => {
       //***important line, don't change this, sometimes bcrypt produces hash with
       //slash which will break the url
-      hash = hash.replace('/', '.')
+      hash = hash.replace(/\//g, '.')
 
       let transporter = nodemailer.createTransport({
-        host: 'smtp.mail.com',
-        port: 587,
+        host: jc_host,
+        port: jc_port,
         sercure: false,
         auth: {
-          user: 'jc-consulting@mail.com',
-          pass: 'computerprograming',
+          user: jc_email,
+          pass: jc_pass,
         },
       })
 
@@ -147,7 +156,7 @@ router.get('/send/:id&:email', async (req, res) => {
         `http://localhost:3000/user/verify/${hash}`
 
       let mailOptions = {
-        from: 'jc-consulting@mail.com',
+        from: jc_email,
         to: email,
         subject: 'Welcome to JC-Consulting',
         text: msg,
@@ -157,9 +166,7 @@ router.get('/send/:id&:email', async (req, res) => {
         if (err) console.log(err)
         console.log(info)
         User.findByIdAndUpdate(id, {
-          $set: {
-            hash: hash,
-          },
+          hash: hash,
         })
           .then()
           .catch(err => console.log(err))
@@ -174,9 +181,7 @@ router.get('/verify/:hash', (req, res) => {
   User.findOneAndUpdate(
     hash,
     {
-      $set: {
-        activated: true,
-      },
+      activated: true,
     },
 
     { returnNewDocument: true }
@@ -186,14 +191,11 @@ router.get('/verify/:hash', (req, res) => {
 //find user By ID
 router.get('/findUserByHash/:hash', (req, res) => {
   let hash = req.params.hash
-  User.findOneAndUpdate(
-    { hash },
-    {
-      $unset: {
-        hash: '',
-      },
-    }
-  )
+  User.findOneAndUpdate(hash, {
+    $unset: {
+      hash: '',
+    },
+  })
     .then(user => {
       res.json(user)
     })
@@ -214,10 +216,11 @@ router.get('/find/:obj', (req, res) => {
 
 // User Login
 router.post('/login', (req, res) => {
-  const { email, password } = req.body
+  const { inputLogin, password } = req.body
 
-  User.findOne()
-    .or([{ email: email }, { username: username }])
+  User.findOne({
+    $or: [{ email: inputLogin }, { username: inputLogin }],
+  })
     .then(user => {
       if (!user) {
         return res
@@ -226,23 +229,31 @@ router.post('/login', (req, res) => {
       } else {
         bcrypt.compare(password, user.password).then(isMatch => {
           if (isMatch) {
-            const payload = {
-              id: user.id,
-              email: user.email,
-              username: user.username,
-            }
-            // set token
-            jwt.sign(
-              payload,
-              secretOrKey,
-              { expiresIn: 3600 },
-              (err, token) => {
-                res.json({
-                  success: true,
-                  token: token,
-                })
-              }
-            )
+            let count = user.visited + 1
+            console.log(count)
+            User.findByIdAndUpdate(user._id, { visited: count })
+              .then(() => {
+                const payload = {
+                  id: user.id,
+                  email: user.email,
+                  username: user.username,
+                  visited: count,
+                  role: user.role,
+                }
+                // set token
+                jwt.sign(
+                  payload,
+                  secretOrKey,
+                  { expiresIn: 3600 },
+                  (err, token) => {
+                    res.json({
+                      success: true,
+                      token: token,
+                    })
+                  }
+                )
+              })
+              .catch(err => console.log(err))
           } else {
             return res.status(400).json({ msg: 'Invalid username or password' })
           }
@@ -252,6 +263,98 @@ router.post('/login', (req, res) => {
     .catch(err => {
       return res.status(400).json(err)
     })
+})
+
+//Delete All, for testing purpose only. Can be deleted
+router.delete('/delete', (res, req) => {
+  User.deleteMany({})
+    .then(info => {
+      res.json(info)
+    })
+    .catch(err => res.json(err))
+})
+
+//send Reset Password Link via email
+router.post('/sendResetPassword', (req, res) => {
+  let user = req.body
+  let transporter = returnTransporter()
+  //Create a hash to include in a link
+  bcrypt.genSalt(10, (err, salt) => {
+    if (err) console.log(err)
+    bcrypt.hash(user._id, salt, (err, hash) => {
+      if (err) console.log(err)
+      hash = hash.replace(/\//g, '.')
+      let msg =
+        'Here is the link to reset your password\n' +
+        `http://localhost:4200/reset-password/${hash}`
+
+      let mailOptions = {
+        from: jc_email,
+        to: user.email,
+        subject: 'JC Consulting- Reset Password',
+        text: msg,
+      }
+
+      //set the link to expire in 1 hour
+      transporter.sendMail(mailOptions, (err, info) => {
+        if (err) console.log(err)
+        let payload = {
+          id: user._id,
+          hash: hash,
+        }
+
+        jwt.sign(payload, secretOrKey, { expiresIn: 3600 }, (err, token) => {
+          res.json({
+            success: true,
+            token: token,
+          })
+        })
+      })
+    })
+  })
+})
+
+//Update password
+router.post('/change-password', (req, res) => {
+  let id = req.body.id
+  let pass = req.body.pass
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(pass, salt, (err, hash) => {
+      User.findByIdAndUpdate(id, {
+        password: hash,
+      })
+        .then(res.json({ msg: 'Password was succesfully updated' }))
+        .catch(err => console.log(err))
+    })
+  })
+})
+
+//functions to create Transporter
+function returnTransporter() {
+  return nodemailer.createTransport({
+    host: jc_host,
+    port: jc_port,
+    sercure: false,
+    auth: {
+      user: jc_email,
+      pass: jc_pass,
+    },
+  })
+}
+
+// Send Feedback
+router.post('/submit', (req, res) => {
+  let feedback = new Feedback({
+    name: req.body.name,
+    email: req.body.email,
+    phone: req.body.phone,
+    preferedMode: req.body.preferedMode,
+    comment: req.body.comment,
+  })
+  feedback
+    .save()
+    .then(feedback => res.json(feedback))
+    .catch(err => res.json(err))
 })
 
 module.exports = router

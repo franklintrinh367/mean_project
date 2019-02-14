@@ -1,24 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 @import './app/custom-style/theme.scss';
 
-
 @font-face {
-    font-family: "NotoSans";
-    src : url("./assets/fonts/Roboto-Regular.ttf");
+  font-family: 'NotoSans';
+  src: url('./assets/fonts/Roboto-Regular.ttf');
 }
 
 body {
-    margin: 0 auto;
-    font-family: 'NotoSans';
-        
+  margin: 0 auto;
+  font-family: 'NotoSans';
 }
 
 .background {
-    display: block;
-        background-image: url('../src/assets/photo-1432821596592-e2c18b78144f.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        min-height: 700px;
+  display: block;
+  background-image: url('../src/assets/background-wp.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 700px;
 }
-
-

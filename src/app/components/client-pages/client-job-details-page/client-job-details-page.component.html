@@ -1,41 +1,113 @@
 <div class="wraper" fxLayout="column" fxLayoutAlign="center center">
-  <mat-card fxFlex.xs="auto">
+  <mat-card fxFlex.xs="auto" class="mat-elevation-z8">
     <div class="search-div">
-    <button mat-raised-button> <a routerLink="/new-jobs">
-        <mat-icon>add</mat-icon>Add Job</a>
-    </button>
-  </div>
-  <mat-table [dataSource]="dataSource">
-    <ng-container matColumnDef="jobPostDate" >
+      <button mat-raised-button (click)="onCreate()">
+        <mat-icon>add</mat-icon>Add Job
+      </button>
+      <mat-form-field class="search-form-field" floatLabel="never">
+        <input
+          matInput
+          [(ngModel)]="searchKey"
+          placeholder="Search"
+          autocomplete="off"
+          (keyup)="applyFilter()"
+        />
+      </mat-form-field>
+      <button
+        mat-button
+        matSuffix
+        mat-icon-button
+        ariel-label="Clear"
+        *ngIf="searchKey"
+        (click)="onSearchClear()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="_id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          ID
+        </mat-header-cell>
+        <mat-cell *matCellDef="let data">{{ data._id }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="jobId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Job Number
+        </mat-header-cell>
+        <mat-cell *matCellDef="let data">{{ data.jobId }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="companyId">
+        <mat-header-cell *matHeaderCellDef> CompanyId </mat-header-cell>
+        <mat-cell *matCellDef="let data">{{ data.companyId }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="jobPostDate">
         <mat-header-cell *matHeaderCellDef> Date of Posting </mat-header-cell>
         <mat-cell *matCellDef="let data">{{ data.jobPostDate }}</mat-cell>
-      </ng-container> 
-  
+      </ng-container>
+
+      <ng-container matColumnDef="jobStatus">
+        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+        <mat-cell *matCellDef="let data">{{ data.jobStatus }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="jobActivate">
+        <mat-header-cell *matHeaderCellDef> Activation </mat-header-cell>
+        <mat-cell *matCellDef="let data">{{ data.jobActivate }}</mat-cell>
+      </ng-container>
+
       <ng-container matColumnDef="jobEndDate">
-          <mat-header-cell *matHeaderCellDef> Expired Date </mat-header-cell>
-          <mat-cell *matCellDef="let data">{{ data.jobEndDate }}</mat-cell>
-        </ng-container> 
-  
-        <ng-container matColumnDef="jobPositions">
-            <mat-header-cell *matHeaderCellDef> Position </mat-header-cell>
-            <mat-cell *matCellDef="let data">{{ data.jobPositions }}</mat-cell>
-          </ng-container> 
-          <ng-container matColumnDef="jobDescription">
-              <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
-              <mat-cell *matCellDef="let data">{{ data.jobDescription }}</mat-cell>
+        <mat-header-cell *matHeaderCellDef> Expired Date </mat-header-cell>
+        <mat-cell *matCellDef="let data">{{ data.jobEndDate }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="jobPositions">
+        <mat-header-cell *matHeaderCellDef> Position </mat-header-cell>
+        <mat-cell *matCellDef="let data">{{ data.jobPositions }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="jobDescription">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Description
+        </mat-header-cell>
+        <mat-cell *matCellDef="let data">{{ data.jobDescription }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-icon-button (click)="onEdit(row)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn">
+            <mat-icon>delete_outline</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="loading">
+              <mat-footer-cell *matFooterCellDef colspan="6"> 
+                loading data ....
+              </mat-footer-cell>
            </ng-container> 
-  
-            <ng-container matColumnDef="actions">
-                <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
-                <mat-cell *matCellDef="let row">
-                  <button mat-icon-button><mat-icon>edit</mat-icon></button>
-                  <button mat-icon-button color="warn"><mat-icon>delete_outline</mat-icon></button>
-                </mat-cell>  
-            </ng-container>
-    
-          <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayColumns;"></mat-row> 
-  </mat-table>
-</mat-card>
-  </div>
-  
+           <ng-container matColumnDef="noData">
+            <mat-footer-cell *matFooterCellDef colspan="6"> 
+              No data
+            </mat-footer-cell>
+         </ng-container> -->
+
+      <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayColumns"></mat-row>
+      <!-- <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':dataSource!=null}"></mat-footer-row>
+          <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{hide:(dataSource!=null)}"></mat-footer-row>                
+ -->
+    </mat-table>
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </mat-card>
+</div>

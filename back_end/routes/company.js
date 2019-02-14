@@ -3,7 +3,7 @@ const router = express.Router()
 
 // load models
 const User = require('../models/User')
-const Job = require('../../models/Job')
+const Job = require('../models/Job')
 
 // get all companies
 router.get('/get/all', (req, res) => {
@@ -83,11 +83,11 @@ router.get('/jobs', (req, res) => {
   let companyID = req.get('companyID')
   Job.find({ companyID: companyID })
     .populate('candidatesMatch')
-    .exec((err, job) => {
+    .exec((err, jobs) => {
       if (err) {
         res.status(400).json({ error: err })
       } else {
-        res.status(200).json(job)
+        res.status(200).json(jobs)
       }
     })
 })
