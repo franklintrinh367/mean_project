@@ -1,20 +1,36 @@
-h1, h2, h3,  a{
-    color: green;
+.center {
+  margin: auto;
+  width: 50%;
+}
+
+h1,
+h2,
+h3,
+a {
+  color: green;
 }
 
 table tr {
-    text-align: left;
+  text-align: left;
 }
 
 :host {
-    display: block;
-    height: 700px;
-    background-color: white;
-    background-size: cover;
+  display: block;
+  height: 700px;
+  background-color: white;
+  background-size: cover;
 }
 
 button {
-    background-color: green;
-    color: white;
-    margin-left: 10px;
+  background-color: green;
+  color: white;
+  margin-left: 10px;
+}
+
+.pt-6 {
+  padding-top: 60px;
+}
+
+.con-btn {
+  background-color: #f49842;
 }

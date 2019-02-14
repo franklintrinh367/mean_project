@@ -1,11 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  ValidatorFn,
-  AbstractControl,
-} from '@angular/forms'
+import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Candidate } from '../../../models/candidates/candidate'
 import { CandidateService } from '../../../services/candidate/candidate.service'
 
@@ -109,8 +103,6 @@ export class CandidateRegisterPageComponent implements OnInit {
       canProvince: this.canProvince.value,
       canPostalCode: this.canPostalCode.value,
     }
-    this.candidateService
-      .register(this.candidate)
-      .subscribe(candidate => console.log(candidate))
+    this.candidateService.register(this.candidate).subscribe()
   }
 }
