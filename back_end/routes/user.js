@@ -27,6 +27,8 @@ router.post('/register', (req, res) => {
   const { email, password, username, activated, role } = req.body
   // instantiate details field
   let details = {}
+  //visit count
+  let visited = 0
 
   const newUser = new User({
     email,
