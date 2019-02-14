@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ViewChild } from '@angular/core'
 //Router
 
 import { Router } from '@angular/router'
@@ -10,13 +10,15 @@ import { User } from '../../../../models/users'
 import { UserService } from '../../../services/main/user.service'
 
 //Material design
-import { MatTableDataSource } from '@angular/material'
-import { MatPaginatorModule } from '@angular/material'
+import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material'
 
-const users: any[] = [
-  { _id: '1', username: 'AAA', email: 'AAA@AAA', role: 'AAA' },
-  { _id: '2', username: 'BBB', email: 'BBB@BBB', role: 'BBB' },
-  { _id: '3', username: 'CCC', email: 'CCC@CCC', role: 'CCC' },
+const USERS: any[] = [
+  { _id: 1, username: 'AAA', email: 'AAA@AAA', role: 'AAA' },
+  { _id: 2, username: 'BBB', email: 'BBB@BBB', role: 'BBB' },
+  { _id: 4, username: 'DDD', email: 'DDD@DDD', role: 'DDD' },
+  { _id: 5, username: 'EEE', email: 'EEE@EEE', role: 'EEE' },
+  { _id: 6, username: 'FFF', email: 'FFF@FFF', role: 'FFF' },
+  { _id: 3, username: 'CCC', email: 'CCC@CCC', role: 'CCC' },
 ]
 
 @Component({
@@ -25,16 +27,22 @@ const users: any[] = [
   styleUrls: ['./admin-user-list.component.scss'],
 })
 export class AdminUserListComponent implements OnInit {
-  dataSource = users
+  dataSource = new MatTableDataSource(USERS)
   //  users: User[];
   displayColumns: string[] = ['_id', 'username', 'email', 'role', 'actions']
 
-  constructor() // private userService: UserService,
-  // private router: Router
+  //Pagination and Sort
+  @ViewChild(MatSort) sort: MatSort
+  @ViewChild(MatPaginator) paginator: MatPaginator
+
+  constructor() //private userService: UserService,
+  //private router: Router
   {}
 
   ngOnInit() {
     //this.fetchUser();
+    this.dataSource.sort = this.sort
+    this.dataSource.paginator = this.paginator
   }
 
   /*fetchUser(){

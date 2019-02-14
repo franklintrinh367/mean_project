@@ -1,3 +1,138 @@
-<p>
-  admin-company-details works!
-</p>
+<div class="wraper" fxLayout="column" fxLayoutAlign="center center">
+  <mat-card fxFlex.xs="auto">
+    <mat-card-content>
+      <h1>Company Details</h1>
+      <div class="container">
+        <button mat-raised-button class="button-style" routerLink="/adminPages">
+          Main Menu</button
+        ><br />
+        <button
+          mat-raised-button
+          class="button-style"
+          routerLink="/admin_companyList"
+        >
+          Company List
+        </button>
+      </div>
+
+      <form autocomplete="off" [formGroup]="CompanyEditForm">
+        <mat-grid-list cols="2" rowHeight="300px">
+          <mat-grid-tile>
+            <div class="container">
+              <!-- Id-->
+              <mat-form-field hidden>
+                <input formControlName="id" matInput placeholder="ID *" #id />
+              </mat-form-field>
+
+              <!-- Comapny  Name -->
+              <mat-form-field>
+                <input
+                  required
+                  formControlName="compName"
+                  matInput
+                  placeholder="Company Name"
+                  #username
+                />
+              </mat-form-field>
+
+              <!-- CRA Number-->
+              <mat-form-field>
+                <input
+                  required
+                  formControlName="compCRANumber"
+                  matInput
+                  placeholder="CRA Number"
+                  #compCRANumber
+                />
+              </mat-form-field>
+
+              <!-- Company Address -->
+              <mat-form-field>
+                <input
+                  required
+                  formControlName="compAddress"
+                  matInput
+                  placeholder="Address"
+                  #compAddress
+                />
+              </mat-form-field>
+
+              <!-- Company City -->
+              <mat-form-field>
+                <input
+                  required
+                  formControlName="compCity"
+                  matInput
+                  placeholder="City"
+                  #compCity
+                />
+              </mat-form-field>
+
+              <!-- Company Zip Code -->
+              <mat-form-field>
+                <input
+                  required
+                  formControlName="compCode"
+                  matInput
+                  placeholder="Code"
+                  #compCode
+                />
+              </mat-form-field>
+
+              <!-- Company Province -->
+              <mat-form-field>
+                <mat-select
+                  placeholder="Province"
+                  formControlName="compProvince"
+                >
+                  <mat-option
+                    *ngFor="let prov of provinces"
+                    [value]="prov.value"
+                  >
+                    {{ prov.viewValue }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <!-- Company Contact -->
+              <mat-form-field>
+                <input
+                  required
+                  formControlName="compContact"
+                  matInput
+                  placeholder="Contact"
+                  #compContact
+                />
+              </mat-form-field>
+
+              <!-- isActive -->
+              <mat-form-field>
+                <mat-select placeholder="Activated" formControlName="activated">
+                  <mat-option *ngFor="let a of act" [value]="a.value">
+                    {{ a.viewValue }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <!-- Add Button / Clear Button -->
+              <div class="container">
+                <div class="button-row">
+                  <button mat-raised-button class="button-style" type="submit">
+                    Submit
+                  </button>
+                  <button
+                    mat-raised-button
+                    class="button-style"
+                    (click)="onClear()"
+                  >
+                    Clear
+                  </button>
+                </div>
+              </div>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

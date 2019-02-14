@@ -14,6 +14,7 @@
           User List
         </button>
       </div>
+
       <form autocomplete="off" [formGroup]="EditUserForm">
         <mat-grid-list cols="2" rowHeight="300px">
           <mat-grid-tile>
@@ -37,7 +38,7 @@
                   required
                   formControlName="username"
                   matInput
-                  placeholder="User Name *"
+                  placeholder="User Name"
                   #username
                 />
               </mat-form-field>
@@ -48,7 +49,7 @@
                   required
                   formControlName="email"
                   matInput
-                  placeholder="User Email *"
+                  placeholder="User Email"
                   #email
                 />
               </mat-form-field>
@@ -56,8 +57,8 @@
               <!-- Role -->
               <mat-form-field>
                 <mat-select placeholder="Role" formControlName="role">
-                  <mat-option *ngFor="let role of roles" [value]="role.value">
-                    {{ role.viewValue }}
+                  <mat-option *ngFor="let role of roles" [value]="role.value"
+                    >{{ role.viewValue }}
                   </mat-option>
                 </mat-select>
               </mat-form-field>

@@ -2,11 +2,15 @@ import { Component, OnInit, ViewChild } from '@angular/core'
 
 import { Job } from '../../../models/clients/jobs'
 import { JobService } from '../../../services/jobs/job.service'
-//Material design
-import { MatSort, MatTableDataSource } from '@angular/material'
-import { MatPaginatorModule } from '@angular/material'
 
-const jobs: any[] = [
+//Router
+
+import { Router } from '@angular/router'
+
+//Material design
+import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material'
+
+const JOBS: any[] = [
   {
     jobId: 1,
     compId: 1,
@@ -36,7 +40,7 @@ const jobs: any[] = [
   styleUrls: ['./admin-manage-jobs.component.scss'],
 })
 export class AdminManageJobsComponent implements OnInit {
-  dataSource = jobs
+  dataSource = new MatTableDataSource(JOBS)
   //  jobs: Job[];
   displayColumns: string[] = [
     'jobId',
@@ -48,11 +52,15 @@ export class AdminManageJobsComponent implements OnInit {
   ]
 
   @ViewChild(MatSort) sort: MatSort
+  @ViewChild(MatPaginator) paginator: MatPaginator
+
   constructor() // private jobSerbice: JobService,
   // private router: Router
   {}
 
   ngOnInit() {
+    this.dataSource.sort = this.sort
+    this.dataSource.paginator = this.paginator
     //this.fetchJobs();
   }
 
