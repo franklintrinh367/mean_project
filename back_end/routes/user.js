@@ -27,6 +27,8 @@ router.post('/register', (req, res) => {
   const { email, password, username, activated, role } = req.body
   // instantiate details field
   let details = {}
+  let completed = false
+
   //visit count
   let visited = 0
 
@@ -38,6 +40,7 @@ router.post('/register', (req, res) => {
     visited,
     role,
     details,
+    completed,
   })
   //Hash password
   bcrypt.genSalt(10, (err, salt) => {
@@ -179,6 +182,7 @@ router.post('/login', (req, res) => {
                   username: user.username,
                   visited: count,
                   role: user.role,
+                  completed: user.completed,
                 }
                 // set token
                 jwt.sign(

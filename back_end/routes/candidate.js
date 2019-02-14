@@ -25,7 +25,13 @@ router.post('/register', (req, res) => {
   })
   newCandidate
     .save()
-    .then(candidate => res.json(candidate))
+    .then(candidate => {
+      console.log(req.body.canId)
+      User.findByIdAndUpdate(req.body.canId, {
+        completed: true,
+      }).then(console.log('completed registration'))
+      res.json(candidate)
+    })
     .catch(err => res.json(err))
 })
 

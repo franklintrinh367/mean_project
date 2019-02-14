@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
           if (result) {
             this.auth.saveToken(result['token'], 'auth-token')
             let token = this.auth.getTokenDetails('auth-token')
-            if (token.visited <= 1) {
+            if (!token.completed) {
               switch (token.role) {
                 case 'Candidate': {
                   console.log(token.role)

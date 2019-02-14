@@ -27,14 +27,4 @@ export class VerifyPageComponent implements OnInit {
       this.user = u
     })
   }
-
-  register() {
-    if (this.user.role == 'Candidate') {
-      this.router.navigateByUrl('/candidate_register')
-    } else if (this.user.role == 'Client') {
-      this.router.navigateByUrl('/client_register')
-    } else {
-      this.router.navigateByUrl('/')
-    }
-  }
 }
