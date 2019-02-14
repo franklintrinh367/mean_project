@@ -9,9 +9,9 @@ const Schema = mongoose.Schema
 // Get the secret key
 const secretOrKey = require('../config/keys').secretOrKey
 // nodemailer setup variables
-const jc_email = 'qmd7pribn7xbj2qv@ethereal.email'
-const jc_pass = 'CPMw2sRq3emkAKGmNr'
-const jc_host = 'smtp.ethereal.email'
+const jc_email = 'jc-consulting@mail.com'
+const jc_pass = 'computerprograming'
+const jc_host = 'smtp.mail.com'
 const jc_port = 587
 
 // Load models
