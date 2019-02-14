@@ -40,12 +40,12 @@ export class LoginComponent implements OnInit {
             let token = this.auth.getTokenDetails('auth-token')
             if (!token.completed) {
               switch (token.role) {
-                case 'Candidate': {
-                  console.log(token.role)
-                  window.location.assign('/candidate_register')
+                case 'Candidate':
+                  {
+                    window.location.assign('/candidate_register')
+                  }
                   break
-                }
-                case 'Hiring Company':
+                case 'Client':
                   window.location.assign('/client_register')
                   break
               }
