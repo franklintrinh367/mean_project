@@ -28,6 +28,7 @@ router.post('/register', (req, res) => {
   // instantiate details field
   let details = {}
   let completed = false
+
   //visit count
   let visited = 0
 
