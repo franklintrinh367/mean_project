@@ -22,69 +22,6 @@ router.post('/register', (req, res) => {
   const { email, password, username, activated, role } = req.body
   // instantiate details field
   let details = {}
-  // get params from role candidate
-  if (role == 'candidate') {
-    let {
-      canFirstName,
-      canLastName,
-      canEducation,
-      canOccupation,
-      canPhone,
-      canLinkedIn,
-      canAddress,
-      canCity,
-      canProvince,
-      canPostalCode,
-      canAllocateStatus,
-    } = req.body
-    details = new Candidate({
-      canFirstName,
-      canLastName,
-      canEducation,
-      canOccupation,
-      canPhone,
-      canLinkedIn,
-      // resume,
-      canAddress,
-      canCity,
-      canProvince,
-      canPostalCode,
-      canAllocateStatus,
-      appliedJobs: [],
-    })
-  }
-  // get params from role company
-  if (role == 'company') {
-    let {
-      compName,
-      compCRANumber,
-      compAddress,
-      compCity,
-      compCode,
-      compPhone,
-      compContact,
-      compProvince,
-    } = req.body
-    details = new Company({
-      compName,
-      compCRANumber,
-      compAddress,
-      compCity,
-      compCode,
-      compProvince,
-      compPhone,
-      compContact,
-    })
-  }
-
-  // get params from role admin
-  if (role == 'admin') {
-    let { adminFirstName, adminLastName } = req.body
-    details = new Admin({
-      adminFirstName,
-      adminLastName,
-    })
-  }
 
   const newUser = new User({
     email,
@@ -173,7 +110,7 @@ router.get('/send/:id&:email', async (req, res) => {
 router.get('/verify/:hash', (req, res) => {
   const hash = req.params.hash
   User.findOneAndUpdate(
-    hash,
+    { hash },
     {
       activated: true,
     },
@@ -185,11 +122,14 @@ router.get('/verify/:hash', (req, res) => {
 //find user By ID
 router.get('/findUserByHash/:hash', (req, res) => {
   let hash = req.params.hash
-  User.findOneAndUpdate(hash, {
-    $unset: {
-      hash: '',
-    },
-  })
+  User.findOneAndUpdate(
+    { hash },
+    {
+      $unset: {
+        hash: '',
+      },
+    }
+  )
     .then(user => {
       res.json(user)
     })
