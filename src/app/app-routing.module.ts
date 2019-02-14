@@ -22,9 +22,14 @@ import { AdminUserListComponent } from './components/admin-pages/admin-user-list
 import { AdminManageJobsComponent } from './components/admin-pages/admin-manage-jobs/admin-manage-jobs.component'
 import { AdminCompanyListComponent } from './components/admin-pages/admin-company-list/admin-company-list.component'
 import { ForgotPasswordComponent } from './components/main/forgot-password/forgot-password.component'
+import { AdminCompanyDetailsComponent } from './components/admin-pages/admin-company-details/admin-company-details.component'
+import { AdminJobsDetailsComponent } from './components/admin-pages/admin-jobs-details/admin-jobs-details.component'
+import { AdminUserDetailsComponent } from './components/admin-pages/admin-user-details/admin-user-details.component'
 
 // Candidate Pages
 import { CandidateRegisterPageComponent } from './components/candidate-pages/candidate-register-page/candidate-register-page.component'
+import { ResetPasswordComponent } from './components/main/reset-password/reset-password.component'
+import { ResetPasswordAuthService } from './services/reset-password-auth.service'
 
 // import { CompanyDetailsComponent} from './components/admin/company-details/company-details.component';
 
@@ -43,6 +48,12 @@ const routes: Routes = [
     component: ProfileComponent,
     canActivate: [UserAuthService],
   },
+
+  {
+    path: 'reset-password/:hash',
+    component: ResetPasswordComponent,
+    canActivate: [ResetPasswordAuthService],
+  },
   { path: 'success/:hash', component: VerifyPageComponent },
 
   // clients
@@ -58,6 +69,9 @@ const routes: Routes = [
   { path: 'admin_userList', component: AdminUserListComponent },
   { path: 'admin_companyList', component: AdminCompanyListComponent },
   { path: 'admin_mamangeJobs', component: AdminManageJobsComponent },
+  { path: 'admin_companyDetais', component: AdminCompanyDetailsComponent },
+  { path: 'admin_jobDetails', component: AdminJobsDetailsComponent },
+  { path: 'admin_userDetails', component: AdminUserDetailsComponent },
 
   // Candidate Routes
   { path: 'candidate_register', component: CandidateRegisterPageComponent },

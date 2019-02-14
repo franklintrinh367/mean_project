@@ -22,6 +22,10 @@ var UserSchema = new Schema({
     type: Boolean,
     required: true,
   },
+
+  visited: {
+    type: Number,
+  },
   details: {
     type: Object,
     required: true,
