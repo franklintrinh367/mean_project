@@ -1,6 +1,20 @@
-.cover {
-    height: 1000px;
-    width: 1368px;
-    background-image: url(../../../../assets/underconstruct.jpg);
-    background-repeat: no-repeat;
+// .cover {
+//     height: 1000px;
+//     width: 1368px;
+//     background-image: url(../../../../assets/underconstruct.jpg);
+//     background-repeat: no-repeat;
+// }
+
+.wrapper {
+  font-size: 20px;
+  width: 60%;
+  margin: auto;
+  padding: 30px;
+}
+
+.container {
+  padding: 30px;
+  text-align: center;
+  width: 90%;
+  background-color: lightblue;
 }
