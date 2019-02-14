@@ -33,6 +33,9 @@ var UserSchema = new Schema({
   hash: {
     type: String,
   },
+  completed: {
+    type: Boolean,
+  },
 })
 
 module.exports = User = mongoose.model('User', UserSchema)
