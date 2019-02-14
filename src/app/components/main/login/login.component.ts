@@ -41,12 +41,10 @@ export class LoginComponent implements OnInit {
             if (!token.completed) {
               switch (token.role) {
                 case 'Candidate': {
-                  console.log(token.role)
-                  window.location.assign('/candidate_register')
-                  break
-                }
-                case 'Hiring Company':
-                  window.location.assign('/client_register')
+                  window.location.assign('/candidate_register');
+                }; break;
+                case 'Client':
+                  window.location.assign('/client_register');
                   break
               }
 
