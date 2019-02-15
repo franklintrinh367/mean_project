@@ -59,7 +59,7 @@ const routes: Routes = [
   // clients
   { path: 'company_register', component: ClientRegisterPageComponent },
   { path: 'new-jobs', component: ClientNewJobPageComponent },
-  { path: 'client-job-details', component: ClientJobDetailsPageComponent },
+  { path: 'company-job-details', component: ClientJobDetailsPageComponent },
 
   // {path: 'test1', component: CompanyDetailsComponent},
 
