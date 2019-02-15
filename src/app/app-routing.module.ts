@@ -74,7 +74,11 @@ const routes: Routes = [
   { path: 'admin_userDetails', component: AdminUserDetailsComponent },
 
   // Candidate Routes
-  { path: 'candidate_register', component: CandidateRegisterPageComponent },
+  {
+    path: 'candidate_register',
+    component: CandidateRegisterPageComponent,
+    canActivate: [UserAuthService],
+  },
 
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '404', component: UnderconstructComponent },

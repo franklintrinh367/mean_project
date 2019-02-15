@@ -32,19 +32,21 @@ export class LoginComponent implements OnInit {
   public login(email: String, password: String) {
     if (!this.loginForm.valid) {
       this.validateAllField(this.loginForm)
-    } else
+    } else {
       this.userService.login(email, password).subscribe(
         result => {
           if (result) {
             this.auth.saveToken(result['token'], 'auth-token')
             let token = this.auth.getTokenDetails('auth-token')
-            if (!token.completed) {
+            if (token.visited <= 1) {
               switch (token.role) {
                 case 'Candidate': {
-                  window.location.assign('/candidate_register');
-                }; break;
-                case 'Client':
-                  window.location.assign('/client_register');
+                  console.log(token.role)
+                  window.location.assign('/candidate_register')
+                  break
+                }
+                case 'Hiring Company':
+                  window.location.assign('/client_register')
                   break
               }
 
@@ -60,6 +62,7 @@ export class LoginComponent implements OnInit {
           this.error = err.error.msg
         }
       )
+    }
   }
 
   closeDialog(cmd: String) {

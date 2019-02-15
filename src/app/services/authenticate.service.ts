@@ -30,7 +30,7 @@ export class AuthenticateService {
   }
 
   public getTokenDetails(name: string): any {
-    var token = this.getToken(name)
+    const token = this.getToken(name)
     return token ? JSON.parse(window.atob(token.split('.')[1])) : null
   }
 
