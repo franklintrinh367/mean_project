@@ -3,7 +3,7 @@
     <mat-card-content>
       <div class="container">
         <span> Home Page</span>
-
+        <!-- Main Mend-->
         <button
           mat-raised-button
           class="button-style"
@@ -12,7 +12,7 @@
           Main Menu
         </button>
         <br />
-
+        <!--Users Menu-->
         <button
           mat-raised-button
           class="button-style"
@@ -20,7 +20,7 @@
         >
           Users Menu
         </button>
-
+        <!-- Company Menu -->
         <button
           mat-raised-button
           class="button-style"
@@ -28,7 +28,7 @@
         >
           Companies Menu
         </button>
-
+        <!-- Job Menu-->
         <button
           mat-raised-button
           class="button-style"
@@ -51,25 +51,16 @@
         <button mat-menu-item>
           <a routerLink="/admin_userList"> List Users</a>
         </button>
-        <button mat-menu-item>
-          <a routerLink="/adminEditUser"> Edi Users</a>
-        </button>
       </mat-menu>
 
       <mat-menu #company="matMenu">
         <button mat-menu-item>
-          <a routerLink="/adminListCompany">List Comapies</a>
-        </button>
-        <button mat-menu-item>
-          <a routerLink="/adminEditCompany">Edit Companies</a>
+          <a routerLink="/admin_companyList">List Companies</a>
         </button>
       </mat-menu>
       <mat-menu #jobs="matMenu">
         <button mat-menu-item>
-          <a routerLink="/adminListJobs">List jobs</a>
-        </button>
-        <button mat-menu-item>
-          <a routerLink="/adminEditJobs">Edit Jobs</a>
+          <a routerLink="/admin_mamangeJobs">List jobs</a>
         </button>
       </mat-menu>
     </mat-card-content>

@@ -1,13 +1,13 @@
 <div class="wraper" fxLayout="column" fxLayoutAlign="center center">
   <mat-card fxFlex.xs="auto">
     <mat-card-content>
-      <span> Manage Jobs</span>
+      <h1>Manage Jobs</h1>
       <div class="container">
         <button mat-raised-button class="button-style" routerLink="/adminPages">
           Main Menu
         </button>
       </div>
-
+      <!-- Job Id Column-->
       <mat-table [dataSource]="dataSource" matSort>
         <ng-container hidden matColumnDef="jobId">
           <mat-header-cell class="colum-size" *matHeaderCellDef>
@@ -15,28 +15,28 @@
           </mat-header-cell>
           <mat-cell *matCellDef="let data">{{ data.jobId }}</mat-cell>
         </ng-container>
-
+        <!-- Company Name column-->
         <ng-container matColumnDef="compId">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
             Organization
           </mat-header-cell>
           <mat-cell *matCellDef="let data">{{ data.compId }}</mat-cell>
         </ng-container>
-
+        <!-- Job Location Column -->
         <ng-container matColumnDef="jobLocation">
           <mat-header-cell class="colum-size" *matHeaderCellDef mat-sort-header>
             Location
           </mat-header-cell>
           <mat-cell *matCellDef="let data">{{ data.jobLocation }}</mat-cell>
         </ng-container>
-
+        <!-- Job Post Date Column -->
         <ng-container matColumnDef="jobPostDate">
           <mat-header-cell class="colum-size" *matHeaderCellDef mat-sort-header>
             Post Date
           </mat-header-cell>
           <mat-cell *matCellDef="let data">{{ data.jobPostDate }}</mat-cell>
         </ng-container>
-
+        <!-- Job status Column -->
         <ng-container matColumnDef="jobStatus">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
             Status
@@ -45,17 +45,13 @@
             data.jobStatus
           }}</mat-cell>
         </ng-container>
-
+        <!-- Action Column-->
         <ng-container matColumnDef="actions">
           <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
           <mat-cell *matCellDef="let row">
-            <button mat-raised-button class="button-style1">
-              Edit
-            </button>
+            <button mat-raised-button class="button-style1">Edit</button>
             <br />
-            <button mat-raised-button class="button-style1">
-              Delete
-            </button>
+            <button mat-raised-button class="button-style1">Delete</button>
           </mat-cell>
         </ng-container>
 
@@ -63,11 +59,7 @@
         <mat-row *matRowDef="let row; columns: displayColumns"></mat-row>
       </mat-table>
       <!-- Pagination-->
-      <mat-paginator
-        [length]="100"
-        [pageSize]="10"
-        [pageSizeOptions]="[5, 10, 25, 100]"
-      >
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
       </mat-paginator>
     </mat-card-content>
   </mat-card>

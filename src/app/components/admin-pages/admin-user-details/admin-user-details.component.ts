@@ -7,6 +7,7 @@ import { UserService } from '../../../services/main/user.service'
 import { User } from '../../../../models/users'
 import { Admin } from '../../../models/admin/admin'
 import { Roles } from '../../../models/admin/role'
+import { Activated } from '../../../models/admin/activated'
 
 //Forms
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
@@ -16,11 +17,6 @@ import { MatDialogRef } from '@angular/material'
 
 //Router
 import { Router, ActivatedRoute } from '@angular/router'
-
-export interface Activated {
-  value: string
-  viewValue: string
-}
 
 @Component({
   selector: 'app-admin-user-details',
@@ -34,7 +30,7 @@ export class AdminUserDetailsComponent implements OnInit {
   ]
   act: Activated[] = [
     { value: 'isActive', viewValue: 'Activated' },
-    { value: 'notActive', viewValue: 'Nom-Activates' },
+    { value: 'notActive', viewValue: 'Non-Active' },
   ]
   private EditUserForm: FormGroup
   user: User
