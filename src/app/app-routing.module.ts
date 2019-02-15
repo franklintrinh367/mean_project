@@ -57,7 +57,7 @@ const routes: Routes = [
   { path: 'success/:hash', component: VerifyPageComponent },
 
   // clients
-  { path: 'client_register', component: ClientRegisterPageComponent },
+  { path: 'company_register', component: ClientRegisterPageComponent },
   { path: 'new-jobs', component: ClientNewJobPageComponent },
   { path: 'client-job-details', component: ClientJobDetailsPageComponent },
 
