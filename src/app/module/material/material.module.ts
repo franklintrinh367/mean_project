@@ -24,8 +24,8 @@ import * as Material from '@angular/material'
     Material.MatDatepickerModule,
     Material.MatNativeDateModule,
     Material.MatDialogModule,
-    Material.MatSortModule,
     Material.MatPaginatorModule,
+    Material.MatSortModule,
   ],
   exports: [
     Material.MatTableModule,
@@ -46,6 +46,8 @@ import * as Material from '@angular/material'
     Material.MatDatepickerModule,
     Material.MatNativeDateModule,
     Material.MatDialogModule,
+    Material.MatPaginatorModule,
+    Material.MatSortModule,
   ],
 })
 export class MaterialModule {}

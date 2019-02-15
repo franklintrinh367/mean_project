@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core'
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  ValidatorFn,
-  AbstractControl,
-} from '@angular/forms'
+import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Candidate } from '../../../models/candidates/candidate'
 import { CandidateService } from '../../../services/candidate/candidate.service'
+import { AuthenticateService } from 'src/app/services/authenticate.service'
 
 @Component({
   selector: 'app-candidate-register-page',
@@ -20,7 +15,8 @@ export class CandidateRegisterPageComponent implements OnInit {
 
   constructor(
     private builder: FormBuilder,
-    private candidateService: CandidateService
+    private candidateService: CandidateService,
+    private auth: AuthenticateService
   ) {}
 
   ngOnInit() {
@@ -53,9 +49,6 @@ export class CandidateRegisterPageComponent implements OnInit {
     })
   }
 
-  get canId() {
-    return this.candidateRegisterForm.get('canId')
-  }
   get canFirstName() {
     return this.candidateRegisterForm.get('canFirstName')
   }
@@ -94,8 +87,9 @@ export class CandidateRegisterPageComponent implements OnInit {
   }
 
   signup() {
+    let token = this.auth.getTokenDetails('auth-token')
     this.candidate = {
-      canId: this.canId.value,
+      canId: token.id,
       canFirstName: this.canFirstName.value,
       canLastName: this.canLastName.value,
       canEducation: this.canEducation.value,
@@ -109,8 +103,6 @@ export class CandidateRegisterPageComponent implements OnInit {
       canProvince: this.canProvince.value,
       canPostalCode: this.canPostalCode.value,
     }
-    this.candidateService
-      .register(this.candidate)
-      .subscribe(candidate => console.log(candidate))
+    this.candidateService.register(this.candidate).subscribe()
   }
 }

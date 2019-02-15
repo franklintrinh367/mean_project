@@ -28,6 +28,8 @@ import { AdminUserDetailsComponent } from './components/admin-pages/admin-user-d
 
 // Candidate Pages
 import { CandidateRegisterPageComponent } from './components/candidate-pages/candidate-register-page/candidate-register-page.component'
+import { ResetPasswordComponent } from './components/main/reset-password/reset-password.component'
+import { ResetPasswordAuthService } from './services/reset-password-auth.service'
 
 // import { CompanyDetailsComponent} from './components/admin/company-details/company-details.component';
 
@@ -46,12 +48,18 @@ const routes: Routes = [
     component: ProfileComponent,
     canActivate: [UserAuthService],
   },
+
+  {
+    path: 'reset-password/:hash',
+    component: ResetPasswordComponent,
+    canActivate: [ResetPasswordAuthService],
+  },
   { path: 'success/:hash', component: VerifyPageComponent },
 
   // clients
-  { path: 'client_register', component: ClientRegisterPageComponent },
+  { path: 'company_register', component: ClientRegisterPageComponent },
   { path: 'new-jobs', component: ClientNewJobPageComponent },
-  { path: 'client-job-details', component: ClientJobDetailsPageComponent },
+  { path: 'company-job-details', component: ClientJobDetailsPageComponent },
 
   // {path: 'test1', component: CompanyDetailsComponent},
 
@@ -66,7 +74,11 @@ const routes: Routes = [
   { path: 'admin_userDetails', component: AdminUserDetailsComponent },
 
   // Candidate Routes
-  { path: 'candidate_register', component: CandidateRegisterPageComponent },
+  {
+    path: 'candidate_register',
+    component: CandidateRegisterPageComponent,
+    canActivate: [UserAuthService],
+  },
 
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '404', component: UnderconstructComponent },

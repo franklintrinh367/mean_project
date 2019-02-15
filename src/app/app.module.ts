@@ -72,6 +72,9 @@ import { LoaderModule } from './module/loader-module'
 
 //Candidate
 import { CandidateRegisterPageComponent } from './components/candidate-pages/candidate-register-page/candidate-register-page.component'
+import { ResetPasswordComponent } from './components/main/reset-password/reset-password.component'
+import { ClientService } from './services/client/client.service'
+import { JobService } from './services/jobs/job.service'
 
 @NgModule({
   declarations: [
@@ -85,6 +88,7 @@ import { CandidateRegisterPageComponent } from './components/candidate-pages/can
     ContactUsComponent,
     TestComponent,
     LoaderComponent,
+    ResetPasswordComponent,
     ForgotPasswordComponent,
 
     // ClientHomepagesComponent,
@@ -132,7 +136,8 @@ import { CandidateRegisterPageComponent } from './components/candidate-pages/can
     MatTableModule,
     MatPaginatorModule,
   ],
-  providers: [],
+  providers: [ClientService, JobService],
   bootstrap: [AppComponent],
+  entryComponents: [ClientNewJobPageComponent],
 })
 export class AppModule {}

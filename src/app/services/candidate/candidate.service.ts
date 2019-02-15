@@ -16,8 +16,10 @@ export class CandidateService {
   constructor(private http: HttpClient) {}
 
   register(candidate: Candidate): Observable<Candidate> {
+    let token = localStorage.getItem('auth-token')
+
     return this.http.post<Candidate>(
-      this.baseUrl + 'register',
+      `${this.baseUrl}/register/${token} `,
       candidate,
       httpOptions
     )

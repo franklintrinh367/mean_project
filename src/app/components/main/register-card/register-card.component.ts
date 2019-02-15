@@ -21,7 +21,7 @@ import { User } from 'src/models/users'
 })
 export class RegisterCardComponent implements OnInit {
   private registerForm: FormGroup
-  private modes = ['Candidate', 'Hiring Company']
+  private modes = ['Candidate', 'Client']
 
   constructor(
     private builder: FormBuilder,
@@ -110,7 +110,7 @@ export class RegisterCardComponent implements OnInit {
   }
 
   signup(email, password, username, activated, role) {
-    if (!role.value) role.value = 'Candidate'
+    if (role.value.length <= 0) role.value = 'Candidate'
     if (!this.registerForm.valid) this.validateAllField(this.registerForm)
     else {
       let user = new User(

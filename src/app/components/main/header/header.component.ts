@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.token = this.authService.getTokenDetails()
+    this.token = this.authService.getTokenDetails('auth-token')
   }
 
   openDialog() {
@@ -33,6 +33,6 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout()
+    this.authService.logout('auth-token')
   }
 }

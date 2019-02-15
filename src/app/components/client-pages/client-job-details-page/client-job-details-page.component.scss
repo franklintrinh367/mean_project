@@ -63,3 +63,16 @@ mat-card {
   height: 32px;
   width: 32px;
 }
+
+.divider {
+  margin-top: 10px !important;
+}
+
+.hide {
+  display: none;
+}
+
+mat-footer-row mat-footer-cell {
+  justify-content: center;
+  font-style: italic;
+}

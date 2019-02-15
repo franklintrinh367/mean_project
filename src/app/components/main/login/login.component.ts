@@ -32,12 +32,29 @@ export class LoginComponent implements OnInit {
   public login(email: String, password: String) {
     if (!this.loginForm.valid) {
       this.validateAllField(this.loginForm)
-    } else
+    } else {
       this.userService.login(email, password).subscribe(
         result => {
           if (result) {
-            this.auth.saveToken(result['token'])
-            window.location.assign('home')
+            this.auth.saveToken(result['token'], 'auth-token')
+            let token = this.auth.getTokenDetails('auth-token')
+            if (token.visited <= 1) {
+              switch (token.role) {
+                case 'Candidate': {
+                  console.log(token.role)
+                  window.location.assign('/candidate_register')
+                  break
+                }
+                case 'Hiring Company':
+                  window.location.assign('/client_register')
+                  break
+              }
+
+              this.closeDialog('')
+            } else {
+              this.closeDialog('')
+              window.location.assign('/home')
+            }
           }
         },
         err => {
@@ -45,14 +62,12 @@ export class LoginComponent implements OnInit {
           this.error = err.error.msg
         }
       )
+    }
   }
 
   closeDialog(cmd: String) {
     this.dialogRef.close()
     switch (cmd) {
-      case 'signup':
-        this.router.navigateByUrl('/register')
-        break
       case 'forgot':
         this.router.navigateByUrl('/forgot-password')
         break
