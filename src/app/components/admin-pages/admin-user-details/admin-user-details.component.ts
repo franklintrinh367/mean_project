@@ -1,21 +1,28 @@
-import { Component, OnInit } from '@angular/core'
+/* CORE */
+import { Component, OnInit, ViewChild } from '@angular/core'
 
-//Service
+/* SERVICE */
 import { UserService } from '../../../services/main/user.service'
 
-//Models
+/* MODELS */
 import { User } from '../../../../models/users'
 import { Admin } from '../../../models/admin/admin'
 import { Roles } from '../../../models/admin/role'
 import { Activated } from '../../../models/admin/activated'
 
-//Forms
+/* FORMS */
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 
-//Material
-import { MatDialogRef } from '@angular/material'
+/* MATERIAL */
+import {
+  MatDialog,
+  MatDialogConfig,
+  MatTableDataSource,
+  MatSort,
+  MatPaginator,
+} from '@angular/material'
 
-//Router
+/* ROUTERS */
 import { Router, ActivatedRoute } from '@angular/router'
 
 @Component({
@@ -30,15 +37,18 @@ export class AdminUserDetailsComponent implements OnInit {
   ]
   act: Activated[] = [
     { value: 'isActive', viewValue: 'Activated' },
-    { value: 'notActive', viewValue: 'Non-Active' },
+    { value: 'isNotActive', viewValue: 'Non-Activated' },
   ]
   private EditUserForm: FormGroup
-  user: User
-  admin: Admin
+  user: User[]
+  details: Admin[]
 
-  constructor(private builder: FormBuilder, private userService: UserService) {}
-
-  ngOnInit() {
+  adminEditUser: FormGroup
+  constructor(
+    private builder: FormBuilder,
+    private userService: UserService,
+    private ffb: FormBuilder
+  ) {
     this.EditUserForm = this.builder.group({
       id: [''],
       email: [
@@ -54,10 +64,14 @@ export class AdminUserDetailsComponent implements OnInit {
       username: [''],
       activated: [''],
       role: [''],
-      //adminFirstName:[''],
-      //adminLastName:['']
+      adminFirstName: [''],
+      adminLastName: [''],
     })
   }
+
+  ngOnInit() {}
+
+  /* GET METHODS */
   get id() {
     return this.id.EditUserForm.get('id')
   }

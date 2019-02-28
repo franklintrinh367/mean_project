@@ -1,15 +1,19 @@
+/* CORE*/
 import { Component, OnInit, ViewChild } from '@angular/core'
 
+/* MODEL */
 import { Job } from '../../../models/clients/jobs'
+
+/* SERVICES*/
 import { JobService } from '../../../services/jobs/job.service'
 
-//Router
-
+/* ROUTER */
 import { Router } from '@angular/router'
 
-//Material design
+/* MATERIAL DESIGN */
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material'
 
+//JUST FOR TESTING - GONNA BE DELETED
 const JOBS: any[] = [
   {
     jobId: 1,
@@ -40,8 +44,12 @@ const JOBS: any[] = [
   styleUrls: ['./admin-manage-jobs.component.scss'],
 })
 export class AdminManageJobsComponent implements OnInit {
+  /*  PARAMETERS */
+  searchKey: string
+  list: Job[]
+
+  /*  TABLE PARAMETERS */
   dataSource = new MatTableDataSource(JOBS)
-  //  jobs: Job[];
   displayColumns: string[] = [
     'jobId',
     'compId',
@@ -51,6 +59,7 @@ export class AdminManageJobsComponent implements OnInit {
     'actions',
   ]
 
+  /*  TABLE SORT AND PAGINATION */
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
 
@@ -59,20 +68,20 @@ export class AdminManageJobsComponent implements OnInit {
   {}
 
   ngOnInit() {
+    this.onSearchClear()
+    this.applyFilter()
     this.dataSource.sort = this.sort
     this.dataSource.paginator = this.paginator
-    //this.fetchJobs();
   }
 
-  /*fetchJobs(){
-    this.jobService
-    .getJob()
-    .subscribe((data: Job[])=>{
-      this.jobs = data;
-      console.log(this.jobs);
-    })
+  /* FUNCTION TO CLEAR THE SEARCH KEY */
+  onSearchClear() {
+    this.searchKey = ''
+    this.applyFilter()
   }
-editJobs(jobId){
-  this.router.navigate([`/edit/${jobId}`]);
-}*/
+
+  /* FUCNTION TO FILTER THE TABLE */
+  applyFilter() {
+    this.dataSource.filter = this.searchKey.trim().toLowerCase()
+  }
 }

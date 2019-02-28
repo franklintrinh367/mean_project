@@ -1,17 +1,19 @@
+/* CORE */
 import { Component, OnInit, ViewChild } from '@angular/core'
-//Router
 
+/*ROUTER */
 import { Router } from '@angular/router'
 
-// Users
+/*MODELS */
 import { User } from '../../../../models/users'
 
-//Service
+/* SERVICE */
 import { UserService } from '../../../services/main/user.service'
 
-//Material design
+/* MATERIAL DESIGN */
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material'
 
+// gonna be deleted - only for test
 const USERS: any[] = [
   { _id: 1, username: 'AAA', email: 'AAA@AAA', role: 'AAA' },
   { _id: 2, username: 'BBB', email: 'BBB@BBB', role: 'BBB' },
@@ -27,11 +29,14 @@ const USERS: any[] = [
   styleUrls: ['./admin-user-list.component.scss'],
 })
 export class AdminUserListComponent implements OnInit {
+  /* PARAMETERS */
+  users: User[]
+  searchKey: string
+  /* TABLE PARAMETERS */
   dataSource = new MatTableDataSource(USERS)
-  //  users: User[];
   displayColumns: string[] = ['_id', 'username', 'email', 'role', 'actions']
 
-  //Pagination and Sort
+  /* PAGINATION AND SORT */
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
 
@@ -40,20 +45,26 @@ export class AdminUserListComponent implements OnInit {
   {}
 
   ngOnInit() {
-    //this.fetchUser();
+    //getAllUsers()
+    this.onSearchClear()
+    this.applyFilter()
     this.dataSource.sort = this.sort
     this.dataSource.paginator = this.paginator
   }
 
-  /*fetchUser(){
-    this.userService
-    .getUser()
-    .subscribe((data: User[])=>{
-      this.users = data;
-      console.log(this.users);
-    })
+  /* FUNCTION TO CLEAT THE SERACH KEY */
+
+  onSearchClear() {
+    this.searchKey = ''
+    this.applyFilter()
   }
-editUser(_id){
-  this.router.navigate([`/edit/${_id}`]);
-}*/
+
+  /*FUNCTION TO FILTER IN THE TABNLE */
+
+  applyFilter() {
+    this.dataSource.filter = this.searchKey.trim().toLowerCase()
+  }
+
+  /* LIST ALL USERS */
+  //getAllUsers()
 }

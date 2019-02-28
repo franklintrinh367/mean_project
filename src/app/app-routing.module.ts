@@ -69,9 +69,9 @@ const routes: Routes = [
   { path: 'admin_userList', component: AdminUserListComponent },
   { path: 'admin_companyList', component: AdminCompanyListComponent },
   { path: 'admin_mamangeJobs', component: AdminManageJobsComponent },
-  { path: 'admin_companyDetails', component: AdminCompanyDetailsComponent },
-  { path: 'admin_jobDetails', component: AdminJobsDetailsComponent },
-  { path: 'admin_userDetails', component: AdminUserDetailsComponent },
+  { path: 'admin_companyDetails/:id', component: AdminCompanyDetailsComponent },
+  { path: 'admin_jobDetails/:id', component: AdminJobsDetailsComponent },
+  { path: 'admin_userDetails/:id', component: AdminUserDetailsComponent },
 
   // Candidate Routes
   {

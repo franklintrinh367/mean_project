@@ -1,20 +1,23 @@
+/* CORE */
 import { Component, OnInit } from '@angular/core'
 
-//Forms
+/* FORMS */
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 
-//Material
+/* MATERIAL */
 import { MatDialogRef } from '@angular/material'
 
-//Router
+/* ROUTER */
 import { Router, ActivatedRoute } from '@angular/router'
 
-// Models
+/* MODELS */
 import { Client } from '../../../models/clients/client'
 import { Activated } from '../../../models/admin/activated'
 
-//Service
+/* SERVICES */
 import { ClientService } from '../../../services/client/client.service'
+
+/* CANADA PROVINCES */
 export interface Province {
   value: string
   viewValue: String
@@ -79,6 +82,8 @@ export class AdminCompanyDetailsComponent implements OnInit {
       activated: [''],
     })
   }
+
+  /* GER METHODS */
   get id() {
     return this.CompanyEditForm.get('id')
   }
@@ -115,4 +120,11 @@ export class AdminCompanyDetailsComponent implements OnInit {
   get activated() {
     return this.CompanyEditForm.get('activated')
   }
+
+  /*LIST COMPANY BY ID  */
+
+  //getCompanyById(){}
+
+  /* UPDATE COMPANY BY ID  */
+  //updateComapny(){}
 }
