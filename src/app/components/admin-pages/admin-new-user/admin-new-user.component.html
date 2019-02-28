@@ -24,20 +24,32 @@
               <mat-form-field hidden>
                 <input formControlName="id" matInput placeholder="ID *" #id />
               </mat-form-field>
-              <!--
+
               <mat-form-field>
-                  <input required formControlName="adminFirstName" matInput placeholder="First Name *" #adminFirstname>
-                </mat-form-field>
-                <mat-form-field>
-                    <input required formControlName="adminLastName" matInput placeholder="Last Name *" #adminLastName>
-                  </mat-form-field>-->
+                <input
+                  required
+                  formControlName="adminFirstName"
+                  matInput
+                  placeholder="First Name *"
+                  #adminFirstname
+                />
+              </mat-form-field>
+              <mat-form-field>
+                <input
+                  required
+                  formControlName="adminLastName"
+                  matInput
+                  placeholder="Last Name *"
+                  #adminLastName
+                />
+              </mat-form-field>
               <!-- User Name -->
               <mat-form-field>
                 <input
                   required
                   formControlName="username"
                   matInput
-                  placeholder="User Name *"
+                  placeholder="User Name:"
                   #username
                 />
               </mat-form-field>
@@ -47,7 +59,7 @@
                   required
                   formControlName="email"
                   matInput
-                  placeholder="User Email *"
+                  placeholder="User Email:"
                   #email
                 />
               </mat-form-field>

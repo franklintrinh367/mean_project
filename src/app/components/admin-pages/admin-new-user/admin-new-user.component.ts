@@ -1,20 +1,21 @@
+/* CORE */
 import { Component, OnInit } from '@angular/core'
 
-//Service
+/* SERVICE */
 import { UserService } from '../../../services/main/user.service'
 
-//Models
+/* MODELS */
 import { User } from '../../../../models/users'
 import { Admin } from '../../../models/admin/admin'
 import { Roles } from '../../../models/admin/role'
 
-//Forms
+/* FORMS */
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 
-//Material
+/* MATERIAL DESIGN */
 import { MatDialogRef } from '@angular/material'
 
-//Router
+/* ROUTER */
 import { Router, ActivatedRoute } from '@angular/router'
 
 @Component({
@@ -23,15 +24,14 @@ import { Router, ActivatedRoute } from '@angular/router'
   styleUrls: ['./admin-new-user.component.scss'],
 })
 export class AdminNewUserComponent implements OnInit {
+  /* PARAMETERS */
   roles: Roles[] = [
     { value: 'admin', viewValue: 'Admin' },
     { value: 'jc', viewValue: 'JC Consulting' },
   ]
 
   private addUserForm: FormGroup
-  user: User
-  admin: Admin
-
+  user: User[]
   constructor(private builder: FormBuilder, private userService: UserService) {}
 
   ngOnInit() {
@@ -50,10 +50,15 @@ export class AdminNewUserComponent implements OnInit {
       username: [''],
       activated: true,
       role: [''],
-      //adminFirstName:[''],
-      //adminLastName:['']
+      details: [
+        {
+          adminFirstName: [''],
+          adminLastName: [''],
+        },
+      ],
     })
   }
+  /* GET METHODS */
   get id() {
     return this.id.addUserForm.get('id')
   }
@@ -76,6 +81,7 @@ export class AdminNewUserComponent implements OnInit {
     return this.adminLastName.get('adminLastName')
   }
 
+  /* ADD USER METHOD */
   /*
 addUser(){
   this.user={

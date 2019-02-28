@@ -1,11 +1,14 @@
 <div class="wraper" fxLayout="column" fxLayoutAlign="center center">
-  <mat-card fxFlex.xs="auto">
+  <mat-card fxFlex.xs="auto" class="mat-elevation-z8">
+    <div class="search-div"></div>
+
     <mat-card-content>
       <h1>Company Details</h1>
       <div class="container">
         <button mat-raised-button class="button-style" routerLink="/adminPages">
-          Main Menu</button
-        ><br />
+          Main Menu
+        </button>
+        <br />
         <button
           mat-raised-button
           class="button-style"
@@ -31,7 +34,7 @@
                   formControlName="compName"
                   matInput
                   placeholder="Company Name"
-                  #username
+                  #companyName
                 />
               </mat-form-field>
 

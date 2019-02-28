@@ -1,28 +1,35 @@
+/* CORE */
 import { Component, OnInit, ViewChild } from '@angular/core'
-//Router
 
+/* ROUTER*/
 import { Router } from '@angular/router'
 
-//Models
+/* MODELS */
 import { Client } from '../../../models/clients/client'
 
-//Service
+/* SERVICES */
 import { ClientService } from '../../../services/client/client.service'
 
-//Material design
-import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material'
+/*MATERIAL DESIGN*/
+import {
+  MatTableDataSource,
+  MatSort,
+  MatPaginator,
+  MatDialog,
+} from '@angular/material'
 
+// GONNA BE DELETED - JUST FOR TEST
 const COMPANIES: any[] = [
   {
     _id: 1,
-    compName: 'AAA',
+    compName: 'rrr',
     compCRANumber: 123,
-    compAddress: 'AAA',
-    compCity: 'AAA',
-    compCode: 'XXX',
-    compProvince: 'AAA',
-    compPhone: 'AAA',
-    compContact: 'AAA',
+    compAddress: 'rrr',
+    compCity: 'rrr',
+    compCode: 'rrr',
+    compProvince: 'rrrr',
+    compPhone: '',
+    compContact: 'rrr',
   },
   {
     _id: 2,
@@ -87,12 +94,15 @@ const COMPANIES: any[] = [
   styleUrls: ['./admin-company-list.component.scss'],
 })
 export class AdminCompanyListComponent implements OnInit {
-  //Pagination and Sort
+  /* TABLE PAGINATION AND SORT */
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
 
+  /*PARAMETERS */
+  searchKey: string
+  list: Client[]
+  /*  TABLE PARAMETERS */
   dataSource = new MatTableDataSource(COMPANIES)
-  //  jobs: Job[];
   displayColumns: string[] = [
     '_id',
     'compName',
@@ -106,25 +116,34 @@ export class AdminCompanyListComponent implements OnInit {
     'actions',
   ]
 
-  constructor() // private comServuce: ClientService,
-  // private router: Router
-  {}
+  constructor(private service: ClientService, private dialog: MatDialog) {}
 
   ngOnInit() {
-    //this.fetchJobs();
+    //this.getallClients()
+    this.onSearchClear()
+    this.applyFilter()
     this.dataSource.sort = this.sort
     this.dataSource.paginator = this.paginator
   }
 
-  /*fetchJobs(){
-    this.jJobService
-    .getJob()
-    .subscribe((data: Job[])=>{
-      this.jobs = data;
-      console.log(this.jobs);
-    })
+  /*LIST ALL COMPANIES  */
+  // getAllClients(){
+  //   this.service.getClients().subscribe(res=>{
+  //     this.list = res as Client[]
+  //     this.dataSource = new MatTableDataSource(this.list)
+
+  //   })
+  // }
+
+  /* FUNCTION TO CLEAR THE SEARCH KEY */
+
+  onSearchClear() {
+    this.searchKey = ''
+    this.applyFilter()
   }
-editJobs(jobId){
-  this.router.navigate([`/edit/${jobId}`]);
-}*/
+  /* FUCNTION TO FILTER THE TABLE */
+
+  applyFilter() {
+    this.dataSource.filter = this.searchKey.trim().toLowerCase()
+  }
 }
