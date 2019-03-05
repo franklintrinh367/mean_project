@@ -16,6 +16,7 @@ import { UnderconstructComponent } from './components/main/underconstruct/underc
 import { FooterComponent } from './components/main/footer/footer.component'
 import { HomeComponent } from './components/main/home/home.component'
 import { ContactUsComponent } from './components/main/contact-us/contact-us.component'
+import { TosComponent } from './components/main/tos/tos.component'
 import { TestComponent } from './test/test.component'
 // import { ClientHomepagesComponent } from './client-homepages/client-homepages.component';
 import { HomePagesComponent } from './components/client/home-pages/home-pages.component'
@@ -73,6 +74,7 @@ import { JobService } from './services/jobs/job.service'
     LoaderComponent,
     ResetPasswordComponent,
     ForgotPasswordComponent,
+    TosComponent,
 
     // ClientHomepagesComponent,
     HomePagesComponent,
