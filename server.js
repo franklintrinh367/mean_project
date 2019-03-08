@@ -3,7 +3,8 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const app = express()
 const cors = require('cors')
-
+// declare the path
+//const path = require('path')
 // DB config
 const db = require('./back_end/config/keys').mongoURI
 
