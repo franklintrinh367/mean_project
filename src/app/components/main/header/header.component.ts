@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core'
-import { MatDialog } from '@angular/material'
+import { MatDialog, MatDialogConfig } from '@angular/material'
 import { LoginComponent } from '../login/login.component'
 import { RegisterCardComponent } from '../register-card/register-card.component'
 import { AuthenticateService } from 'src/app/services/authenticate.service'
+import { ClientRegisterPageComponent } from '../../client-pages/client-register-page/client-register-page.component'
 
 @Component({
   selector: 'app-header',
@@ -34,5 +35,13 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.logout('auth-token')
+  }
+  // methode to register the company
+  onRegisterCompany() {
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = true
+    //dialogConfig.width = '60%'
+    this.dialog.open(ClientRegisterPageComponent, dialogConfig)
   }
 }

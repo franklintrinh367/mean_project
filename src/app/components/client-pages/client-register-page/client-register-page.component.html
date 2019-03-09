@@ -1,64 +1,114 @@
-<div class="wraper" fxLayout="column" fxLayoutAlign="center center">
-  <mat-card fxFlex.xs="auto">
+<div fxLayout="column" fxLayoutAlign="center center">
+  <mat-card fxFlex.xs="auto" class="mat-elevation-z8">
+    <mat-card-title>
+      <span> Register Company</span>
+    </mat-card-title>
+    <span class="fill-remaining-space"></span>
     <form autocomplete="off" [formGroup]="service.form">
-      <mat-grid-list cols="2" rowHeight="500px">
-        <mat-grid-tile>
+      <div class="container">
+        <mat-card-content>
+          <!-- Username -->
+          <input type="hidden" formControlName="_id" #_id />
 
-      <div class="container">
-        <!-- Username -->
-        <input type="hidden" formControlName="_id" #_id>  
-        <mat-form-field>
-          <input formControlName="userId" matInput placeholder="User Id *" #userId>
-        </mat-form-field>
-            
-        <mat-form-field>
-          <input formControlName="compName" matInput placeholder="Company Name *" #compName>
-          <mat-icon matSuffix>business</mat-icon>
-          <mat-error>Company Name is Mandatory. </mat-error> 
-        </mat-form-field>
-              
-       <mat-form-field>
-         <input formControlName="compCRANumber" matInput placeholder="Company CRA Number" #compCRANumber>
-       </mat-form-field>
-                  
-       <mat-form-field>
-         <input formControlName="compAddress" matInput placeholder="Company Address" #compAddress>
-       </mat-form-field>
-                  
-       <mat-form-field>
-          <input formControlName="compCity" matInput placeholder="Company City" #compCity>
+          <mat-form-field>
+            <input
+              formControlName="compName"
+              matInput
+              placeholder="Company Name *"
+              #compName
+            />
+            <mat-icon matSuffix>business</mat-icon>
+            <mat-error>Company Name is Mandatory. </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              formControlName="compCRANumber"
+              matInput
+              placeholder="Company CRA Number"
+              #compCRANumber
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              formControlName="compAddress"
+              matInput
+              placeholder="Company Address"
+              #compAddress
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              formControlName="compCity"
+              matInput
+              placeholder="Company City"
+              #compCity
+            />
             <mat-icon matSuffix>location_city</mat-icon>
-       </mat-form-field>
-      </div>
-    </mat-grid-tile>
-                
-    <mat-grid-tile>
-      <div class="container">
-          <mat-form-field>
-            <input formControlName="compCode" matInput placeholder="Company Code" #compCode>
-          </mat-form-field> 
-          <mat-form-field>
-            <input formControlName="compProvince" matInput placeholder="Company Province" #compProvince>
           </mat-form-field>
-                
+
           <mat-form-field>
-            <input formControlName="compPhone" matInput placeholder="Phone Number" #compPhone>
-              <mat-icon matSuffix>phone</mat-icon>
-              <mat-error *ngIf="service.form.controls['compPhone'].errors?.required">This field is mandatory</mat-error>
-              <mat-error *ngIf="service.form.controls['compPhone'].errors?.minlength">Minimum 8 characters</mat-error>
+            <input
+              formControlName="compCode"
+              matInput
+              placeholder="Company Code"
+              #compCode
+            />
           </mat-form-field>
-        
+
           <mat-form-field>
-              <input formControlName="compContact" matInput placeholder="Contact">
-              <mat-icon matSuffix>contacts</mat-icon>
-              </mat-form-field>
+            <input
+              formControlName="compProvince"
+              matInput
+              placeholder="Company Province"
+              #compProvince
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              formControlName="compPhone"
+              matInput
+              placeholder="Phone Number"
+              #compPhone
+            />
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-error
+              *ngIf="service.form.controls['compPhone'].errors?.required"
+              >This field is mandatory</mat-error
+            >
+            <mat-error
+              *ngIf="service.form.controls['compPhone'].errors?.minlength"
+              >Minimum 8 characters</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              formControlName="compContact"
+              matInput
+              placeholder="Contact"
+            />
+            <mat-icon matSuffix>contacts</mat-icon>
+          </mat-form-field>
 
           <div class="button-row">
-              <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Submit</button>
-              <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="service.form.invalid"
+            >
+              Submit
+            </button>
+            <button mat-raised-button color="warn" (click)="onClear()">
+              Clear
+            </button>
           </div>
-        </div>
-      </mat-grid-tile>
-      </mat-grid-list>
-    </form> 
+        </mat-card-content>
+      </div>
+    </form>
   </mat-card>
+</div>
