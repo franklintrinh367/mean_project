@@ -92,4 +92,6 @@ router.get('/jobs', (req, res) => {
     })
 })
 
+// check whether the clients has finish the register
+router.get('company/:userId', (req, res) => {})
 module.exports = router
