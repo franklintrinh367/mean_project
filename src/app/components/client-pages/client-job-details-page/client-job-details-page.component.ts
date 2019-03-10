@@ -80,7 +80,6 @@ export class ClientJobDetailsPageComponent implements OnInit {
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true
-    //dialogConfig.width = '60%'
     this.dialog.open(ClientNewJobPageComponent, dialogConfig)
   }
   //function to open the form with selected row
@@ -89,7 +88,6 @@ export class ClientJobDetailsPageComponent implements OnInit {
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true
-    dialogConfig.width = '60%'
     this.dialog.open(ClientNewJobPageComponent, dialogConfig)
   }
 }
