@@ -1,14 +1,15 @@
 /* CORE */
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ViewChild } from '@angular/core'
 
-/* FORMS */
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
+/* MATERIAL DESIGN */
+import {
+  MatDialog,
+  MatDialogConfig,
+  MatTableDataSource,
+} from '@angular/material'
 
-/* MATERIAL */
-import { MatDialogRef } from '@angular/material'
-
-/* ROUTER */
-import { Router, ActivatedRoute } from '@angular/router'
+/* COMPONENTS */
+import { ClientRegisterPageComponent } from '../../client-pages/client-register-page/client-register-page.component'
 
 /* MODELS */
 import { Client } from '../../../models/clients/client'
@@ -29,6 +30,7 @@ export interface Province {
   styleUrls: ['./admin-company-details.component.scss'],
 })
 export class AdminCompanyDetailsComponent implements OnInit {
+  /* PROVINCES */
   provinces: Province[] = [
     { value: 'Alberta', viewValue: 'Alberta' },
     { value: 'British', viewValue: 'British' },
@@ -45,86 +47,31 @@ export class AdminCompanyDetailsComponent implements OnInit {
     { value: 'Saskatchewan', viewValue: 'Saskatchewan' },
     { value: 'Yukon', viewValue: 'Yukon' },
   ]
+  /* ISACTIVE */
   act: Activated[] = [
     { value: 'isActive', viewValue: 'Activated' },
     { value: 'notActive', viewValue: 'Non-Active' },
   ]
 
-  private CompanyEditForm: FormGroup
-  company: Client[]
+  /*PARAMETERS */
+  searchKey: string
+  list: Client[]
+  dataSource: MatTableDataSource<any>
 
-  constructor(
-    private builder: FormBuilder,
-    private clientService: ClientService
-  ) {}
+  constructor(private service: ClientService, private dialog: MatDialog) {}
 
   ngOnInit() {
-    this.CompanyEditForm = this.builder.group({
-      id: [''],
-      email: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(
-            '[\\w]+@[a-zA-Z\\d]+\\.[a-zA-Z\\d]+\\.?[a-zA-Z\\d]+'
-          ),
-        ],
-      ],
-      compName: [''],
-      username: [''],
-      compCRANumber: [''],
-      compAddress: [''],
-      compCity: [''],
-      compCode: [''],
-      compProvince: [''],
-      compPhone: [''], //Validator
-      compContact: [''],
-      activated: [''],
-    })
+    // this.getClientById()
+    this.dataSource
+    this.onCreate()
   }
 
-  /* GER METHODS */
-  get id() {
-    return this.CompanyEditForm.get('id')
+  /* FUNCTION TO CALL THE: ClientRegisterPageComponent */
+  onCreate() {
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = true
+    dialogConfig.width = '60%'
+    this.dialog.open(ClientRegisterPageComponent, dialogConfig)
   }
-  get email() {
-    return this.CompanyEditForm.get('compEmail')
-  }
-  get compName() {
-    return this.CompanyEditForm.get('compName')
-  }
-  get username() {
-    return this.CompanyEditForm.get('username')
-  }
-  get compCRANumber() {
-    return this.CompanyEditForm.get('compCRANumber')
-  }
-  get compAddress() {
-    return this.CompanyEditForm.get('compAddress')
-  }
-  get compCity() {
-    return this.CompanyEditForm.get('compCity')
-  }
-  get compCode() {
-    return this.CompanyEditForm.get('compCode')
-  }
-  get compProvince() {
-    return this.CompanyEditForm.get('compProvince')
-  }
-  get compPhone() {
-    return this.CompanyEditForm.get('compPhone')
-  }
-  get compcontact() {
-    return this.CompanyEditForm.get('compcontact')
-  }
-  get activated() {
-    return this.CompanyEditForm.get('activated')
-  }
-
-  /*LIST COMPANY BY ID  */
-
-  //getCompanyById(){}
-
-  /* UPDATE COMPANY BY ID  */
-  //updateComapny(){}
 }

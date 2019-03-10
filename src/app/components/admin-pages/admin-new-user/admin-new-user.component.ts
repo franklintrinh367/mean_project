@@ -65,4 +65,11 @@ export class AdminNewUserComponent implements OnInit {
     this.userService.initializeFormGroup()
     this.dialogRef.close()
   }
+
+  /* FUNCTION TO RESET THE FORM */
+
+  onClear() {
+    this.userService.form.reset()
+    this.userService.initializeFormGroup()
+  }
 }
