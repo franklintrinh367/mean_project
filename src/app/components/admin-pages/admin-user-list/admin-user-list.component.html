@@ -10,6 +10,7 @@
           mat-raised-button
           class="button-style"
           routerLink="/admin_newUser"
+          (click)="onCreate()"
         >
           Create New User
         </button>
@@ -70,12 +71,18 @@
             <button
               mat-raised-button
               class="button-style1"
-              [routerLink]="['./admin_userDetails', user._id]"
+              (click)="onEdit(row)"
             >
               Edit
             </button>
             <br />
-            <button mat-raised-button class="button-style1">Delete</button>
+            <button
+              mat-raised-button
+              class="button-style1"
+              (click)="onDelete(row)"
+            >
+              Delete
+            </button>
           </mat-cell>
         </ng-container>
         <!-- Displayed Columns-->

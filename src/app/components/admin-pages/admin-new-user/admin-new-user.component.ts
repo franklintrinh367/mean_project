@@ -3,20 +3,18 @@ import { Component, OnInit } from '@angular/core'
 
 /* SERVICE */
 import { UserService } from '../../../services/main/user.service'
+import { EditUserService } from '../../../services/admin/edit-user.service'
 
 /* MODELS */
 import { User } from '../../../../models/users'
 import { Admin } from '../../../models/admin/admin'
 import { Roles } from '../../../models/admin/role'
 
-/* FORMS */
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
-
 /* MATERIAL DESIGN */
 import { MatDialogRef } from '@angular/material'
 
 /* ROUTER */
-import { Router, ActivatedRoute } from '@angular/router'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-admin-new-user',
@@ -30,72 +28,41 @@ export class AdminNewUserComponent implements OnInit {
     { value: 'jc', viewValue: 'JC Consulting' },
   ]
 
-  private addUserForm: FormGroup
-  user: User[]
-  constructor(private builder: FormBuilder, private userService: UserService) {}
+  _id: string
+
+  constructor(
+    private userService: EditUserService,
+    private router: Router,
+    public dialogRef: MatDialogRef<AdminNewUserComponent>
+  ) {}
 
   ngOnInit() {
-    this.addUserForm = this.builder.group({
-      id: [''],
-      email: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(
-            '[\\w]+@[a-zA-Z\\d]+\\.[a-zA-Z\\d]+\\.?[a-zA-Z\\d]+'
-          ),
-        ],
-      ],
-      password: ['', [Validators.required]],
-      username: [''],
-      activated: true,
-      role: [''],
-      details: [
-        {
-          adminFirstName: [''],
-          adminLastName: [''],
-        },
-      ],
-    })
-  }
-  /* GET METHODS */
-  get id() {
-    return this.id.addUserForm.get('id')
-  }
-  get email() {
-    return this.id.addUserForm.get('email')
-  }
-  get password() {
-    return this.password.addUserForm.get('password')
-  }
-  get username() {
-    return this.username.addUserForm.get('username')
-  }
-  get role() {
-    return this.role.addUserForm.get('role')
-  }
-  get adminFirstName() {
-    return this.adminFirstName.get('adminFirstName')
-  }
-  get adminLastName() {
-    return this.adminLastName.get('adminLastName')
+    this._id = localStorage.getItem('token')
   }
 
-  /* ADD USER METHOD */
-  /*
-addUser(){
-  this.user={
-    _id: this.id.value,
-    email: this.email.value,
-    password: this.email.value,
-    username: this.username.value,
-    activated: true,
-    role: this.role.value
+  /* ADD USER FUNCTION */
+
+  onSubmit() {
+    if (this.userService.form.valid) {
+      if (!this.userService.form.get('_id').value) {
+        this.userService.form.controls['activated'].setValue(true)
+        this.userService.post_Users(this.userService.form.value).subscribe()
+      } else
+        this.userService.updateUser(this.userService.form.value).subscribe()
+
+      /*--- RESETING THE FORM ---*/
+      this.userService.form.reset()
+      this.userService.initializeFormGroup()
+      this.onClose()
+      this.router.navigate(['/admin_newUser'])
+    }
   }
-  this.userService
-    .addUser(this.user)
-    .subscribe(user=>console.log(user))
-}
-*/
-  OnClear() {}
+
+  /*--- FUNCTION TO CLOSE THE DIALOG AFTER SUBMISSION ---*/
+
+  onClose() {
+    this.userService.form.reset()
+    this.userService.initializeFormGroup()
+    this.dialogRef.close()
+  }
 }

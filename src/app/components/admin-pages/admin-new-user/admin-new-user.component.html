@@ -16,15 +16,15 @@
           User List
         </button>
       </div>
-      <form autocomplete="off" [formGroup]="addUserForm">
+      <form autocomplete="off" [formGroup]="userService.form">
         <mat-grid-list cols="2" rowHeight="300px">
           <mat-grid-tile>
             <div class="container">
               <!-- Id-->
               <mat-form-field hidden>
-                <input formControlName="id" matInput placeholder="ID *" #id />
+                <input formControlName="_id" matInput placeholder="ID *" #_id />
               </mat-form-field>
-
+              <!--
               <mat-form-field>
                 <input
                   required
@@ -42,7 +42,8 @@
                   placeholder="Last Name *"
                   #adminLastName
                 />
-              </mat-form-field>
+
+              </mat-form-field>-->
               <!-- User Name -->
               <mat-form-field>
                 <input
@@ -53,6 +54,7 @@
                   #username
                 />
               </mat-form-field>
+
               <!-- User Email-->
               <mat-form-field>
                 <input
@@ -63,6 +65,7 @@
                   #email
                 />
               </mat-form-field>
+
               <!-- Role -->
               <mat-form-field>
                 <mat-select placeholder="Role" formControlName="role">
@@ -71,6 +74,7 @@
                   </mat-option>
                 </mat-select>
               </mat-form-field>
+
               <!-- Add Button / Clear Button -->
               <div class="container">
                 <div class="button-row">
@@ -78,10 +82,12 @@
                     mat-raised-button
                     class="button-style"
                     type="submit"
-                    [disabled]="addUserForm.invalid"
+                    [disabled]="userService.invalid"
+                    (click)="onSubmit()"
                   >
                     Submit
                   </button>
+
                   <button
                     mat-raised-button
                     class="button-style"

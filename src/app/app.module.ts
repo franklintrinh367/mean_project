@@ -67,6 +67,7 @@ import {
   MatProgressBarModule,
   MatTableModule,
   MatPaginatorModule,
+  MatDialogRef,
 } from '@angular/material'
 import { LoaderModule } from './module/loader-module'
 
