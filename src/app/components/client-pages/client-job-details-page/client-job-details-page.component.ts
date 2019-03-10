@@ -29,12 +29,12 @@ export class ClientJobDetailsPageComponent implements OnInit {
     'jobActivate',
     'actions',
   ]
-
+  private token: String
   // declare the service, auth and dialog
   constructor(
     private service: JobService,
     private dialog: MatDialog,
-    private auth: AuthenticateService
+    private authService: AuthenticateService
   ) {}
   // declare the array that will hold the Job List
   list: Job[]
@@ -48,6 +48,7 @@ export class ClientJobDetailsPageComponent implements OnInit {
   searchKey: string
   // All this methon in init is instantiate when the page load
   ngOnInit() {
+    this.token = this.authService.getTokenDetails('auth-token')
     this.getAllJobs()
     this.onSearchClear()
     this.applyFilter()
@@ -79,7 +80,7 @@ export class ClientJobDetailsPageComponent implements OnInit {
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true
-    dialogConfig.width = '60%'
+    //dialogConfig.width = '60%'
     this.dialog.open(ClientNewJobPageComponent, dialogConfig)
   }
   //function to open the form with selected row

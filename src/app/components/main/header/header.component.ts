@@ -4,6 +4,7 @@ import { LoginComponent } from '../login/login.component'
 import { RegisterCardComponent } from '../register-card/register-card.component'
 import { AuthenticateService } from 'src/app/services/authenticate.service'
 import { ClientRegisterPageComponent } from '../../client-pages/client-register-page/client-register-page.component'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,8 @@ export class HeaderComponent implements OnInit {
   private token: String
   constructor(
     private dialog: MatDialog,
-    private authService: AuthenticateService
+    private authService: AuthenticateService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -43,5 +45,9 @@ export class HeaderComponent implements OnInit {
     dialogConfig.autoFocus = true
     //dialogConfig.width = '60%'
     this.dialog.open(ClientRegisterPageComponent, dialogConfig)
+  }
+  // This function let navigate through job details
+  onNavigate() {
+    this.router.navigate(['/company-job-details'])
   }
 }
