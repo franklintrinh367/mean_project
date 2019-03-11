@@ -10,3 +10,13 @@ mat-error {
 mat-card {
   min-width: 450px;
 }
+
+.login-btn:disabled {
+  background-color: green;
+  color: black;
+}
+
+h3 {
+  max-width: 70%;
+  margin: auto;
+}
