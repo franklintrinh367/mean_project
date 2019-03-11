@@ -101,9 +101,21 @@
             Action
           </mat-header-cell>
           <mat-cell *matCellDef="let row">
-            <button mat-raised-button class="button-style1">Edit</button>
+            <button
+              mat-raised-button
+              class="button-style1"
+              (click)="onEdit(row)"
+            >
+              Edit
+            </button>
             <br />
-            <button mat-raised-button class="button-style1">Delete</button>
+            <button
+              mat-raised-button
+              class="button-style1"
+              (click)="onDelete(row)"
+            >
+              Delete
+            </button>
           </mat-cell>
         </ng-container>
 

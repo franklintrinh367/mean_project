@@ -10,13 +10,15 @@ import { Client } from '../../../models/clients/client'
 /* SERVICES */
 import { ClientService } from '../../../services/client/client.service'
 
-/*MATERIAL DESIGN*/
+/* MATERIAL DESIGN */
 import {
+  MatDialog,
+  MatDialogConfig,
   MatTableDataSource,
   MatSort,
   MatPaginator,
-  MatDialog,
 } from '@angular/material'
+import { ClientRegisterPageComponent } from '../../client-pages/client-register-page/client-register-page.component'
 
 // GONNA BE DELETED - JUST FOR TEST
 const COMPANIES: any[] = [
@@ -101,6 +103,7 @@ export class AdminCompanyListComponent implements OnInit {
   /*PARAMETERS */
   searchKey: string
   list: Client[]
+
   /*  TABLE PARAMETERS */
   dataSource = new MatTableDataSource(COMPANIES)
   displayColumns: string[] = [
@@ -134,6 +137,34 @@ export class AdminCompanyListComponent implements OnInit {
 
   //   })
   // }
+
+  /* FUNCTION TO OPEN EDIT COMPANY COMPONENT ON SELECTED ROW*/
+  onEdit(row) {
+    //this.service.populateForm(row)
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = true
+    dialogConfig.width = '60%'
+    this.dialog.open(ClientRegisterPageComponent, dialogConfig)
+  }
+
+  /* FUNCTION TO DELETE COMPANY => SET ACTIVATE  FALSE*/
+  onDelete(row) {
+    if (this.service.form.valid) {
+      if (!this.service.form.get('_id').value) {
+        this.service.form.controls['activated'].setValue(false)
+      }
+    }
+  }
+
+  /* FUNCTION TO CALL THE: ClientRegisterPageComponent */
+  onCreate() {
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = true
+    dialogConfig.width = '60%'
+    this.dialog.open(ClientRegisterPageComponent, dialogConfig)
+  }
 
   /* FUNCTION TO CLEAR THE SEARCH KEY */
 
