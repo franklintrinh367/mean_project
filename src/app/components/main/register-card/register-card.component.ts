@@ -52,7 +52,7 @@ export class RegisterCardComponent implements OnInit {
           '',
           [
             Validators.pattern(
-              '[\\w]+@[a-zA-Z\\d]+\\.[a-zA-Z\\d]+\\.?[a-zA-Z\\d]+'
+              '[\\w\\.]+@[a-zA-Z\\d]+\\.[a-zA-Z\\d]+\\.?[a-zA-Z\\d]+'
             ),
             Validators.required,
           ],

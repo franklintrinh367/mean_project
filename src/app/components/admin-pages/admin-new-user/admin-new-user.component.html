@@ -1,7 +1,7 @@
 <div class="wraper" fxLayout="column" fxLayoutAlign="center center">
   <mat-card fxFlex.xs="auto">
     <mat-card-content>
-      <span> Add New User</span>
+      <span> Add & Edit Users</span>
 
       <div class="container">
         <button mat-raised-button class="button-style" routerLink="/adminPages">
@@ -16,7 +16,11 @@
           User List
         </button>
       </div>
-      <form autocomplete="off" [formGroup]="userService.form">
+      <form
+        autocomplete="off"
+        [formGroup]="userService.form"
+        (click)="onSubmit()"
+      >
         <mat-grid-list cols="2" rowHeight="300px">
           <mat-grid-tile>
             <div class="container">
@@ -86,7 +90,6 @@
                     class="button-style"
                     type="submit"
                     [disabled]="userService.invalid"
-                    (click)="onSubmit()"
                   >
                     Submit
                   </button>
