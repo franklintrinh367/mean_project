@@ -38,6 +38,10 @@
           <mat-menu #profile="matMenu">
             <button mat-menu-item>Profile</button>
             <button mat-menu-item>Setting</button>
+            <button mat-menu-item (click)="onNavigate()">Manage Job</button>
+            <button mat-menu-item (click)="onRegisterCompany()">
+              Register Company
+            </button>
             <button mat-menu-item (click)="logout()">Log out</button>
           </mat-menu>
         </li>
