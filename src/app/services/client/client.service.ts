@@ -2,12 +2,21 @@ import { Injectable } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { HttpClient } from '@angular/common/http'
 
+import { Observable } from 'rxjs/Observable'
+import { of } from 'rxjs/observable/of'
+
+import 'rxjs/add/operator/map'
+import 'rxjs/operator/toPromise'
+
+import { Client } from '../../models/clients/client'
+
 @Injectable({
   providedIn: 'root',
 })
 export class ClientService {
-  constructor() {}
-
+  constructor(private http: HttpClient) {}
+  // declare the url
+  readonly Url = 'http://localhost:3000/company/register'
   // create Form group of Client
 
   form: FormGroup = new FormGroup({
@@ -42,5 +51,11 @@ export class ClientService {
       ]),
       compContact: new FormControl(''),
     })
+  }
+
+  // function that post to the server the new company
+  onCompanyRegister(client: Client): Observable<any> {
+    let token = localStorage.getItem('auth-token')
+    return this.http.post(this.Url + '/' + token, client)
   }
 }

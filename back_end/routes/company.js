@@ -30,6 +30,25 @@ router.get('/get/:companyID', (req, res) => {
   })
 })
 
+// Post the new users
+// Add new Candidate
+router.post('/register/:token', (req, res) => {
+  let token = jwt.decode(req.params.token)
+  let userID = token.id
+
+  let {
+    compName,
+    compCRANumber,
+    compAddress,
+    compCode,
+    compCity,
+    compContact,
+    compPhone,
+    userID,
+    compProvince,
+  } = req.body
+})
+
 // update company
 router.put('/update/:companyID', (req, res) => {
   let { companyID } = req.params
