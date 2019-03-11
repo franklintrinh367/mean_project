@@ -72,7 +72,7 @@ const routes: Routes = [
   { path: 'admin_mamangeJobs', component: AdminManageJobsComponent },
   { path: 'admin_companyDetails', component: AdminCompanyDetailsComponent },
   { path: 'admin_jobDetails/:id', component: AdminJobsDetailsComponent },
-  { path: 'admin_userDetails/:id', component: AdminUserDetailsComponent },
+  { path: 'admin_userDetails', component: AdminUserDetailsComponent },
 
   // Candidate Routes
   {
