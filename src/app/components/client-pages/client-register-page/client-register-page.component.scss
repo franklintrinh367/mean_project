@@ -15,21 +15,12 @@
   color: white;
 }
 
-mat-radio-button {
-  padding-right: 15px;
+mat-error {
+  color: red;
 }
 
 mat-card {
-  width: 600px;
-}
-
-mat-card form {
-  padding-top: 50px;
-  padding-bottom: 70px;
-}
-
-.add-botton-padding {
-  padding-bottom: 10px;
+  min-width: 450px;
 }
 
 .button-row button {

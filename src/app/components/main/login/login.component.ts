@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
                   window.location.assign('/candidate_register')
                   break
                 }
-                case 'Hiring Company':
+                case 'Company':
                   window.location.assign('/company_register')
                   break
               }

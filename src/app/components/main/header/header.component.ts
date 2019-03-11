@@ -39,13 +39,13 @@ export class HeaderComponent implements OnInit {
     this.authService.logout('auth-token')
   }
   // methode to register the company
-  onRegisterCompany() {
+  /* onRegisterCompany() {
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true
     //dialogConfig.width = '60%'
     this.dialog.open(ClientRegisterPageComponent, dialogConfig)
-  }
+  }*/
   // This function let navigate through job details
   onNavigate() {
     this.router.navigate(['/company-job-details'])

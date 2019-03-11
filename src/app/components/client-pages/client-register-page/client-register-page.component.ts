@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { ClientService } from '../../../services/client/client.service'
 import { FormGroup } from '@angular/forms'
-import { MatDialogRef } from '@angular/material'
 
 @Component({
   selector: 'app-client-register-page',
@@ -9,10 +8,14 @@ import { MatDialogRef } from '@angular/material'
   styleUrls: ['./client-register-page.component.scss'],
 })
 export class ClientRegisterPageComponent implements OnInit {
-  constructor(
-    private service: ClientService,
-    public dialogRef: MatDialogRef<ClientRegisterPageComponent>
-  ) {}
+  constructor(private service: ClientService) {}
 
   ngOnInit() {}
+  /*
+  onClose() {
+    this.service.form.reset()
+    this.service.initializeFormGroup()
+    this.dialogRef.close()
+  }
+  */
 }
