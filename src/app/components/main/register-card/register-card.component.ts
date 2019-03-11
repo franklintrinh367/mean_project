@@ -21,7 +21,7 @@ import { User } from 'src/models/users'
 })
 export class RegisterCardComponent implements OnInit {
   private registerForm: FormGroup
-  private modes = ['Candidate', 'Client']
+  private modes = ['Candidate', 'Company']
 
   constructor(
     private builder: FormBuilder,
