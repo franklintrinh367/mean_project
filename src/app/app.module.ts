@@ -67,6 +67,7 @@ import {
   MatProgressBarModule,
   MatTableModule,
   MatPaginatorModule,
+  MatTabsModule,
 } from '@angular/material'
 import { LoaderModule } from './module/loader-module'
 
@@ -75,6 +76,7 @@ import { CandidateRegisterPageComponent } from './components/candidate-pages/can
 import { ResetPasswordComponent } from './components/main/reset-password/reset-password.component'
 import { ClientService } from './services/client/client.service'
 import { JobService } from './services/jobs/job.service'
+import { CandidateHomePageComponent } from './components/candidate-pages/candidate-home-page/candidate-home-page.component'
 
 @NgModule({
   declarations: [
@@ -119,6 +121,8 @@ import { JobService } from './services/jobs/job.service'
 
     //Candidate Pages
     CandidateRegisterPageComponent,
+
+    CandidateHomePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -135,6 +139,7 @@ import { JobService } from './services/jobs/job.service'
     MatButtonModule,
     MatTableModule,
     MatPaginatorModule,
+    MatTabsModule,
   ],
   providers: [ClientService, JobService],
   bootstrap: [AppComponent],
