@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map'
 import 'rxjs/operator/toPromise'
 
 import { Client } from '../../models/clients/client'
+import { Job } from 'src/app/models/clients/jobs'
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,7 @@ export class ClientService {
   constructor(private http: HttpClient) {}
   // declare the url
   readonly Url = 'http://localhost:3000/company/register'
+
   // create Form group of Client
 
   form: FormGroup = new FormGroup({

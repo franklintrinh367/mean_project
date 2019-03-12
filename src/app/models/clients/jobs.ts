@@ -1,12 +1,11 @@
 export interface Job {
   _id: string
-  userId: number
-  compId: number
+  userId: string
   jobId: number
   jobStatus: string
   jobPostDate: Date
   jobEndDate: Date
-  jobPositions: number
+  jobPosition: number
   jobDescription: string
   jobActivate: boolean
 }

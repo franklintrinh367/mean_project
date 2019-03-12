@@ -16,50 +16,50 @@ import { Job } from '../../models/clients/jobs'
 export class JobService {
   // create Form group of Client
 
-  readonly Url = 'http://localhost:3000/jobs/get/all'
+  // URL tor the job
+  readonly Url = 'http://localhost:3000/jobs'
 
   form: FormGroup = new FormGroup({
     _id: new FormControl(null),
     jobId: new FormControl(null),
-    companyId: new FormControl(null),
+    userId: new FormControl(null),
     jobStatus: new FormControl('', Validators.required),
     jobPostDate: new FormControl(''),
-    jobEndDate: new FormControl('', [Validators.required]),
-    jobPositions: new FormControl('', [
+    jobEndDate: new FormControl('', Validators.required),
+    jobPosition: new FormControl('', [
       Validators.required,
       Validators.minLength(1),
     ]),
-    jobDescription: new FormControl('', [Validators.required]),
+    jobDescription: new FormControl('', Validators.required),
     jobActivate: new FormControl(false),
-    __v: new FormControl(''),
   })
 
   initializeFormGroup() {
     this.form.setValue({
       _id: new FormControl(null),
       jobId: new FormControl(null),
-      companyId: new FormControl(null),
+      userId: new FormControl(null),
       jobStatus: new FormControl('', Validators.required),
       jobPostDate: new FormControl(''),
       jobEndDate: new FormControl('', [Validators.required]),
-      jobPositions: new FormControl('', [
+      jobPosition: new FormControl('', [
         Validators.required,
         Validators.minLength(1),
       ]),
       jobDescription: new FormControl('', [Validators.required]),
       jobActivate: new FormControl(false),
-      __v: new FormControl(''),
     })
   }
   constructor(private http: HttpClient) {}
 
   // Function to add
   post_Jobs(job: Job): Observable<any> {
-    return this.http.post(this.Url, job)
+    let token = localStorage.getItem('auth-token')
+    return this.http.post(this.Url + '/insert/' + token, job)
   }
 
   getJobs() {
-    return this.http.get(this.Url)
+    return this.http.get(this.Url + '/get/all')
   }
 
   populateForm(job) {

@@ -2,12 +2,12 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const JobSchema = new Schema({
-  companyID: {
+  userId: {
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
   jobStatus: {
-    type: Boolean,
+    type: String,
     required: true,
   },
   jobPostDate: {
@@ -22,7 +22,7 @@ const JobSchema = new Schema({
     type: Number,
     required: true,
   },
-  jobDescritpion: {
+  jobDescription: {
     type: String,
     required: true,
   },

@@ -40,11 +40,6 @@
         <mat-cell *matCellDef="let data">{{ data.jobId }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="companyId">
-        <mat-header-cell *matHeaderCellDef> CompanyId </mat-header-cell>
-        <mat-cell *matCellDef="let data">{{ data.companyId }}</mat-cell>
-      </ng-container>
-
       <ng-container matColumnDef="jobPostDate">
         <mat-header-cell *matHeaderCellDef> Date of Posting </mat-header-cell>
         <mat-cell *matCellDef="let data">{{ data.jobPostDate }}</mat-cell>
@@ -67,7 +62,7 @@
 
       <ng-container matColumnDef="jobPositions">
         <mat-header-cell *matHeaderCellDef> Position </mat-header-cell>
-        <mat-cell *matCellDef="let data">{{ data.jobPositions }}</mat-cell>
+        <mat-cell *matCellDef="let data">{{ data.jobPosition }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="jobDescription">
