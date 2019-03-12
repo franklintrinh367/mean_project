@@ -16,7 +16,7 @@ import { Job } from '../../models/clients/jobs'
 export class JobService {
   // create Form group of Client
 
-  readonly Url = 'http://localhost:3000/jobs'
+  readonly Url = 'http://localhost:3000/jobs/get/all'
 
   form: FormGroup = new FormGroup({
     _id: new FormControl(null),

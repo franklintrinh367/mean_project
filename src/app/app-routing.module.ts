@@ -31,6 +31,7 @@ import { CandidateRegisterPageComponent } from './components/candidate-pages/can
 import { ResetPasswordComponent } from './components/main/reset-password/reset-password.component'
 import { ResetPasswordAuthService } from './services/reset-password-auth.service'
 import { CandidateHomePageComponent } from './components/candidate-pages/candidate-home-page/candidate-home-page.component'
+import { ClientHomepagesComponent } from './components/client-pages/client-homepages/client-homepages.component'
 
 // import { CompanyDetailsComponent} from './components/admin/company-details/company-details.component';
 
@@ -57,12 +58,11 @@ const routes: Routes = [
   },
   { path: 'success/:hash', component: VerifyPageComponent },
 
-  // clients
+  // company routes
+  { path: 'company_home', component: ClientHomepagesComponent },
   { path: 'company_register', component: ClientRegisterPageComponent },
   { path: 'new-jobs', component: ClientNewJobPageComponent },
-  { path: 'company-job-details', component: ClientJobDetailsPageComponent },
-
-  // {path: 'test1', component: CompanyDetailsComponent},
+  { path: 'company_details', component: ClientJobDetailsPageComponent },
 
   //Admin Pages Router
   { path: 'adminPages', component: AdminHomepageComponent },

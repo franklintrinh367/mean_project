@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
                   window.location.assign('/candidate_register')
                   break
                 }
+                //check if the role is
                 case 'Company':
                   window.location.assign('/company_register')
                   break
@@ -52,8 +53,17 @@ export class LoginComponent implements OnInit {
 
               this.closeDialog('')
             } else {
-              this.closeDialog('')
-              window.location.assign('/home')
+              //Check if the user visited more than once
+              if (token.visited > 1) {
+                // check if the role is company
+                if (token.role === 'Company') {
+                  //assign to the company home page
+                  window.location.assign('/company_details')
+                } else {
+                  this.closeDialog('')
+                  window.location.assign('/home')
+                }
+              }
             }
           }
         },

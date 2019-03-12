@@ -68,13 +68,19 @@ export class ClientJobDetailsPageComponent implements OnInit {
   }
   // function to clear the search key
   onSearchClear() {
-    this.searchKey = ''
-    this.applyFilter()
+    if (this.list !== undefined) {
+      this.searchKey = ''
+      this.applyFilter()
+    }
   }
+
   // function to filter in the table
   applyFilter() {
-    this.dataSource.filter = this.searchKey.trim().toLowerCase()
+    if (this.list !== undefined) {
+      this.dataSource.filter = this.searchKey.trim().toLowerCase()
+    }
   }
+
   // function to call the add clientAddJobComponent
   onCreate() {
     const dialogConfig = new MatDialogConfig()
