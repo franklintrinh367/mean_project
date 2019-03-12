@@ -1,8 +1,51 @@
 const express = require('express')
 const router = express.Router()
-
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 // load models
 const Job = require('../models/Job')
+const User = require('../models/User')
+
+// get all Jobs
+router.get('/get/all/:userId', async (req, res) => {
+  await Job.findOne({ userId: req.params.userId }, (err, jobs) => {
+    if (!err) {
+      res.send(jobs)
+    } else {
+      res.status(400).send({ error: err })
+    }
+  })
+})
+
+// Post the job
+router.post('/insert/:token', async (req, res) => {
+  let token = jwt.decode(req.params.token)
+  let userID = token.id
+  // Declare the body
+  let {
+    jobStatus,
+    jobPosition,
+    jobEndDate,
+    jobDescription,
+    jobActivate,
+  } = req.body
+  // pass the value
+  var job = new Job({
+    userId: userID,
+
+    jobStatus: jobStatus,
+    jobPostDate: Date.now(),
+    jobEndDate: jobEndDate,
+    jobPosition: jobPosition,
+    jobDescription: jobDescription,
+    jobActivate: jobActivate,
+  })
+  // Check if the user exist in the database
+  //save the Schema value into the mongoDB
+  User.findById(userID)
+    .then(job.save())
+    .catch(err => res.json(err))
+})
 
 // get all Jobs
 router.get('/get/all', (req, res) => {

@@ -20,7 +20,6 @@ export class ClientJobDetailsPageComponent implements OnInit {
   displayColumns: string[] = [
     '_id',
     'jobId',
-    'companyId',
     'jobStatus',
     'jobPostDate',
     'jobEndDate',

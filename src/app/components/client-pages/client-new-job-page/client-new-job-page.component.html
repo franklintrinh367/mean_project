@@ -20,7 +20,7 @@
           <input
             formControlName="_id"
             matInput
-            placeholder="Job Id *"
+            placeholder="Job Number *"
             #_id
             hidden
           />
@@ -28,16 +28,8 @@
             <input
               formControlName="jobId"
               matInput
-              placeholder="Job Id *"
+              placeholder="Job Number *"
               #jobId
-            />
-          </mat-form-field>
-          <mat-form-field>
-            <input
-              formControlName="companyId"
-              matInput
-              placeholder="CompanyId *"
-              #companyId
             />
           </mat-form-field>
 
@@ -45,8 +37,8 @@
             <select
               matNativeControl
               required
-              formControlName="jobPositions"
-              #jobPositions
+              formControlName="jobPosition"
+              #jobPosition
             >
               <option value="1">1</option>
               <option value="2">2</option>
