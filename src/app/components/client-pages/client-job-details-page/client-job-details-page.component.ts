@@ -19,7 +19,6 @@ import { AuthenticateService } from 'src/app/services/authenticate.service'
 export class ClientJobDetailsPageComponent implements OnInit {
   displayColumns: string[] = [
     '_id',
-    'jobId',
     'jobStatus',
     'jobPostDate',
     'jobEndDate',
@@ -29,6 +28,7 @@ export class ClientJobDetailsPageComponent implements OnInit {
     'actions',
   ]
   private token: String
+  public job: Job
   // declare the service, auth and dialog
   constructor(
     private service: JobService,
@@ -88,8 +88,18 @@ export class ClientJobDetailsPageComponent implements OnInit {
     this.dialog.open(ClientNewJobPageComponent, dialogConfig)
   }
   //function to open the form with selected row
-  onEdit(row: any) {
-    this.service.populateForm(row)
+  onEdit(row) {
+    console.log(row)
+
+    this.service.populateForm(
+      row._id,
+      row.jobStatus,
+      row.jobPostDate,
+      row.jobEndDate,
+      row.jobPosition,
+      row.jobDescription,
+      row.jobActivate
+    )
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true

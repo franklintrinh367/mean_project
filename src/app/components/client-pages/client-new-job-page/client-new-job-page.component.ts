@@ -32,9 +32,7 @@ export class ClientNewJobPageComponent implements OnInit {
     public dialogRef: MatDialogRef<ClientNewJobPageComponent>
   ) {}
 
-  ngOnInit() {
-    this.onSubmit()
-  }
+  ngOnInit() {}
 
   onSubmit() {
     //Check if the form is vali

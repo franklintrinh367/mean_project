@@ -21,8 +21,6 @@ export class JobService {
 
   form: FormGroup = new FormGroup({
     _id: new FormControl(null),
-    jobId: new FormControl(null),
-    userId: new FormControl(null),
     jobStatus: new FormControl('', Validators.required),
     jobPostDate: new FormControl(''),
     jobEndDate: new FormControl('', Validators.required),
@@ -37,8 +35,6 @@ export class JobService {
   initializeFormGroup() {
     this.form.setValue({
       _id: new FormControl(null),
-      jobId: new FormControl(null),
-      userId: new FormControl(null),
       jobStatus: new FormControl('', Validators.required),
       jobPostDate: new FormControl(''),
       jobEndDate: new FormControl('', [Validators.required]),
@@ -62,8 +58,24 @@ export class JobService {
     return this.http.get(this.Url + '/get/all')
   }
 
-  populateForm(job) {
-    this.form.setValue(job)
+  populateForm(
+    _id: string,
+    jobStatus: string,
+    jobPostDate: Date,
+    jobEndDate: Date,
+    jobPosition: number,
+    jobDescription: string,
+    jobActivate: boolean
+  ) {
+    this.form.setValue({
+      _id,
+      jobStatus,
+      jobPostDate,
+      jobEndDate,
+      jobPosition,
+      jobDescription,
+      jobActivate,
+    })
   }
 
   update_Jobs(job: Job): Observable<any> {

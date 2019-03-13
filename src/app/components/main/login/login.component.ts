@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
             if (token.visited <= 1) {
               switch (token.role) {
                 case 'Candidate': {
-                  console.log(token.role)
                   window.location.assign('/candidate_register')
                   break
                 }
