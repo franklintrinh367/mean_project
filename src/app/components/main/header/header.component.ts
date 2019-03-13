@@ -48,6 +48,11 @@ export class HeaderComponent implements OnInit {
   }*/
   // This function let navigate through job details
   onNavigate() {
-    this.router.navigate(['/company-job-details'])
+    let token = this.authService.getTokenDetails('auth-token')
+    if (token.visited > !token.details) {
+      this.router.navigate(['/company_details'])
+    } else {
+      this.router.navigate(['/company_register'])
+    }
   }
 }

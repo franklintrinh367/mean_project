@@ -53,7 +53,8 @@ export class LoginComponent implements OnInit {
               this.closeDialog('')
             } else {
               //Check if the user visited more than once
-              if (token.visited > 1) {
+              //And if the user has completed the details
+              if (token.visited > 1 && !token.details) {
                 // check if the role is company
                 if (token.role === 'Company') {
                   //assign to the company home page
@@ -62,6 +63,8 @@ export class LoginComponent implements OnInit {
                   this.closeDialog('')
                   window.location.assign('/home')
                 }
+              } else {
+                window.location.assign('/company_register')
               }
             }
           }
