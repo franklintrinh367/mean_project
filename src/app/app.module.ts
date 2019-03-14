@@ -77,6 +77,7 @@ import { ResetPasswordComponent } from './components/main/reset-password/reset-p
 import { ClientService } from './services/client/client.service'
 import { JobService } from './services/jobs/job.service'
 import { CandidateHomePageComponent } from './components/candidate-pages/candidate-home-page/candidate-home-page.component'
+import { CandidateEditProfileComponent } from './components/candidate-pages/candidate-edit-profile/candidate-edit-profile.component'
 
 @NgModule({
   declarations: [
@@ -123,6 +124,8 @@ import { CandidateHomePageComponent } from './components/candidate-pages/candida
     CandidateRegisterPageComponent,
 
     CandidateHomePageComponent,
+
+    CandidateEditProfileComponent,
   ],
   imports: [
     BrowserModule,
