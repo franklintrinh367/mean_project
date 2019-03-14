@@ -4,11 +4,7 @@
     <mat-vertical-stepper linear #stepper>
       <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
         <ng-template matStepLabel>Fill out your company name</ng-template>
-        <form
-          autocomplete="off"
-          [formGroup]="service.form"
-          (ngSubmit)="onSubmit()"
-        >
+        <form autocomplete="off" [formGroup]="service.form">
           <mat-grid-list cols="3" rowHeight="55px" gutterSize="20px">
             <input type="hidden" formControlName="_id" #_id />
             <!-- Company Name -->
@@ -32,6 +28,7 @@
                 />
               </mat-form-field>
             </mat-grid-tile>
+
             <!-- Phone Number -->
             <mat-grid-tile>
               <mat-form-field>
@@ -39,7 +36,8 @@
                 <input matInput formControlName="compPhone" #compPhone />
                 <mat-error
                   *ngIf="service.form.controls['compPhone'].errors?.required"
-                  >This field is mandatory</mat-error
+                >
+                  This field is mandator></mat-error
                 >
               </mat-form-field>
             </mat-grid-tile>
@@ -52,11 +50,7 @@
       </mat-step>
 
       <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
-        <form
-          autocomplete="off"
-          [formGroup]="service.form"
-          (ngSubmit)="onSubmit()"
-        >
+        <form autocomplete="off" [formGroup]="service.form">
           <ng-template matStepLabel>Fill out company address</ng-template>
           <mat-grid-list cols="3" rowHeight="55px" gutterSize="20px">
             <!-- Address -->
@@ -99,11 +93,7 @@
       </mat-step>
 
       <mat-step [stepControl]="thirdFormGroup" [editable]="isEditable">
-        <form
-          autocomplete="off"
-          [formGroup]="service.form"
-          (ngSubmit)="onSubmit()"
-        >
+        <form autocomplete="off" [formGroup]="service.form">
           <ng-template matStepLabel>Fill out contact person</ng-template>
           <!-- Contact -->
           <mat-grid-list cols="3" rowHeight="30px" gutterSize="10px">
@@ -115,8 +105,13 @@
               </mat-form-field>
             </mat-grid-tile>
           </mat-grid-list>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
         </form>
       </mat-step>
+
       <mat-step [stepControl]="fourthFormGroup" [editable]="isEditable">
         <form
           autocomplete="off"
@@ -126,7 +121,6 @@
           <ng-template matStepLabel>Complete registration</ng-template>
           <mat-grid-list cols="3" rowHeight="55px" gutterSize="20px">
             <mat-grid-tile colspan="2"> </mat-grid-tile>
-
             <!-- Submit Button -->
             <mat-grid-tile colspan="1">
               <button
@@ -151,14 +145,6 @@
               </button>
             </mat-grid-tile>
           </mat-grid-list>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-          </div>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-          </div>
         </form>
       </mat-step>
       <mat-step>
