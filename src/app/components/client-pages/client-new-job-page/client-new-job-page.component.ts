@@ -3,6 +3,7 @@ import { JobService } from 'src/app/services/jobs/job.service'
 import { Router } from '@angular/router'
 import { MatDialogRef } from '@angular/material'
 import { AuthenticateService } from 'src/app/services/authenticate.service'
+import { FormGroup, FormBuilder } from '@angular/forms'
 
 // For implementing the selection
 export interface Status {
@@ -16,6 +17,10 @@ export interface Status {
   styleUrls: ['./client-new-job-page.component.scss'],
 })
 export class ClientNewJobPageComponent implements OnInit {
+  isLinear = false
+  firstFormGroup: FormGroup
+  secondFormGroup: FormGroup
+
   //for implementing job status
   status: Status[] = [
     { value: 'ongoing', viewValue: 'Ongoing' },
@@ -32,7 +37,9 @@ export class ClientNewJobPageComponent implements OnInit {
     public dialogRef: MatDialogRef<ClientNewJobPageComponent>
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.isLinear = true
+  }
 
   onSubmit() {
     //Check if the form is vali
