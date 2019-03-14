@@ -49,7 +49,6 @@ export class LoginComponent implements OnInit {
                   window.location.assign('/company_register')
                   break
               }
-
               this.closeDialog('')
             } else {
               //Check if the user visited more than once
