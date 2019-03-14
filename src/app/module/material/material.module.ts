@@ -27,6 +27,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material'
     Material.MatDialogModule,
     Material.MatPaginatorModule,
     Material.MatSortModule,
+    Material.MatStepperModule,
   ],
   exports: [
     Material.MatTableModule,
@@ -49,6 +50,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material'
     Material.MatDialogModule,
     Material.MatPaginatorModule,
     Material.MatSortModule,
+    Material.MatStepperModule,
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },
