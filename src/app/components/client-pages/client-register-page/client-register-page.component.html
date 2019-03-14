@@ -1,111 +1,174 @@
 <div class="wraper" fxLayout="column" fxLayoutAlign="center center">
   <mat-card fxFlex="auto">
-    <mat-card-content>
-      <form
-        autocomplete="off"
-        [formGroup]="service.form"
-        (ngSubmit)="onSubmit()"
-      >
-        <h3>Company Register</h3>
-        <mat-grid-list cols="3" rowHeight="55px" gutterSize="20px">
-          <input type="hidden" formControlName="_id" #_id />
-          <!-- Company Name -->
-          <mat-grid-tile colspan="2">
-            <mat-form-field>
-              <mat-label>Company Name</mat-label>
-              <input matInput formControlName="compName" #compName />
-              <mat-icon matSuffix>business</mat-icon>
-              <mat-error>Company Name is Mandatory. </mat-error>
-            </mat-form-field>
-          </mat-grid-tile>
+    <h3>Company Register</h3>
+    <mat-vertical-stepper linear #stepper>
+      <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+        <ng-template matStepLabel>Fill out your company name</ng-template>
+        <form
+          autocomplete="off"
+          [formGroup]="service.form"
+          (ngSubmit)="onSubmit()"
+        >
+          <mat-grid-list cols="3" rowHeight="55px" gutterSize="20px">
+            <input type="hidden" formControlName="_id" #_id />
+            <!-- Company Name -->
+            <mat-grid-tile colspan="2">
+              <mat-form-field>
+                <mat-label>Company Name</mat-label>
+                <input matInput formControlName="compName" #compName />
+                <mat-icon matSuffix>business</mat-icon>
+                <mat-error>Company Name is Mandatory. </mat-error>
+              </mat-form-field>
+            </mat-grid-tile>
 
-          <!-- Company CRA Number -->
-          <mat-grid-tile>
-            <mat-form-field>
-              <mat-label>Company CRA Number</mat-label>
-              <input matInput formControlName="compCRANumber" #compCRANumber />
-            </mat-form-field>
-          </mat-grid-tile>
-          <!-- Phone Number -->
-          <mat-grid-tile>
-            <mat-form-field>
-              <mat-label>Phone Number</mat-label>
-              <input matInput formControlName="compPhone" #compPhone />
-              <mat-error
-                *ngIf="service.form.controls['compPhone'].errors?.required"
-                >This field is mandatory</mat-error
-              >
-            </mat-form-field>
-          </mat-grid-tile>
+            <!-- Company CRA Number -->
+            <mat-grid-tile>
+              <mat-form-field>
+                <mat-label>Company CRA Number</mat-label>
+                <input
+                  matInput
+                  formControlName="compCRANumber"
+                  #compCRANumber
+                />
+              </mat-form-field>
+            </mat-grid-tile>
+            <!-- Phone Number -->
+            <mat-grid-tile>
+              <mat-form-field>
+                <mat-label>Phone Number</mat-label>
+                <input matInput formControlName="compPhone" #compPhone />
+                <mat-error
+                  *ngIf="service.form.controls['compPhone'].errors?.required"
+                  >This field is mandatory</mat-error
+                >
+              </mat-form-field>
+            </mat-grid-tile>
+          </mat-grid-list>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
 
-          <!-- Address -->
-          <mat-grid-tile>
-            <mat-form-field>
-              <mat-label>Address</mat-label>
-              <input matInput formControlName="compAddress" #compAddress />
-            </mat-form-field>
-          </mat-grid-tile>
+      <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+        <form
+          autocomplete="off"
+          [formGroup]="service.form"
+          (ngSubmit)="onSubmit()"
+        >
+          <ng-template matStepLabel>Fill out company address</ng-template>
+          <mat-grid-list cols="3" rowHeight="55px" gutterSize="20px">
+            <!-- Address -->
+            <mat-grid-tile>
+              <mat-form-field>
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="compAddress" #compAddress />
+              </mat-form-field>
+            </mat-grid-tile>
 
-          <!-- City -->
-          <mat-grid-tile>
-            <mat-form-field>
-              <mat-label>City</mat-label>
-              <input matInput formControlName="compCity" #compCity />
-            </mat-form-field>
-          </mat-grid-tile>
+            <!-- City -->
+            <mat-grid-tile>
+              <mat-form-field>
+                <mat-label>City</mat-label>
+                <input matInput formControlName="compCity" #compCity />
+              </mat-form-field>
+            </mat-grid-tile>
 
-          <!-- Province -->
-          <mat-grid-tile>
-            <mat-form-field>
-              <mat-label>Province</mat-label>
-              <input matInput formControlName="compProvince" #compProvince />
-            </mat-form-field>
-          </mat-grid-tile>
+            <!-- Province -->
+            <mat-grid-tile>
+              <mat-form-field>
+                <mat-label>Province</mat-label>
+                <input matInput formControlName="compProvince" #compProvince />
+              </mat-form-field>
+            </mat-grid-tile>
 
-          <!-- Postal Code -->
-          <mat-grid-tile>
-            <mat-form-field>
-              <mat-label>Postal Code</mat-label>
-              <input matInput formControlName="compCode" #compCode />
-            </mat-form-field>
-          </mat-grid-tile>
+            <!-- Postal Code -->
+            <mat-grid-tile>
+              <mat-form-field>
+                <mat-label>Postal Code</mat-label>
+                <input matInput formControlName="compCode" #compCode />
+              </mat-form-field>
+            </mat-grid-tile>
+          </mat-grid-list>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
 
+      <mat-step [stepControl]="thirdFormGroup" [editable]="isEditable">
+        <form
+          autocomplete="off"
+          [formGroup]="service.form"
+          (ngSubmit)="onSubmit()"
+        >
+          <ng-template matStepLabel>Fill out contact person</ng-template>
           <!-- Contact -->
-          <mat-grid-tile colspan="3">
-            <mat-form-field>
-              <mat-label>Contact </mat-label>
-              <mat-icon matSuffix>work</mat-icon>
-              <input matInput formControlName="compContact" #compContact />
-            </mat-form-field>
-          </mat-grid-tile>
+          <mat-grid-list cols="3" rowHeight="30px" gutterSize="10px">
+            <mat-grid-tile colspan="2">
+              <mat-form-field>
+                <mat-label>Contact </mat-label>
+                <mat-icon matSuffix>work</mat-icon>
+                <input matInput formControlName="compContact" #compContact />
+              </mat-form-field>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="fourthFormGroup" [editable]="isEditable">
+        <form
+          autocomplete="off"
+          [formGroup]="service.form"
+          (ngSubmit)="onSubmit()"
+        >
+          <ng-template matStepLabel>Complete registration</ng-template>
+          <mat-grid-list cols="3" rowHeight="55px" gutterSize="20px">
+            <mat-grid-tile colspan="2"> </mat-grid-tile>
 
-          <mat-grid-tile colspan="2"> </mat-grid-tile>
+            <!-- Submit Button -->
+            <mat-grid-tile colspan="1">
+              <button
+                mat-flat-button
+                color="accent"
+                [disabled]="this.service.form.invalid"
+                class="login-btn mat-elevation-z8"
+              >
+                Submit
+              </button>
+            </mat-grid-tile>
 
-          <!-- Submit Button -->
-          <mat-grid-tile colspan="1">
-            <button
-              mat-flat-button
-              color="accent"
-              [disabled]="this.service.form.invalid"
-              class="login-btn mat-elevation-z8"
-            >
-              Submit
-            </button>
-          </mat-grid-tile>
-
-          <!-- Cancel Button -->
-          <mat-grid-tile>
-            <button
-              mat-flat-button
-              class="mat-elevation-z8"
-              color="accent"
-              routerLink="/home"
-            >
-              Cancel
-            </button>
-          </mat-grid-tile>
-        </mat-grid-list>
-      </form>
-    </mat-card-content>
+            <!-- Cancel Button -->
+            <mat-grid-tile>
+              <button
+                mat-flat-button
+                class="mat-elevation-z8"
+                color="accent"
+                routerLink="/home"
+              >
+                Cancel
+              </button>
+            </mat-grid-tile>
+          </mat-grid-list>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        You are now done.
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-vertical-stepper>
   </mat-card>
 </div>

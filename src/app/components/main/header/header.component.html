@@ -51,6 +51,13 @@
             >
               Company
             </button>
+            <button
+              mat-menu-item
+              *ngIf="this.token && this.token.role === 'Company'"
+              (click)="onGetDetails()"
+            >
+              Edit Profile
+            </button>
             <button mat-menu-item (click)="logout()">Log out</button>
           </mat-menu>
         </li>
