@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { ClientService } from '../../../services/client/client.service'
-import { FormGroup } from '@angular/forms'
+import { FormGroup, FormBuilder } from '@angular/forms'
 import { AuthenticateService } from '../../../services/authenticate.service'
 import { Router } from '@angular/router'
 
@@ -10,13 +10,20 @@ import { Router } from '@angular/router'
   styleUrls: ['./client-register-page.component.scss'],
 })
 export class ClientRegisterPageComponent implements OnInit {
+  isLinear = false
+  firstFormGroup
+  secondFormGroup
   constructor(
     private service: ClientService,
     private authService: AuthenticateService,
-    private router: Router
+    private router: Router,
+    private _FormBuilder: FormBuilder
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.isLinear = true
+    //this.firstFormGroup = this._FormBuilder
+  }
 
   // When the form submitted
   onSubmit() {
