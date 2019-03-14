@@ -1,12 +1,10 @@
-export interface Job {
+export class Job {
   _id: string
-  userId: number
-  compId: number
-  jobId: number
+  userId: string
   jobStatus: string
   jobPostDate: Date
   jobEndDate: Date
-  jobPositions: number
+  jobPosition: number
   jobDescription: string
   jobActivate: boolean
 }

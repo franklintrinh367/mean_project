@@ -1,0 +1,46 @@
+.container {
+  max-width: 70%;
+  margin: 2% auto;
+  border-radius: 0.5rem;
+  background-color: #eaeff7;
+}
+
+mat-card {
+  background-color: #eaeff7;
+}
+
+.picture {
+  padding-top: 20px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.picture img {
+  width: 200px;
+  border-radius: 10%;
+}
+
+.vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.al-left {
+  position: absolute;
+  left: 5px;
+}
+
+.fade {
+  color: #bdbfc1;
+}
+
+.top-left {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+}
+
+mat-tap-label {
+  min-width: 250px;
+}

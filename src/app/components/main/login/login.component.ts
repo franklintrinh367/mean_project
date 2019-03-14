@@ -32,28 +32,39 @@ export class LoginComponent implements OnInit {
   public login(email: String, password: String) {
     if (!this.loginForm.valid) {
       this.validateAllField(this.loginForm)
-    } else
+    } else {
       this.userService.login(email, password).subscribe(
         result => {
           if (result) {
             this.auth.saveToken(result['token'], 'auth-token')
             let token = this.auth.getTokenDetails('auth-token')
-            if (!token.completed) {
+            if (token.visited <= 1) {
               switch (token.role) {
-                case 'Candidate':
-                  {
-                    window.location.assign('/candidate_register')
-                  }
+                case 'Candidate': {
+                  window.location.assign('/candidate_register')
                   break
-                case 'Client':
-                  window.location.assign('/client_register')
+                }
+                //check if the role is
+                case 'Company':
+                  window.location.assign('/company_register')
                   break
               }
-
               this.closeDialog('')
             } else {
-              this.closeDialog('')
-              window.location.assign('/home')
+              //Check if the user visited more than once
+              //And if the user has completed the details
+              if (token.visited > 1 && !token.details) {
+                // check if the role is company
+                if (token.role === 'Company') {
+                  //assign to the company home page
+                  window.location.assign('/company_details')
+                } else {
+                  this.closeDialog('')
+                  window.location.assign('/home')
+                }
+              } else {
+                window.location.assign('/company_register')
+              }
             }
           }
         },
@@ -62,6 +73,7 @@ export class LoginComponent implements OnInit {
           this.error = err.error.msg
         }
       )
+    }
   }
 
   closeDialog(cmd: String) {

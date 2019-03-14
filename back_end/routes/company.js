@@ -1,9 +1,12 @@
 const express = require('express')
 const router = express.Router()
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
 // load models
 const User = require('../models/User')
 const Job = require('../models/Job')
+const Company = require('../models/Company')
 
 // get all companies
 router.get('/get/all', (req, res) => {
@@ -28,6 +31,44 @@ router.get('/get/:companyID', (req, res) => {
       res.status(200).json(company)
     }
   })
+})
+
+// Post the new users
+// Add new Candidate
+router.post('/register/:token', (req, res) => {
+  let token = jwt.decode(req.params.token)
+  let userID = token.id
+
+  let {
+    compName,
+    compCRANumber,
+    compAddress,
+    compCode,
+    compCity,
+    compContact,
+    compPhone,
+    userId,
+    compProvince,
+  } = req.body
+
+  var client = new Company({
+    compName: compName,
+    compCRANumber: compCRANumber,
+    compAddress: compAddress,
+    compCity: compCity,
+    compCode: compCode,
+    compProvince: compProvince,
+    compPhone: compPhone,
+    compContact: compContact,
+    userId: userId,
+  })
+
+  User.findById(userID)
+    .then(user => {
+      user.details = client
+      user.save()
+    })
+    .catch(err => res.json(err))
 })
 
 // update company
@@ -92,4 +133,6 @@ router.get('/jobs', (req, res) => {
     })
 })
 
+// check whether the clients has finish the register
+router.get('company/:userId', (req, res) => {})
 module.exports = router

@@ -1,22 +1,35 @@
-import { Component, OnInit } from '@angular/core'
-//Router
-
+/* CORE */
+import { Component, OnInit, ViewChild } from '@angular/core'
 import { Router } from '@angular/router'
 
-// Users
+/*MODELS */
 import { User } from '../../../../models/users'
 
-//Service
+/* SERVICE */
 import { UserService } from '../../../services/main/user.service'
+import { EditUserService } from '../../../services/admin/edit-user.service'
 
-//Material design
-import { MatTableDataSource } from '@angular/material'
-import { MatPaginatorModule } from '@angular/material'
+/* MATERIAL DESIGN */
+import {
+  MatDialog,
+  MatDialogConfig,
+  MatTableDataSource,
+  MatSort,
+  MatPaginator,
+} from '@angular/material'
 
-const users: any[] = [
-  { _id: '1', username: 'AAA', email: 'AAA@AAA', role: 'AAA' },
-  { _id: '2', username: 'BBB', email: 'BBB@BBB', role: 'BBB' },
-  { _id: '3', username: 'CCC', email: 'CCC@CCC', role: 'CCC' },
+/* COMPONENTS */
+import { AdminUserDetailsComponent } from '../admin-user-details/admin-user-details.component'
+import { AdminNewUserComponent } from '../admin-new-user/admin-new-user.component'
+
+// // gonna be deleted - only for test
+const USERS: any[] = [
+  { _id: 1, username: 'AAA', email: 'AAA@AAA', role: 'AAA' },
+  { _id: 2, username: 'BBB', email: 'BBB@BBB', role: 'BBB' },
+  { _id: 4, username: 'DDD', email: 'DDD@DDD', role: 'DDD' },
+  { _id: 5, username: 'EEE', email: 'EEE@EEE', role: 'EEE' },
+  { _id: 6, username: 'FFF', email: 'FFF@FFF', role: 'FFF' },
+  { _id: 3, username: 'CCC', email: 'CCC@CCC', role: 'CCC' },
 ]
 
 @Component({
@@ -25,27 +38,79 @@ const users: any[] = [
   styleUrls: ['./admin-user-list.component.scss'],
 })
 export class AdminUserListComponent implements OnInit {
-  dataSource = users
-  //  users: User[];
+  /* PARAMETERS */
+  users: User[]
+  searchKey: string
+
+  /* TABLE PARAMETERS */
+  dataSource = new MatTableDataSource(USERS)
   displayColumns: string[] = ['_id', 'username', 'email', 'role', 'actions']
 
-  constructor() // private userService: UserService,
-  // private router: Router
-  {}
+  /* PAGINATION AND SORT */
+  @ViewChild(MatSort) sort: MatSort
+  @ViewChild(MatPaginator) paginator: MatPaginator
+
+  constructor(
+    private userService: UserService,
+    private editService: EditUserService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit() {
-    //this.fetchUser();
+    this.getAllUsers()
+    this.onSearchClear()
+    this.applyFilter()
+    this.dataSource.sort = this.sort
+    this.dataSource.paginator = this.paginator
   }
 
-  /*fetchUser(){
-    this.userService
-    .getUser()
-    .subscribe((data: User[])=>{
-      this.users = data;
-      console.log(this.users);
+  /* FUNCTION TO CLEAT THE SERACH KEY */
+
+  onSearchClear() {
+    this.searchKey = ''
+    this.applyFilter()
+  }
+
+  /*FUNCTION TO FILTER IN THE TABNLE */
+
+  applyFilter() {
+    this.dataSource.filter = this.searchKey.trim().toLowerCase()
+  }
+
+  /*--- FUNCTION TO CALL THE ADMIN_USER_COMPONENT---*/
+
+  onCreate() {
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = true
+    dialogConfig.width = '60%'
+    this.dialog.open(AdminUserDetailsComponent, dialogConfig)
+  }
+
+  /* LIST ALL USERS */
+  getAllUsers() {
+    this.userService.getUser().subscribe(res => {
+      this.users = res as User[]
+      this.dataSource = new MatTableDataSource(this.users)
     })
   }
-editUser(_id){
-  this.router.navigate([`/edit/${_id}`]);
-}*/
+
+  /* FUNCTION TO OPEN EDIT USER COMPONENT ON SELECTED ROW*/
+  onEdit(row) {
+    this.editService.populateForm(row)
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = true
+    dialogConfig.width = '60%'
+    this.dialog.open(AdminNewUserComponent, dialogConfig)
+  }
+
+  /* FUNCTION TO DELETE USERS => SET ACTIVATE  FALSE*/
+  onDelete(row) {
+    if (this.editService.form.valid) {
+      if (!this.editService.form.get('_id').value) {
+        this.editService.form.controls['activated'].setValue(false)
+      }
+    }
+  }
 }

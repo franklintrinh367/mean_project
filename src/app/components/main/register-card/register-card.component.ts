@@ -21,7 +21,7 @@ import { User } from 'src/models/users'
 })
 export class RegisterCardComponent implements OnInit {
   private registerForm: FormGroup
-  private modes = ['Candidate', 'Client']
+  private modes = ['Candidate', 'Company']
 
   constructor(
     private builder: FormBuilder,
@@ -52,7 +52,7 @@ export class RegisterCardComponent implements OnInit {
           '',
           [
             Validators.pattern(
-              '[\\w]+@[a-zA-Z\\d]+\\.[a-zA-Z\\d]+\\.?[a-zA-Z\\d]+'
+              '[\\w\\.]+@[a-zA-Z\\d]+\\.[a-zA-Z\\d]+\\.?[a-zA-Z\\d]+'
             ),
             Validators.required,
           ],

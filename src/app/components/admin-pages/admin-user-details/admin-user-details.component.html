@@ -1,4 +1,7 @@
-<div class="wraper" fxLayout="column" fxLayoutAlign="center center">
+<app-admin-new-user> </app-admin-new-user>
+<!--
+  
+  <div class="wraper" fxLayout="column" fxLayoutAlign="center center">
   <mat-card fxFlex.xs="auto">
     <mat-card-content>
       <span> Edit User</span>
@@ -14,82 +17,123 @@
           User List
         </button>
       </div>
-      <form autocomplete="off" [formGroup]="EditUserForm">
-        <mat-grid-list cols="2" rowHeight="300px">
-          <mat-grid-tile>
-            <div class="container">
-              <!-- Id-->
-              <mat-form-field hidden>
-                <input formControlName="id" matInput placeholder="ID *" #id />
-              </mat-form-field>
-              <!--
-          <mat-form-field>
-            <input required formControlName="adminFirstName" matInput placeholder="First Name *" #adminFirstname>
-          </mat-form-field>
-     
-          <mat-form-field>
-            <input required formControlName="adminLastName" matInput placeholder="Last Name *" #adminLastName>
-          </mat-form-field>-->
+      <div>
+        <form autocomplete="off" [formGroup]="userService.form">
+          <mat-grid-list cols="2" rowHeight="300px">
+            <mat-grid-tile>
+              <div class="container">
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+-->
+<!-- Id-->
+<!--               <mat-form-field hidden>
+                  <input
+                    hidden
+                    formControlName="id"
+                    matInput
+                    placeholder="ID"
+                    #id
+                  />
+                </mat-form-field>
 
-              <!-- User Name -->
-              <mat-form-field>
-                <input
-                  required
-                  formControlName="username"
-                  matInput
-                  placeholder="User Name *"
-                  #username
-                />
-              </mat-form-field>
-
-              <!-- User Email-->
-              <mat-form-field>
-                <input
-                  required
-                  formControlName="email"
-                  matInput
-                  placeholder="User Email *"
-                  #email
-                />
-              </mat-form-field>
-
-              <!-- Role -->
-              <mat-form-field>
-                <mat-select placeholder="Role" formControlName="role">
-                  <mat-option *ngFor="let role of roles" [value]="role.value">
-                    {{ role.viewValue }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-
-              <!-- isActive -->
-              <mat-form-field>
-                <mat-select placeholder="Activated" formControlName="activated">
+-->
+<!-- First Name -->
+<!--                <mat-form-field>
+                  <input
+                    required
+                    formControlName="adminFirstName"
+                    matInput
+                    placeholder="First Name "
+                    #adminFirstName
+                  />
+                </mat-form-field>
+              -->
+<!-- Last Name -->
+<!--                <mat-form-field>
+                  <input
+                    required
+                    formControlName="adminLastName"
+                    matInput
+                    placeholder="Last Name"
+                    #adminLastName
+                  />
+                </mat-form-field>
+              -->
+<!-- User Name -->
+<!--
+                  <mat-form-field>
+                  <input
+                    required
+                    formControlName="username"
+                    matInput
+                    placeholder="User Name"
+                    #username
+                  />
+                </mat-form-field>
+-->
+<!-- User Email-->
+<!--                <mat-form-field>
+                  <input
+                    required
+                    formControlName="email"
+                    matInput
+                    placeholder="User Email"
+                    #email
+                  />
+                </mat-form-field>
+              -->
+<!-- Role -->
+<!--                <mat-form-field>
+                  <mat-select
+                    required
+                    placeholder="Role"
+                    formControlName="role"
+                  >
+                    <mat-option *ngFor="let role of roles" [value]="role.value">
+                      {{ role.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              -->
+<!-- isActive -->
+<!-- <mat-form-field>
+                <mat-select required placeholder="Activated" formControlName="activated">
                   <mat-option *ngFor="let a of act" [value]="a.value">
                     {{ a.viewValue }}
                   </mat-option>
                 </mat-select>
-              </mat-form-field>
+              </mat-form-field>-->
 
-              <!-- Add Button / Clear Button -->
-              <div class="container">
-                <div class="button-row">
-                  <button mat-raised-button class="button-style" type="submit">
-                    Submit
-                  </button>
-                  <button
-                    mat-raised-button
-                    class="button-style"
-                    (click)="onClear()"
-                  >
-                    Clear
-                  </button>
+<!-- Add Button / Clear Button -->
+
+<!--                <div class="container">
+                  <div class="button-row">
+                    <button
+                      mat-raised-button
+                      class="button-style"
+                      type="submit"
+                      (click)="onSubmit()"
+                    >
+                      Submit
+                    </button>
+                    <button
+                      mat-raised-button
+                      class="button-style"
+                      (click)="onClear()"
+                    >
+                      Clear
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </mat-grid-tile>
-        </mat-grid-list>
-      </form>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </form>
+      </div>
     </mat-card-content>
   </mat-card>
 </div>
+-->

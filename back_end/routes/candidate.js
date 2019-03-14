@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
 // load models
 const User = require('../models/User')
@@ -8,9 +9,11 @@ const Job = require('../models/Job')
 const Candidate = require('../models/Candidate')
 
 // Add new Candidate
-router.post('/register', (req, res) => {
+router.post('/register/:token', (req, res) => {
+  let token = jwt.decode(req.params.token)
+  let userID = token.id
+
   let newCandidate = new Candidate({
-    canId: req.body.canId,
     canFirstName: req.body.canFirstName,
     canLastName: req.body.canLastName,
     canEducation: req.body.canEducation,
@@ -23,14 +26,11 @@ router.post('/register', (req, res) => {
     canProvince: req.body.canProvince,
     canPostalCode: req.body.canPostalCode,
   })
-  newCandidate
-    .save()
-    .then(candidate => {
-      console.log(req.body.canId)
-      User.findByIdAndUpdate(req.body.canId, {
-        completed: true,
-      }).then(console.log('completed registration'))
-      res.json(candidate)
+
+  User.findById(userID)
+    .then(user => {
+      user.details = newCandidate
+      user.save()
     })
     .catch(err => res.json(err))
 })

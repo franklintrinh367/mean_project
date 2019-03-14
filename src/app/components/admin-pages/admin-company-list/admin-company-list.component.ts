@@ -1,26 +1,37 @@
+/* CORE */
 import { Component, OnInit, ViewChild } from '@angular/core'
 
-//Models
+/* ROUTER*/
+import { Router } from '@angular/router'
+
+/* MODELS */
 import { Client } from '../../../models/clients/client'
 
-//Service
+/* SERVICES */
 import { ClientService } from '../../../services/client/client.service'
 
-//Material design
-import { MatTableDataSource, MatSort } from '@angular/material'
-import { MatPaginatorModule } from '@angular/material'
+/* MATERIAL DESIGN */
+import {
+  MatDialog,
+  MatDialogConfig,
+  MatTableDataSource,
+  MatSort,
+  MatPaginator,
+} from '@angular/material'
+import { ClientRegisterPageComponent } from '../../client-pages/client-register-page/client-register-page.component'
 
+// GONNA BE DELETED - JUST FOR TEST
 const COMPANIES: any[] = [
   {
     _id: 1,
-    compName: 'AAA',
+    compName: 'rrr',
     compCRANumber: 123,
-    compAddress: 'AAA',
-    compCity: 'AAA',
-    compCode: 'XXX',
-    compProvince: 'AAA',
-    compPhone: 'AAA',
-    compContact: 'AAA',
+    compAddress: 'rrr',
+    compCity: 'rrr',
+    compCode: 'rrr',
+    compProvince: 'rrrr',
+    compPhone: '',
+    compContact: 'rrr',
   },
   {
     _id: 2,
@@ -44,6 +55,39 @@ const COMPANIES: any[] = [
     compPhone: 'CCC',
     compContact: 'CCC',
   },
+  {
+    _id: 4,
+    compName: 'DDD',
+    compCRANumber: 345666,
+    compAddress: 'DDD',
+    compCity: 'DDD',
+    compCode: 'DDD',
+    compProvince: 'DDD',
+    compPhone: 'DDD',
+    compContact: 'DDDD',
+  },
+  {
+    _id: 5,
+    compName: 'EEE',
+    compCRANumber: 666,
+    compAddress: 'EEE',
+    compCity: 'EEE',
+    compCode: 'EEE',
+    compProvince: 'EEE',
+    compPhone: 'EEE',
+    compContact: 'EEE',
+  },
+  {
+    _id: 6,
+    compName: 'RRR',
+    compCRANumber: 333,
+    compAddress: 'RRRR',
+    compCity: 'RRR',
+    compCode: 'RRR',
+    compProvince: 'RRR',
+    compPhone: 'RRR',
+    compContact: 'RRR',
+  },
 ]
 
 @Component({
@@ -52,9 +96,16 @@ const COMPANIES: any[] = [
   styleUrls: ['./admin-company-list.component.scss'],
 })
 export class AdminCompanyListComponent implements OnInit {
+  /* TABLE PAGINATION AND SORT */
   @ViewChild(MatSort) sort: MatSort
+  @ViewChild(MatPaginator) paginator: MatPaginator
+
+  /*PARAMETERS */
+  searchKey: string
+  list: Client[]
+
+  /*  TABLE PARAMETERS */
   dataSource = new MatTableDataSource(COMPANIES)
-  //  jobs: Job[];
   displayColumns: string[] = [
     '_id',
     'compName',
@@ -68,24 +119,62 @@ export class AdminCompanyListComponent implements OnInit {
     'actions',
   ]
 
-  //constructor() // private jobSerbice: JobService,
-  // private router: Router
-  //{}
+  constructor(private service: ClientService, private dialog: MatDialog) {}
 
   ngOnInit() {
-    //this.fetchJobs();
+    //this.getallClients()
+    this.onSearchClear()
+    this.applyFilter()
     this.dataSource.sort = this.sort
+    this.dataSource.paginator = this.paginator
   }
 
-  /*fetchJobs(){
-    this.jJobService
-    .getJob()
-    .subscribe((data: Job[])=>{
-      this.jobs = data;
-      console.log(this.jobs);
-    })
+  /*LIST ALL COMPANIES  */
+  // getAllClients(){
+  //   this.service.getClients().subscribe(res=>{
+  //     this.list = res as Client[]
+  //     this.dataSource = new MatTableDataSource(this.list)
+
+  //   })
+  // }
+
+  /* FUNCTION TO OPEN EDIT COMPANY COMPONENT ON SELECTED ROW*/
+  onEdit(row) {
+    //this.service.populateForm(row)
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = true
+    dialogConfig.width = '60%'
+    this.dialog.open(ClientRegisterPageComponent, dialogConfig)
   }
-editJobs(jobId){
-  this.router.navigate([`/edit/${jobId}`]);
-}*/
+
+  /* FUNCTION TO DELETE COMPANY => SET ACTIVATE  FALSE*/
+  onDelete(row) {
+    if (this.service.form.valid) {
+      if (!this.service.form.get('_id').value) {
+        this.service.form.controls['activated'].setValue(false)
+      }
+    }
+  }
+
+  /* FUNCTION TO CALL THE: ClientRegisterPageComponent */
+  onCreate() {
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = true
+    dialogConfig.width = '60%'
+    this.dialog.open(ClientRegisterPageComponent, dialogConfig)
+  }
+
+  /* FUNCTION TO CLEAR THE SEARCH KEY */
+
+  onSearchClear() {
+    this.searchKey = ''
+    this.applyFilter()
+  }
+  /* FUCNTION TO FILTER THE TABLE */
+
+  applyFilter() {
+    this.dataSource.filter = this.searchKey.trim().toLowerCase()
+  }
 }

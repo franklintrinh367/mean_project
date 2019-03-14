@@ -9,17 +9,16 @@ export class AuthenticateService {
   private token: String
 
   constructor(private router: Router) {}
-
+  // Need
   saveToken(token: string, name: string, optional?: string): void {
     localStorage.setItem(name, token)
     this.token = token.toString()
   }
-
+  // Need information
   private getToken(name: string): String {
     if (!this.token) {
       this.token = localStorage.getItem(name)
     }
-
     return this.token
   }
 
@@ -30,7 +29,7 @@ export class AuthenticateService {
   }
 
   public getTokenDetails(name: string): any {
-    var token = this.getToken(name)
+    const token = this.getToken(name)
     return token ? JSON.parse(window.atob(token.split('.')[1])) : null
   }
 

@@ -30,6 +30,9 @@ import { AdminUserDetailsComponent } from './components/admin-pages/admin-user-d
 import { CandidateRegisterPageComponent } from './components/candidate-pages/candidate-register-page/candidate-register-page.component'
 import { ResetPasswordComponent } from './components/main/reset-password/reset-password.component'
 import { ResetPasswordAuthService } from './services/reset-password-auth.service'
+import { CandidateHomePageComponent } from './components/candidate-pages/candidate-home-page/candidate-home-page.component'
+import { ClientHomepagesComponent } from './components/client-pages/client-homepages/client-homepages.component'
+import { CandidateEditProfileComponent } from './components/candidate-pages/candidate-edit-profile/candidate-edit-profile.component'
 
 // import { CompanyDetailsComponent} from './components/admin/company-details/company-details.component';
 
@@ -56,12 +59,11 @@ const routes: Routes = [
   },
   { path: 'success/:hash', component: VerifyPageComponent },
 
-  // clients
-  { path: 'client_register', component: ClientRegisterPageComponent },
+  // company routes
+  { path: 'company_home', component: ClientHomepagesComponent },
+  { path: 'company_register', component: ClientRegisterPageComponent },
   { path: 'new-jobs', component: ClientNewJobPageComponent },
-  { path: 'client-job-details', component: ClientJobDetailsPageComponent },
-
-  // {path: 'test1', component: CompanyDetailsComponent},
+  { path: 'company_details', component: ClientJobDetailsPageComponent },
 
   //Admin Pages Router
   { path: 'adminPages', component: AdminHomepageComponent },
@@ -69,13 +71,19 @@ const routes: Routes = [
   { path: 'admin_userList', component: AdminUserListComponent },
   { path: 'admin_companyList', component: AdminCompanyListComponent },
   { path: 'admin_mamangeJobs', component: AdminManageJobsComponent },
-  { path: 'admin_companyDetais', component: AdminCompanyDetailsComponent },
-  { path: 'admin_jobDetails', component: AdminJobsDetailsComponent },
+  { path: 'admin_companyDetails', component: AdminCompanyDetailsComponent },
+  { path: 'admin_jobDetails/:id', component: AdminJobsDetailsComponent },
   { path: 'admin_userDetails', component: AdminUserDetailsComponent },
 
   // Candidate Routes
-  { path: 'candidate_register', component: CandidateRegisterPageComponent },
+  {
+    path: 'candidate_register',
+    component: CandidateRegisterPageComponent, //canActivate: [UserAuthService],
+  },
+  { path: 'candidate_homePage', component: CandidateHomePageComponent },
+  { path: 'candidate_editProfile', component: CandidateEditProfileComponent },
 
+  // Others
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '404', component: UnderconstructComponent },
   { path: 'login', component: LoginComponent, canActivate: [LogoutService] },

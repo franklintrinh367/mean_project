@@ -2,6 +2,7 @@
   <mat-card fxFlex="auto">
     <mat-card-content>
       <form autocomplete="off" [formGroup]="candidateRegisterForm">
+        <h3>Candidate Register</h3>
         <mat-grid-list cols="3" rowHeight="55px" gutterSize="20px">
           <!-- First Name -->
           <mat-grid-tile colspan="2">
@@ -168,7 +169,7 @@
               color="accent"
               [disabled]="!candidateRegisterForm.valid"
               (click)="signup()"
-              class="login-btn"
+              class="login-btn mat-elevation-z8"
             >
               Submit
             </button>
@@ -176,7 +177,14 @@
 
           <!-- Cancel Button -->
           <mat-grid-tile>
-            <button mat-flat-button color="basic">Cancel</button>
+            <button
+              mat-flat-button
+              class="mat-elevation-z8"
+              color="accent"
+              routerLink="/home"
+            >
+              Cancel
+            </button>
           </mat-grid-tile>
         </mat-grid-list>
       </form>

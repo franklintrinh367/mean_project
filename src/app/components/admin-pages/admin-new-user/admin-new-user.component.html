@@ -1,7 +1,7 @@
 <div class="wraper" fxLayout="column" fxLayoutAlign="center center">
   <mat-card fxFlex.xs="auto">
     <mat-card-content>
-      <span> Add New User</span>
+      <span> Add & Edit Users</span>
 
       <div class="container">
         <button mat-raised-button class="button-style" routerLink="/adminPages">
@@ -16,41 +16,63 @@
           User List
         </button>
       </div>
-      <form autocomplete="off" [formGroup]="addUserForm">
+      <form
+        autocomplete="off"
+        [formGroup]="userService.form"
+        (click)="onSubmit()"
+      >
         <mat-grid-list cols="2" rowHeight="300px">
           <mat-grid-tile>
             <div class="container">
               <!-- Id-->
               <mat-form-field hidden>
-                <input formControlName="id" matInput placeholder="ID *" #id />
+                <input formControlName="_id" matInput placeholder="ID *" #_id />
               </mat-form-field>
+
               <!--
               <mat-form-field>
-                  <input required formControlName="adminFirstName" matInput placeholder="First Name *" #adminFirstname>
-                </mat-form-field>
-                <mat-form-field>
-                    <input required formControlName="adminLastName" matInput placeholder="Last Name *" #adminLastName>
-                  </mat-form-field>-->
+                <input
+                  required
+                  formControlName="adminFirstName"
+                  matInput
+                  placeholder="First Name *"
+                  #adminFirstname
+                />
+              </mat-form-field>
+              <mat-form-field>
+                <input
+                  required
+                  formControlName="adminLastName"
+                  matInput
+                  placeholder="Last Name *"
+                  #adminLastName
+                />
+
+              </mat-form-field>
+
+-->
               <!-- User Name -->
               <mat-form-field>
                 <input
                   required
                   formControlName="username"
                   matInput
-                  placeholder="User Name *"
+                  placeholder="User Name:"
                   #username
                 />
               </mat-form-field>
+
               <!-- User Email-->
               <mat-form-field>
                 <input
                   required
                   formControlName="email"
                   matInput
-                  placeholder="User Email *"
+                  placeholder="User Email:"
                   #email
                 />
               </mat-form-field>
+
               <!-- Role -->
               <mat-form-field>
                 <mat-select placeholder="Role" formControlName="role">
@@ -59,17 +81,20 @@
                   </mat-option>
                 </mat-select>
               </mat-form-field>
-              <!-- Add Button / Clear Button -->
+
+              <!-- Add Button -->
               <div class="container">
                 <div class="button-row">
                   <button
                     mat-raised-button
                     class="button-style"
                     type="submit"
-                    [disabled]="addUserForm.invalid"
+                    [disabled]="userService.invalid"
                   >
                     Submit
                   </button>
+
+                  <!--/ Clear Button -->
                   <button
                     mat-raised-button
                     class="button-style"

@@ -1,12 +1,20 @@
+/* CORE*/
 import { Component, OnInit, ViewChild } from '@angular/core'
 
+/* MODEL */
 import { Job } from '../../../models/clients/jobs'
-import { JobService } from '../../../services/jobs/job.service'
-//Material design
-import { MatSort, MatTableDataSource } from '@angular/material'
-import { MatPaginatorModule } from '@angular/material'
 
-const jobs: any[] = [
+/* SERVICES*/
+import { JobService } from '../../../services/jobs/job.service'
+
+/* ROUTER */
+import { Router } from '@angular/router'
+
+/* MATERIAL DESIGN */
+import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material'
+
+//JUST FOR TESTING - GONNA BE DELETED
+const JOBS: any[] = [
   {
     jobId: 1,
     compId: 1,
@@ -36,8 +44,12 @@ const jobs: any[] = [
   styleUrls: ['./admin-manage-jobs.component.scss'],
 })
 export class AdminManageJobsComponent implements OnInit {
-  dataSource = jobs
-  //  jobs: Job[];
+  /*  PARAMETERS */
+  searchKey: string
+  list: Job[]
+
+  /*  TABLE PARAMETERS */
+  dataSource = new MatTableDataSource(JOBS)
   displayColumns: string[] = [
     'jobId',
     'compId',
@@ -47,24 +59,29 @@ export class AdminManageJobsComponent implements OnInit {
     'actions',
   ]
 
+  /*  TABLE SORT AND PAGINATION */
   @ViewChild(MatSort) sort: MatSort
+  @ViewChild(MatPaginator) paginator: MatPaginator
+
   constructor() // private jobSerbice: JobService,
   // private router: Router
   {}
 
   ngOnInit() {
-    //this.fetchJobs();
+    this.onSearchClear()
+    this.applyFilter()
+    this.dataSource.sort = this.sort
+    this.dataSource.paginator = this.paginator
   }
 
-  /*fetchJobs(){
-    this.jobService
-    .getJob()
-    .subscribe((data: Job[])=>{
-      this.jobs = data;
-      console.log(this.jobs);
-    })
+  /* FUNCTION TO CLEAR THE SEARCH KEY */
+  onSearchClear() {
+    this.searchKey = ''
+    this.applyFilter()
   }
-editJobs(jobId){
-  this.router.navigate([`/edit/${jobId}`]);
-}*/
+
+  /* FUCNTION TO FILTER THE TABLE */
+  applyFilter() {
+    this.dataSource.filter = this.searchKey.trim().toLowerCase()
+  }
 }
