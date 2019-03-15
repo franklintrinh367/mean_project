@@ -32,7 +32,6 @@ router.post('/insert/:token', async (req, res) => {
   // pass the value
   var job = new Job({
     userId: userID,
-
     jobStatus: jobStatus,
     jobPostDate: Date.now(),
     jobEndDate: jobEndDate,

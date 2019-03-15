@@ -55,4 +55,15 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(['/company_register'])
     }
   }
+
+  // this function is here for testing
+  // after i will delete
+  onGetDetails() {
+    let token = this.authService.getTokenDetails('auth-token')
+    if (token.visited > !token.details) {
+      this.router.navigate(['/company_register'])
+    } else {
+      this.router.navigate(['/company_register'])
+    }
+  }
 }

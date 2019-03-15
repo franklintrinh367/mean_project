@@ -10,11 +10,13 @@ import {
 } from '@angular/material'
 import { ClientNewJobPageComponent } from '../client-new-job-page/client-new-job-page.component'
 import { AuthenticateService } from 'src/app/services/authenticate.service'
+import { slideUp } from '../../shared/animations'
 
 @Component({
   selector: 'app-client-job-details-page',
   templateUrl: './client-job-details-page.component.html',
   styleUrls: ['./client-job-details-page.component.scss'],
+  animations: [slideUp()],
 })
 export class ClientJobDetailsPageComponent implements OnInit {
   displayColumns: string[] = [
@@ -27,6 +29,7 @@ export class ClientJobDetailsPageComponent implements OnInit {
     'jobActivate',
     'actions',
   ]
+  state = 'out'
   private token: String
   public job: Job
   // declare the service, auth and dialog
@@ -47,6 +50,9 @@ export class ClientJobDetailsPageComponent implements OnInit {
   searchKey: string
   // All this methon in init is instantiate when the page load
   ngOnInit() {
+    setTimeout(() => {
+      this.state = 'in'
+    }, 30)
     this.token = this.authService.getTokenDetails('auth-token')
     this.getAllJobs()
     this.onSearchClear()
@@ -82,6 +88,9 @@ export class ClientJobDetailsPageComponent implements OnInit {
 
   // function to call the add clientAddJobComponent
   onCreate() {
+    /*this.dialog.open(ClientNewJobPageComponent, {
+      autoFocus: false,
+    })*/
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true
@@ -93,6 +102,7 @@ export class ClientJobDetailsPageComponent implements OnInit {
 
     this.service.populateForm(
       row._id,
+      row.userId,
       row.jobStatus,
       row.jobPostDate,
       row.jobEndDate,

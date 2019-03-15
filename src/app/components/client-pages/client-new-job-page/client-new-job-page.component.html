@@ -1,5 +1,6 @@
 <div fxLayout="column" fxLayoutAlign="center center">
   <mat-card fxFlex.xs="auto" class="mat-elevation-z8">
+    <!-- The cross that are on the top left-->
     <button
       class="btn-dialog-close"
       mat-stroked-button
@@ -8,91 +9,117 @@
     >
       <mat-icon>close</mat-icon>
     </button>
+
+    <!-- The title display, it can be Add or Modify and the space between two -->
     <mat-card-title>
       <span>{{
         this.service.form.controls['_id'].value ? 'Modify Jobs' : 'Add New Jobs'
       }}</span>
       <span class="fill-remaining-space"></span>
     </mat-card-title>
-    <form autocomplete="off" [formGroup]="service.form" (ngSubmit)="onSubmit()">
-      <div class="container">
-        <mat-card-content>
-          <input
-            formControlName="_id"
-            matInput
-            placeholder="Job Number *"
-            #_id
-            hidden
-          />
 
-          <mat-form-field>
-            <select
-              matNativeControl
-              required
-              formControlName="jobPosition"
-              #jobPosition
-            >
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select>
-          </mat-form-field>
+    <!-- Material stepper start tere-->
+    <mat-vertical-stepper [linear]="isLinear" #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <!-- The form start here-->
+        <form
+          autocomplete="off"
+          [formGroup]="service.form"
+          (ngSubmit)="onSubmit()"
+        >
+          <div class="container">
+            <ng-template matStepLabel>Fill out job information</ng-template>
+            <mat-card-content>
+              <input
+                formControlName="_id"
+                matInput
+                placeholder="Job Number *"
+                #_id
+                hidden
+              />
 
-          <mat-form-field>
-            <input
-              matInput
-              [matDatepicker]="picker"
-              formControlName="jobEndDate"
-              placeholder="Expiration Date"
-              (click)="picker.open()"
-              #jobEndDate
-            />
-            <mat-datepicker-toggle matSuffix [for]="picker">
-              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-            </mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
+              <!-- The Field to input th number of the position-->
+              <mat-form-field>
+                <mat-label>How many Position </mat-label>
+                <select
+                  matNativeControl
+                  required
+                  formControlName="jobPosition"
+                  #jobPosition
+                >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
+              </mat-form-field>
 
-          <mat-form-field>
-            <mat-select
-              placeholder="Status of the job"
-              formControlName="jobStatus"
-            >
-              <mat-option *ngFor="let stat of status" [value]="stat.value">
-                {{ stat.viewValue }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+              <!-- The Field to input the expiration date -->
+              <mat-form-field>
+                <mat-label>Expiration Date </mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="picker"
+                  formControlName="jobEndDate"
+                  (click)="picker.open()"
+                  #jobEndDate
+                />
+                <mat-datepicker-toggle matSuffix [for]="picker">
+                  <mat-icon matDatepickerToggleIcon
+                    >keyboard_arrow_down</mat-icon
+                  >
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
 
-          <mat-form-field>
-            <textarea
-              formControlName="jobDescription"
-              matInput
-              placeholder="Description"
-              rows="4"
-              cols="10"
-              #jobDescription
-            >
-            </textarea>
-            <mat-icon matSuffix>comment</mat-icon>
-          </mat-form-field>
-        </mat-card-content>
+              <!-- The Field to input the job status is either part or full time -->
+              <mat-form-field>
+                <mat-label>Select Job Status </mat-label>
+                <mat-select formControlName="jobStatus">
+                  <mat-option *ngFor="let stat of status" [value]="stat.value">
+                    {{ stat.viewValue }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
 
-        <mat-card-actions>
-          <button
-            mat-raised-button
-            color="primary"
-            type="submit"
-            [disabled]="service.form.invalid"
-          >
-            Submit
-          </button>
-          <button mat-raised-button color="warn" (click)="onClear()">
-            Clear
-          </button>
-        </mat-card-actions>
-      </div>
-    </form>
+              <!-- The Field to input the job description -->
+              <mat-form-field>
+                <mat-label>Job Description </mat-label>
+                <textarea
+                  formControlName="jobDescription"
+                  matInput
+                  rows="2"
+                  cols="10"
+                  #jobDescription
+                >
+                </textarea>
+                <mat-icon matSuffix>comment</mat-icon>
+              </mat-form-field>
+            </mat-card-content>
+            <mat-card-actions>
+              <button
+                mat-raised-button
+                color="primary"
+                type="submit"
+                [disabled]="service.form.invalid"
+              >
+                Submit
+              </button>
+              <button mat-raised-button color="warn" (click)="onClear()">
+                Clear
+              </button>
+            </mat-card-actions>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        You are now done.
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-vertical-stepper>
   </mat-card>
 </div>
