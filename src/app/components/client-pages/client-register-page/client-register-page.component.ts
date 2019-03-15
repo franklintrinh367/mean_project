@@ -3,16 +3,19 @@ import { ClientService } from '../../../services/client/client.service'
 import { FormGroup, FormBuilder } from '@angular/forms'
 import { AuthenticateService } from '../../../services/authenticate.service'
 import { Router } from '@angular/router'
+import { slideUp } from '../../shared/animations'
 
 @Component({
   selector: 'app-client-register-page',
   templateUrl: './client-register-page.component.html',
   styleUrls: ['./client-register-page.component.scss'],
+  animations: [slideUp()],
 })
 export class ClientRegisterPageComponent implements OnInit {
   isLinear = false
   firstFormGroup
   secondFormGroup
+  state = 'out'
   constructor(
     private service: ClientService,
     private authService: AuthenticateService,
@@ -22,6 +25,9 @@ export class ClientRegisterPageComponent implements OnInit {
 
   ngOnInit() {
     this.isLinear = true
+    setTimeout(() => {
+      this.state = 'in'
+    }, 30)
     //this.firstFormGroup = this._FormBuilder
   }
 

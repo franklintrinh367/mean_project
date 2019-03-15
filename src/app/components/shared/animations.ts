@@ -19,6 +19,6 @@ export const slideUp = () => {
       })
     ),
 
-    transition('out => in', animate('500ms')),
+    transition('out => in', animate('300ms')),
   ])
 }

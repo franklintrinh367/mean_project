@@ -1,78 +1,80 @@
-<h1>Job Table</h1>
-<div class="search-div">
-  <button mat-raised-button (click)="onCreate()">
-    <mat-icon>add</mat-icon>Add Job
-  </button>
-  <mat-form-field class="search-form-field" floatLabel="never">
-    <input
-      matInput
-      [(ngModel)]="searchKey"
-      placeholder="Search"
-      autocomplete="off"
-      (keyup)="applyFilter()"
-    />
-    <button
-      mat-button
-      matSuffix
-      mat-icon-button
-      ariel-label="Clear"
-      *ngIf="searchKey"
-      (click)="onSearchClear()"
-    >
-      <mat-icon>close</mat-icon>
+<div [@slideUp]="state">
+  <h1>Job Table</h1>
+  <div class="search-div">
+    <button mat-raised-button (click)="onCreate()">
+      <mat-icon>add</mat-icon>Add Job
     </button>
-  </mat-form-field>
-</div>
-<div id="container">
-  <div>
-    <table mat-table [dataSource]="dataSource">
-      <ng-container matColumnDef="_id">
-        <th mat-header-cell *matHeaderCellDef>ID</th>
-        <td mat-cell *matCellDef="let data">{{ data._id }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="jobStatus">
-        <th mat-header-cell *matHeaderCellDef>Status</th>
-        <td mat-cell *matCellDef="let data">{{ data.jobStatus }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="jobPostDate">
-        <th mat-header-cell *matHeaderCellDef>Date of Posting</th>
-        <td mat-cell *matCellDef="let data">{{ data.jobPostDate }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="jobEndDate">
-        <th mat-header-cell *matHeaderCellDef>Date expired</th>
-        <td mat-cell *matCellDef="let data">{{ data.jobEndDate }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="jobPositions">
-        <th mat-header-cell *matHeaderCellDef>Position</th>
-        <td mat-cell *matCellDef="let data">{{ data.jobPosition }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="jobDescription">
-        <th mat-header-cell *matHeaderCellDef>Description</th>
-        <td mat-cell *matCellDef="let data">{{ data.jobDescription }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="jobActivate">
-        <th mat-header-cell *matHeaderCellDef>Activation</th>
-        <td mat-cell *matCellDef="let data">{{ data.jobActivate }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef>Actions</th>
-        <td mat-cell *matCellDef="let data">{{ data.actions }}</td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>
-    </table>
+    <mat-form-field class="search-form-field" floatLabel="never">
+      <input
+        matInput
+        [(ngModel)]="searchKey"
+        placeholder="Search"
+        autocomplete="off"
+        (keyup)="applyFilter()"
+      />
+      <button
+        mat-button
+        matSuffix
+        mat-icon-button
+        ariel-label="Clear"
+        *ngIf="searchKey"
+        (click)="onSearchClear()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
   </div>
-</div>
+  <div id="container">
+    <div>
+      <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="_id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let data">{{ data._id }}</td>
+        </ng-container>
 
-<mat-paginator
-  [pageSizeOptions]="[5, 10, 20]"
-  showFirstLastButtons
-></mat-paginator>
+        <ng-container matColumnDef="jobStatus">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let data">{{ data.jobStatus }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="jobPostDate">
+          <th mat-header-cell *matHeaderCellDef>Date of Posting</th>
+          <td mat-cell *matCellDef="let data">{{ data.jobPostDate }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="jobEndDate">
+          <th mat-header-cell *matHeaderCellDef>Date expired</th>
+          <td mat-cell *matCellDef="let data">{{ data.jobEndDate }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="jobPositions">
+          <th mat-header-cell *matHeaderCellDef>Position</th>
+          <td mat-cell *matCellDef="let data">{{ data.jobPosition }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="jobDescription">
+          <th mat-header-cell *matHeaderCellDef>Description</th>
+          <td mat-cell *matCellDef="let data">{{ data.jobDescription }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="jobActivate">
+          <th mat-header-cell *matHeaderCellDef>Activation</th>
+          <td mat-cell *matCellDef="let data">{{ data.jobActivate }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let data">{{ data.actions }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>
+      </table>
+    </div>
+  </div>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

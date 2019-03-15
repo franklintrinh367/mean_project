@@ -2,19 +2,22 @@ import { Component, OnInit } from '@angular/core'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Feedback } from 'src/app/models/others/feedback'
 import { UserService } from 'src/app/services/main/user.service'
+import { slideUp } from '../../shared/animations'
 
 @Component({
   selector: 'app-contact-us',
   templateUrl: './contact-us.component.html',
   styleUrls: ['./contact-us.component.scss'],
+  animations: [slideUp()],
 })
 export class ContactUsComponent implements OnInit {
   private feedbackForm: FormGroup
   feedback: Feedback
   private modes = ['Email', 'Phone']
   constructor(private builder: FormBuilder, private userService: UserService) {}
-
+  state = 'out'
   ngOnInit() {
+    setTimeout(() => (this.state = 'in'), 30)
     this.feedbackForm = this.builder.group({
       name: ['', [Validators.required]],
       email: [
