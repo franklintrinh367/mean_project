@@ -88,9 +88,13 @@ export class ClientJobDetailsPageComponent implements OnInit {
 
   // function to call the add clientAddJobComponent
   onCreate() {
-    this.dialog.open(ClientNewJobPageComponent, {
+    /*this.dialog.open(ClientNewJobPageComponent, {
       autoFocus: false,
-    })
+    })*/
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = true
+    this.dialog.open(ClientNewJobPageComponent, dialogConfig)
   }
   //function to open the form with selected row
   onEdit(row) {
@@ -98,6 +102,7 @@ export class ClientJobDetailsPageComponent implements OnInit {
 
     this.service.populateForm(
       row._id,
+      row.userId,
       row.jobStatus,
       row.jobPostDate,
       row.jobEndDate,
