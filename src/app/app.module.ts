@@ -78,6 +78,7 @@ import { ClientService } from './services/client/client.service'
 import { JobService } from './services/jobs/job.service'
 import { CandidateHomePageComponent } from './components/candidate-pages/candidate-home-page/candidate-home-page.component'
 import { CandidateEditProfileComponent } from './components/candidate-pages/candidate-edit-profile/candidate-edit-profile.component'
+import { ScrollCorDirective } from './directives/scroll-cor.directive'
 
 @NgModule({
   declarations: [
@@ -126,6 +127,8 @@ import { CandidateEditProfileComponent } from './components/candidate-pages/cand
     CandidateHomePageComponent,
 
     CandidateEditProfileComponent,
+
+    ScrollCorDirective,
   ],
   imports: [
     BrowserModule,
