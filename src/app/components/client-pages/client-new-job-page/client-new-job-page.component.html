@@ -17,96 +17,113 @@
 
     <mat-vertical-stepper [linear]="isLinear" #stepper>
       <mat-step [stepControl]="firstFormGroup">
+        <form autocomplete="off" [formGroup]="service.form">
+          <ng-template matStepLabel>Fill out job information</ng-template>
+          <mat-card-content>
+            <input
+              formControlName="_id"
+              matInput
+              placeholder="Job Number *"
+              #_id
+              hidden
+            />
+
+            <!-- Field to select Of Position -->
+            <mat-form-field>
+              <mat-label>How Many Position</mat-label>
+              <select
+                matNativeControl
+                required
+                formControlName="jobPosition"
+                #jobPosition
+              >
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select>
+            </mat-form-field>
+
+            <!-- Select the End date of this Position-->
+            <mat-form-field>
+              <mat-label>Select the End Date</mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker"
+                formControlName="jobEndDate"
+                (click)="picker.open()"
+                #jobEndDate
+              />
+              <mat-datepicker-toggle matSuffix [for]="picker">
+                <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+              </mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <!-- Select the Status of the Job -->
+            <mat-form-field>
+              <mat-label>The Job Status</mat-label>
+              <mat-select formControlName="jobStatus">
+                <mat-option *ngFor="let stat of status" [value]="stat.value">
+                  {{ stat.viewValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <!-- Input the Job Title-->
+            <mat-form-field>
+              <mat-label>enter the Job Description</mat-label>
+              <textarea
+                formControlName="jobDescription"
+                matInput
+                rows="4"
+                cols="10"
+                #jobDescription
+              >
+              </textarea>
+              <mat-icon matSuffix>comment</mat-icon>
+            </mat-form-field>
+          </mat-card-content>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <!-- Second Step -->
+      <mat-step [stepControl]="secondFormGroup">
         <form
           autocomplete="off"
           [formGroup]="service.form"
           (ngSubmit)="onSubmit()"
         >
-          <div class="container">
-            <ng-template matStepLabel>Fill out job information</ng-template>
-            <mat-card-content>
-              <input
-                formControlName="_id"
-                matInput
-                placeholder="Job Number *"
-                #_id
-                hidden
-              />
+          <ng-template matStepLabel>Complete job information</ng-template>
 
-              <mat-form-field>
-                <select
-                  matNativeControl
-                  required
-                  formControlName="jobPosition"
-                  #jobPosition
-                >
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                </select>
-              </mat-form-field>
-
-              <mat-form-field>
-                <input
-                  matInput
-                  [matDatepicker]="picker"
-                  formControlName="jobEndDate"
-                  placeholder="Expiration Date"
-                  (click)="picker.open()"
-                  #jobEndDate
-                />
-                <mat-datepicker-toggle matSuffix [for]="picker">
-                  <mat-icon matDatepickerToggleIcon
-                    >keyboard_arrow_down</mat-icon
-                  >
-                </mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
-
-              <mat-form-field>
-                <mat-select
-                  placeholder="Status of the job"
-                  formControlName="jobStatus"
-                >
-                  <mat-option *ngFor="let stat of status" [value]="stat.value">
-                    {{ stat.viewValue }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-
-              <mat-form-field>
-                <textarea
-                  formControlName="jobDescription"
-                  matInput
-                  placeholder="Description"
-                  rows="4"
-                  cols="10"
-                  #jobDescription
-                >
-                </textarea>
-                <mat-icon matSuffix>comment</mat-icon>
-              </mat-form-field>
-            </mat-card-content>
-            <mat-card-actions>
-              <button
-                mat-raised-button
-                color="primary"
-                type="submit"
-                [disabled]="service.form.invalid"
-              >
-                Submit
-              </button>
-              <button mat-raised-button color="warn" (click)="onClear()">
-                Clear
-              </button>
-            </mat-card-actions>
+          <!-- Button to submit the form -->
+          <mat-card-actions>
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="service.form.invalid"
+            >
+              Submit
+            </button>
+            <!-- Button to clear the form -->
+            <button mat-raised-button color="warn" (click)="onClear()">
+              Clear
+            </button>
+          </mat-card-actions>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
           </div>
         </form>
       </mat-step>
+
       <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        You are now done.
+        <ng-template matStepLabel>Done</ng-template>You are now done.
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button (click)="stepper.reset()">Reset</button>

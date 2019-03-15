@@ -2,27 +2,27 @@ const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+
 // load models
 const Job = require('../models/Job')
 const User = require('../models/User')
 
 // get all Jobs
-router.get('/get/all/:userId', async (req, res) => {
-  await Job.findOne({ userId: req.params.userId }, (err, jobs) => {
-    if (!err) {
-      res.send(jobs)
-    } else {
-      res.status(400).send({ error: err })
-    }
-  })
+/*
+router.get('/get/all/:userId', (req, res) => {
+    Job.where('_id').equals(req.params.userId).exec((err, jobs) => {
+      if(err) { res.status(400).send({ error: err }) }
+      if (jobs) { res.status(200).json(jobs)}
+    })
 })
-
+*/
 // Post the job
 router.post('/insert/:token', async (req, res) => {
   let token = jwt.decode(req.params.token)
   let userID = token.id
   // Declare the body
   let {
+    companyId,
     jobStatus,
     jobPosition,
     jobEndDate,
@@ -31,8 +31,7 @@ router.post('/insert/:token', async (req, res) => {
   } = req.body
   // pass the value
   var job = new Job({
-    userId: userID,
-
+    companyId: companyId,
     jobStatus: jobStatus,
     jobPostDate: Date.now(),
     jobEndDate: jobEndDate,

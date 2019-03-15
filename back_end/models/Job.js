@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const JobSchema = new Schema({
-  userId: {
+  companyId: {
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
@@ -33,7 +33,7 @@ const JobSchema = new Schema({
   candidatesMatch: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'User',
+      ref: 'Candidate',
     },
   ],
 })

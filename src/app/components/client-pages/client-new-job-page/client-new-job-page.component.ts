@@ -49,7 +49,7 @@ export class ClientNewJobPageComponent implements OnInit {
       // check if the data doesn't have the value
       if (!this.service.form.get('_id').value) {
         //set the formControls that's not required to be filled by the user
-        this.service.form.controls['userId'].setValue(token.id)
+        this.service.form.controls['companyId'].setValue(token.id)
         this.service.form.controls['jobActivate'].setValue(true)
         this.service.form.controls['jobPostDate'].setValue(Date.now())
         //subscribe to the function post_Jobs on the service

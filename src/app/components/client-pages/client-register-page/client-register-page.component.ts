@@ -35,17 +35,13 @@ export class ClientRegisterPageComponent implements OnInit {
       this.service.form.controls['userId'].setValue(token.id)
       //connect to the function on the server called onCompanyRegister
       this.service.onCompanyRegister(this.service.form.value).subscribe(err => {
-        //set the interval to load to the system
-        setInterval(() => {
-          // Check if there is no error and navigate to the company details
-          // After 4 seconds
-          // If there is you stay at registration after 4000 second
-          if (!err) {
-            this.router.navigate(['/company_details'])
-          } else {
-            this.router.navigate(['/company_register'])
-          }
-        }, 4000)
+        // Check if there is no error and navigate to the company details
+        // If there is you stay at registration after 4000 second
+        if (!err) {
+          this.router.navigate(['/company_details'])
+        } else {
+          this.router.navigate(['/company_register'])
+        }
       })
     }
   }

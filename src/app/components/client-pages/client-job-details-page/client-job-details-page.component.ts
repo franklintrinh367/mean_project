@@ -17,8 +17,10 @@ import { AuthenticateService } from 'src/app/services/authenticate.service'
   styleUrls: ['./client-job-details-page.component.scss'],
 })
 export class ClientJobDetailsPageComponent implements OnInit {
+  private token: String
   displayColumns: string[] = [
     '_id',
+    'companyId',
     'jobStatus',
     'jobPostDate',
     'jobEndDate',
@@ -27,7 +29,8 @@ export class ClientJobDetailsPageComponent implements OnInit {
     'jobActivate',
     'actions',
   ]
-  private token: String
+  // Declare the value of the ID
+  public _id
   public job: Job
   // declare the service, auth and dialog
   constructor(
@@ -48,18 +51,25 @@ export class ClientJobDetailsPageComponent implements OnInit {
   // All this methon in init is instantiate when the page load
   ngOnInit() {
     this.token = this.authService.getTokenDetails('auth-token')
+    //get the value of the Id of token
     this.getAllJobs()
     this.onSearchClear()
     this.applyFilter()
     this.dataSource
   }
+  //get the value of the token
+
   //function to get the job from the service
   // convert the result as the table
   // dataSource will make the list the material design
   // dataSource will listen sort and paginator
   getAllJobs() {
-    this.service.getJobs().subscribe(res => {
-      this.list = res as Job[]
+    let tok = this.authService.getTokenDetails('auth-token')
+    this.service.getAllJobs().subscribe(result => {
+      console.log(result)
+      this.list = result as Job[]
+      console.log(this.list)
+      console.log(this.list)
       this.dataSource = new MatTableDataSource(this.list)
       this.dataSource.sort = this.sort
       this.dataSource.paginator = this.paginator
@@ -93,6 +103,7 @@ export class ClientJobDetailsPageComponent implements OnInit {
 
     this.service.populateForm(
       row._id,
+      row.companyId,
       row.jobStatus,
       row.jobPostDate,
       row.jobEndDate,

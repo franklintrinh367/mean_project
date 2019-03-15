@@ -6,6 +6,12 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./client-homepages.component.scss'],
 })
 export class ClientHomepagesComponent implements OnInit {
+  linkMenu = [
+    { dispName: 'Home', varName: 'company_details' },
+    { dispName: 'Add Job', varName: 'company_new' },
+    { dispName: 'View Candidate', varName: 'company' },
+  ]
+
   constructor() {}
 
   ngOnInit() {}

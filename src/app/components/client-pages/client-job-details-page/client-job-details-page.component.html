@@ -5,6 +5,7 @@
       <button mat-raised-button (click)="onCreate()">
         <mat-icon>add</mat-icon>Add Job
       </button>
+
       <mat-form-field class="search-form-field" floatLabel="never">
         <input
           matInput
@@ -29,6 +30,11 @@
       <ng-container matColumnDef="_id">
         <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
         <mat-cell *matCellDef="let data">{{ data._id }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="companyId">
+        <mat-header-cell *matHeaderCellDef> Company Id </mat-header-cell>
+        <mat-cell *matCellDef="let data">{{ data.companyId }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="jobPostDate">

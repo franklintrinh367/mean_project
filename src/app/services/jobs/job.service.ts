@@ -9,18 +9,20 @@ import 'rxjs/add/operator/map'
 import 'rxjs/operator/toPromise'
 
 import { Job } from '../../models/clients/jobs'
+import { AuthenticateService } from '../authenticate.service'
 
 @Injectable({
   providedIn: 'root',
 })
 export class JobService {
-  // create Form group of Client
+  private token: String
 
   // URL tor the job
   readonly Url = 'http://localhost:3000/jobs'
 
   form: FormGroup = new FormGroup({
     _id: new FormControl(null),
+    companyId: new FormControl(''),
     jobStatus: new FormControl('', Validators.required),
     jobPostDate: new FormControl(''),
     jobEndDate: new FormControl('', Validators.required),
@@ -35,6 +37,7 @@ export class JobService {
   initializeFormGroup() {
     this.form.setValue({
       _id: new FormControl(null),
+      companyId: new FormControl(''),
       jobStatus: new FormControl('', Validators.required),
       jobPostDate: new FormControl(''),
       jobEndDate: new FormControl('', [Validators.required]),
@@ -50,16 +53,21 @@ export class JobService {
 
   // Function to add
   post_Jobs(job: Job): Observable<any> {
-    let token = localStorage.getItem('auth-token')
-    return this.http.post(this.Url + '/insert/' + token, job)
+    let tok = localStorage.getItem('auth-token')
+    return this.http.post(this.Url + '/insert/' + tok, job)
   }
 
-  getJobs() {
-    return this.http.get(this.Url + '/get/all')
+  getJobs(id) {
+    return this.http.get(this.Url + '/get/' + id)
+  }
+
+  getAllJobs() {
+    return this.http.get(this.Url + '/get/all/')
   }
 
   populateForm(
     _id: string,
+    companyId: string,
     jobStatus: string,
     jobPostDate: Date,
     jobEndDate: Date,
@@ -67,8 +75,10 @@ export class JobService {
     jobDescription: string,
     jobActivate: boolean
   ) {
+    //let userId = userId;
     this.form.setValue({
       _id,
+      companyId,
       jobStatus,
       jobPostDate,
       jobEndDate,

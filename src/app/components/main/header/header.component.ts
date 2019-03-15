@@ -38,30 +38,12 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.authService.logout('auth-token')
   }
-  // methode to register the company
-  /* onRegisterCompany() {
-    const dialogConfig = new MatDialogConfig()
-    dialogConfig.disableClose = true
-    dialogConfig.autoFocus = true
-    //dialogConfig.width = '60%'
-    this.dialog.open(ClientRegisterPageComponent, dialogConfig)
-  }*/
+
   // This function let navigate through job details
   onNavigate() {
     let token = this.authService.getTokenDetails('auth-token')
     if (token.visited > !token.details) {
       this.router.navigate(['/company_details'])
-    } else {
-      this.router.navigate(['/company_register'])
-    }
-  }
-
-  // this function is here for testing
-  // after i will delete
-  onGetDetails() {
-    let token = this.authService.getTokenDetails('auth-token')
-    if (token.visited > !token.details) {
-      this.router.navigate(['/company_register'])
     } else {
       this.router.navigate(['/company_register'])
     }
