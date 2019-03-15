@@ -82,10 +82,9 @@ export class ClientJobDetailsPageComponent implements OnInit {
 
   // function to call the add clientAddJobComponent
   onCreate() {
-    const dialogConfig = new MatDialogConfig()
-    dialogConfig.disableClose = true
-    dialogConfig.autoFocus = true
-    this.dialog.open(ClientNewJobPageComponent, dialogConfig)
+    this.dialog.open(ClientNewJobPageComponent, {
+      autoFocus: false,
+    })
   }
   //function to open the form with selected row
   onEdit(row) {

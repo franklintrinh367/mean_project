@@ -1,4 +1,28 @@
 <h1>Job Table</h1>
+<div class="search-div">
+  <button mat-raised-button (click)="onCreate()">
+    <mat-icon>add</mat-icon>Add Job
+  </button>
+  <mat-form-field class="search-form-field" floatLabel="never">
+    <input
+      matInput
+      [(ngModel)]="searchKey"
+      placeholder="Search"
+      autocomplete="off"
+      (keyup)="applyFilter()"
+    />
+  </mat-form-field>
+  <button
+    mat-button
+    matSuffix
+    mat-icon-button
+    ariel-label="Clear"
+    *ngIf="searchKey"
+    (click)="onSearchClear()"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
 <div id="container">
   <div>
     <table mat-table [dataSource]="dataSource">
@@ -129,3 +153,8 @@
       showFirstLastButtons
     ></mat-paginator> -->
 </div>
+
+<mat-paginator
+  [pageSizeOptions]="[5, 10, 20]"
+  showFirstLastButtons
+></mat-paginator>
