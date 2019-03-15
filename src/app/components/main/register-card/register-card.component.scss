@@ -12,3 +12,13 @@
 mat-radio-button {
   padding-right: 15px;
 }
+
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#tos {
+  overflow: scroll;
+  height: 160px;
+}

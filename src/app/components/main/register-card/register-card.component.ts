@@ -149,4 +149,11 @@ export class RegisterCardComponent implements OnInit {
       }
     })
   }
+
+  // Makes Terms of Service show when link is pressed.
+  public show: boolean = false
+
+  showtos() {
+    this.show = true
+  }
 }
