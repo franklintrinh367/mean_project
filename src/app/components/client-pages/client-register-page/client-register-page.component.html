@@ -98,15 +98,15 @@
             <mat-icon matSuffix>work</mat-icon>
             <input matInput formControlName="compContact" #compContact />
           </mat-form-field>
-          <mat-grid-list cols="3" rowHeight="30px" gutterSize="10px">
-            <mat-grid-tile colspan="2">
-              <mat-form-field>
-                <mat-label>Contact </mat-label>
-                <mat-icon matSuffix>work</mat-icon>
-                <input matInput formControlName="compContact" #compContact />
-              </mat-form-field>
-            </mat-grid-tile>
-          </mat-grid-list>
+          <!-- <mat-grid-list cols="3" rowHeight="30px" gutterSize="10px">
+            <mat-grid-tile colspan="2"> -->
+          <mat-form-field>
+            <mat-label>Contact </mat-label>
+            <mat-icon matSuffix>work</mat-icon>
+            <input matInput formControlName="compContact" #compContact />
+          </mat-form-field>
+          <!-- </mat-grid-tile>
+          </mat-grid-list> -->
           <div>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext>Next</button>
@@ -139,32 +139,6 @@
           >
             Cancel
           </button>
-          <mat-grid-list cols="3" rowHeight="55px" gutterSize="20px">
-            <mat-grid-tile colspan="2"> </mat-grid-tile>
-            <!-- Submit Button -->
-            <mat-grid-tile colspan="1">
-              <button
-                mat-flat-button
-                color="accent"
-                [disabled]="this.service.form.invalid"
-                class="login-btn mat-elevation-z8"
-              >
-                Submit
-              </button>
-            </mat-grid-tile>
-
-            <!-- Cancel Button -->
-            <mat-grid-tile>
-              <button
-                mat-flat-button
-                class="mat-elevation-z8"
-                color="accent"
-                routerLink="/home"
-              >
-                Cancel
-              </button>
-            </mat-grid-tile>
-          </mat-grid-list>
         </form>
       </mat-step>
       <mat-step>
