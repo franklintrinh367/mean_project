@@ -23,9 +23,8 @@ export class ClientNewJobPageComponent implements OnInit {
 
   //for implementing job status
   status: Status[] = [
-    { value: 'ongoing', viewValue: 'Ongoing' },
-    { value: 'contract', viewValue: 'Contract' },
     { value: 'Part time', viewValue: 'Part time' },
+    { value: 'Full time', viewValue: 'Full time' },
   ]
 
   today = new Date().toISOString().slice(0, 10)

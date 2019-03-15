@@ -1,5 +1,6 @@
 <div fxLayout="column" fxLayoutAlign="center center">
   <mat-card fxFlex.xs="auto" class="mat-elevation-z8">
+    <!-- The cross that are on the top left-->
     <button
       class="btn-dialog-close"
       mat-stroked-button
@@ -8,6 +9,8 @@
     >
       <mat-icon>close</mat-icon>
     </button>
+
+    <!-- The title display, it can be Add or Modify and the space between two -->
     <mat-card-title>
       <span>{{
         this.service.form.controls['_id'].value ? 'Modify Jobs' : 'Add New Jobs'
@@ -15,8 +18,10 @@
       <span class="fill-remaining-space"></span>
     </mat-card-title>
 
+    <!-- Material stepper start tere-->
     <mat-vertical-stepper [linear]="isLinear" #stepper>
       <mat-step [stepControl]="firstFormGroup">
+        <!-- The form start here-->
         <form
           autocomplete="off"
           [formGroup]="service.form"
@@ -33,7 +38,9 @@
                 hidden
               />
 
+              <!-- The Field to input th number of the position-->
               <mat-form-field>
+                <mat-label>How many Position </mat-label>
                 <select
                   matNativeControl
                   required
@@ -47,12 +54,13 @@
                 </select>
               </mat-form-field>
 
+              <!-- The Field to input the expiration date -->
               <mat-form-field>
+                <mat-label>Expiration Date </mat-label>
                 <input
                   matInput
                   [matDatepicker]="picker"
                   formControlName="jobEndDate"
-                  placeholder="Expiration Date"
                   (click)="picker.open()"
                   #jobEndDate
                 />
@@ -64,23 +72,23 @@
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
 
+              <!-- The Field to input the job status is either part or full time -->
               <mat-form-field>
-                <mat-select
-                  placeholder="Status of the job"
-                  formControlName="jobStatus"
-                >
+                <mat-label>Select Job Status </mat-label>
+                <mat-select formControlName="jobStatus">
                   <mat-option *ngFor="let stat of status" [value]="stat.value">
                     {{ stat.viewValue }}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
 
+              <!-- The Field to input the job description -->
               <mat-form-field>
+                <mat-label>Job Description </mat-label>
                 <textarea
                   formControlName="jobDescription"
                   matInput
-                  placeholder="Description"
-                  rows="4"
+                  rows="2"
                   cols="10"
                   #jobDescription
                 >

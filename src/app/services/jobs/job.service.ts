@@ -21,6 +21,7 @@ export class JobService {
 
   form: FormGroup = new FormGroup({
     _id: new FormControl(null),
+    userId: new FormControl(null),
     jobStatus: new FormControl('', Validators.required),
     jobPostDate: new FormControl(''),
     jobEndDate: new FormControl('', Validators.required),
@@ -35,6 +36,7 @@ export class JobService {
   initializeFormGroup() {
     this.form.setValue({
       _id: new FormControl(null),
+      userId: new FormControl(null),
       jobStatus: new FormControl('', Validators.required),
       jobPostDate: new FormControl(''),
       jobEndDate: new FormControl('', [Validators.required]),
@@ -60,6 +62,7 @@ export class JobService {
 
   populateForm(
     _id: string,
+    userId: string,
     jobStatus: string,
     jobPostDate: Date,
     jobEndDate: Date,
@@ -69,6 +72,7 @@ export class JobService {
   ) {
     this.form.setValue({
       _id,
+      userId,
       jobStatus,
       jobPostDate,
       jobEndDate,
