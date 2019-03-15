@@ -1,7 +1,53 @@
-<div class="wraper" fxLayout="column" fxLayoutAlign="center center">
-  <span> Hello {{ this.token.username }} </span>
-  <mat-card fxFlex.xs="auto" class="mat-elevation-z8">
-    <div class="search-div">
+<h1>Job Table</h1>
+<div id="container">
+  <div>
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="_id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let data">{{ data._id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="jobStatus">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let data">{{ data.jobStatus }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="jobPostDate">
+        <th mat-header-cell *matHeaderCellDef>Date of Posting</th>
+        <td mat-cell *matCellDef="let data">{{ data.jobPostDate }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="jobEndDate">
+        <th mat-header-cell *matHeaderCellDef>Date expired</th>
+        <td mat-cell *matCellDef="let data">{{ data.jobEndDate }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="jobPositions">
+        <th mat-header-cell *matHeaderCellDef>Position</th>
+        <td mat-cell *matCellDef="let data">{{ data.jobPosition }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="jobDescription">
+        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <td mat-cell *matCellDef="let data">{{ data.jobDescription }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="jobActivate">
+        <th mat-header-cell *matHeaderCellDef>Activation</th>
+        <td mat-cell *matCellDef="let data">{{ data.jobActivate }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let data">{{ data.actions }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>
+    </table>
+  </div>
+
+  <!-- <div class="search-div">
       <button mat-raised-button (click)="onCreate()">
         <mat-icon>add</mat-icon>Add Job
       </button>
@@ -81,6 +127,5 @@
     <mat-paginator
       [pageSizeOptions]="[5, 10, 20]"
       showFirstLastButtons
-    ></mat-paginator>
-  </mat-card>
+    ></mat-paginator> -->
 </div>
