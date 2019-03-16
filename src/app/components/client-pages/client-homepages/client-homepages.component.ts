@@ -9,8 +9,4 @@ export class ClientHomepagesComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
-
-  //Hello job
-
-  onRedirect() {}
 }

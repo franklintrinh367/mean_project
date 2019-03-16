@@ -50,9 +50,9 @@ export class HeaderComponent implements OnInit {
   onNavigate() {
     let token = this.authService.getTokenDetails('auth-token')
     if (token.visited > !token.details) {
-      this.router.navigate(['/company_details'])
+      this.router.navigate(['/companies/company_details'])
     } else {
-      this.router.navigate(['/company_register'])
+      this.router.navigate(['/companies/company_register'])
     }
   }
 
@@ -61,9 +61,9 @@ export class HeaderComponent implements OnInit {
   onGetDetails() {
     let token = this.authService.getTokenDetails('auth-token')
     if (token.visited > !token.details) {
-      this.router.navigate(['/company_register'])
+      this.router.navigate(['/companies/company_register'])
     } else {
-      this.router.navigate(['/company_register'])
+      this.router.navigate(['/companies/company_register'])
     }
   }
 }

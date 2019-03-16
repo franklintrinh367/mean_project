@@ -47,7 +47,7 @@ export class LoaderInterceptor implements HttpInterceptor {
           this.removeRequest(req)
           subscription.unsubscribe()
         }
-      }, 2000)
+      }, 300)
     })
   }
 

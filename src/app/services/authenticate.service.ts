@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core'
-import { CanActivate } from '@angular/router/src/utils/preactivation'
 import { Router } from '@angular/router'
 
 @Injectable({
