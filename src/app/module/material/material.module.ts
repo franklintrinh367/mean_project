@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import * as Material from '@angular/material'
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material'
+import {
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+  MatTabsModule,
+  MatProgressBarModule,
+} from '@angular/material'
 
 @NgModule({
   declarations: [],
@@ -28,6 +33,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material'
     Material.MatPaginatorModule,
     Material.MatSortModule,
     Material.MatStepperModule,
+    MatTabsModule,
+    MatProgressBarModule,
   ],
   exports: [
     Material.MatTableModule,
@@ -51,6 +58,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material'
     Material.MatPaginatorModule,
     Material.MatSortModule,
     Material.MatStepperModule,
+    MatTabsModule,
+    MatProgressBarModule,
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },

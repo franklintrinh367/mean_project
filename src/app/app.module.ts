@@ -6,8 +6,6 @@ import { NgModule } from '@angular/core'
 
 //Forms
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-
-import { MatGridListModule } from '@angular/material/grid-list'
 import { HttpClientModule } from '@angular/common/http'
 import { FlexLayoutModule } from '@angular/flex-layout'
 
@@ -24,7 +22,6 @@ import { UnderconstructComponent } from './components/main/underconstruct/underc
 import { FooterComponent } from './components/main/footer/footer.component'
 import { HomeComponent } from './components/main/home/home.component'
 import { ContactUsComponent } from './components/main/contact-us/contact-us.component'
-import { NavbarComponent } from './components/main/navbar/navbar.component'
 import { ProfileComponent } from './components/main/profile/profile.component'
 import { VerifyPageComponent } from './components/main/verify-page/verify-page.component'
 import { HeaderComponent } from './components/main/header/header.component'
@@ -33,42 +30,34 @@ import { ForgotPasswordComponent } from './components/main/forgot-password/forgo
 //Pipe
 import { FirstErrPipePipe } from './pipe/first-err-pipe.pipe'
 
-import { TestComponent } from './test/test.component'
+// import { TestComponent } from './test/test.component'
 // import { ClientHomepagesComponent } from './client-homepages/client-homepages.component';
 
 //Client
-import { HomePagesComponent } from './components/client/home-pages/home-pages.component'
-import { JobDetailsComponent } from './components/client/job-details/job-details.component'
-import { NewJobComponent } from './components/client/new-job/new-job.component'
-import { EditJobComponent } from './components/client/edit-job/edit-job.component'
+// import { HomePagesComponent } from './components/client/home-pages/home-pages.component'
+// import { JobDetailsComponent } from './components/client/job-details/job-details.component'
+// import { NewJobComponent } from './components/client/new-job/new-job.component'
+// import { EditJobComponent } from './components/client/edit-job/edit-job.component'
 
 //Client Pages
-import { ClientHomepagesComponent } from './components/client-pages/client-homepages/client-homepages.component'
-import { ClientRegisterPageComponent } from './components/client-pages/client-register-page/client-register-page.component'
-import { ClientNewJobPageComponent } from './components/client-pages/client-new-job-page/client-new-job-page.component'
-import { ClientJobDetailsPageComponent } from './components/client-pages/client-job-details-page/client-job-details-page.component'
+// import { ClientHomepagesComponent } from './components/client-pages/client-homepages/client-homepages.component'
+// import { ClientRegisterPageComponent } from './components/client-pages/client-register-page/client-register-page.component'
+// import { ClientNewJobPageComponent } from './components/client-pages/client-new-job-page/client-new-job-page.component'
+// import { ClientJobDetailsPageComponent } from './components/client-pages/client-job-details-page/client-job-details-page.component'
 
 // Abdal --- this is the import related to the material.
 import { MaterialModule } from './module/material/material.module'
-import { MatButtonModule } from '@angular/material/button'
 
 //Admin Pages
-import { AdminHomepageComponent } from './components/admin-pages/admin-homepage/admin-homepage.component'
-import { AdminNewUserComponent } from './components/admin-pages/admin-new-user/admin-new-user.component'
-import { AdminUserListComponent } from './components/admin-pages/admin-user-list/admin-user-list.component'
-import { AdminManageJobsComponent } from './components/admin-pages/admin-manage-jobs/admin-manage-jobs.component'
-import { AdminCompanyListComponent } from './components/admin-pages/admin-company-list/admin-company-list.component'
-import { AdminUserDetailsComponent } from './components/admin-pages/admin-user-details/admin-user-details.component'
-import { AdminJobsDetailsComponent } from './components/admin-pages/admin-jobs-details/admin-jobs-details.component'
-import { AdminCompanyDetailsComponent } from './components/admin-pages/admin-company-details/admin-company-details.component'
+// import { AdminHomepageComponent } from './components/admin-pages/admin-homepage/admin-homepage.component'
+// import { AdminNewUserComponent } from './components/admin-pages/admin-new-user/admin-new-user.component'
+// import { AdminUserListComponent } from './components/admin-pages/admin-user-list/admin-user-list.component'
+// import { AdminManageJobsComponent } from './components/admin-pages/admin-manage-jobs/admin-manage-jobs.component'
+// import { AdminCompanyListComponent } from './components/admin-pages/admin-company-list/admin-company-list.component'
+// import { AdminUserDetailsComponent } from './components/admin-pages/admin-user-details/admin-user-details.component'
+// import { AdminJobsDetailsComponent } from './components/admin-pages/admin-jobs-details/admin-jobs-details.component'
+// import { AdminCompanyDetailsComponent } from './components/admin-pages/admin-company-details/admin-company-details.component'
 
-//Material
-import {
-  MatProgressBarModule,
-  MatTableModule,
-  MatPaginatorModule,
-  MatTabsModule,
-} from '@angular/material'
 import { LoaderModule } from './module/loader-module'
 
 //Candidate
@@ -90,43 +79,41 @@ import { ScrollCorDirective } from './components/directives/scroll-cor.directive
     FooterComponent,
     HomeComponent,
     ContactUsComponent,
-    TestComponent,
+    // TestComponent,
     LoaderComponent,
     ResetPasswordComponent,
     ForgotPasswordComponent,
 
     // ClientHomepagesComponent,
-    HomePagesComponent,
-    JobDetailsComponent,
-    NewJobComponent,
-    EditJobComponent,
-    NavbarComponent,
+    // HomePagesComponent,
+    // JobDetailsComponent,
+    // NewJobComponent,
+    // EditJobComponent,
+    //--------
     ProfileComponent,
     VerifyPageComponent,
     HeaderComponent,
-
+    //-------
     // Company Pages
-    ClientHomepagesComponent,
-    ClientRegisterPageComponent,
-    ClientNewJobPageComponent,
-    ClientJobDetailsPageComponent,
+    // ClientHomepagesComponent,
+    // ClientRegisterPageComponent,
+    // ClientNewJobPageComponent,
+    // ClientJobDetailsPageComponent,
 
     //Admin Pages
-    AdminHomepageComponent,
-    AdminNewUserComponent,
-    AdminUserListComponent,
-    AdminManageJobsComponent,
-    AdminCompanyListComponent,
-    AdminUserDetailsComponent,
-    AdminJobsDetailsComponent,
-    AdminCompanyDetailsComponent,
+    // AdminHomepageComponent,
+    // AdminNewUserComponent,
+    // AdminUserListComponent,
+    // AdminManageJobsComponent,
+    // AdminCompanyListComponent,
+    // AdminUserDetailsComponent,
+    // AdminJobsDetailsComponent,
+    // AdminCompanyDetailsComponent,
 
     //Candidate Pages
-    CandidateRegisterPageComponent,
-
-    CandidateHomePageComponent,
-
-    CandidateEditProfileComponent,
+    // CandidateRegisterPageComponent,
+    // CandidateHomePageComponent,
+    // CandidateEditProfileComponent,
 
     ScrollCorDirective,
   ],
@@ -136,19 +123,13 @@ import { ScrollCorDirective } from './components/directives/scroll-cor.directive
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatGridListModule,
     HttpClientModule,
     FlexLayoutModule,
-    MaterialModule,
-    MatProgressBarModule,
     LoaderModule,
-    MatButtonModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatTabsModule,
+    MaterialModule,
   ],
   providers: [ClientService, JobService],
   bootstrap: [AppComponent],
-  entryComponents: [ClientNewJobPageComponent],
+  entryComponents: [],
 })
 export class AppModule {}

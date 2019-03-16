@@ -41,12 +41,12 @@ export class LoginComponent implements OnInit {
             if (token.visited <= 1) {
               switch (token.role) {
                 case 'Candidate': {
-                  window.location.assign('/candidate_register')
+                  window.location.assign('/candidates/candidate_register')
                   break
                 }
                 //check if the role is
                 case 'Company':
-                  window.location.assign('/company_register')
+                  window.location.assign('/companies/company_register')
                   break
               }
               this.closeDialog('')
@@ -57,13 +57,13 @@ export class LoginComponent implements OnInit {
                 // check if the role is company
                 if (token.role === 'Company') {
                   //assign to the company home page
-                  window.location.assign('/company_details')
+                  window.location.assign('/companies/company_details')
                 } else {
                   this.closeDialog('')
                   window.location.assign('/home')
                 }
               } else {
-                window.location.assign('/company_register')
+                window.location.assign('/companies/company_register')
               }
             }
           }
