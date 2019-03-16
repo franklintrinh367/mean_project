@@ -1,25 +1,29 @@
-.container > * {
-  width: 100%;
+.wraper {
+  padding: 70px;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
 }
 
+@media screen and (max-width: 480px) {
+  .wraper {
+    width: 100%;
+    padding: 20px 0 20px 0;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .wraper {
+    width: 90%;
+  }
+}
+
+mat-radio-group {
+  display: flex;
+  flex-direction: column;
+}
 mat-radio-button {
   padding-right: 20px;
-}
-
-.wraper {
-  padding-top: 30px;
-  padding-bottom: 70px;
-}
-
-button {
-  background-color: #4285f4;
-  width: 100%;
-  color: white;
-  font-size: 15px;
-}
-
-.mt-20 {
-  margin-top: 20px;
 }
 
 mat-error {
