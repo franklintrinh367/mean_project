@@ -82,6 +82,7 @@ export class ClientJobDetailsPageComponent implements OnInit {
       this.dataSource.paginator = this.paginator
     })
   }
+
   // function to clear the search key
   onSearchClear() {
     if (this.list !== undefined) {
@@ -99,7 +100,6 @@ export class ClientJobDetailsPageComponent implements OnInit {
 
   // function to call the add clientAddJobComponent
   onCreate() {
-    this.service.initializeFormGroup()
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true

@@ -52,24 +52,23 @@ export class ClientNewJobPageComponent implements OnInit {
         this.service.form.controls['jobActivate'].setValue(true)
         this.service.form.controls['jobPostDate'].setValue(Date.now())
         //subscribe to the function post_Jobs on the service
-        this.service.post_Jobs(this.service.form.value).subscribe()
-        this.router.navigate(['/company_details'])
+        this.service.post_Jobs(this.service.form.value).subscribe(() => {
+          this.onClose()
+          this.router.navigate(['/companies/company_details'])
+        })
       } else {
-        this.service.update_Jobs(this.service.form.value).subscribe()
-        this.router.navigate(['/company_details'])
+        this.service.update_Jobs(this.service.form.value).subscribe(() => {
+          this.onClose()
+          this.router.navigate(['/companies/company_details'])
+        })
       }
-
-      // to reset the form we need to implement this
-      this.service.form.reset()
-      this.service.initializeFormGroup()
-      this.onClose()
     }
   }
 
   // function to close the dialog after submission
   onClose() {
     this.service.form.reset()
-    this.service.initializeFormGroup()
+    //this.service.initializeFormGroup()
     this.dialogRef.close()
   }
 }
