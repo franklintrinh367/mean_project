@@ -1,5 +1,4 @@
 <mat-card class="mat-elevation-z8" style="text-align: center">
-  <loader></loader>
   <mat-card-content>
     <form autocomplete="off" [formGroup]="loginForm">
       <div class="container">
@@ -48,7 +47,9 @@
         <div id="login-btn">
           <button
             type="submit"
-            class="button-style mat-elevation-z8"
+            class="button-style"
+            mat-raised-button
+            color="primary"
             mat-button
             (click)="login(email.value, password.value)"
           >

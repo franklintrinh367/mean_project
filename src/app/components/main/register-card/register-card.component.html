@@ -1,6 +1,5 @@
 <div fxLayout="row wrap" fxLayoutAlign="center center">
   <mat-card>
-    <loader></loader>
     <mat-card-content>
       <form autocomplete="off" [formGroup]="registerForm">
         <div class="container">
@@ -255,7 +254,8 @@
             id="signup-btn"
             type="submit"
             mat-button
-            class="mat-elevation-z8"
+            mat-raised-button
+            color="primary"
             (click)="signup(email, password, username, false, mode)"
           >
             SIGN UP

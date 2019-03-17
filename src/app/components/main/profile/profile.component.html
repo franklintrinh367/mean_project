@@ -1,63 +1,111 @@
-<br><br>
-<div class="wraper" fxLayout="column" fxLayoutAlign="center center">
-  <mat-card class="mat-elevation-z8">
-    <mat-card-content>
-      <mat-nav-list>
+<!-- 
+                <img mat-card-lg-image src="/assets/profile.jpg" />
+                <a href="#"> Change picture</a>
 
-        <mat-list-item>
-          <h4>Username: </h4>
-          <div class="spacer"></div>
-          <p>{{username}}</p>
-        </mat-list-item>
+              <h3>John Doe</h3>
+              <h5>Student</h5>
 
-        <mat-divider></mat-divider>
-        <mat-list-item>
-          <h4>Education: </h4>
-        </mat-list-item>
+              <mat-list>
+                <h5>SUGGESTED JOBS</h5>
+                <mat-list-item> Full Stack Developer</mat-list-item>
+                <mat-list-item> Software Engineer </mat-list-item>
+                <mat-list-item> QA Analyst</mat-list-item>
+              </mat-list>
 
-        <mat-divider></mat-divider>
-        <mat-list-item>
-          <h4>Occupation: </h4>
-        </mat-list-item>
+              <mat-tab-group>
+                <mat-tab label="About">
+                  <mat-list>
+                    <mat-list-item>First Name: John</mat-list-item>
+                    <mat-list-item>Last Name: Doe</mat-list-item>
+                    <mat-list-item
+                      >Education: Ontario College Advanced Diploma</mat-list-item
+                    >
+                    <mat-list-item>Occupation: Student</mat-list-item>
+                    <mat-list-item>Phone Number: (416) 509-6995</mat-list-item>
+                    <mat-list-item>Address: 160 Kendal Ave </mat-list-item>
+                    <mat-list-item>City: Toronto</mat-list-item>
+                    <mat-list-item>Province: Ontario</mat-list-item>
+                    <mat-list-item>Postal Code: M5R 1M3</mat-list-item>
+                  </mat-list>
+                </mat-tab>
+                <mat-tab label="Applied Jobs"> Jobs that have been applied </mat-tab>
+                <mat-tab label="Saved Jobs">
+                  Favorite jobs will be saved here
+                </mat-tab>
+                <mat-tab label="Favorite Company"> Your favorite Company </mat-tab>
+              </mat-tab-group>
 
-        <mat-divider></mat-divider>
-        <mat-list-item>
-          <h4>Email: </h4>
-          <div class="spacer"></div>
-          <p>{{email}}</p>
-        </mat-list-item>
+              <mat-list>
+                <h5>RELEVANT JOBS</h5>
+                <mat-list-item> Frontend Developer</mat-list-item>
+                <mat-list-item> Java Developer</mat-list-item>
+                <mat-list-item> iOS Developer</mat-list-item>
+              </mat-list>  -->
 
-        <mat-divider></mat-divider>
-        <mat-list-item>
-          <h4>Skills: </h4>
-        </mat-list-item>
+<div id="body" [@slideUp]="state">
+  <h1>Profile</h1>
+  <div class="tile">
+    <div class="item">
+      <img mat-card-lg-image src="/assets/profile.jpg" class="avatar" />
+      <a href="#"><mat-icon>edit</mat-icon></a>
+    </div>
+    <div class="item">
+      <h3>{{ username }}</h3>
+      <h5>Student</h5>
+    </div>
+  </div>
+  <mat-divider color="primary"></mat-divider>
 
-        <mat-divider></mat-divider>
-        <mat-list-item>
-          <h4>Connections: </h4>
-        </mat-list-item>
+  <div class="tile">
+    <div class="item" id="jobs">
+      <mat-list>
+        <h5>SUGGESTED JOBS</h5>
+        <mat-list-item> Full Stack Developer</mat-list-item>
+        <mat-list-item> Software Engineer </mat-list-item>
+        <mat-list-item> QA Analyst</mat-list-item>
+      </mat-list>
 
-        <mat-divider></mat-divider>
-        <mat-list-item>
-          <h4>Phone Number: </h4>
-        </mat-list-item>
-
-        <mat-divider></mat-divider>
-        <mat-list-item>
-          <h4>LinkedIn: </h4>
-        </mat-list-item>
-
-        <mat-divider></mat-divider>
-        <mat-list-item>
-          <h4>Date Of Birth: </h4>
-        </mat-list-item>
-
-        <mat-divider></mat-divider>
-        <br>
-        <div id="edit">
-          <button mat-button class="button-style mat-elevation-z8">Edit Profile</button>
-        </div>
-      </mat-nav-list>
-    </mat-card-content>
-  </mat-card>
+      <mat-list>
+        <h5>RELEVANT JOBS</h5>
+        <mat-list-item> Frontend Developer</mat-list-item>
+        <mat-list-item> Java Developer</mat-list-item>
+        <mat-list-item> iOS Developer</mat-list-item>
+      </mat-list>
+    </div>
+    <div class="item" id="info">
+      <mat-tab-group>
+        <mat-tab label="About">
+          <mat-list>
+            <mat-list-item>First Name: John</mat-list-item>
+            <mat-list-item>Last Name: Doe</mat-list-item>
+            <mat-list-item
+              >Education: Ontario College Advanced Diploma</mat-list-item
+            >
+            <mat-list-item>Occupation: Student</mat-list-item>
+            <mat-list-item>Phone Number: (416) 509-6995</mat-list-item>
+            <mat-list-item>Address: 160 Kendal Ave </mat-list-item>
+            <mat-list-item>City: Toronto</mat-list-item>
+            <mat-list-item>Province: Ontario</mat-list-item>
+            <mat-list-item>Postal Code: M5R 1M3</mat-list-item>
+          </mat-list>
+        </mat-tab>
+        <mat-tab label="Applied Jobs"> Jobs that have been applied </mat-tab>
+        <mat-tab label="Saved Jobs">
+          Favorite jobs will be saved here
+        </mat-tab>
+        <mat-tab label="Favorite Company"> Your favorite Company </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+  <mat-divider color="primary"></mat-divider>
+  <div class="tile">
+    <div class="item">
+      <button mat-button mat-raised-button color="primary">Edit Profile</button>
+    </div>
+    <div class="item">
+      <button (click)="navigate('back')" mat-button mat-raised-button>
+        Back
+      </button>
+    </div>
+  </div>
 </div>

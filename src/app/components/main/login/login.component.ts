@@ -4,11 +4,13 @@ import { UserService } from 'src/app/services/main/user.service'
 import { AuthenticateService } from 'src/app/services/authenticate.service'
 import { MatDialogRef } from '@angular/material'
 import { Router } from '@angular/router'
+import { slideDown } from '../../shared/animations'
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  animations: [slideDown()],
 })
 export class LoginComponent implements OnInit {
   private error: String

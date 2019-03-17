@@ -3,8 +3,6 @@ const router = express.Router()
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const nodemailer = require('nodemailer')
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
 
 // Get the secret key
 const secretOrKey = require('../config/keys').secretOrKey
@@ -148,6 +146,7 @@ router.get('/findUserByHash/:hash', (req, res) => {
 //Look for existing email or username
 router.get('/find/:obj', (req, res) => {
   let obj = req.params.obj
+  console.log('Request to user')
   User.findOne({
     $or: [{ email: obj }, { username: obj }],
   })

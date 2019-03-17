@@ -22,3 +22,26 @@ export const slideUp = () => {
     transition('out => in', animate('300ms')),
   ])
 }
+
+export const slideDown = () => {
+  return trigger('slideDown', [
+    state(
+      'out',
+      style({
+        opacity: 0,
+        visibility: 'hidden',
+        transform: 'translateY(-100%)',
+      })
+    ),
+
+    state(
+      'in',
+      style({
+        opacity: 1,
+        transform: 'translateY(0)',
+      })
+    ),
+
+    transition('out => in', animate('300ms')),
+  ])
+}
