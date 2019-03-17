@@ -1,27 +1,69 @@
-.spacer {
-    flex: 1 1;
+#body {
+  display: flex;
+  flex-direction: column;
+  padding: 70px;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
 }
 
-.button-style {
+.tile {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  height: 100%;
+}
+
+mat-divider {
+  width: 100%;
+}
+
+#jobs {
+  flex-grow: 1;
+}
+
+#info {
+  flex-grow: 8;
+}
+
+.item {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.item a {
+  margin: 0 auto;
+}
+
+button {
+  width: 150px;
+}
+.avatar {
+  width: 150px;
+  height: 150px;
+}
+
+@media screen and (max-width: 480px) {
+  #body {
+    padding: 70px 0 70px 0;
+  }
+
+  .tile {
+    padding: 10px;
+    justify-content: center;
+  }
+
+  .item {
     width: 100%;
-    height: 50px;
-    font-size: 15px;
-    background-color: #4285F4;
-    color: white;
-}
-
-.wraper {
-    padding-top: 50px;
-    padding-bottom: 70px;
-}
-
-#edit {
-    width: 40%;
-    margin: 0 auto;
-}
-
-mat-card {
     height: 100%;
-    width: 500px;
-    background-color: #E0E0E0;
+  }
+  button {
+    margin: 0 auto;
+  }
+
+  h1 {
+    padding: 10px;
+  }
 }

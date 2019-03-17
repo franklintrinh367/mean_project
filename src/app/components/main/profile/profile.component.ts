@@ -1,16 +1,24 @@
 import { Component, OnInit } from '@angular/core'
 import { AuthenticateService } from 'src/app/services/authenticate.service'
+import { Location } from '@angular/common'
+import { slideUp } from '../../shared/animations'
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
+  animations: [slideUp()],
 })
 export class ProfileComponent implements OnInit {
   private token: any
-  constructor(private authService: AuthenticateService) {}
+  state = 'out'
+  constructor(
+    private authService: AuthenticateService,
+    private location: Location
+  ) {}
 
   ngOnInit() {
+    setTimeout(() => (this.state = 'in'), 30)
     this.token = this.authService.getTokenDetails('auth-token')
   }
 
@@ -20,5 +28,13 @@ export class ProfileComponent implements OnInit {
 
   public get email() {
     return this.token.email
+  }
+
+  public navigate(input) {
+    switch (input) {
+      case 'back':
+        this.location.back()
+        break
+    }
   }
 }
