@@ -7,15 +7,18 @@ import { User } from '../../../../models/users'
 /* SERVICES */
 import { LogoutService } from '../../../services/logout.service'
 import { UserService } from 'src/app/services/main/user.service'
+import { slideUp } from '../../shared/animations'
 
 @Component({
   selector: 'app-admin-homepage',
   templateUrl: './admin-homepage.component.html',
   styleUrls: ['./admin-homepage.component.scss'],
+  animations: [slideUp()],
 })
 export class AdminHomepageComponent implements OnInit {
   user = {}
   _id: string
+  state = 'out'
 
   constructor(
     private userService: UserService,
@@ -24,6 +27,7 @@ export class AdminHomepageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    setTimeout(() => (this.state = 'in'), 30)
     this._id = localStorage.getItem('token')
   }
 
