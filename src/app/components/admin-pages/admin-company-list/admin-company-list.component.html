@@ -1,4 +1,4 @@
-<div class="wraper" fxLayout="column" fxLayoutAlign="center center">
+<!-- <div class="wraper" fxLayout="column" fxLayoutAlign="center center">
   <mat-card fxFlex.xs="auto">
     <mat-card-content>
       <h1>Company List</h1>
@@ -8,7 +8,7 @@
         </button>
       </div>
 
-      <!-- Search-->
+ 
       <div class="search-div">
         <mat-form-field class="search-form-field" floatLabel="never">
           <input
@@ -20,87 +20,87 @@
           />
         </mat-form-field>
       </div>
-      <!-- Table with Companies Display-->
-      <mat-table [dataSource]="dataSource" matSort>
-        <!-- Id Column -->
+  
+      </table mat-table [dataSource]="dataSource" matSort>
+    
         <ng-container hidden matColumnDef="_id">
-          <mat-header-cell hidden *matHeaderCellDef>
+          </th mat-header-cell hidden *matHeaderCellDef>
             ID
-          </mat-header-cell>
-          <mat-cell hidden *matCellDef="let data"> {{ data._id }} </mat-cell>
+          </th>
+          <td mat-cell hidden *matCellDef="let data"> {{ data._id }} </td>
         </ng-container>
 
         <ng-container matColumnDef="compName">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
+          </th mat-header-cell *matHeaderCellDef mat-sort-header>
             Organization
-          </mat-header-cell>
-          <mat-cell *matCellDef="let data"> {{ data.compName }} </mat-cell>
+          </th>
+          <td mat-cell *matCellDef="let data"> {{ data.compName }} </td>
         </ng-container>
 
         <ng-container matColumnDef="compCRANumber">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
+          </th mat-header-cell *matHeaderCellDef mat-sort-header>
             CRA Number
-          </mat-header-cell>
-          <mat-cell *matCellDef="let data"> {{ data.compCRANumber }} </mat-cell>
+          </th>
+          <td mat-cell *matCellDef="let data"> {{ data.compCRANumber }} </td>
         </ng-container>
 
         <ng-container matColumnDef="compAddress">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
+          </th mat-header-cell *matHeaderCellDef mat-sort-header>
             Address
-          </mat-header-cell>
-          <mat-cell *matCellDef="let data"> {{ data.compAddress }} </mat-cell>
+          </th>
+          <td mat-cell *matCellDef="let data"> {{ data.compAddress }} </td>
         </ng-container>
 
         <ng-container matColumnDef="compCity">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
+          </th mat-header-cell *matHeaderCellDef mat-sort-header>
             City
-          </mat-header-cell>
-          <mat-cell *matCellDef="let data">
+          </th>
+          <td mat-cell *matCellDef="let data">
             {{ data.compCity }}
-          </mat-cell>
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="compCode">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
+          </th mat-header-cell *matHeaderCellDef mat-sort-header>
             Code
-          </mat-header-cell>
-          <mat-cell *matCellDef="let data">
+          </th>
+          <td mat-cell *matCellDef="let data">
             {{ data.compCode }}
-          </mat-cell>
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="compProvince">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
+          </th mat-header-cell *matHeaderCellDef mat-sort-header>
             Province
-          </mat-header-cell>
-          <mat-cell *matCellDef="let data">
+          </th>
+          <td mat-cell *matCellDef="let data">
             {{ data.compProvince }}
-          </mat-cell>
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="compPhone">
-          <mat-header-cell *matHeaderCellDef>
+          </th mat-header-cell *matHeaderCellDef>
             Phone
-          </mat-header-cell>
-          <mat-cell class="colum-size" *matCellDef="let data">
+          </th>
+          <td mat-cell class="colum-size" *matCellDef="let data">
             {{ data.compPhone }}
-          </mat-cell>
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="compContact">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
+          </th mat-header-cell *matHeaderCellDef mat-sort-header>
             Contact
-          </mat-header-cell>
-          <mat-cell *matCellDef="let data">
+          </th>
+          <td mat-cell *matCellDef="let data">
             {{ data.compContact }}
-          </mat-cell>
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="actions">
-          <mat-header-cell *matHeaderCellDef>
+          </th mat-header-cell *matHeaderCellDef>
             Action
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row">
+          </th>
+          <td mat-cell *matCellDef="let row">
             <button
               mat-raised-button
               class="button-style1"
@@ -116,17 +116,132 @@
             >
               Delete
             </button>
-          </mat-cell>
+          </td>
         </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayColumns"></mat-row>
-
-        -->
+        <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>
       </mat-table>
 
       <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
       </mat-paginator>
     </mat-card-content>
   </mat-card>
+</div> -->
+
+<div id="body" [@slideUp]="state">
+  <h1>Company List</h1>
+  <div class="tile">
+    <mat-form-field class="search-form-field" floatLabel="never">
+      <input
+        matInput
+        [(ngModel)]="searchKey"
+        placeholder="Search"
+        autocomplete="off"
+        (keyup)="applyFilter()"
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="tile" id="container">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container hidden matColumnDef="_id">
+        <th mat-header-cell hidden *matHeaderCellDef>
+          ID
+        </th>
+        <td mat-cell hidden *matCellDef="let data">{{ data._id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="compName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Organization
+        </th>
+        <td mat-cell *matCellDef="let data">{{ data.compName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="compCRANumber">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          CRA Number
+        </th>
+        <td mat-cell *matCellDef="let data">{{ data.compCRANumber }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="compAddress">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Address
+        </th>
+        <td mat-cell *matCellDef="let data">{{ data.compAddress }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="compCity">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          City
+        </th>
+        <td mat-cell *matCellDef="let data">
+          {{ data.compCity }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="compCode">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Code
+        </th>
+        <td mat-cell *matCellDef="let data">
+          {{ data.compCode }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="compProvince">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Province
+        </th>
+        <td mat-cell *matCellDef="let data">
+          {{ data.compProvince }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="compPhone">
+        <th mat-header-cell *matHeaderCellDef>
+          Phone
+        </th>
+        <td mat-cell class="colum-size" *matCellDef="let data">
+          {{ data.compPhone }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="compContact">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Contact
+        </th>
+        <td mat-cell *matCellDef="let data">
+          {{ data.compContact }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>
+          Actions
+        </th>
+        <td mat-cell id="btns" *matCellDef="let row">
+          <button mat-icon-button (click)="onEdit(row)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn">
+            <mat-icon>delete_outline</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>
+    </table>
+  </div>
+  <div class="tile">
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
+    </mat-paginator>
+  </div>
+  <div class="tile">
+    <button mat-button mat-raised-button (click)="goBack()">Back</button>
+  </div>
+  <div class="tile"></div>
 </div>

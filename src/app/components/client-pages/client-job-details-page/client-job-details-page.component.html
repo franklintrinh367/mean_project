@@ -86,7 +86,7 @@
   ></mat-paginator>
 </div> -->
 
-<div id="body">
+<div id="body" [@slideUp]="state">
   <h1>Job Table</h1>
   <div class="tile">
     <button mat-raised-button (click)="onCreate()">
@@ -175,5 +175,9 @@
       [pageSizeOptions]="[5, 10, 20]"
       showFirstLastButtons
     ></mat-paginator>
+  </div>
+
+  <div class="tile">
+    <button mat-button mat-raised-button (click)="goBack()">Back</button>
   </div>
 </div>

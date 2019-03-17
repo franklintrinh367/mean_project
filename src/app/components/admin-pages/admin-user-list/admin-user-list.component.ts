@@ -21,6 +21,8 @@ import {
 /* COMPONENTS */
 import { AdminUserDetailsComponent } from '../admin-user-details/admin-user-details.component'
 import { AdminNewUserComponent } from '../admin-new-user/admin-new-user.component'
+import { Location } from '@angular/common'
+import { slideUp } from '../../shared/animations'
 
 // // gonna be deleted - only for test
 const USERS: any[] = [
@@ -36,6 +38,7 @@ const USERS: any[] = [
   selector: 'app-admin-user-list',
   templateUrl: './admin-user-list.component.html',
   styleUrls: ['./admin-user-list.component.scss'],
+  animations: [slideUp()],
 })
 export class AdminUserListComponent implements OnInit {
   /* PARAMETERS */
@@ -44,7 +47,8 @@ export class AdminUserListComponent implements OnInit {
 
   /* TABLE PARAMETERS */
   dataSource = new MatTableDataSource(USERS)
-  displayColumns: string[] = ['_id', 'username', 'email', 'role', 'actions']
+  displayColumns: string[]
+  state: String
 
   /* PAGINATION AND SORT */
   @ViewChild(MatSort) sort: MatSort
@@ -53,10 +57,15 @@ export class AdminUserListComponent implements OnInit {
   constructor(
     private userService: UserService,
     private editService: EditUserService,
-    private dialog: MatDialog
-  ) {}
+    private dialog: MatDialog,
+    private location: Location
+  ) {
+    this.displayColumns = ['_id', 'username', 'email', 'role', 'actions']
+    this.state = 'out'
+  }
 
   ngOnInit() {
+    setTimeout(() => (this.state = 'in'), 30)
     this.getAllUsers()
     this.onSearchClear()
     this.applyFilter()
@@ -112,5 +121,9 @@ export class AdminUserListComponent implements OnInit {
         this.editService.form.controls['activated'].setValue(false)
       }
     }
+  }
+
+  goBack() {
+    this.location.back()
   }
 }

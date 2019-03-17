@@ -12,6 +12,8 @@ import { Router } from '@angular/router'
 
 /* MATERIAL DESIGN */
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material'
+import { Location } from '@angular/common'
+import { slideUp } from '../../shared/animations'
 
 //JUST FOR TESTING - GONNA BE DELETED
 const JOBS: any[] = [
@@ -42,11 +44,13 @@ const JOBS: any[] = [
   selector: 'app-admin-manage-jobs',
   templateUrl: './admin-manage-jobs.component.html',
   styleUrls: ['./admin-manage-jobs.component.scss'],
+  animations: [slideUp()],
 })
 export class AdminManageJobsComponent implements OnInit {
   /*  PARAMETERS */
   searchKey: string
   list: Job[]
+  state: string
 
   /*  TABLE PARAMETERS */
   dataSource = new MatTableDataSource(JOBS)
@@ -63,15 +67,19 @@ export class AdminManageJobsComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
 
-  constructor() // private jobSerbice: JobService,
-  // private router: Router
-  {}
+  constructor(
+    private loc: Location // private jobSerbice: JobService,
+  ) // private router: Router
+  {
+    this.state = 'out'
+  }
 
   ngOnInit() {
     this.onSearchClear()
     this.applyFilter()
     this.dataSource.sort = this.sort
     this.dataSource.paginator = this.paginator
+    setTimeout(() => (this.state = 'in'), 30)
   }
 
   /* FUNCTION TO CLEAR THE SEARCH KEY */
@@ -83,5 +91,9 @@ export class AdminManageJobsComponent implements OnInit {
   /* FUCNTION TO FILTER THE TABLE */
   applyFilter() {
     this.dataSource.filter = this.searchKey.trim().toLowerCase()
+  }
+
+  goBack() {
+    this.loc.back()
   }
 }

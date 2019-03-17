@@ -1,88 +1,71 @@
-.container > * {
-  width: auto;
-}
-
-.wraper {
-  text-align: center;
-  font-size: 16px;
-  width: auto;
-  padding-top: 50px;
-  padding-bottom: 70px;
-}
-.button-style {
-  width: auto;
-  height: 50px;
-  padding: 10px;
-  margin: 10px;
-  font-size: 15px;
-  color: white;
-  background-color: darkblue;
-}
-.button-style1 {
-  width: auto;
-  height: 35px;
-  font-size: 10px;
-  color: white;
-  background-color: darkblue;
-  margin-left: 10px;
-}
-a {
-  font-size: 14px;
-  cursor: pointer;
-}
-
-mat-card-content {
+#body {
+  display: flex;
+  flex-direction: column;
+  padding: 70px;
   width: 100%;
-  margin-left: 80px;
-  padding: 10px;
-}
-th.mat-sort-header-sorted {
-  color: black;
-}
-mat-card {
-  width: 1400px;
+  height: 100%;
+  justify-content: center;
 }
 
-mat-table {
-  width: 80%;
+#container {
+  width: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+  table {
+    width: 100%;
+  }
+}
+
+td.mat-cell,
+th.mat-header-cell {
   padding: 5px;
 }
-//color rows
-.mat-row:nth-child(even) {
-  background-color: whitesmoke;
+
+button {
+  width: 150px;
+  margin: 0 auto;
 }
 
-.mat-row:nth-child(odd) {
-  background-color: lightgray;
+.tile {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  height: 100%;
 }
-/* Filter Controls*/
 
-.search-div {
+#btns {
+  display: flex;
+  flex-flow: row;
+
+  button {
+    width: 50px;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.item {
   margin: 10px;
-}
-.search-div button a {
-  text-decoration-line: none;
-}
-.search-form-field {
-  width: 60%;
-  margin-left: 10px;
-  padding: 5px 10px;
-  background-color: #f5f5f5;
-  border-radius: 5px;
-}
-.search-form-field div.mat-form-field-underline {
-  display: none;
+  display: flex;
+  flex-direction: column;
 }
 
-.search-form-field div.mat-form-field-infix {
-  border-top: 0px;
-}
+@media screen and (max-width: 480px) {
+  #body {
+    padding: 70px 0 70px 0;
+  }
 
-.search-form-field div.mat-form-field-wrapper {
-  padding-bottom: 0px;
-}
+  .tile {
+    padding: 10px;
+    justify-content: center;
+  }
 
-.search-form-field div.mat-form-field-suffix button {
-  height: 32px;
-  width: 32px;
+  .item {
+    width: 100%;
+    height: 100%;
+  }
 }
