@@ -1,4 +1,4 @@
-<div class="wraper" fxLayout="column" fxLayoutAlign="center center">
+<!-- <div class="wraper" fxLayout="column" fxLayoutAlign="center center">
   <mat-card fxFlex.xs="auto">
     <mat-card-content>
       <h1>User List</h1>
@@ -15,7 +15,7 @@
           Create New User
         </button>
       </div>
-      <!-- Search-->
+
       <div class="search-div">
         <mat-form-field class="search-form-field" floatLabel="never">
           <input
@@ -27,10 +27,10 @@
           />
         </mat-form-field>
       </div>
-      <!-- Table with Users Display-->
+
 
       <mat-table [dataSource]="dataSource" matSort>
-        <!-- Id Column -->
+
         <ng-container matColumnDef="_id">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
             ID
@@ -38,7 +38,7 @@
           <mat-cell *matCellDef="let data">{{ data._id }}</mat-cell>
         </ng-container>
 
-        <!-- User Name Column -->
+
         <ng-container matColumnDef="username">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
             User Name </mat-header-cell
@@ -46,7 +46,7 @@
           <mat-cell *matCellDef="let data">{{ data.username }}</mat-cell>
         </ng-container>
 
-        <!-- Email Column -->
+
         <ng-container matColumnDef="email">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
             Email
@@ -54,7 +54,7 @@
           <mat-cell *matCellDef="let data">{{ data.email }}</mat-cell>
         </ng-container>
 
-        <!-- Role Column -->
+
         <ng-container matColumnDef="role">
           <mat-header-cell *matHeaderCellDef mat-sort_header>
             Role
@@ -62,7 +62,7 @@
           <mat-cell *matCellDef="let data">{{ data.role }}</mat-cell>
         </ng-container>
 
-        <!-- Actions Column -->
+
         <ng-container matColumnDef="actions">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
             Action
@@ -85,14 +85,89 @@
             </button>
           </mat-cell>
         </ng-container>
-        <!-- Displayed Columns-->
+
         <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayColumns"></mat-row>
       </mat-table>
 
-      <!-- Pagination-->
+
       <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
       </mat-paginator>
     </mat-card-content>
   </mat-card>
+</div> -->
+
+<div id="body">
+  <h1>User List</h1>
+  <div class="tile">
+    <button id="create" mat-raised-button (click)="onCreate()">
+      <mat-icon>add</mat-icon>Create User
+    </button>
+  </div>
+
+  <div class="tile">
+    <mat-form-field class="search-form-field" floatLabel="never">
+      <input
+        matInput
+        [(ngModel)]="searchKey"
+        placeholder="Search"
+        autocomplete="off"
+        (keyup)="applyFilter()"
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="tile" id="container">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          ID
+        </th>
+        <td mat-cell *matCellDef="let data">{{ data._id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          User Name
+        </th>
+        <td mat-cell *matCellDef="let data">{{ data.username }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Email
+        </th>
+        <td mat-cell *matCellDef="let data">{{ data.email }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef mat-sort_header>
+          Role
+        </th>
+        <td mat-cell *matCellDef="let data">{{ data.role }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Action
+        </th>
+        <td mat-cell id="btns" *matCellDef="let row">
+          <button mat-icon-button (click)="onEdit(row)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn">
+            <mat-icon>delete_outline</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>
+    </table>
+  </div>
+
+  <div class="tile">
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
+    </mat-paginator>
+  </div>
 </div>
