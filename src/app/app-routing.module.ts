@@ -64,10 +64,6 @@ const routes: Routes = [
     loadChildren:
       './routing-modules/companies/companies.module#CompaniesModule',
   },
-  // { path: 'company_home', component: ClientHomepagesComponent },
-  // { path: 'company_register', component: ClientRegisterPageComponent },
-  // { path: 'new-jobs', component: ClientNewJobPageComponent },
-  // { path: 'company_details', component: ClientJobDetailsPageComponent },
 
   //Admin Pages Router
   {

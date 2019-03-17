@@ -7,7 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "e2e": "ng e2e",
-    "server": "node server.js",
+    "server": "nodemon server.js",
     "dev": "concurrently \"npm run server\" \"ng serve --open\"",
     "lint": "eslint --debug back_end/",
     "lint:write": "eslint --debug back_end/ --fix",

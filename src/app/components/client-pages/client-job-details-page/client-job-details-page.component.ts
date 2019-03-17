@@ -12,6 +12,7 @@ import { ClientNewJobPageComponent } from '../client-new-job-page/client-new-job
 import { AuthenticateService } from 'src/app/services/authenticate.service'
 import { slideUp } from '../../shared/animations'
 import { Location } from '@angular/common'
+import { ActivatedRoute, Router } from '@angular/router'
 
 @Component({
   selector: 'app-client-job-details-page',
@@ -28,6 +29,8 @@ export class ClientJobDetailsPageComponent implements OnInit {
   constructor(
     private service: JobService,
     private dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute,
     private authService: AuthenticateService,
     private location: Location
   ) {
@@ -59,7 +62,7 @@ export class ClientJobDetailsPageComponent implements OnInit {
       this.state = 'in'
     }, 30)
     this.token = this.authService.getTokenDetails('auth-token')
-    this.getAllJobs()
+    this.getMyJob()
     this.onSearchClear()
     this.applyFilter()
     this.dataSource
@@ -68,8 +71,11 @@ export class ClientJobDetailsPageComponent implements OnInit {
   // convert the result as the table
   // dataSource will make the list the material design
   // dataSource will listen sort and paginator
-  getAllJobs() {
-    this.service.getJobs().subscribe(res => {
+
+  // Function to get Job only from the User Who login
+  getMyJob() {
+    let token = this.authService.getTokenDetails('auth-token')
+    this.service.getUserJob(token.id).subscribe(res => {
       this.list = res as Job[]
       this.dataSource = new MatTableDataSource(this.list)
       this.dataSource.sort = this.sort
@@ -93,18 +99,15 @@ export class ClientJobDetailsPageComponent implements OnInit {
 
   // function to call the add clientAddJobComponent
   onCreate() {
-    /*this.dialog.open(ClientNewJobPageComponent, {
-      autoFocus: false,
-    })*/
+    this.service.initializeFormGroup()
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true
     this.dialog.open(ClientNewJobPageComponent, dialogConfig)
   }
+
   //function to open the form with selected row
   onEdit(row) {
-    console.log(row)
-
     this.service.populateForm(
       row._id,
       row.userId,
@@ -123,5 +126,13 @@ export class ClientJobDetailsPageComponent implements OnInit {
 
   goBack() {
     this.location.back()
+  }
+
+  // This set the row Activate to false
+  onDelete(row) {
+    // Set the activate to false
+    row.jobActivate = false
+    // Subscribe to the delte Jobs to update the row to the database
+    this.service.delete_Jobs(row).subscribe()
   }
 }
