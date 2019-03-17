@@ -1,4 +1,4 @@
-<div class="wraper" fxLayout="column" fxLayoutAlign="center center">
+<!-- <div class="wraper" fxLayout="column" fxLayoutAlign="center center">
   <mat-card fxFlex.xs="auto">
     <mat-card-content>
       <span> Add & Edit Users</span>
@@ -24,34 +24,10 @@
         <mat-grid-list cols="2" rowHeight="300px">
           <mat-grid-tile>
             <div class="container">
-              <!-- Id-->
               <mat-form-field hidden>
                 <input formControlName="_id" matInput placeholder="ID *" #_id />
               </mat-form-field>
 
-              <!--
-              <mat-form-field>
-                <input
-                  required
-                  formControlName="adminFirstName"
-                  matInput
-                  placeholder="First Name *"
-                  #adminFirstname
-                />
-              </mat-form-field>
-              <mat-form-field>
-                <input
-                  required
-                  formControlName="adminLastName"
-                  matInput
-                  placeholder="Last Name *"
-                  #adminLastName
-                />
-
-              </mat-form-field>
-
--->
-              <!-- User Name -->
               <mat-form-field>
                 <input
                   required
@@ -62,7 +38,6 @@
                 />
               </mat-form-field>
 
-              <!-- User Email-->
               <mat-form-field>
                 <input
                   required
@@ -73,7 +48,6 @@
                 />
               </mat-form-field>
 
-              <!-- Role -->
               <mat-form-field>
                 <mat-select placeholder="Role" formControlName="role">
                   <mat-option *ngFor="let r of roles" [value]="r.value">
@@ -82,7 +56,6 @@
                 </mat-select>
               </mat-form-field>
 
-              <!-- Add Button -->
               <div class="container">
                 <div class="button-row">
                   <button
@@ -94,7 +67,6 @@
                     Submit
                   </button>
 
-                  <!--/ Clear Button -->
                   <button
                     mat-raised-button
                     class="button-style"
@@ -110,4 +82,81 @@
       </form>
     </mat-card-content>
   </mat-card>
+</div> -->
+
+<div id="body" [@slideUp]="state">
+  <h1>Add & Edit Users</h1>
+  <mat-divider></mat-divider>
+
+  <div class="tile">
+    <div class="item">
+      <button
+        mat-raised-button
+        color="primary"
+        routerLink="/admins/admin_userList"
+      >
+        User List
+      </button>
+    </div>
+  </div>
+
+  <div class="tile">
+    <form
+      autocomplete="off"
+      [formGroup]="userService.form"
+      (click)="onSubmit()"
+    >
+      <mat-form-field hidden>
+        <input formControlName="_id" matInput placeholder="ID *" #_id />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          required
+          formControlName="username"
+          matInput
+          placeholder="User Name:"
+          #username
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          required
+          formControlName="email"
+          matInput
+          placeholder="User Email:"
+          #email
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Role" formControlName="role">
+          <mat-option *ngFor="let r of roles" [value]="r.value">
+            {{ r.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div class="tile">
+    <div class="item">
+      <button
+        mat-raised-button
+        class="button-style"
+        type="submit"
+        [disabled]="userService.invalid"
+        color="primary"
+      >
+        Submit
+      </button>
+    </div>
+
+    <div class="item">
+      <button mat-raised-button class="button-style" (click)="navigate('back')">
+        Cancel
+      </button>
+    </div>
+  </div>
 </div>

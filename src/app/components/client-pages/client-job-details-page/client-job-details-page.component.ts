@@ -11,6 +11,7 @@ import {
 import { ClientNewJobPageComponent } from '../client-new-job-page/client-new-job-page.component'
 import { AuthenticateService } from 'src/app/services/authenticate.service'
 import { slideUp } from '../../shared/animations'
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-client-job-details-page',
@@ -19,25 +20,29 @@ import { slideUp } from '../../shared/animations'
   animations: [slideUp()],
 })
 export class ClientJobDetailsPageComponent implements OnInit {
-  displayColumns: string[] = [
-    '_id',
-    'jobStatus',
-    'jobPostDate',
-    'jobEndDate',
-    'jobPositions',
-    'jobDescription',
-    'jobActivate',
-    'actions',
-  ]
-  state = 'out'
+  displayColumns: string[]
+  state: String
   private token: String
   public job: Job
   // declare the service, auth and dialog
   constructor(
     private service: JobService,
     private dialog: MatDialog,
-    private authService: AuthenticateService
-  ) {}
+    private authService: AuthenticateService,
+    private location: Location
+  ) {
+    this.displayColumns = [
+      '_id',
+      'jobStatus',
+      'jobPostDate',
+      'jobEndDate',
+      'jobPositions',
+      'jobDescription',
+      'jobActivate',
+      'actions',
+    ]
+    this.state = 'out'
+  }
   // declare the array that will hold the Job List
   list: Job[]
   //Data source to take the material design of any table
@@ -114,5 +119,9 @@ export class ClientJobDetailsPageComponent implements OnInit {
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true
     this.dialog.open(ClientNewJobPageComponent, dialogConfig)
+  }
+
+  goBack() {
+    this.location.back()
   }
 }

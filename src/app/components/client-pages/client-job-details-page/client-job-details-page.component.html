@@ -1,4 +1,4 @@
-<div [@slideUp]="state">
+<!-- <div [@slideUp]="state">
   <h1>Job Table</h1>
   <div class="search-div">
     <button mat-raised-button (click)="onCreate()">
@@ -63,15 +63,15 @@
         </ng-container>
 
         <ng-container matColumnDef="actions">
-          <mat-header-cell *matHeaderCellDef></mat-header-cell>
-          <mat-cell *matCellDef="let row">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let row">
             <button mat-icon-button (click)="onEdit(row)">
               <mat-icon>edit</mat-icon>
             </button>
             <button mat-icon-button color="warn">
               <mat-icon>delete_outline</mat-icon>
             </button>
-          </mat-cell>
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
@@ -84,4 +84,100 @@
     [pageSizeOptions]="[5, 10, 20]"
     showFirstLastButtons
   ></mat-paginator>
+</div> -->
+
+<div id="body" [@slideUp]="state">
+  <h1>Job Table</h1>
+  <div class="tile">
+    <button mat-raised-button (click)="onCreate()">
+      <mat-icon>add</mat-icon>Add Job
+    </button>
+  </div>
+
+  <div class="tile">
+    <mat-form-field class="search-form-field" floatLabel="never">
+      <input
+        matInput
+        [(ngModel)]="searchKey"
+        placeholder="Search"
+        autocomplete="off"
+        (keyup)="applyFilter()"
+      />
+      <button
+        mat-button
+        matSuffix
+        mat-icon-button
+        ariel-label="Clear"
+        *ngIf="searchKey"
+        (click)="onSearchClear()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+  <div class="tile" id="container">
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="_id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let data">{{ data._id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="jobStatus">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let data">{{ data.jobStatus }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="jobPostDate">
+        <th mat-header-cell *matHeaderCellDef>Date of Posting</th>
+        <td mat-cell *matCellDef="let data">{{ data.jobPostDate }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="jobEndDate">
+        <th mat-header-cell *matHeaderCellDef>Date expired</th>
+        <td mat-cell *matCellDef="let data">{{ data.jobEndDate }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="jobPositions">
+        <th mat-header-cell *matHeaderCellDef>Position</th>
+        <td mat-cell *matCellDef="let data">{{ data.jobPosition }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="jobDescription">
+        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <td mat-cell *matCellDef="let data">{{ data.jobDescription }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="jobActivate">
+        <th mat-header-cell *matHeaderCellDef>Activation</th>
+        <td mat-cell *matCellDef="let data">{{ data.jobActivate }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button (click)="onEdit(row)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn">
+            <mat-icon>delete_outline</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>
+    </table>
+  </div>
+
+  <div class="tile">
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+
+  <div class="tile">
+    <button mat-button mat-raised-button (click)="goBack()">Back</button>
+  </div>
 </div>

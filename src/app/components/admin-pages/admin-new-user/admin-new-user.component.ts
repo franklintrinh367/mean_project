@@ -15,14 +15,18 @@ import { MatDialogRef } from '@angular/material'
 
 /* ROUTER */
 import { Router } from '@angular/router'
+import { slideUp } from '../../shared/animations'
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-admin-new-user',
   templateUrl: './admin-new-user.component.html',
   styleUrls: ['./admin-new-user.component.scss'],
+  animations: [slideUp()],
 })
 export class AdminNewUserComponent implements OnInit {
   /* PARAMETERS */
+  state = 'out'
   roles: Roles[] = [
     { value: 'admin', viewValue: 'Admin' },
     { value: 'jc', viewValue: 'JC Consulting' },
@@ -32,11 +36,13 @@ export class AdminNewUserComponent implements OnInit {
 
   constructor(
     private userService: EditUserService,
+    private location: Location,
     private router: Router,
     public dialogRef: MatDialogRef<AdminNewUserComponent>
   ) {}
 
   ngOnInit() {
+    setTimeout(() => (this.state = 'in'), 30)
     this._id = localStorage.getItem('token')
   }
 
@@ -66,10 +72,10 @@ export class AdminNewUserComponent implements OnInit {
     this.dialogRef.close()
   }
 
-  /* FUNCTION TO RESET THE FORM */
-
-  onClear() {
-    this.userService.form.reset()
-    this.userService.initializeFormGroup()
+  navigate(loc) {
+    switch (loc) {
+      case 'back':
+        this.location.back()
+    }
   }
 }

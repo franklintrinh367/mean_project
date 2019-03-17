@@ -19,6 +19,8 @@ import {
   MatPaginator,
 } from '@angular/material'
 import { ClientRegisterPageComponent } from '../../client-pages/client-register-page/client-register-page.component'
+import { Location } from '@angular/common'
+import { slideUp } from '../../shared/animations'
 
 // GONNA BE DELETED - JUST FOR TEST
 const COMPANIES: any[] = [
@@ -94,6 +96,7 @@ const COMPANIES: any[] = [
   selector: 'app-admin-company-list',
   templateUrl: './admin-company-list.component.html',
   styleUrls: ['./admin-company-list.component.scss'],
+  animations: [slideUp()],
 })
 export class AdminCompanyListComponent implements OnInit {
   /* TABLE PAGINATION AND SORT */
@@ -103,6 +106,7 @@ export class AdminCompanyListComponent implements OnInit {
   /*PARAMETERS */
   searchKey: string
   list: Client[]
+  state: string
 
   /*  TABLE PARAMETERS */
   dataSource = new MatTableDataSource(COMPANIES)
@@ -119,9 +123,17 @@ export class AdminCompanyListComponent implements OnInit {
     'actions',
   ]
 
-  constructor(private service: ClientService, private dialog: MatDialog) {}
+  constructor(
+    private service: ClientService,
+    private dialog: MatDialog,
+    private location: Location
+  ) {
+    this.state = 'out'
+  }
 
   ngOnInit() {
+    setTimeout(() => (this.state = 'in'), 30)
+
     //this.getallClients()
     this.onSearchClear()
     this.applyFilter()
@@ -176,5 +188,9 @@ export class AdminCompanyListComponent implements OnInit {
 
   applyFilter() {
     this.dataSource.filter = this.searchKey.trim().toLowerCase()
+  }
+
+  goBack() {
+    this.location.back()
   }
 }
