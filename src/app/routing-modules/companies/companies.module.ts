@@ -26,10 +26,10 @@ import { EditJobComponent } from 'src/app/components/client/edit-job/edit-job.co
   ],
   imports: [
     CommonModule,
-    CompaniesRoutingModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    CompaniesRoutingModule,
   ],
 
   entryComponents: [ClientNewJobPageComponent],

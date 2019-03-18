@@ -16,10 +16,10 @@ import { MaterialModule } from 'src/app/module/material/material.module'
   ],
   imports: [
     CommonModule,
-    CandidatesRoutingModule,
     ReactiveFormsModule,
     MaterialModule,
     FormsModule,
+    CandidatesRoutingModule,
   ],
 })
 export class CandidatesModule {}

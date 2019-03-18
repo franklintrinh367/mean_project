@@ -25,11 +25,11 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms'
     AdminCompanyDetailsComponent,
   ],
   imports: [
-    CommonModule,
-    AdminsRoutingModule,
     MaterialModule,
+    CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    AdminsRoutingModule,
   ],
 })
 export class AdminsModule {}

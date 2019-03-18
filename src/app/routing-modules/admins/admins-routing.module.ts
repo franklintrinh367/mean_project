@@ -10,14 +10,14 @@ import { AdminJobsDetailsComponent } from 'src/app/components/admin-pages/admin-
 import { AdminUserDetailsComponent } from 'src/app/components/admin-pages/admin-user-details/admin-user-details.component'
 
 const routes: Routes = [
-  { path: '', component: AdminHomepageComponent },
+  { path: 'admin_jobDetails/:id', component: AdminJobsDetailsComponent },
   { path: 'admin_newUser', component: AdminNewUserComponent },
   { path: 'admin_userList', component: AdminUserListComponent },
   { path: 'admin_companyList', component: AdminCompanyListComponent },
   { path: 'admin_mamangeJobs', component: AdminManageJobsComponent },
   { path: 'admin_companyDetails', component: AdminCompanyDetailsComponent },
-  { path: 'admin_jobDetails/:id', component: AdminJobsDetailsComponent },
   { path: 'admin_userDetails', component: AdminUserDetailsComponent },
+  { path: '', component: AdminHomepageComponent },
 ]
 
 @NgModule({
