@@ -12,6 +12,7 @@ export class ClientHomepagesComponent implements OnInit {
   private token: String
   state: String
   private disabled
+  public client: Client
 
   constructor(
     private service: ClientService,
@@ -24,11 +25,14 @@ export class ClientHomepagesComponent implements OnInit {
       this.state = 'in'
     }, 30)
     this.token = this.authService.getTokenDetails('auth-token')
-    console.log(this.token)
+    this.onConnect()
   }
 
   onConnect() {
     let token = this.authService.getTokenDetails('auth-token')
-    console.log(token)
+    this.service.getCompanyDetails(token.id).subscribe(res => {
+      this.client = res
+      console.log(token.details)
+    })
   }
 }

@@ -17,7 +17,7 @@ import { Job } from 'src/app/models/clients/jobs'
 export class ClientService {
   constructor(private http: HttpClient) {}
   // declare the url
-  readonly Url = 'http://localhost:3000/company/register'
+  readonly Url = 'http://localhost:3000/company/'
 
   // create Form group of Client
 
@@ -58,6 +58,12 @@ export class ClientService {
   // function that post to the server the new company
   onCompanyRegister(client: Client): Observable<any> {
     let token = localStorage.getItem('auth-token')
-    return this.http.post(this.Url + '/' + token, client)
+    return this.http.post(this.Url + 'register/' + token, client)
+  }
+
+  // function that get the information about the company
+
+  getCompanyDetails(id): Observable<any> {
+    return this.http.get(this.Url + 'get/' + id)
   }
 }

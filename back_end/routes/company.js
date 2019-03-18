@@ -23,7 +23,6 @@ router.get('/get/all', (req, res) => {
 // get company by ID
 router.get('/get/:companyID', (req, res) => {
   let { companyID } = req.params
-
   User.findById({ _id: companyID }, (err, company) => {
     if (err) {
       res.status(400).json({ error: 'Company not found' })

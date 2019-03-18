@@ -67,10 +67,12 @@ export class ClientJobDetailsPageComponent implements OnInit {
     this.applyFilter()
     this.dataSource
   }
-  //function to get the job from the service
-  // convert the result as the table
-  // dataSource will make the list the material design
-  // dataSource will listen sort and paginator
+
+  /** function to get the job from the service
+   *  convert the result as the table
+   *  dataSource will make the list the material design
+   *  dataSource will listen sort and paginator
+   */
 
   // Function to get Job only from the User Who login
   getMyJob() {
@@ -124,6 +126,7 @@ export class ClientJobDetailsPageComponent implements OnInit {
     this.dialog.open(ClientNewJobPageComponent, dialogConfig)
   }
 
+  // Function that let the user go back
   goBack() {
     this.location.back()
   }
