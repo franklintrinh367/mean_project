@@ -62,12 +62,13 @@ export class HeaderComponent implements OnInit {
 
   // this function is here for testing
   // after i will delete
-  onGetDetails() {
+  // I wanna be sure when company login has to be able to view the home
+  onGetCompany() {
     let token = this.authService.getTokenDetails('auth-token')
     if (token.visited > !token.details) {
-      this.router.navigate(['/companies/company_register'])
+      this.router.navigate(['/companies/company_home'])
     } else {
-      this.router.navigate(['/companies/company_register'])
+      this.router.navigate(['/companies/company_home'])
     }
   }
 }

@@ -1,2 +1,22 @@
-<!-- Client home page  Call the selector of the job details-->
-<app-client-job-details-page></app-client-job-details-page>
+<mat-tab-group>
+  <mat-tab label=" User Information ">
+    <form>
+      <mat-form-field>
+        <input matInput value="{{ token.username }}" disabled />
+        <mat-icon matSuffix>create</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput value="{{ token.email }}" disabled />
+        <mat-icon matSuffix (click)="onChange()">create</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput value="{{ token.role }}" />
+        <mat-icon matSuffix>create</mat-icon>
+      </mat-form-field>
+    </form>
+  </mat-tab>
+
+  <mat-tab label=" Candindate"> </mat-tab>
+</mat-tab-group>
