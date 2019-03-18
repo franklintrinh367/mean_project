@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core'
-import { MatDialog, MatDialogConfig } from '@angular/material'
+import { Component, OnInit, ViewContainerRef } from '@angular/core'
+import { MatDialog } from '@angular/material'
 import { LoginComponent } from '../login/login.component'
 import { RegisterCardComponent } from '../register-card/register-card.component'
 import { AuthenticateService } from 'src/app/services/authenticate.service'
-import { ClientRegisterPageComponent } from '../../client-pages/client-register-page/client-register-page.component'
 import { Router } from '@angular/router'
+import { Overlay } from '@angular/cdk/overlay'
 
 @Component({
   selector: 'app-header',
@@ -16,7 +16,9 @@ export class HeaderComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private authService: AuthenticateService,
-    private router: Router
+    private router: Router,
+    private overlay: Overlay,
+    private viewRef: ViewContainerRef
   ) {}
 
   ngOnInit() {
@@ -26,12 +28,14 @@ export class HeaderComponent implements OnInit {
   openDialog() {
     this.dialog.open(LoginComponent, {
       autoFocus: false,
+      scrollStrategy: this.overlay.scrollStrategies.reposition(),
     })
   }
 
   openRegisterDialog() {
     this.dialog.open(RegisterCardComponent, {
       autoFocus: false,
+      scrollStrategy: this.overlay.scrollStrategies.reposition(),
     })
   }
 
