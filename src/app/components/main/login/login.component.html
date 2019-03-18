@@ -1,65 +1,67 @@
-<mat-card class="mat-elevation-z8" style="text-align: center">
-  <mat-card-content>
-    <form autocomplete="off" [formGroup]="loginForm">
-      <div class="container">
-        <!-- Login Input-->
-        <mat-form-field>
-          <input
-            matInput
-            color="primary"
-            type="text"
-            placeholder="Email or Username"
-            formControlName="email"
-          />
-        </mat-form-field>
-        <div class="validation-wraper">
-          <div *ngIf="email.invalid && (email.dirty || email.touched)">
-            <div *ngIf="(email.errors | firstErrPipe) === 'required'">
-              Field cannot be empty
+<div fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card class="mat-elevation-z8" style="text-align: center">
+    <mat-card-content>
+      <form autocomplete="off" [formGroup]="loginForm">
+        <div class="container">
+          <!-- Login Input-->
+          <mat-form-field>
+            <input
+              matInput
+              color="primary"
+              type="text"
+              placeholder="Email or Username"
+              formControlName="email"
+            />
+          </mat-form-field>
+          <div class="validation-wraper">
+            <div *ngIf="email.invalid && (email.dirty || email.touched)">
+              <div *ngIf="(email.errors | firstErrPipe) === 'required'">
+                Field cannot be empty
+              </div>
             </div>
           </div>
-        </div>
-        <!-- Password Input -->
-        <mat-form-field>
-          <input
-            matInput
-            type="password"
-            placeholder="Password"
-            formControlName="password"
-          />
-        </mat-form-field>
-        <div class="validation-wraper">
-          <div
-            *ngIf="
-              password.invalid && (password.dirty || password.touched);
-              else elseBlock
-            "
-          >
-            <div *ngIf="(password.errors | firstErrPipe) === 'required'">
-              Field cannot be empty
+          <!-- Password Input -->
+          <mat-form-field>
+            <input
+              matInput
+              type="password"
+              placeholder="Password"
+              formControlName="password"
+            />
+          </mat-form-field>
+          <div class="validation-wraper">
+            <div
+              *ngIf="
+                password.invalid && (password.dirty || password.touched);
+                else elseBlock
+              "
+            >
+              <div *ngIf="(password.errors | firstErrPipe) === 'required'">
+                Field cannot be empty
+              </div>
             </div>
+            <ng-template #elseBlock>
+              <div *ngIf="error">{{ this.error }}</div>
+            </ng-template>
           </div>
-          <ng-template #elseBlock>
-            <div *ngIf="error">{{ this.error }}</div>
-          </ng-template>
+          <!-- Login Button, Signup Button -->
+          <div id="login-btn">
+            <button
+              type="submit"
+              class="button-style"
+              mat-raised-button
+              color="primary"
+              mat-button
+              (click)="login(email.value, password.value)"
+            >
+              LOGIN
+            </button>
+          </div>
+          <br />
+          <br />
+          <a (click)="closeDialog('forgot')">Forgot Your Password?</a>
         </div>
-        <!-- Login Button, Signup Button -->
-        <div id="login-btn">
-          <button
-            type="submit"
-            class="button-style"
-            mat-raised-button
-            color="primary"
-            mat-button
-            (click)="login(email.value, password.value)"
-          >
-            LOGIN
-          </button>
-        </div>
-        <br />
-        <br />
-        <a (click)="closeDialog('forgot')">Forgot Your Password?</a>
-      </div>
-    </form>
-  </mat-card-content>
-</mat-card>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
