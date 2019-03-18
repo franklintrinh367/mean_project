@@ -14,7 +14,16 @@
         <h5>{{ this.user.canActualJob }}</h5>
       </div>
     </mat-grid-tile>
-    <mat-grid-tile> Edit Profile</mat-grid-tile>
+    <mat-grid-tile>
+      <button
+        mat-button
+        mat-raised-button
+        color="primary"
+        (click)="navigateEdit()"
+      >
+        Edit Profile
+      </button>
+    </mat-grid-tile>
     <mat-grid-tile>
       <div class="vertical">
         <mat-list>
