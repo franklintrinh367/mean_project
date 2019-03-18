@@ -6,9 +6,9 @@ const User = require('../models/User')
 
 // get all admins
 router.get('/get/all', (req, res) => {
-  User.find({ role: 'admin' }, (err, admins) => {
+  User.find({}, (err, admins) => {
     if (err) {
-      res.status(400).send({ error: 'Admin not found' })
+      res.status(400).send({ error: 'Users not found' })
     }
     if (admins) {
       res.status(200).json(admins)
@@ -17,13 +17,13 @@ router.get('/get/all', (req, res) => {
 })
 
 // get admin by ID
-router.get('/get/:adminID', (req, res) => {
-  let { adminID } = req.params
-  User.findById({ _id: adminID }, (err, admin) => {
+router.get('/get/:userID', (req, res) => {
+  let { userID } = req.params
+  User.findById({ _id: userID }, (err, user) => {
     if (err) {
-      res.status(400).json({ error: 'Admin not found' })
+      res.status(400).json({ error: 'User not found' })
     } else {
-      res.status(200).json(admin)
+      res.status(200).json(user)
     }
   })
 })

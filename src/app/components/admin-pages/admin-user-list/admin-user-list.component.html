@@ -15,7 +15,51 @@
           Create New User
         </button>
       </div>
-      <!-- Search-->
+
+      <mat-divider> </mat-divider>
+      <div class="container">
+        <table>
+          <tr>
+            <th>
+              <h4><b> Filter by:</b></h4>
+            </th>
+          </tr>
+          <tr rowspan="3">
+            <td>
+              <button
+                mat-raised-button
+                class="button-style2"
+                (click)="onRoleFilter('company')"
+              >
+                Company
+              </button>
+            </td>
+            <td>
+              <button
+                mat-raised-button
+                class="button-style2"
+                (click)="onRoleFilter('jcConsulting')"
+              >
+                JC Consulting Users
+              </button>
+            </td>
+            <td>
+              <button
+                mat-raised-button
+                class="button-style2"
+                (click)="onRoleFilter('candidate')"
+              >
+                Candidates
+              </button>
+            </td>
+          </tr>
+        </table>
+
+        <br />
+      </div>
+
+      <mat-divider> </mat-divider>
+      <!-- SEARCH DIVISION  -->
       <div class="search-div">
         <mat-form-field class="search-form-field" floatLabel="never">
           <input
@@ -27,23 +71,42 @@
           />
         </mat-form-field>
       </div>
-      <!-- Table with Users Display-->
+
+      <!-- TABLE DISPLAYIN ALL USERS-->
 
       <mat-table [dataSource]="dataSource" matSort>
         <!-- Id Column -->
-        <ng-container matColumnDef="_id">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
+        <ng-container hidden matColumnDef="_id">
+          <mat-header-cell hidden *matHeaderCellDef mat-sort-header>
             ID
           </mat-header-cell>
-          <mat-cell *matCellDef="let data">{{ data._id }}</mat-cell>
+          <mat-cell hidden *matCellDef="let data">{{ data._id }}</mat-cell>
         </ng-container>
 
         <!-- User Name Column -->
         <ng-container matColumnDef="username">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
-            User Name </mat-header-cell
-          >>
+            User Name
+          </mat-header-cell>
           <mat-cell *matCellDef="let data">{{ data.username }}</mat-cell>
+        </ng-container>
+
+        <!-- Firt Name Column -->
+        <ng-container matColumnDef="firstName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            First Name
+          </mat-header-cell>
+          <mat-cell *matCellDef="let data">{{ data.firstName }}</mat-cell>
+        </ng-container>
+
+        <!-- Last Name Column -->
+        <ng-container matColumnDef="lastName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Last Name
+          </mat-header-cell>
+          <mat-cell *matCellDef="let data"
+            >{{ <data class="lastName"></data> }}</mat-cell
+          >
         </ng-container>
 
         <!-- Email Column -->

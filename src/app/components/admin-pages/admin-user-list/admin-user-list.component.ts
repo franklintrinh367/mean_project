@@ -4,10 +4,12 @@ import { Router } from '@angular/router'
 
 /*MODELS */
 import { User } from '../../../../models/users'
+import { Admin } from '../../../models/admin/admin'
 
 /* SERVICE */
 import { UserService } from '../../../services/main/user.service'
 import { EditUserService } from '../../../services/admin/edit-user.service'
+import { AuthenticateService } from 'src/app/services/authenticate.service'
 
 /* MATERIAL DESIGN */
 import {
@@ -39,12 +41,21 @@ const USERS: any[] = [
 })
 export class AdminUserListComponent implements OnInit {
   /* PARAMETERS */
-  users: User[]
+  list: User[]
   searchKey: string
+  private token: String
 
   /* TABLE PARAMETERS */
-  dataSource = new MatTableDataSource(USERS)
-  displayColumns: string[] = ['_id', 'username', 'email', 'role', 'actions']
+  dataSource = new MatTableDataSource()
+  displayColumns: string[] = [
+    '_id',
+    'username',
+    'email',
+    'firstName',
+    'lastName',
+    'role',
+    'actions',
+  ]
 
   /* PAGINATION AND SORT */
   @ViewChild(MatSort) sort: MatSort
@@ -53,10 +64,12 @@ export class AdminUserListComponent implements OnInit {
   constructor(
     private userService: UserService,
     private editService: EditUserService,
-    private dialog: MatDialog
+    private authService: AuthenticateService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
+    this.token = this.authService.getTokenDetails('auth-token')
     this.getAllUsers()
     this.onSearchClear()
     this.applyFilter()
@@ -71,9 +84,14 @@ export class AdminUserListComponent implements OnInit {
     this.applyFilter()
   }
 
-  /*FUNCTION TO FILTER IN THE TABNLE */
+  /* FUNCTION TO FILTER IN THE TABLE */
 
   applyFilter() {
+    this.dataSource.filter = this.searchKey.trim().toLowerCase()
+  }
+  /* FILTERING USERS BY ROLE */
+  onRoleFilter(search: string) {
+    this.searchKey = search
     this.dataSource.filter = this.searchKey.trim().toLowerCase()
   }
 
@@ -83,25 +101,23 @@ export class AdminUserListComponent implements OnInit {
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true
-    dialogConfig.width = '60%'
     this.dialog.open(AdminUserDetailsComponent, dialogConfig)
   }
 
   /* LIST ALL USERS */
   getAllUsers() {
     this.userService.getUser().subscribe(res => {
-      this.users = res as User[]
-      this.dataSource = new MatTableDataSource(this.users)
+      this.list = res as User[]
+      this.dataSource = new MatTableDataSource(this.list)
     })
   }
 
   /* FUNCTION TO OPEN EDIT USER COMPONENT ON SELECTED ROW*/
   onEdit(row) {
-    this.editService.populateForm(row)
+    // this.editService.populateForm(row)
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true
-    dialogConfig.width = '60%'
     this.dialog.open(AdminNewUserComponent, dialogConfig)
   }
 

@@ -45,9 +45,15 @@ export class LoginComponent implements OnInit {
                   break
                 }
                 //check if the role is
-                case 'Company':
+                case 'Company': {
                   window.location.assign('/company_register')
                   break
+                }
+                /* ADMIN ROLE - REDIRECT TO ADMIN HOME PAGE */
+                case 'Admin': {
+                  window.location.assign('/adminPages')
+                  break
+                }
               }
               this.closeDialog('')
             } else {

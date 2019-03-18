@@ -2,13 +2,17 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const AdminSchema = new Schema({
-  adminFirstName: {
+  jcFirstName: {
     type: String,
     require: true,
   },
-  adminLastName: {
+  jcLastName: {
     type: String,
     require: true,
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
   },
 })
 

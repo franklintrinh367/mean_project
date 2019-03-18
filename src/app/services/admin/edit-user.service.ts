@@ -8,6 +8,7 @@ import { of } from 'rxjs/observable/of'
 import 'rxjs/add/operator/map'
 import 'rxjs/operator/toPromise'
 
+/* IMPORT MODELS */
 import { User } from '../../../models/users'
 import { Admin } from '../../models/admin/admin'
 
@@ -15,46 +16,53 @@ import { Admin } from '../../models/admin/admin'
   providedIn: 'root',
 })
 export class EditUserService {
-  /* CREATE FORMGROUP OF USERS */
-  readonly Url = 'http://localhost:3000/users'
+  /* DECLARE URL */
+  readonly Url = 'http://localhost:3000/admin'
+  // readonly urlAdmin = 'http://localhost:3000/admin/'
 
   constructor(private http: HttpClient) {}
-
+  /* CREATE FORM GROUP ADMIN */
   form: FormGroup = new FormGroup({
     _id: new FormControl(null),
-    email: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
-    username: new FormControl(''),
-    activated: new FormControl(true),
-    role: new FormControl(''),
+    userId: new FormControl(''),
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
   })
   initializeFormGroup() {
     this.form.setValue({
       _id: new FormControl(null),
-      email: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
-      username: new FormControl(''),
-      activated: new FormControl(true),
-      role: new FormControl(''),
-      // details: new FormControl(
-      //   firstName: (''),
-      //   lastName: (''))
+      userId: new FormControl(''),
+      firstName: new FormControl(''),
+      lastName: new FormControl(''),
     })
   }
 
   /* FUNCTION TO ADD USERS */
   post_Users(users: User): Observable<any> {
-    return this.http.post(this.Url, users)
+    let token = localStorage.getItem('auth-token')
+    return this.http.post(this.Url + '/insert' + token, users)
   }
 
-  /* FUNCTION TO GET USER */
-  getUsers() {
-    return this.http.get(this.Url)
+  ni
+
+  /* FUNCTION TO GET USER BY ROLE*/
+  getUsers(name) {
+    return this.http.get(this.Url + `/${name}`)
   }
 
   /* FUNCTION TO POPULATE FORM */
-  populateForm(users) {
-    this.form.setValue(users)
+  populateForm(
+    _id: string,
+    firstame: string,
+    lastName: string,
+    activated: boolean
+  ) {
+    this.form.setValue({
+      _id,
+      firstame,
+      lastName,
+      activated,
+    })
   }
 
   updateUser(user: User): Observable<any> {

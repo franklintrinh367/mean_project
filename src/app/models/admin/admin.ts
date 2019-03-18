@@ -1,4 +1,4 @@
 export class Admin {
-  adminFirstName: String
-  adminLastName: String
+  jcFirstName: String
+  jcLastName: String
 }
