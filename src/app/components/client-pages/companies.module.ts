@@ -8,10 +8,6 @@ import { ClientNewJobPageComponent } from 'src/app/components/client-pages/clien
 import { ClientJobDetailsPageComponent } from 'src/app/components/client-pages/client-job-details-page/client-job-details-page.component'
 import { MaterialModule } from 'src/app/module/material/material.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { HomePagesComponent } from './home-pages/home-pages.component'
-import { JobDetailsComponent } from './job-details/job-details.component'
-import { NewJobComponent } from './new-job/new-job.component'
-import { EditJobComponent } from './edit-job/edit-job.component'
 import { ClientService } from './client-services/client.service'
 @NgModule({
   declarations: [
@@ -19,10 +15,6 @@ import { ClientService } from './client-services/client.service'
     ClientRegisterPageComponent,
     ClientNewJobPageComponent,
     ClientJobDetailsPageComponent,
-    HomePagesComponent,
-    JobDetailsComponent,
-    NewJobComponent,
-    EditJobComponent,
   ],
   imports: [
     CommonModule,
