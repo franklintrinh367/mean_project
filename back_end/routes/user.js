@@ -14,9 +14,6 @@ const jc_port = 587
 
 // Load models
 const User = require('../models/User')
-const Candidate = require('../models/Candidate')
-const Company = require('../models/Company')
-const Admin = require('../models/Admin')
 const Feedback = require('../models/Feedback')
 
 // User Register

@@ -40,21 +40,20 @@ const routes: Routes = [
   // company routes
   {
     path: 'companies',
-    loadChildren:
-      './routing-modules/companies/companies.module#CompaniesModule',
+    loadChildren: './components/client-pages/companies.module#CompaniesModule',
   },
 
   //Admin Pages Router
   {
     path: 'admins',
-    loadChildren: './routing-modules/admins/admins.module#AdminsModule',
+    loadChildren: './components/admin-pages/admins.module#AdminsModule',
   },
 
   // Candidate Routes
   {
     path: 'candidates',
     loadChildren:
-      './routing-modules/candidates/candidates.module#CandidatesModule',
+      './components/candidate-pages/candidates.module#CandidatesModule',
   },
 
   // Others
