@@ -41,6 +41,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.logout('auth-token')
+    window.location.assign('/')
   }
   // methode to register the company
   /* onRegisterCompany() {

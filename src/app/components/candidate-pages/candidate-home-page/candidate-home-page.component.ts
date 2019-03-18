@@ -15,8 +15,14 @@ export class CandidateHomePageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    let token = this.authService.getTokenDetails('auth-token')
-    this.user = token.details
+    if (this.authService.isExpired('auth-token')) {
+      window.confirm(`Your session timed out. Please Re-Login`)
+      this.authService.logout('auth-token')
+      window.location.assign(`/`)
+    } else {
+      let token = this.authService.getTokenDetails('auth-token')
+      this.user = token.details
+    }
   }
 
   navigateEdit() {

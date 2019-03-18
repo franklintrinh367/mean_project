@@ -24,7 +24,6 @@ export class AuthenticateService {
   public logout(name: string): void {
     this.token = ''
     localStorage.removeItem(name)
-    window.location.assign('/')
   }
 
   public getTokenDetails(name: string): any {
@@ -34,6 +33,6 @@ export class AuthenticateService {
 
   public isExpired(name: string): boolean {
     const user = this.getTokenDetails(name)
-    return user && user.exp > Date.now() / 1000
+    return user && user.exp < Date.now() / 1000
   }
 }
