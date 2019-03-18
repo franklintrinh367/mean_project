@@ -40,8 +40,10 @@ export class LoginComponent implements OnInit {
           if (result) {
             this.auth.saveToken(result['token'], 'auth-token')
             let token = this.auth.getTokenDetails('auth-token')
-            if (token.visited <= 1) {
+            // Check if user finished detail registration
+            if (!token.details) {
               switch (token.role) {
+                // check role: Candidate
                 case 'Candidate': {
                   window.location.assign('/candidates/candidate_register')
                   break
@@ -53,19 +55,17 @@ export class LoginComponent implements OnInit {
               }
               this.closeDialog('')
             } else {
-              //Check if the user visited more than once
-              //And if the user has completed the details
-              if (token.visited > 1 && !token.details) {
-                // check if the role is company
-                if (token.role === 'Company') {
-                  //assign to the company home page
-                  window.location.assign('/companies/company_details')
-                } else if (token.role === 'Candidate') {
-                  // assign to the candidate home page
+              // Not yet finish detail Registration
+              switch (token.role) {
+                // check role: Candidate
+                case 'Candidate': {
                   window.location.assign('/candidates/candidate_homepage')
+                  break
                 }
-              } else {
-                window.location.assign('/companies/company_register')
+                //check if the role is
+                case 'Company':
+                  window.location.assign('/companies/company_details')
+                  break
               }
             }
           } else {
