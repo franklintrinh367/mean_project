@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Candidate } from '../../../models/candidates/candidate'
 import { CandidateService } from '../../../services/candidate/candidate.service'
 import { AuthenticateService } from 'src/app/services/authenticate.service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-candidate-register-page',
@@ -16,7 +17,8 @@ export class CandidateRegisterPageComponent implements OnInit {
   constructor(
     private builder: FormBuilder,
     private candidateService: CandidateService,
-    private auth: AuthenticateService
+    private auth: AuthenticateService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -104,5 +106,9 @@ export class CandidateRegisterPageComponent implements OnInit {
       canPostalCode: this.canPostalCode.value,
     }
     this.candidateService.register(this.candidate).subscribe()
+    window.confirm(
+      `You have successfully updated candidate information. Close this window to direct to your home page!!`
+    )
+    this.router.navigateByUrl('/candidates/candidate_homepage')
   }
 }

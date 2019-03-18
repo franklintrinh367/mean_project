@@ -60,14 +60,17 @@ export class LoginComponent implements OnInit {
                 if (token.role === 'Company') {
                   //assign to the company home page
                   window.location.assign('/companies/company_details')
-                } else {
-                  this.closeDialog('')
-                  window.location.assign('/home')
+                } else if (token.role === 'Candidate') {
+                  // assign to the candidate home page
+                  window.location.assign('/candidates/candidate_homepage')
                 }
               } else {
                 window.location.assign('/companies/company_register')
               }
             }
+          } else {
+            this.closeDialog('')
+            window.location.assign('/home')
           }
         },
         err => {

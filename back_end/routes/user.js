@@ -182,6 +182,7 @@ router.post('/login', (req, res) => {
                   visited: count,
                   role: user.role,
                   completed: user.completed,
+                  details: user.details,
                 }
                 // set token
                 jwt.sign(
