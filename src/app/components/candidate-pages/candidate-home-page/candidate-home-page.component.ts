@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { AuthenticateService } from 'src/app/services/authenticate.service'
 
 @Component({
   selector: 'app-candidate-home-page',
@@ -6,7 +7,11 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./candidate-home-page.component.scss'],
 })
 export class CandidateHomePageComponent implements OnInit {
-  constructor() {}
+  private user: Object
+  constructor(private authService: AuthenticateService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    let token = this.authService.getTokenDetails('auth-token')
+    this.user = token.details
+  }
 }
