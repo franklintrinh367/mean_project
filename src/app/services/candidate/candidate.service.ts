@@ -24,4 +24,13 @@ export class CandidateService {
       httpOptions
     )
   }
+
+  update(candidate: Candidate): Observable<Candidate> {
+    let token = localStorage.getItem('auth-token')
+    return this.http.put<Candidate>(
+      `${this.baseUrl}/update/${token} `,
+      candidate,
+      httpOptions
+    )
+  }
 }

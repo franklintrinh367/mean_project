@@ -13,7 +13,7 @@ import { Router } from '@angular/router'
 export class CandidateEditProfileComponent implements OnInit {
   private candidateEditForm: FormGroup
   candidate: Candidate
-  private user
+  private user: any
 
   constructor(
     private builder: FormBuilder,
@@ -93,6 +93,32 @@ export class CandidateEditProfileComponent implements OnInit {
     if (!this.candidateEditForm.valid) {
       this.validateAllField(this.candidateEditForm)
     } else {
+      let token = this.auth.getTokenDetails('auth-token')
+      this.candidate = {
+        canId: token.id,
+        canFirstName: this.canFirstName.value,
+        canLastName: this.canLastName.value,
+        canEducation: this.canEducation.value,
+        canActualJob: this.canActualJob.value,
+        canLink: this.canLink.value,
+        canPhone: this.canPhone.value,
+        canResume: this.canResume.value,
+        canPicture: this.canPicture.value,
+        canAddress: this.canAddress.value,
+        canCity: this.canCity.value,
+        canProvince: this.canProvince.value,
+        canPostalCode: this.canPostalCode.value,
+      }
+      this.candidateService.update(this.candidate).subscribe(result => {
+        if (result) {
+          this.auth.logout('auth-token')
+          this.auth.saveToken(result['token'], 'auth-token')
+          window.confirm(`Successfully updated information`)
+          window.location.assign('/candidates/candidate_homepage')
+        } else {
+          window.confirm(`Failed to update information. Please try again`)
+        }
+      })
     }
   }
 
