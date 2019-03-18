@@ -2,13 +2,14 @@ const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+
 // load models
 const Job = require('../models/Job')
 const User = require('../models/User')
 
-// get all Jobs
+/*// get all Jobs
 router.get('/get/all/:userId', async (req, res) => {
-  await Job.findOne({ userId: req.params.userId }, (err, jobs) => {
+  await Job.find({ userId: req.params.userId }, (err, jobs) => {
     if (!err) {
       res.send(jobs)
     } else {
@@ -16,9 +17,10 @@ router.get('/get/all/:userId', async (req, res) => {
     }
   })
 })
+*/
 
 // Post the job
-router.post('/insert/:token', async (req, res) => {
+router.post('/insert/:token', (req, res) => {
   let token = jwt.decode(req.params.token)
   let userID = token.id
   // Declare the body
@@ -41,6 +43,9 @@ router.post('/insert/:token', async (req, res) => {
   })
   // Check if the user exist in the database
   //save the Schema value into the mongoDB
+
+  console.log(job)
+
   User.findById(userID)
     .then(job.save())
     .catch(err => res.json(err))
@@ -59,9 +64,23 @@ router.get('/get/all', (req, res) => {
 })
 
 // get Job by ID
-router.get('/get/:jobID', (req, res) => {
-  let { jobID } = req.params
-  Job.findById({ _id: jobID }, (err, job) => {
+router.get('/getall/:jobId', async (req, res) => {
+  await Job.where('userId')
+    .equals(req.params.jobId)
+    .exec((err, docs) => {
+      if (!err) {
+        res.send(docs)
+      } else {
+        console.log('Error in Retrieving:' + JSON.stringify(err, undefined, 2))
+      }
+    })
+})
+
+// delete Job
+router.delete('/delete/:jobID', (req, res) => {
+  // get jobID from url
+  var { jobID } = req.params
+  Job.findOneAndDelete({ _id: jobID }, (err, job) => {
     if (err) {
       res.status(400).json({ error: 'Job not found' })
     } else {
@@ -70,17 +89,25 @@ router.get('/get/:jobID', (req, res) => {
   })
 })
 
-// delete Job
-router.delete('/delete/:jobID', (req, res) => {
-  // get jobID from url
-  var { jobID } = req.params
+/* UPDATE JOB */
+router.put('/updates/:id', function(req, res, next) {
+  Job.findByIdAndUpdate(req.params.id, req.body, { upsert: true }, function(
+    err,
+    jobs
+  ) {
+    if (err) return next(err)
+    res.json(jobs)
+  })
+})
 
-  Job.findOneAndDelete({ _id: jobID }, (err, job) => {
-    if (err) {
-      res.status(400).json({ error: 'Job not found' })
-    } else {
-      res.status(200).json(job)
-    }
+/* UPDATE JOB */
+router.put('/delete/:id', function(req, res, next) {
+  Job.findByIdAndUpdate(req.params.id, req.body, { upsert: true }, function(
+    err,
+    jobs
+  ) {
+    if (err) return next(err)
+    res.json(jobs)
   })
 })
 

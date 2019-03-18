@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, OnDestroy } from '@angular/core'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Feedback } from 'src/app/models/others/feedback'
 import { UserService } from 'src/app/services/main/user.service'
 import { slideUp } from '../../shared/animations'
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'app-contact-us',
@@ -10,9 +11,10 @@ import { slideUp } from '../../shared/animations'
   styleUrls: ['./contact-us.component.scss'],
   animations: [slideUp()],
 })
-export class ContactUsComponent implements OnInit {
+export class ContactUsComponent implements OnInit, OnDestroy {
   private feedbackForm: FormGroup
   feedback: Feedback
+  subscripts: Subscription
   private modes = ['Email', 'Phone']
   constructor(private builder: FormBuilder, private userService: UserService) {}
   state = 'out'
@@ -25,19 +27,15 @@ export class ContactUsComponent implements OnInit {
         [
           Validators.required,
           Validators.pattern(
-            '[\\w]+@[a-zA-Z\\d]+\\.[a-zA-Z\\d]+\\.?[a-zA-Z\\d]+'
+            '[\\w\\.]+@[a-zA-Z\\d]+\\.[a-zA-Z\\d]+\\.?[a-zA-Z\\d]+'
           ),
         ],
       ],
-      phone: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern('^\\d{3}[-]?\\d{3}[-]?\\d{4}$'),
-        ],
-      ],
-      preferedMode: ['', [Validators.required]],
-      comment: ['', [Validators.required]],
+      preferedMode: [''],
+
+      phone: ['', [Validators.pattern('^\\d{3}[-]?\\d{3}[-]?\\d{4}$')]],
+
+      comment: ['', Validators.required],
     })
   }
 
@@ -65,8 +63,10 @@ export class ContactUsComponent implements OnInit {
       preferedMode: this.preferedMode.value,
       comment: this.comment.value,
     }
-    this.userService
-      .submit(this.feedback)
-      .subscribe(feedback => console.log(feedback))
+    this.subscripts = this.userService.submit(this.feedback).subscribe()
+  }
+
+  ngOnDestroy() {
+    if (this.subscripts) this.subscripts.unsubscribe()
   }
 }

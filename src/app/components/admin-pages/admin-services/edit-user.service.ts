@@ -3,13 +3,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { HttpClient } from '@angular/common/http'
 
 import { Observable } from 'rxjs/Observable'
-import { of } from 'rxjs/observable/of'
 
 import 'rxjs/add/operator/map'
 import 'rxjs/operator/toPromise'
-
-import { User } from '../../../models/users'
-import { Admin } from '../../models/admin/admin'
+import { User } from 'src/models/users'
 
 @Injectable({
   providedIn: 'root',

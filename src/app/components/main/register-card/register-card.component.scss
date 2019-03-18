@@ -5,6 +5,7 @@
 #signup-btn {
   width: 100%;
   font-size: 15px;
+  margin-top: 5px;
 }
 
 mat-radio-button {
@@ -17,6 +18,12 @@ textarea {
 }
 
 #tos {
-  overflow: scroll;
-  height: 160px;
+  overflow-y: scroll;
+  height: 100px;
+}
+
+@media screen and (max-width: 480px) {
+  #tos {
+    height: 40px;
+  }
 }

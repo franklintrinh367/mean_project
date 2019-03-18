@@ -1,13 +1,11 @@
 /* CORE */
 import { Component, OnInit, ViewChild } from '@angular/core'
-import { Router } from '@angular/router'
 
 /*MODELS */
 import { User } from '../../../../models/users'
 
 /* SERVICE */
 import { UserService } from '../../../services/main/user.service'
-import { EditUserService } from '../../../services/admin/edit-user.service'
 
 /* MATERIAL DESIGN */
 import {
@@ -23,6 +21,7 @@ import { AdminUserDetailsComponent } from '../admin-user-details/admin-user-deta
 import { AdminNewUserComponent } from '../admin-new-user/admin-new-user.component'
 import { Location } from '@angular/common'
 import { slideUp } from '../../shared/animations'
+import { EditUserService } from '../admin-services/edit-user.service'
 
 // // gonna be deleted - only for test
 const USERS: any[] = [

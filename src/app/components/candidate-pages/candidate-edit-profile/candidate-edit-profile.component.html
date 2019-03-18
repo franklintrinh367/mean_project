@@ -1,4 +1,4 @@
-<form>
+<form [formGroup]="candidateEditForm">
   <div class="flex-container">
     <div class="head-div">
       <div class="vertical-flex-container">
@@ -12,45 +12,110 @@
     <div class="body-div">
       <mat-form-field>
         <mat-label> First Name </mat-label>
-        <input matInput type="text" />
+        <input matInput type="text" formControlName="canFirstName" />
+        <mat-error
+          *ngIf="
+            canFirstName.invalid &&
+            canFirstName.errors.hasOwnProperty('required')
+          "
+          >First Name is required</mat-error
+        >
       </mat-form-field>
       <mat-form-field>
         <mat-label> Last Name </mat-label>
-        <input matInput type="text" />
+        <input matInput type="text" formControlName="canLastName" />
+        <mat-error
+          *ngIf="
+            canLastName.invalid && canLastName.errors.hasOwnProperty('required')
+          "
+          >Last Name is required</mat-error
+        >
       </mat-form-field>
       <mat-form-field>
         <mat-label> Education </mat-label>
-        <input matInput type="text" />
+        <input matInput type="text" formControlName="canEducation" />
+        <mat-error
+          *ngIf="
+            canEducation.invalid &&
+            canEducation.errors.hasOwnProperty('required')
+          "
+          >Education is required</mat-error
+        >
       </mat-form-field>
       <mat-form-field>
         <mat-label> Occupation </mat-label>
-        <input matInput type="text" />
+        <input matInput type="text" formControlName="canActualJob" />
+        <mat-error
+          *ngIf="
+            canActualJob.invalid &&
+            canActualJob.errors.hasOwnProperty('required')
+          "
+          >Occupation is required</mat-error
+        >
       </mat-form-field>
       <mat-form-field>
         <mat-label> LinkedIn URL </mat-label>
-        <input matInput type="text" />
+        <input matInput type="text" formControlName="canLink" />
       </mat-form-field>
     </div>
     <div class="body-div">
       <mat-form-field>
         <mat-label> Phone Number </mat-label>
-        <input matInput type="text" />
+        <input matInput type="text" formControlName="canPhone" />
+        <mat-error
+          *ngIf="canPhone.invalid && canPhone.errors.hasOwnProperty('required')"
+          >Phone Number is required</mat-error
+        >
+        <mat-error
+          *ngIf="canPhone.invalid && canPhone.errors.hasOwnProperty('pattern')"
+          >Phone Number is not valid</mat-error
+        >
       </mat-form-field>
       <mat-form-field>
         <mat-label> Address </mat-label>
-        <input matInput type="text" />
+        <input matInput type="text" formControlName="canAddress" />
+        <mat-error
+          *ngIf="
+            canAddress.invalid && canAddress.errors.hasOwnProperty('required')
+          "
+          >Address is required</mat-error
+        >
       </mat-form-field>
       <mat-form-field>
         <mat-label> City </mat-label>
-        <input matInput type="text" />
+        <input matInput type="text" formControlName="canCity" />
+        <mat-error
+          *ngIf="canCity.invalid && canCity.errors.hasOwnProperty('required')"
+          >City is required</mat-error
+        >
       </mat-form-field>
       <mat-form-field>
         <mat-label> Province </mat-label>
-        <input matInput type="text" />
+        <input matInput type="text" formControlName="canProvince" />
+        <mat-error
+          *ngIf="
+            canProvince.invalid && canProvince.errors.hasOwnProperty('required')
+          "
+          >Province is required</mat-error
+        >
       </mat-form-field>
       <mat-form-field>
         <mat-label> Postal Code </mat-label>
-        <input matInput type="text" />
+        <input matInput type="text" formControlName="canPostalCode" />
+        <mat-error
+          *ngIf="
+            canPostalCode.invalid &&
+            canPostalCode.errors.hasOwnProperty('required')
+          "
+          >Postal Code is required</mat-error
+        >
+        <mat-error
+          *ngIf="
+            canPostalCode.invalid &&
+            canPostalCode.errors.hasOwnProperty('pattern')
+          "
+          >Postal Code is not valid</mat-error
+        >
       </mat-form-field>
     </div>
     <div class="foot-div">
@@ -58,6 +123,7 @@
         <button
           class="update-btn"
           color="primary"
+          (click)="update()"
           mat-flat-button
           class="mat-elevation-z8"
         >

@@ -24,7 +24,7 @@
           >Email is required</mat-error
         >
         <mat-error
-          *ngIf="email.invalid && phone.errors.hasOwnProperty('pattern')"
+          *ngIf="email.invalid && email.errors.hasOwnProperty('pattern')"
           >Invalid Email Address</mat-error
         >
       </mat-form-field>
@@ -38,10 +38,6 @@
           formControlName="phone"
         />
         <mat-error
-          *ngIf="phone.invalid && phone.errors.hasOwnProperty('required')"
-          >Phone is required</mat-error
-        >
-        <mat-error
           *ngIf="phone.invalid && phone.errors.hasOwnProperty('pattern')"
           >Invalid phone number</mat-error
         >
@@ -51,7 +47,7 @@
       <label for="mode"
         ><h6 class="mt-20">Prefered mode of communication</h6></label
       >
-      <mat-radio-group id="mode" formControlName="preferedMode">
+      <mat-radio-group id="mode">
         <mat-radio-button [value]="modes[0]" checked>{{
           modes[0]
         }}</mat-radio-button>
@@ -64,14 +60,15 @@
           type="text"
           maxlength="256"
           placeholder="Leave a comment"
-          #message
           formControlName="comment"
         ></textarea>
+
         <mat-error
           *ngIf="comment.invalid && comment.errors.hasOwnProperty('required')"
-          >Comment is required</mat-error
+          >Required</mat-error
         >
-        <mat-hint align="end">{{ message.value.length }}/256</mat-hint>
+
+        <mat-hint align="end">{{ comment.value.length }}/256</mat-hint>
       </mat-form-field>
       <div class="validation-wraper"></div>
       <br />

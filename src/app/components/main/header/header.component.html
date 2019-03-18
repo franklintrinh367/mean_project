@@ -21,7 +21,7 @@
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">About Us</a>
+          <a class="nav-link" routerLink="/about">About Us</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/contact" routerLinkActive="active"
@@ -51,13 +51,15 @@
             >
               Company
             </button>
+
             <button
               mat-menu-item
               *ngIf="this.token && this.token.role === 'Company'"
-              (click)="onGetDetails()"
+              (click)="onGetCompany()"
             >
-              Edit Profile
+              Company Edit
             </button>
+
             <button mat-menu-item (click)="logout()">Log out</button>
           </mat-menu>
         </li>

@@ -1,22 +1,27 @@
-.wraper {
-  padding-top: 40px;
-  padding-bottom: 40px;
+:host {
+  display: block;
+  padding: 70px;
+
+  #body {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+
+    mat-vertical-stepper {
+      width: 100%;
+    }
+  }
 }
 
-mat-error {
-  color: red;
+mat-form-field {
+  padding: 20px;
 }
 
-mat-card {
-  min-width: 450px;
-}
-
-.login-btn:disabled {
-  background-color: green;
-  color: black;
-}
-
-h3 {
-  max-width: 70%;
-  margin: auto;
+@media screen and (max-width: 480px) {
+  :host {
+    padding: 70px 0 70px 0;
+    #body {
+      width: 100%;
+    }
+  }
 }

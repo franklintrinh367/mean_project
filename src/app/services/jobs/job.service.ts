@@ -60,6 +60,12 @@ export class JobService {
     return this.http.get(this.Url + '/get/all')
   }
 
+  // Get user Job
+  getUserJob(id) {
+    return this.http.get(this.Url + '/getall/' + id)
+  }
+
+  // Populate form is when you pass the form to modify
   populateForm(
     _id: string,
     userId: string,
@@ -83,6 +89,11 @@ export class JobService {
   }
 
   update_Jobs(job: Job): Observable<any> {
-    return this.http.post(this.Url + `/${job._id}`, job)
+    return this.http.put(this.Url + `/updates/${job._id}`, job)
+  }
+
+  // Set the activate false in the database
+  delete_Jobs(job: Job): Observable<any> {
+    return this.http.put(this.Url + `/updates/${job._id}`, job)
   }
 }

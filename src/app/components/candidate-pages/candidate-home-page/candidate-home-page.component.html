@@ -10,11 +10,20 @@
     </mat-grid-tile>
     <mat-grid-tile [colspan]="2">
       <div class="vertical al-left ">
-        <h3>John Doe</h3>
-        <h5>Student</h5>
+        <h3>{{ this.user.canFirstName }} {{ this.user.canLastName }}</h3>
+        <h5>{{ this.user.canActualJob }}</h5>
       </div>
     </mat-grid-tile>
-    <mat-grid-tile> Edit Profile</mat-grid-tile>
+    <mat-grid-tile>
+      <button
+        mat-button
+        mat-raised-button
+        color="primary"
+        (click)="navigateEdit()"
+      >
+        Edit Profile
+      </button>
+    </mat-grid-tile>
     <mat-grid-tile>
       <div class="vertical">
         <mat-list>
@@ -25,22 +34,45 @@
         </mat-list>
       </div>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="3" [rowspan]="2">
+    <mat-grid-tile [colspan]="3" [rowspan]="3">
       <div class="vertical top-left">
         <mat-tab-group>
           <mat-tab label="About">
             <mat-list>
-              <mat-list-item>First Name: John</mat-list-item>
-              <mat-list-item>Last Name: Doe</mat-list-item>
-              <mat-list-item
-                >Education: Ontario College Advanced Diploma</mat-list-item
+              <mat-list-item>
+                <span>First Name: </span>
+                {{ this.user.canFirstName }}</mat-list-item
               >
-              <mat-list-item>Occupation: Student</mat-list-item>
-              <mat-list-item>Phone Number: (416) 509-6995</mat-list-item>
-              <mat-list-item>Address: 160 Kendal Ave </mat-list-item>
-              <mat-list-item>City: Toronto</mat-list-item>
-              <mat-list-item>Province: Ontario</mat-list-item>
-              <mat-list-item>Postal Code: M5R 1M3</mat-list-item>
+              <mat-list-item>
+                <span>Last Name: </span>
+                {{ this.user.canLastName }}</mat-list-item
+              >
+              <mat-list-item>
+                <span>Education: </span>
+                {{ this.user.canEducation }}</mat-list-item
+              >
+              <mat-list-item>
+                <span>Occupation: </span
+                >{{ this.user.canActualJob }}</mat-list-item
+              >
+              <mat-list-item>
+                <span> Phone Number:</span>
+                {{ this.user.canPhone }}</mat-list-item
+              >
+              <mat-list-item>
+                <span> Address: </span> {{ this.user.canAddress }}
+              </mat-list-item>
+              <mat-list-item>
+                <span> City: </span> {{ this.user.canCity }}</mat-list-item
+              >
+              <mat-list-item>
+                <span> Province: </span>
+                {{ this.user.canProvince }}</mat-list-item
+              >
+              <mat-list-item>
+                <span> Postal Code: </span>
+                {{ this.user.canPostalCode }}</mat-list-item
+              >
             </mat-list>
           </mat-tab>
           <mat-tab label="Applied Jobs"> Jobs that have been applied </mat-tab>
