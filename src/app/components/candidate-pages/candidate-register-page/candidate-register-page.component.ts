@@ -106,9 +106,6 @@ export class CandidateRegisterPageComponent implements OnInit {
       canPostalCode: this.canPostalCode.value,
     }
     this.candidateService.register(this.candidate).subscribe()
-    window.confirm(
-      `You have successfully updated candidate information. Close this window to direct to your home page!!`
-    )
-    this.router.navigateByUrl('/candidates/candidate_homepage')
+    window.confirm(`You have successfully updated candidate information!!`)
   }
 }
