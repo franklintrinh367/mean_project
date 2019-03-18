@@ -8,11 +8,10 @@ import { ClientNewJobPageComponent } from 'src/app/components/client-pages/clien
 import { ClientJobDetailsPageComponent } from 'src/app/components/client-pages/client-job-details-page/client-job-details-page.component'
 import { MaterialModule } from 'src/app/module/material/material.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { HomePagesComponent } from 'src/app/components/client/home-pages/home-pages.component'
-import { JobDetailsComponent } from 'src/app/components/client/job-details/job-details.component'
-import { NewJobComponent } from 'src/app/components/client/new-job/new-job.component'
-import { EditJobComponent } from 'src/app/components/client/edit-job/edit-job.component'
-
+import { HomePagesComponent } from './home-pages/home-pages.component'
+import { JobDetailsComponent } from './job-details/job-details.component'
+import { NewJobComponent } from './new-job/new-job.component'
+import { EditJobComponent } from './edit-job/edit-job.component'
 @NgModule({
   declarations: [
     ClientHomepagesComponent,
