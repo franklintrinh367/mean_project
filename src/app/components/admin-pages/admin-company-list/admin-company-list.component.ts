@@ -1,14 +1,10 @@
 /* CORE */
 import { Component, OnInit, ViewChild } from '@angular/core'
 
-/* ROUTER*/
-import { Router } from '@angular/router'
-
 /* MODELS */
 import { Client } from '../../../models/clients/client'
 
 /* SERVICES */
-import { ClientService } from '../../../services/client/client.service'
 
 /* MATERIAL DESIGN */
 import {
@@ -21,6 +17,7 @@ import {
 import { ClientRegisterPageComponent } from '../../client-pages/client-register-page/client-register-page.component'
 import { Location } from '@angular/common'
 import { slideUp } from '../../shared/animations'
+import { ClientService } from '../../client-pages/client-services/client.service'
 
 // GONNA BE DELETED - JUST FOR TEST
 const COMPANIES: any[] = [

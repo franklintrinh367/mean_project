@@ -3,7 +3,7 @@ import { JobService } from 'src/app/services/jobs/job.service'
 import { Router } from '@angular/router'
 import { MatDialogRef } from '@angular/material'
 import { AuthenticateService } from 'src/app/services/authenticate.service'
-import { FormGroup, FormBuilder } from '@angular/forms'
+import { FormGroup } from '@angular/forms'
 
 // For implementing the selection
 export interface Status {

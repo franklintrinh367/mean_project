@@ -2,8 +2,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core'
 
 /* SERVICE */
-import { UserService } from '../../../services/main/user.service'
-import { EditUserService } from '../../../services/admin/edit-user.service'
 
 /* MODELS */
 import { User } from '../../../../models/users'
@@ -12,7 +10,7 @@ import { Roles } from '../../../models/admin/role'
 import { Activated } from '../../../models/admin/activated'
 
 /* FORMS */
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
+import { FormGroup } from '@angular/forms'
 
 /* MATERIAL DESIGN */
 import { MatDialogRef } from '@angular/material'
@@ -21,6 +19,7 @@ import { MatDialogRef } from '@angular/material'
 import { AdminNewUserComponent } from '../admin-new-user/admin-new-user.component'
 /* ROUTERS */
 import { Router } from '@angular/router'
+import { EditUserService } from '../admin-services/edit-user.service'
 
 @Component({
   selector: 'app-admin-user-details',

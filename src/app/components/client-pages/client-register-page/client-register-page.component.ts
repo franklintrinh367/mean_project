@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core'
-import { ClientService } from '../../../services/client/client.service'
 import { FormGroup, FormBuilder } from '@angular/forms'
 import { AuthenticateService } from '../../../services/authenticate.service'
 import { Router } from '@angular/router'
 import { slideUp } from '../../shared/animations'
+import { ClientService } from '../client-services/client.service'
 
 @Component({
   selector: 'app-client-register-page',

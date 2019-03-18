@@ -34,7 +34,6 @@ import { MaterialModule } from './module/material/material.module'
 import { LoaderModule } from './module/loader-module'
 
 import { ResetPasswordComponent } from './components/main/reset-password/reset-password.component'
-import { ClientService } from './services/client/client.service'
 import { JobService } from './services/jobs/job.service'
 import { ScrollCorDirective } from './components/directives/scroll-cor.directive'
 
@@ -68,7 +67,7 @@ import { ScrollCorDirective } from './components/directives/scroll-cor.directive
     HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [ClientService, JobService],
+  providers: [JobService],
   bootstrap: [AppComponent],
   entryComponents: [],
 })

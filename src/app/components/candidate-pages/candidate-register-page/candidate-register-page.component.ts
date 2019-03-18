@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Candidate } from '../../../models/candidates/candidate'
-import { CandidateService } from '../../../services/candidate/candidate.service'
 import { AuthenticateService } from 'src/app/services/authenticate.service'
 import { Router } from '@angular/router'
+import { CandidateService } from '../candidate-services/candidate.service'
 
 @Component({
   selector: 'app-candidate-register-page',

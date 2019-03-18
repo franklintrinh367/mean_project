@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs'
-import { Candidate } from '../../models/candidates/candidate'
 import { headersToString } from 'selenium-webdriver/http'
+import { Candidate } from 'src/app/models/candidates/candidate'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),

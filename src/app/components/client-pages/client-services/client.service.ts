@@ -3,13 +3,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { HttpClient } from '@angular/common/http'
 
 import { Observable } from 'rxjs/Observable'
-import { of } from 'rxjs/observable/of'
 
 import 'rxjs/add/operator/map'
 import 'rxjs/operator/toPromise'
-
-import { Client } from '../../models/clients/client'
-import { Job } from 'src/app/models/clients/jobs'
+import { Client } from 'src/app/models/clients/client'
 
 @Injectable({
   providedIn: 'root',

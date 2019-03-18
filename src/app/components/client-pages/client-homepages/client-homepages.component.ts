@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
-import { ClientService } from 'src/app/services/client/client.service'
 import { AuthenticateService } from 'src/app/services/authenticate.service'
 import { Client } from 'src/app/models/clients/client'
+import { ClientService } from '../client-services/client.service'
 
 @Component({
   selector: 'app-client-homepages',

@@ -12,6 +12,7 @@ import { HomePagesComponent } from './home-pages/home-pages.component'
 import { JobDetailsComponent } from './job-details/job-details.component'
 import { NewJobComponent } from './new-job/new-job.component'
 import { EditJobComponent } from './edit-job/edit-job.component'
+import { ClientService } from './client-services/client.service'
 @NgModule({
   declarations: [
     ClientHomepagesComponent,
@@ -32,5 +33,6 @@ import { EditJobComponent } from './edit-job/edit-job.component'
   ],
 
   entryComponents: [ClientNewJobPageComponent],
+  providers: [ClientService],
 })
 export class CompaniesModule {}
