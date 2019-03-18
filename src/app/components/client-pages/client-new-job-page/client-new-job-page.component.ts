@@ -54,12 +54,12 @@ export class ClientNewJobPageComponent implements OnInit {
         //subscribe to the function post_Jobs on the service
         this.service.post_Jobs(this.service.form.value).subscribe(() => {
           this.onClose()
-          this.router.navigate(['/companies/company_details'])
+          this.router.navigate(['../company_details'])
         })
       } else {
         this.service.update_Jobs(this.service.form.value).subscribe(() => {
           this.onClose()
-          this.router.navigate(['/companies/company_details'])
+          this.router.navigate(['../company_details'])
         })
       }
     }
