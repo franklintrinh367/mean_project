@@ -6,6 +6,8 @@ import { AuthenticateService } from 'src/app/services/authenticate.service'
 import { Router } from '@angular/router'
 import { Overlay } from '@angular/cdk/overlay'
 
+//import {} from '../../admin-pages/'
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -70,6 +72,15 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(['/companies/company_home'])
     } else {
       this.router.navigate(['/companies/company_home'])
+    }
+  }
+
+  // Function to redirect to the admin home pages
+
+  onGetAdmin() {
+    let token = this.authService.getTokenDetails('auth-token')
+    if (token.visited) {
+      this.router.navigate(['/admin-pages/admin_homePage'])
     }
   }
 }

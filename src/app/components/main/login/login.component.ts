@@ -49,9 +49,14 @@ export class LoginComponent implements OnInit {
                   break
                 }
                 //check if the role is
-                case 'Company':
+                case 'Company': {
                   window.location.assign('/companies/company_register')
                   break
+                }
+                case 'admin': {
+                  window.location.assign('/admins/admin_homePage')
+                  break
+                }
               }
               this.closeDialog('')
             } else {
@@ -63,9 +68,10 @@ export class LoginComponent implements OnInit {
                   break
                 }
                 //check if the role is
-                case 'Company':
+                case 'Company': {
                   window.location.assign('/companies/company_details')
                   break
+                }
               }
             }
           } else {

@@ -60,6 +60,14 @@
               Company Edit
             </button>
 
+            <button
+              mat-menu-item
+              *ngIf="this.token && this.token.role === 'admin'"
+              (click)="onGetAdmin()"
+            >
+              Admin Page
+            </button>
+
             <button mat-menu-item (click)="logout()">Log out</button>
           </mat-menu>
         </li>

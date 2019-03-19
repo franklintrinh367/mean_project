@@ -6,7 +6,7 @@ const User = require('../models/User')
 
 // get all admins
 router.get('/get/all', (req, res) => {
-  User.find({ role: 'admin' }, (err, admins) => {
+  User.find({}, (err, admins) => {
     if (err) {
       res.status(400).send({ error: 'Admin not found' })
     }
