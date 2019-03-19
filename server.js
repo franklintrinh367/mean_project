@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const app = express()
 const cors = require('cors')
+const path = require('path')
 // declare the path
 //const path = require('path')
 // DB config
@@ -41,6 +42,12 @@ app.use('/jobs', job)
 app.use('/admin', admin)
 // Port Number
 const port = 3000 || process.env.PORT
+
+app.use(express.static(path.join(__dirname + 'dist')))
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + 'dist/index.html'))
+})
 
 // Start Server
 app.listen(port, () => {
