@@ -4,15 +4,21 @@ import { Candidate } from '../../../models/candidates/candidate'
 import { AuthenticateService } from 'src/app/services/authenticate.service'
 import { Router } from '@angular/router'
 import { CandidateService } from '../candidate-services/candidate.service'
+import { slideUp } from '../../shared/animations'
 
 @Component({
   selector: 'app-candidate-register-page',
   templateUrl: './candidate-register-page.component.html',
   styleUrls: ['./candidate-register-page.component.scss'],
+  animations: [slideUp()],
 })
 export class CandidateRegisterPageComponent implements OnInit {
-  private candidateRegisterForm: FormGroup
+  firstFormGroup: FormGroup
+  secondFormGroup: FormGroup
+  thirdFormGroup: FormGroup
+  fourthFormGroup: FormGroup
   candidate: Candidate
+  state = 'out'
 
   constructor(
     private builder: FormBuilder,
@@ -22,12 +28,15 @@ export class CandidateRegisterPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.candidateRegisterForm = this.builder.group({
-      canId: [''],
+    setTimeout(() => (this.state = 'in'), 30)
+    this.firstFormGroup = this.builder.group({
       canFirstName: ['', [Validators.required]],
       canLastName: ['', [Validators.required]],
       canEducation: ['', [Validators.required]],
       canActualJob: ['', [Validators.required]],
+    })
+
+    this.secondFormGroup = this.builder.group({
       canLink: [''],
       canPhone: [
         '',
@@ -36,8 +45,9 @@ export class CandidateRegisterPageComponent implements OnInit {
           Validators.pattern('^\\d{3}[-]?\\d{3}[-]?\\d{4}$'),
         ],
       ],
-      canResume: [''],
-      canPicture: [''],
+    })
+
+    this.thirdFormGroup = this.builder.group({
       canAddress: ['', [Validators.required]],
       canCity: ['', [Validators.required]],
       canProvince: ['', [Validators.required]],
@@ -49,43 +59,50 @@ export class CandidateRegisterPageComponent implements OnInit {
         ],
       ],
     })
+    this.fourthFormGroup = this.builder.group({
+      canId: [''],
+
+      canResume: [''],
+      canPicture: [''],
+    })
   }
 
   get canFirstName() {
-    return this.candidateRegisterForm.get('canFirstName')
+    return this.firstFormGroup.get('canFirstName')
   }
   get canLastName() {
-    return this.candidateRegisterForm.get('canLastName')
+    return this.firstFormGroup.get('canLastName')
   }
   get canEducation() {
-    return this.candidateRegisterForm.get('canEducation')
+    return this.firstFormGroup.get('canEducation')
   }
   get canActualJob() {
-    return this.candidateRegisterForm.get('canActualJob')
+    return this.firstFormGroup.get('canActualJob')
   }
   get canLink() {
-    return this.candidateRegisterForm.get('canLink')
+    return this.secondFormGroup.get('canLink')
   }
   get canPhone() {
-    return this.candidateRegisterForm.get('canPhone')
+    return this.secondFormGroup.get('canPhone')
   }
-  get canResume() {
-    return this.candidateRegisterForm.get('canResume')
-  }
-  get canPicture() {
-    return this.candidateRegisterForm.get('canPicture')
-  }
+
   get canAddress() {
-    return this.candidateRegisterForm.get('canAddress')
+    return this.thirdFormGroup.get('canAddress')
   }
   get canCity() {
-    return this.candidateRegisterForm.get('canCity')
+    return this.thirdFormGroup.get('canCity')
   }
   get canProvince() {
-    return this.candidateRegisterForm.get('canProvince')
+    return this.thirdFormGroup.get('canProvince')
   }
   get canPostalCode() {
-    return this.candidateRegisterForm.get('canPostalCode')
+    return this.thirdFormGroup.get('canPostalCode')
+  }
+  get canResume() {
+    return this.fourthFormGroup.get('canResume')
+  }
+  get canPicture() {
+    return this.fourthFormGroup.get('canPicture')
   }
 
   signup() {
