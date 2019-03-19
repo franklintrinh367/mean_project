@@ -49,6 +49,12 @@ export class EditUserService {
     return this.http.get(this.Url + '/get/all')
   }
 
+  // Function to get all list of company
+
+  getCompany() {
+    return this.http.get(this.Url + '/get/all/company')
+  }
+
   /* FUNCTION TO POPULATE FORM */
   populateForm(users) {
     this.form.setValue(users)

@@ -3,6 +3,7 @@ const router = express.Router()
 
 // get Admin model
 const User = require('../models/User')
+const Company = require('../models/Company')
 
 // get all admins
 router.get('/get/all', (req, res) => {
@@ -12,6 +13,20 @@ router.get('/get/all', (req, res) => {
     }
     if (admins) {
       res.status(200).json(admins)
+    }
+  })
+})
+
+// get all company list
+
+// get all admins
+router.get('/get/all/company', (req, res) => {
+  User.find({ role: 'Company' }, 'details', (err, company) => {
+    if (err) {
+      res.status(400).send({ error: 'No Company' })
+    }
+    if (company) {
+      res.status(200).json(company)
     }
   })
 })
