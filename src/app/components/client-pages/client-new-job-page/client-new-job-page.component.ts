@@ -3,7 +3,7 @@ import { JobService } from 'src/app/services/jobs/job.service'
 import { Router } from '@angular/router'
 import { MatDialogRef } from '@angular/material'
 import { AuthenticateService } from 'src/app/services/authenticate.service'
-import { FormGroup, FormBuilder } from '@angular/forms'
+import { FormGroup } from '@angular/forms'
 
 // For implementing the selection
 export interface Status {
@@ -54,12 +54,12 @@ export class ClientNewJobPageComponent implements OnInit {
         //subscribe to the function post_Jobs on the service
         this.service.post_Jobs(this.service.form.value).subscribe(() => {
           this.onClose()
-          this.router.navigate(['/companies/company_details'])
+          this.router.navigate(['../company_details'])
         })
       } else {
         this.service.update_Jobs(this.service.form.value).subscribe(() => {
           this.onClose()
-          this.router.navigate(['/companies/company_details'])
+          this.router.navigate(['../company_details'])
         })
       }
     }

@@ -12,6 +12,7 @@ import { AdminManageJobsComponent } from 'src/app/components/admin-pages/admin-m
 import { AdminUserListComponent } from 'src/app/components/admin-pages/admin-user-list/admin-user-list.component'
 import { MaterialModule } from 'src/app/module/material/material.module'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
+import { EditUserService } from './admin-services/edit-user.service'
 
 @NgModule({
   declarations: [
@@ -25,11 +26,13 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms'
     AdminCompanyDetailsComponent,
   ],
   imports: [
-    CommonModule,
-    AdminsRoutingModule,
     MaterialModule,
+    CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    AdminsRoutingModule,
   ],
+
+  providers: [EditUserService],
 })
 export class AdminsModule {}

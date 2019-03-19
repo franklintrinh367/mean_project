@@ -6,7 +6,7 @@ import { ClientNewJobPageComponent } from 'src/app/components/client-pages/clien
 import { ClientJobDetailsPageComponent } from 'src/app/components/client-pages/client-job-details-page/client-job-details-page.component'
 
 const routes: Routes = [
-  { path: '', component: ClientHomepagesComponent },
+  { path: 'company_home', component: ClientHomepagesComponent },
   { path: 'company_register', component: ClientRegisterPageComponent },
   { path: 'new-jobs', component: ClientNewJobPageComponent },
   { path: 'company_details', component: ClientJobDetailsPageComponent },

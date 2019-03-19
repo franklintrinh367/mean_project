@@ -1,13 +1,16 @@
 /* CORE */
 import { Component, OnInit, ViewChild } from '@angular/core'
-import { Router } from '@angular/router'
+import { Location } from '@angular/common'
+import { slideUp } from '../../shared/animations'
+import { ActivatedRoute, Router } from '@angular/router'
 
 /*MODELS */
 import { User } from '../../../../models/users'
-
+import { Admin } from '../../../models/admin/admin'
 /* SERVICE */
-import { UserService } from '../../../services/main/user.service'
-import { EditUserService } from '../../../services/admin/edit-user.service'
+//import { UserService } from '../../../services/main/user.service'
+import { EditUserService } from '../admin-services/edit-user.service'
+import { AuthenticateService } from 'src/app/services/authenticate.service'
 
 /* MATERIAL DESIGN */
 import {
@@ -21,18 +24,6 @@ import {
 /* COMPONENTS */
 import { AdminUserDetailsComponent } from '../admin-user-details/admin-user-details.component'
 import { AdminNewUserComponent } from '../admin-new-user/admin-new-user.component'
-import { Location } from '@angular/common'
-import { slideUp } from '../../shared/animations'
-
-// // gonna be deleted - only for test
-const USERS: any[] = [
-  { _id: 1, username: 'AAA', email: 'AAA@AAA', role: 'AAA' },
-  { _id: 2, username: 'BBB', email: 'BBB@BBB', role: 'BBB' },
-  { _id: 4, username: 'DDD', email: 'DDD@DDD', role: 'DDD' },
-  { _id: 5, username: 'EEE', email: 'EEE@EEE', role: 'EEE' },
-  { _id: 6, username: 'FFF', email: 'FFF@FFF', role: 'FFF' },
-  { _id: 3, username: 'CCC', email: 'CCC@CCC', role: 'CCC' },
-]
 
 @Component({
   selector: 'app-admin-user-list',
@@ -41,23 +32,25 @@ const USERS: any[] = [
   animations: [slideUp()],
 })
 export class AdminUserListComponent implements OnInit {
-  /* PARAMETERS */
-  users: User[]
+  state: String
+  private token: String
+  list: User[]
   searchKey: string
 
-  /* TABLE PARAMETERS */
-  dataSource = new MatTableDataSource(USERS)
+  /* TABLE ELEMENTS  */
+  dataSource: MatTableDataSource<any>
   displayColumns: string[]
-  state: String
 
   /* PAGINATION AND SORT */
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
 
   constructor(
-    private userService: UserService,
     private editService: EditUserService,
     private dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute,
+    private authService: AuthenticateService,
     private location: Location
   ) {
     this.displayColumns = ['_id', 'username', 'email', 'role', 'actions']
@@ -66,11 +59,10 @@ export class AdminUserListComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(() => (this.state = 'in'), 30)
+    // this.token = this.authService.getTokenDetails('auth-token')
     this.getAllUsers()
     this.onSearchClear()
     this.applyFilter()
-    this.dataSource.sort = this.sort
-    this.dataSource.paginator = this.paginator
   }
 
   /* FUNCTION TO CLEAT THE SERACH KEY */
@@ -98,9 +90,13 @@ export class AdminUserListComponent implements OnInit {
 
   /* LIST ALL USERS */
   getAllUsers() {
-    this.userService.getUser().subscribe(res => {
-      this.users = res as User[]
-      this.dataSource = new MatTableDataSource(this.users)
+    this.editService.getUser().subscribe(res => {
+      this.list = res as User[]
+      console.log(this.list)
+      console.log(this.list['details'])
+      this.dataSource = new MatTableDataSource(this.list)
+      this.dataSource.sort = this.sort
+      this.dataSource.paginator = this.paginator
     })
   }
 

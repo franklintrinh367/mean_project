@@ -2,12 +2,8 @@
 import { Component, OnInit } from '@angular/core'
 
 /* SERVICE */
-import { UserService } from '../../../services/main/user.service'
-import { EditUserService } from '../../../services/admin/edit-user.service'
 
 /* MODELS */
-import { User } from '../../../../models/users'
-import { Admin } from '../../../models/admin/admin'
 import { Roles } from '../../../models/admin/role'
 
 /* MATERIAL DESIGN */
@@ -17,6 +13,7 @@ import { MatDialogRef } from '@angular/material'
 import { Router } from '@angular/router'
 import { slideUp } from '../../shared/animations'
 import { Location } from '@angular/common'
+import { EditUserService } from '../admin-services/edit-user.service'
 
 @Component({
   selector: 'app-admin-new-user',

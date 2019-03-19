@@ -6,6 +6,8 @@ import { AuthenticateService } from 'src/app/services/authenticate.service'
 import { Router } from '@angular/router'
 import { Overlay } from '@angular/cdk/overlay'
 
+//import {} from '../../admin-pages/'
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -41,6 +43,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.logout('auth-token')
+    window.location.assign('/')
   }
   // methode to register the company
   /* onRegisterCompany() {
@@ -62,12 +65,22 @@ export class HeaderComponent implements OnInit {
 
   // this function is here for testing
   // after i will delete
-  onGetDetails() {
+  // I wanna be sure when company login has to be able to view the home
+  onGetCompany() {
     let token = this.authService.getTokenDetails('auth-token')
     if (token.visited > !token.details) {
-      this.router.navigate(['/companies/company_register'])
+      this.router.navigate(['/companies/company_home'])
     } else {
-      this.router.navigate(['/companies/company_register'])
+      this.router.navigate(['/companies/company_home'])
+    }
+  }
+
+  // Function to redirect to the admin home pages
+
+  onGetAdmin() {
+    let token = this.authService.getTokenDetails('auth-token')
+    if (token.visited) {
+      this.router.navigate(['/admin-pages/admin_homePage'])
     }
   }
 }

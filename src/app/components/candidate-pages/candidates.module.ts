@@ -7,6 +7,7 @@ import { CandidateHomePageComponent } from 'src/app/components/candidate-pages/c
 import { CandidateEditProfileComponent } from 'src/app/components/candidate-pages/candidate-edit-profile/candidate-edit-profile.component'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 import { MaterialModule } from 'src/app/module/material/material.module'
+import { CandidateService } from './candidate-services/candidate.service'
 
 @NgModule({
   declarations: [
@@ -16,10 +17,12 @@ import { MaterialModule } from 'src/app/module/material/material.module'
   ],
   imports: [
     CommonModule,
-    CandidatesRoutingModule,
     ReactiveFormsModule,
     MaterialModule,
     FormsModule,
+    CandidatesRoutingModule,
   ],
+
+  providers: [CandidateService],
 })
 export class CandidatesModule {}

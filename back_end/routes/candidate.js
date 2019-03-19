@@ -3,6 +3,9 @@ const router = express.Router()
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
+// Get the secret key
+const secretOrKey = require('../config/keys').secretOrKey
+
 // load models
 const User = require('../models/User')
 const Job = require('../models/Job')
@@ -60,50 +63,47 @@ router.get('/get/:candidateID', (req, res) => {
 })
 
 // Update Candidate
-router.put('/update/:candidateID', (req, res) => {
-  var { candidateID } = req.params
-  User.findOne({ _id: candidateID }, (err, candidate) => {
-    if (err) {
-      res.status(400).json({ error: 'User not found' })
-    } else {
-      if (req.body.firstName) {
-        candidate.firstName = req.body.firstName
-      }
-      if (req.body.lastName) {
-        candidate.lastName = req.body.lastName
-      }
-      if (req.body.education) {
-        candidate.education = req.body.education
-      }
-      if (req.body.occupation) {
-        candidate.occupation = req.body.occupation
-      }
-      if (req.body.phoneNumber) {
-        candidate.phoneNumber = req.body.phoneNumber
-      }
-      if (req.body.linkedIn) {
-        candidate.linkedIn = req.body.linkedIn
-      }
-      if (req.body.dateOfBirth) {
-        candidate.dateOfBirth = req.body.dateOfBirth
-      }
-      if (req.body.email) {
-        candidate.email = req.body.email
-      }
-      if (req.body.password) {
-        bcrypt.hash(req.body.password, 10, (err, hash) => {
-          if (err) {
-            throw err
-          }
-          candidate.password = hash
-        })
-      }
-      candidate
-        .save()
-        .then(user => res.status(200).json(candidate))
-        .catch(err => res.status(400).json({ err: err }))
-    }
+router.put('/update/:token', (req, res) => {
+  let token = jwt.decode(req.params.token)
+  let userID = token.id
+
+  let newCandidate = new Candidate({
+    canFirstName: req.body.canFirstName,
+    canLastName: req.body.canLastName,
+    canEducation: req.body.canEducation,
+    canActualJob: req.body.canActualJob,
+    canPhone: req.body.canPhone,
+    canLink: req.body.canLink,
+    canResume: req.body.canResume,
+    canAddress: req.body.canAddress,
+    canCity: req.body.canCity,
+    canProvince: req.body.canProvince,
+    canPostalCode: req.body.canPostalCode,
   })
+
+  User.findById(userID)
+    .then(user => {
+      user.details = newCandidate
+      user.save().then(() => {
+        const payload = {
+          id: userID,
+          email: token.email,
+          username: token.username,
+          role: token.role,
+          completed: token.completed,
+          details: newCandidate,
+        }
+
+        // Set token
+        jwt.sign(payload, secretOrKey, { expiresIn: 3600 }, (err, token) => {
+          res.json({
+            success: true,
+            token: token,
+          })
+        })
+      })
+    })
+    .catch(err => res.json(err))
 })
 
 // apply for a job
