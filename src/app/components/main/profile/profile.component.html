@@ -116,7 +116,14 @@
   <mat-divider color="primary"></mat-divider>
   <div class="tile">
     <div class="item">
-      <button mat-button mat-raised-button color="primary">Edit Profile</button>
+      <button
+        (click)="navigate('edit')"
+        mat-button
+        mat-raised-button
+        color="primary"
+      >
+        Edit Profile
+      </button>
     </div>
     <div class="item">
       <button (click)="navigate('back')" mat-button mat-raised-button>
