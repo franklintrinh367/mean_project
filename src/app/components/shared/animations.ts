@@ -23,7 +23,7 @@ export function slideUp() {
   ])
 }
 
-export const slideDown = () => {
+export function slideDown() {
   return trigger('slideDown', [
     state(
       'out',
