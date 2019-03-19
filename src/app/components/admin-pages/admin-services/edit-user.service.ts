@@ -13,7 +13,7 @@ import { User } from 'src/models/users'
 })
 export class EditUserService {
   /* CREATE FORMGROUP OF USERS */
-  readonly Url = 'http://localhost:3000/users'
+  readonly Url = 'http://localhost:3000/admin'
 
   constructor(private http: HttpClient) {}
 
@@ -45,8 +45,8 @@ export class EditUserService {
   }
 
   /* FUNCTION TO GET USER */
-  getUsers() {
-    return this.http.get(this.Url)
+  getUser() {
+    return this.http.get(this.Url + '/get/all')
   }
 
   /* FUNCTION TO POPULATE FORM */
@@ -55,7 +55,13 @@ export class EditUserService {
   }
 
   updateUser(user: User): Observable<any> {
-    return this.http.post(this.Url + `/${user._id}`, user)
+    return this.http.post(this.Url + `/user/${user._id}`, user)
+  }
+
+  // Function to get admin details
+
+  getAdminDetails() {
+    return this.http.get(this.Url + '/admin/get/all')
   }
 
   deleteUser(user: User): Observable<any> {
