@@ -36,6 +36,8 @@ import { LoaderModule } from './module/loader-module'
 import { ResetPasswordComponent } from './components/main/reset-password/reset-password.component'
 import { JobService } from './services/jobs/job.service'
 import { ScrollCorDirective } from './components/directives/scroll-cor.directive'
+import { AboutComponent } from './components/main/about/about.component'
+import { TestComponent } from './test/test.component'
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { ScrollCorDirective } from './components/directives/scroll-cor.directive
     ProfileComponent,
     VerifyPageComponent,
     HeaderComponent,
-
+    AboutComponent,
+    TestComponent,
     ScrollCorDirective,
   ],
   imports: [
