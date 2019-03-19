@@ -38,6 +38,7 @@ import { JobService } from './services/jobs/job.service'
 import { ScrollCorDirective } from './components/directives/scroll-cor.directive'
 import { AboutComponent } from './components/main/about/about.component'
 import { TestComponent } from './test/test.component'
+import { DialogComponent } from './components/main/dialog/dialog.component'
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { TestComponent } from './test/test.component'
     HeaderComponent,
     AboutComponent,
     TestComponent,
+    DialogComponent,
     ScrollCorDirective,
   ],
   imports: [
