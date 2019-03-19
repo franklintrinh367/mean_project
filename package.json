@@ -1,13 +1,16 @@
 {
   "name": "mean",
   "version": "0.0.0",
+  "engines": {
+    "node": "8.11.4"
+  },
   "scripts": {
     "ng": "ng",
     "start": "npm run dev",
     "build": "ng build",
     "test": "ng test",
     "e2e": "ng e2e",
-    "server": "nodemon server.js",
+    "server": "node server.js",
     "dev": "concurrently \"npm run server\" \"ng serve --open\"",
     "lint": "eslint --debug back_end/",
     "lint:write": "eslint --debug back_end/ --fix",
