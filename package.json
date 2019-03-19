@@ -11,7 +11,8 @@
     "dev": "concurrently \"npm run server\" \"ng serve --open\"",
     "lint": "eslint --debug back_end/",
     "lint:write": "eslint --debug back_end/ --fix",
-    "prettier": "prettier --write back_end/**/*.js"
+    "prettier": "prettier --write back_end/**/*.js",
+    "heroku-postbuild": "ng build --prod"
   },
   "husky": {
     "hooks": {
