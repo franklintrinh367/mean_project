@@ -8,7 +8,9 @@ import { Feedback } from '../../models/others/feedback'
   providedIn: 'root',
 })
 export class UserService {
-  private baseUrl = 'http://localhost:3000/user'
+  // private baseUrl = 'http://localhost:3000/user'
+  //TEST
+  private baseUrl = 'https://jc-consulting-127.herokuapp.com'
 
   constructor(private http: HttpClient) {}
 

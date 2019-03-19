@@ -14,7 +14,10 @@ import { Client } from 'src/app/models/clients/client'
 export class ClientService {
   constructor(private http: HttpClient) {}
   // declare the url
-  readonly Url = 'http://localhost:3000/company/register'
+  // readonly Url = 'http://localhost:3000/company/register'
+
+  //TEST
+  private Url = 'https://jc-consulting-127.herokuapp.com'
 
   // create Form group of Client
 

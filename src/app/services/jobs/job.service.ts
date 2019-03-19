@@ -17,7 +17,10 @@ export class JobService {
   // create Form group of Client
 
   // URL tor the job
-  readonly Url = 'http://localhost:3000/jobs'
+  // readonly Url = 'http://localhost:3000/jobs'
+
+  //TEST
+  private Url = 'https://jc-consulting-127.herokuapp.com'
 
   form: FormGroup = new FormGroup({
     _id: new FormControl(null),
