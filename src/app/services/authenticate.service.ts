@@ -33,6 +33,6 @@ export class AuthenticateService {
 
   public isExpired(name: string): boolean {
     const user = this.getTokenDetails(name)
-    return user && user.exp > Date.now() / 1000
+    return user && user.exp < Date.now() / 1000
   }
 }
