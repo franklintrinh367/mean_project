@@ -10,6 +10,10 @@ const AdminSchema = new Schema({
     type: String,
     require: true,
   },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
 })
 
 module.exports = Admin = mongoose.model('Admin', AdminSchema)

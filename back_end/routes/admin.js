@@ -4,6 +4,41 @@ const router = express.Router()
 // get Admin model
 const User = require('../models/User')
 
+// Function to post
+
+// Add new Candidate
+router.post('/register', (req, res) => {
+  console.log('it goes here')
+  // instantiate details field
+  let details = {}
+
+  //visit count
+  let visited = 0
+
+  let { email, password, username, activated, role } = req.body
+
+  // let{
+  //   adminFirstName,
+  //   adminLastName
+  // } = req.body
+
+  // var details = Admin({
+  //   adminFirstName,
+  //   adminLastName
+  // })
+  var user = new User({
+    email: email,
+    password: password,
+    username: username,
+    activated: activated,
+    visited: visited,
+    role: role,
+    details: details,
+  })
+  // user.save().then(newuser => res.json(newuser))
+  // .catch(err => res.json(err))
+})
+
 // get all admins
 router.get('/get/all', (req, res) => {
   User.find({}, (err, admins) => {

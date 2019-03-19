@@ -99,17 +99,13 @@
       </button>
     </div>
   </div>
-
-  <div class="tile">
-    <form
-      autocomplete="off"
-      [formGroup]="userService.form"
-      (click)="onSubmit()"
-    >
-      <mat-form-field hidden>
+  <form autocomplete="off" [formGroup]="userService.form">
+    <div class="tile">
+      <!-- <mat-form-field hidden>
         <input formControlName="_id" matInput placeholder="ID *" #_id />
-      </mat-form-field>
+      </mat-form-field> -->
 
+      <!-- User Name-->
       <mat-form-field>
         <input
           required
@@ -120,6 +116,29 @@
         />
       </mat-form-field>
 
+      <!-- First Name-->
+      <!-- <mat-form-field>
+        <input
+          required
+          formControlName="firstName"
+          matInput
+          placeholder="First Name:"
+          #firstName
+        />
+      </mat-form-field> -->
+
+      <!-- Last Name-->
+      <!-- <mat-form-field>
+        <input
+          required
+          formControlName="lastName"
+          matInput
+          placeholder="Last Name:"
+          #LastName
+        />
+      </mat-form-field> -->
+
+      <!-- User Email-->
       <mat-form-field>
         <input
           required
@@ -130,33 +149,50 @@
         />
       </mat-form-field>
 
+      <!-- User Password-->
       <mat-form-field>
-        <mat-select placeholder="Role" formControlName="role">
+        <input
+          required
+          formControlName="password"
+          matInput
+          placeholder="User Password:"
+          #password
+        />
+      </mat-form-field>
+
+      <!-- User Role-->
+      <mat-form-field>
+        <mat-select placeholder="Role" formControlName="role" #role>
           <mat-option *ngFor="let r of roles" [value]="r.value">
             {{ r.viewValue }}
           </mat-option>
         </mat-select>
       </mat-form-field>
-    </form>
-  </div>
-
-  <div class="tile">
-    <div class="item">
-      <button
-        mat-raised-button
-        class="button-style"
-        type="submit"
-        [disabled]="userService.invalid"
-        color="primary"
-      >
-        Submit
-      </button>
     </div>
 
-    <div class="item">
-      <button mat-raised-button class="button-style" (click)="navigate('back')">
-        Cancel
-      </button>
+    <div class="tile">
+      <div class="item">
+        <button
+          mat-raised-button
+          class="button-style"
+          type="submit"
+          [disabled]="userService.invalid"
+          color="primary"
+          (click)="onSubmit()"
+        >
+          Submit
+        </button>
+      </div>
+
+      <div class="item">
+        <button
+          mat-raised-button
+          class="button-style"
+          (click)="navigate('back')"
+        >
+          Cancel
+        </button>
+      </div>
     </div>
-  </div>
+  </form>
 </div>

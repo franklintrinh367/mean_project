@@ -25,6 +25,8 @@ export class ClientNewJobPageComponent implements OnInit {
   status: Status[] = [
     { value: 'Part time', viewValue: 'Part time' },
     { value: 'Full time', viewValue: 'Full time' },
+    { value: 'Contract', viewValue: 'Contract' },
+    { value: ' Temporary', viewValue: 'Temporary' },
   ]
 
   today = new Date().toISOString().slice(0, 10)

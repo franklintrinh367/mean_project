@@ -1,10 +1,13 @@
 /* CORE */
 import { Component, OnInit, ViewChild } from '@angular/core'
+import { Location } from '@angular/common'
+import { slideUp } from '../../shared/animations'
 
 /* MODELS */
 import { Client } from '../../../models/clients/client'
 
 /* SERVICES */
+import { ClientService } from '../../client-pages/client-services/client.service'
 
 /* MATERIAL DESIGN */
 import {
@@ -14,80 +17,9 @@ import {
   MatSort,
   MatPaginator,
 } from '@angular/material'
-import { ClientRegisterPageComponent } from '../../client-pages/client-register-page/client-register-page.component'
-import { Location } from '@angular/common'
-import { slideUp } from '../../shared/animations'
-import { ClientService } from '../../client-pages/client-services/client.service'
 
-// GONNA BE DELETED - JUST FOR TEST
-const COMPANIES: any[] = [
-  {
-    _id: 1,
-    compName: 'rrr',
-    compCRANumber: 123,
-    compAddress: 'rrr',
-    compCity: 'rrr',
-    compCode: 'rrr',
-    compProvince: 'rrrr',
-    compPhone: '',
-    compContact: 'rrr',
-  },
-  {
-    _id: 2,
-    compName: 'BBB',
-    compCRANumber: 234,
-    compAddress: 'BBB',
-    compCity: 'BBB',
-    compCode: 'BBB',
-    compProvince: 'BBB',
-    compPhone: 'BBB',
-    compContact: 'BBB',
-  },
-  {
-    _id: 3,
-    compName: 'CCC',
-    compCRANumber: 345,
-    compAddress: 'CCC',
-    compCity: 'CCC',
-    compCode: 'CCC',
-    compProvince: 'CCC',
-    compPhone: 'CCC',
-    compContact: 'CCC',
-  },
-  {
-    _id: 4,
-    compName: 'DDD',
-    compCRANumber: 345666,
-    compAddress: 'DDD',
-    compCity: 'DDD',
-    compCode: 'DDD',
-    compProvince: 'DDD',
-    compPhone: 'DDD',
-    compContact: 'DDDD',
-  },
-  {
-    _id: 5,
-    compName: 'EEE',
-    compCRANumber: 666,
-    compAddress: 'EEE',
-    compCity: 'EEE',
-    compCode: 'EEE',
-    compProvince: 'EEE',
-    compPhone: 'EEE',
-    compContact: 'EEE',
-  },
-  {
-    _id: 6,
-    compName: 'RRR',
-    compCRANumber: 333,
-    compAddress: 'RRRR',
-    compCity: 'RRR',
-    compCode: 'RRR',
-    compProvince: 'RRR',
-    compPhone: 'RRR',
-    compContact: 'RRR',
-  },
-]
+/* COMPONENTS */
+import { ClientRegisterPageComponent } from '../../client-pages/client-register-page/client-register-page.component'
 
 @Component({
   selector: 'app-admin-company-list',
@@ -106,7 +38,7 @@ export class AdminCompanyListComponent implements OnInit {
   state: string
 
   /*  TABLE PARAMETERS */
-  dataSource = new MatTableDataSource(COMPANIES)
+  dataSource = new MatTableDataSource()
   displayColumns: string[] = [
     '_id',
     'compName',

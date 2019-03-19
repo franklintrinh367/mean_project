@@ -27,7 +27,7 @@ import { EditUserService } from '../admin-services/edit-user.service'
   styleUrls: ['./admin-user-details.component.scss'],
 })
 export class AdminUserDetailsComponent implements OnInit {
-  roles: Roles[] = [
+  role: Roles[] = [
     { value: 'admin', viewValue: 'Admin' },
     { value: 'jc', viewValue: 'JC Consulting' },
   ]
@@ -55,17 +55,17 @@ export class AdminUserDetailsComponent implements OnInit {
 
   onSubmit() {
     if (this.userService.form.valid) {
-      if (!this.userService.form.get('_id').value) {
-        this.userService.form.controls['activated'].setValue(true)
-        this.userService.post_Users(this.userService.form.value).subscribe()
-      } else
-        this.userService.updateUser(this.userService.form.value).subscribe()
+      this.userService.form.controls['activated'].setValue(true)
+      this.userService.form.controls['completed'].setValue(true)
+      this.userService.onPostUser(this.userService.form.value).subscribe()
+      // } else
+      //   this.userService.updateUser(this.userService.form.value).subscribe()
 
       /*--- RESETING THE FORM ---*/
-      this.userService.form.reset()
-      this.userService.initializeFormGroup()
-      this.onClose()
-      this.router.navigate(['/admin_newUser'])
+      // this.userService.form.reset()
+      // this.userService.initializeFormGroup()
+      // this.onClose()
+      // this.router.navigate(['/admin_newUser'])
     }
   }
 

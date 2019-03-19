@@ -68,16 +68,18 @@ export class AdminUserListComponent implements OnInit {
   /* FUNCTION TO CLEAT THE SERACH KEY */
 
   onSearchClear() {
-    this.searchKey = ''
-    this.applyFilter()
+    if (this.list !== undefined) {
+      this.searchKey = ''
+      this.applyFilter()
+    }
   }
-
   /*FUNCTION TO FILTER IN THE TABNLE */
 
   applyFilter() {
-    this.dataSource.filter = this.searchKey.trim().toLowerCase()
+    if (this.list !== undefined) {
+      this.dataSource.filter = this.searchKey.trim().toLowerCase()
+    }
   }
-
   /*--- FUNCTION TO CALL THE ADMIN_USER_COMPONENT---*/
 
   onCreate() {

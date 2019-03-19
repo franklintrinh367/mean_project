@@ -6,7 +6,10 @@ import { Observable } from 'rxjs/Observable'
 
 import 'rxjs/add/operator/map'
 import 'rxjs/operator/toPromise'
+
+/* MODELS */
 import { User } from 'src/models/users'
+import { Admin } from 'src/app/models/admin/admin'
 
 @Injectable({
   providedIn: 'root',
@@ -18,30 +21,34 @@ export class EditUserService {
   constructor(private http: HttpClient) {}
 
   form: FormGroup = new FormGroup({
-    _id: new FormControl(null),
+    // _id: new FormControl(null),
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
     username: new FormControl(''),
     activated: new FormControl(true),
     role: new FormControl(''),
+    //details:
+    // adminFirstName: new FormControl(''),
+    // adminLasstName: new FormControl('')
   })
   initializeFormGroup() {
     this.form.setValue({
-      _id: new FormControl(null),
+      // _id: new FormControl(null),
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
       username: new FormControl(''),
       activated: new FormControl(true),
       role: new FormControl(''),
-      // details: new FormControl(
-      //   firstName: (''),
-      //   lastName: (''))
+      // adminFirstName: new FormControl(''),
+      // adminLasstName: new FormControl('')
     })
   }
 
   /* FUNCTION TO ADD USERS */
-  post_Users(users: User): Observable<any> {
-    return this.http.post(this.Url, users)
+
+  onPostUser(user: User): Observable<any> {
+    console.log(user)
+    return this.http.post(this.Url + '/register', user)
   }
 
   /* FUNCTION TO GET USER */
@@ -50,8 +57,8 @@ export class EditUserService {
   }
 
   /* FUNCTION TO POPULATE FORM */
-  populateForm(users) {
-    this.form.setValue(users)
+  populateForm(user) {
+    this.form.setValue(user)
   }
 
   updateUser(user: User): Observable<any> {
