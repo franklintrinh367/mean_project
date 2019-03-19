@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Router, CanActivateChild } from '@angular/router'
-import { AuthenticateService } from '../../authenticate.service'
+import { AuthenticateService } from '../../../../services/authenticate.service'
 
 @Injectable()
 export class CandidateAuthService implements CanActivateChild {
