@@ -12,9 +12,9 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class CandidateService {
-  // private baseUrl: String = 'http://localhost:3000/candidate/'
+  private baseUrl: String = 'http://localhost:3000/candidate/'
   //TEST
-  private baseUrl = 'https://jc-consulting-127.herokuapp.com'
+  // baseUrl = 'https://jc-consulting-127.herokuapp.com'
   constructor(private http: HttpClient) {}
 
   register(candidate: Candidate): Observable<Candidate> {

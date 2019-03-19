@@ -12,10 +12,10 @@ import { Subscription } from 'rxjs'
   animations: [slideUp()],
 })
 export class ContactUsComponent implements OnInit, OnDestroy {
-  private feedbackForm: FormGroup
+  feedbackForm: FormGroup
   feedback: Feedback
   subscripts: Subscription
-  private modes = ['Email', 'Phone']
+  modes = ['Email', 'Phone']
   constructor(private builder: FormBuilder, private userService: UserService) {}
   state = 'out'
   ngOnInit() {

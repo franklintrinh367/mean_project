@@ -33,7 +33,7 @@ import { AdminNewUserComponent } from '../admin-new-user/admin-new-user.componen
 })
 export class AdminUserListComponent implements OnInit {
   state: String
-  private token: String
+  token: String
   list: User[]
   searchKey: string
 

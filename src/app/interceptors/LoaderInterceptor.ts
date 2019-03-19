@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core'
 
 @Injectable()
 export class LoaderInterceptor implements HttpInterceptor {
-  private requests: HttpRequest<any>[] = []
+  requests: HttpRequest<any>[] = []
 
   constructor(private loaderService: LoaderService) {}
 

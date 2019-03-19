@@ -14,7 +14,7 @@ import { Overlay } from '@angular/cdk/overlay'
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  private token: String
+  token: String
   constructor(
     private dialog: MatDialog,
     private authService: AuthenticateService,

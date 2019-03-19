@@ -13,8 +13,8 @@ import { slideDown } from '../../shared/animations'
   animations: [slideDown()],
 })
 export class LoginComponent implements OnInit {
-  private error: String
-  private loginForm: FormGroup
+  error: String
+  loginForm: FormGroup
 
   constructor(
     private fb: FormBuilder,

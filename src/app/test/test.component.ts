@@ -30,7 +30,7 @@ import { AuthenticateService } from '../services/authenticate.service'
 export class TestComponent implements OnInit {
   listItem = []
   list_order: number = 1
-  private token: String
+  token: String
   constructor(private auth: AuthenticateService) {}
 
   ngOnInit() {

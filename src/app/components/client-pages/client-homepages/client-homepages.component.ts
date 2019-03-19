@@ -11,7 +11,7 @@ import { ClientService } from '../client-services/client.service'
 export class ClientHomepagesComponent implements OnInit {
   private token: String
   state: String
-  private disabled
+  disabled
 
   constructor(
     private service: ClientService,

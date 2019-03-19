@@ -11,7 +11,7 @@ import { slideUp } from '../../shared/animations'
   animations: [slideUp()],
 })
 export class ForgotPasswordComponent implements OnInit {
-  private errMsg: String
+  errMsg: String
   state = 'out'
   constructor(
     private userService: UserService,

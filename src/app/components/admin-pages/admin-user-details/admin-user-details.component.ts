@@ -35,7 +35,7 @@ export class AdminUserDetailsComponent implements OnInit {
     { value: 'isActive', viewValue: 'Activated' },
     { value: 'isNotActive', viewValue: 'Non-Activated' },
   ]
-  private EditUserForm: FormGroup
+  EditUserForm: FormGroup
   user: User[]
   details: Admin[]
   _id: string

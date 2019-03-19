@@ -8,7 +8,7 @@ import { Router } from '@angular/router'
   styleUrls: ['./candidate-home-page.component.scss'],
 })
 export class CandidateHomePageComponent implements OnInit {
-  private user: Object
+  user: Object
   constructor(
     private authService: AuthenticateService,
     private router: Router

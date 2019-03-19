@@ -10,7 +10,7 @@ import { slideUp } from '../../shared/animations'
   animations: [slideUp()],
 })
 export class ProfileComponent implements OnInit {
-  private token: any
+  token: any
   state = 'out'
   constructor(
     private authService: AuthenticateService,

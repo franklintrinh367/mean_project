@@ -13,10 +13,10 @@ import { User } from 'src/models/users'
 })
 export class EditUserService {
   /* CREATE FORMGROUP OF USERS */
-  // readonly Url = 'http://localhost:3000/admin'
+  readonly Url = 'http://localhost:3000/admin'
 
   //TEST
-  private Url = 'https://jc-consulting-127.herokuapp.com'
+  // Url = 'https://jc-consulting-127.herokuapp.com'
 
   constructor(private http: HttpClient) {}
 

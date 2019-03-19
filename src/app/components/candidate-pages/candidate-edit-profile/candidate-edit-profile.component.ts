@@ -11,9 +11,9 @@ import { CandidateService } from '../candidate-services/candidate.service'
   styleUrls: ['./candidate-edit-profile.component.scss'],
 })
 export class CandidateEditProfileComponent implements OnInit {
-  private candidateEditForm: FormGroup
+  candidateEditForm: FormGroup
   candidate: Candidate
-  private user: any
+  user: any
 
   constructor(
     private builder: FormBuilder,

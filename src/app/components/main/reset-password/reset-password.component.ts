@@ -9,7 +9,7 @@ import { AuthenticateService } from 'src/app/services/authenticate.service'
   styleUrls: ['./reset-password.component.scss'],
 })
 export class ResetPasswordComponent implements OnInit {
-  private err: String
+  err: String
   constructor(
     private router: Router,
     private userService: UserService,

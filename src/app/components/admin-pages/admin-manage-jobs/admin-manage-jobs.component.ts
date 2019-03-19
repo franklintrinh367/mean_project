@@ -4,12 +4,6 @@ import { Component, OnInit, ViewChild } from '@angular/core'
 /* MODEL */
 import { Job } from '../../../models/clients/jobs'
 
-/* SERVICES*/
-import { JobService } from '../../../services/jobs/job.service'
-
-/* ROUTER */
-import { Router } from '@angular/router'
-
 /* MATERIAL DESIGN */
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material'
 import { Location } from '@angular/common'
@@ -68,9 +62,8 @@ export class AdminManageJobsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator
 
   constructor(
-    private loc: Location // private jobSerbice: JobService,
-  ) // private router: Router
-  {
+    private loc: Location // private jobSerbice: JobService, // private router: Router
+  ) {
     this.state = 'out'
   }
 
