@@ -18,6 +18,9 @@ import { ClientRegisterPageComponent } from '../../client-pages/client-register-
 import { Location } from '@angular/common'
 import { slideUp } from '../../shared/animations'
 import { ClientService } from '../../client-pages/client-services/client.service'
+import { EditUserService } from '../admin-services/edit-user.service'
+import { Router, ActivatedRoute } from '@angular/router'
+import { AuthenticateService } from 'src/app/services/authenticate.service'
 
 // GONNA BE DELETED - JUST FOR TEST
 const COMPANIES: any[] = [
@@ -96,98 +99,106 @@ const COMPANIES: any[] = [
   animations: [slideUp()],
 })
 export class AdminCompanyListComponent implements OnInit {
-  /* TABLE PAGINATION AND SORT */
-  @ViewChild(MatSort) sort: MatSort
-  @ViewChild(MatPaginator) paginator: MatPaginator
-
-  /*PARAMETERS */
-  searchKey: string
-  list: Client[]
-  state: string
-
-  /*  TABLE PARAMETERS */
-  dataSource = new MatTableDataSource(COMPANIES)
-  displayColumns: string[] = [
-    '_id',
-    'compName',
-    'compCRANumber',
-    'compAddress',
-    'compCity',
-    'compCode',
-    'compProvince',
-    'compPhone',
-    'compContact',
-    'actions',
-  ]
-
+  displayColumns: string[]
+  state: String
+  private token: String
+  // public job: Job
+  // declare the service, auth and dialog
   constructor(
-    private service: ClientService,
+    private service: EditUserService,
     private dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute,
+    private authService: AuthenticateService,
     private location: Location
   ) {
+    this.displayColumns = [
+      '_id',
+      'compName',
+      'compCRANumber',
+      'compAddress',
+      'compCity',
+      'compCode',
+      'compProvince',
+      'compPhone',
+      'compContact',
+      'actions',
+    ]
+
     this.state = 'out'
   }
-
+  // declare the array that will hold the Job List
+  list: Client[]
+  //Data source to take the material design of any table
+  dataSource: MatTableDataSource<any>
+  //declare the ViewChild to sort the table
+  //declare the ViewChild to paginate the table
+  @ViewChild(MatSort) sort: MatSort
+  @ViewChild(MatPaginator) paginator: MatPaginator
+  // When the user search in the table
+  searchKey: string
+  // All this methon in init is instantiate when the page load
   ngOnInit() {
-    setTimeout(() => (this.state = 'in'), 30)
-
-    //this.getallClients()
+    setTimeout(() => {
+      this.state = 'in'
+    }, 30)
+    this.token = this.authService.getTokenDetails('auth-token')
+    this.getCompanyDetails()
     this.onSearchClear()
     this.applyFilter()
-    this.dataSource.sort = this.sort
-    this.dataSource.paginator = this.paginator
+    this.dataSource
   }
+  //function to get the job from the service
+  // convert the result as the table
+  // dataSource will make the list the material design
+  // dataSource will listen sort and paginator
 
-  /*LIST ALL COMPANIES  */
-  // getAllClients(){
-  //   this.service.getClients().subscribe(res=>{
-  //     this.list = res as Client[]
-  //     this.dataSource = new MatTableDataSource(this.list)
-
-  //   })
-  // }
-
-  /* FUNCTION TO OPEN EDIT COMPANY COMPONENT ON SELECTED ROW*/
-  onEdit(row) {
-    //this.service.populateForm(row)
-    const dialogConfig = new MatDialogConfig()
-    dialogConfig.disableClose = true
-    dialogConfig.autoFocus = true
-    dialogConfig.width = '60%'
-    this.dialog.open(ClientRegisterPageComponent, dialogConfig)
-  }
-
-  /* FUNCTION TO DELETE COMPANY => SET ACTIVATE  FALSE*/
-  onDelete(row) {
-    if (this.service.form.valid) {
-      if (!this.service.form.get('_id').value) {
-        this.service.form.controls['activated'].setValue(false)
+  // Function to get Job only from the User Who login
+  getCompanyDetails() {
+    let token = this.authService.getTokenDetails('auth-token')
+    this.service.getCompany().subscribe(res => {
+      this.list = res as any[]
+      for (var j in this.list) {
+        console.log(this.list[j])
       }
+      this.dataSource = new MatTableDataSource(this.list)
+      this.dataSource.sort = this.sort
+      this.dataSource.paginator = this.paginator
+    })
+  }
+
+  // function to clear the search key
+  onSearchClear() {
+    if (this.list !== undefined) {
+      this.searchKey = ''
+      this.applyFilter()
     }
   }
 
-  /* FUNCTION TO CALL THE: ClientRegisterPageComponent */
+  // function to filter in the table
+  applyFilter() {
+    if (this.list !== undefined) {
+      this.dataSource.filter = this.searchKey.trim().toLowerCase()
+    }
+  }
+
+  // function to call the add clientAddJobComponent
   onCreate() {
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true
-    dialogConfig.width = '60%'
-    this.dialog.open(ClientRegisterPageComponent, dialogConfig)
-  }
-
-  /* FUNCTION TO CLEAR THE SEARCH KEY */
-
-  onSearchClear() {
-    this.searchKey = ''
-    this.applyFilter()
-  }
-  /* FUCNTION TO FILTER THE TABLE */
-
-  applyFilter() {
-    this.dataSource.filter = this.searchKey.trim().toLowerCase()
+    // this.dialog.open(ClientNewJobPageComponent, dialogConfig)
   }
 
   goBack() {
     this.location.back()
+  }
+
+  // This set the row Activate to false
+  onDelete(row) {
+    // Set the activate to false
+    row.jobActivate = false
+    // Subscribe to the delte Jobs to update the row to the database
+    // this.service.delete_Jobs(row).subscribe()
   }
 }
