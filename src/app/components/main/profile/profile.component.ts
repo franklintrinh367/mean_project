@@ -11,6 +11,7 @@ import { slideUp } from '../../shared/animations'
 })
 export class ProfileComponent implements OnInit {
   private token: any
+  private user: Object
   state = 'out'
   constructor(
     private authService: AuthenticateService,
@@ -19,7 +20,14 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(() => (this.state = 'in'), 30)
-    this.token = this.authService.getTokenDetails('auth-token')
+    if (this.authService.isExpired('auth-token')) {
+      window.confirm(`Your session timed out. Please Re-Login`)
+      this.authService.logout('auth-token')
+      window.location.assign(`/`)
+    } else {
+      this.token = this.authService.getTokenDetails('auth-token')
+      this.user = this.token.details
+    }
   }
 
   public get username() {
