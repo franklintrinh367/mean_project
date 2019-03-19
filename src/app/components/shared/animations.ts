@@ -1,6 +1,6 @@
 import { trigger, state, style, transition, animate } from '@angular/animations'
 
-export const slideUp = () => {
+export function slideUp() {
   return trigger('slideUp', [
     state(
       'out',
