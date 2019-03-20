@@ -1,59 +1,81 @@
-.container {
-  max-width: 70%;
-  margin: 2% auto;
-  border-radius: 0.5rem;
-  background-color: #eaeff7;
-  max-height: 750px;
+#body {
+  display: flex;
+  flex-direction: column;
+  padding: 70px;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
 }
 
-mat-card {
-  background-color: #eaeff7;
+.tile {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  height: 100%;
 }
 
-.picture {
-  padding-top: 20px;
-  padding-left: 20px;
+mat-divider {
+  width: 100%;
+}
+
+#jobs {
+  flex-grow: 1;
+}
+
+#info {
+  flex-grow: 8;
+}
+
+.item {
+  margin: 10px;
   display: flex;
   flex-direction: column;
 }
 
-.picture img {
-  width: 200px;
-  border-radius: 10%;
-}
-
-.vertical {
-  display: flex;
-  flex-direction: column;
-}
-
-.al-left {
-  position: absolute;
-  left: 5px;
-}
-
-.fade {
-  color: #bdbfc1;
-}
-
-.top-left {
-  position: absolute;
-  top: 10px;
-  left: 20px;
-}
-
-mat-tap-label {
-  min-width: 250px;
-}
-
-.top-left span {
+.item span {
   min-width: 150px;
 }
 
-.top-left mat-list-item:nth-child(odd) {
+.item a {
+  margin: 0 auto;
+}
+
+#info mat-list-item:nth-child(odd) {
   background-color: #f2f4f7;
 }
 
-.top-left mat-list-item:nth-child(even) {
+#info mat-list-item:nth-child(even) {
   background-color: #e7eaef;
+}
+
+button {
+  width: 150px;
+}
+.avatar {
+  width: 150px;
+  height: 150px;
+}
+
+@media screen and (max-width: 480px) {
+  #body {
+    padding: 70px 0 70px 0;
+  }
+
+  .tile {
+    padding: 10px;
+    justify-content: center;
+  }
+
+  .item {
+    width: 100%;
+    height: 100%;
+  }
+  button {
+    margin: 0 auto;
+  }
+
+  h1 {
+    padding: 10px;
+  }
 }
