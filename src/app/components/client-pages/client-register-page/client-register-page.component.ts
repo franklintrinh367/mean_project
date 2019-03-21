@@ -31,7 +31,7 @@ export class ClientRegisterPageComponent implements OnInit {
     //this.firstFormGroup = this._FormBuilder
   }
 
-  // When the form submitted
+  // When the form is submitted
   onSubmit() {
     // get the token
     let token = this.authService.getTokenDetails('auth-token')
@@ -40,15 +40,10 @@ export class ClientRegisterPageComponent implements OnInit {
       // set the user id the token id
       this.service.form.controls['userId'].setValue(token.id)
       //connect to the function on the server called onCompanyRegister
-      this.service.onCompanyRegister(this.service.form.value).subscribe(err => {
-        // Check if there is no error and navigate to the company details
-        // If there is you stay at registration after 4000 second
-        if (!err) {
-          this.router.navigate(['/company_details'])
-        } else {
-          this.router.navigate(['/company_register'])
-        }
-      })
+      this.service.onCompanyRegister(this.service.form.value).subscribe()
+      // Check if there is no error and navigate to the company details
+      // If there is you stay at registration after 4000 second
+      this.router.navigate(['/companies/company_details'])
     }
   }
 }
