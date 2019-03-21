@@ -1,16 +1,12 @@
 /* CORE */
-import { Component, OnInit, ViewChild } from '@angular/core'
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core'
 import { Location } from '@angular/common'
 import { slideUp } from '../../shared/animations'
-import { ActivatedRoute, Router } from '@angular/router'
 
 /*MODELS */
 import { User } from '../../../../models/users'
-import { Admin } from '../../../models/admin/admin'
 /* SERVICE */
-//import { UserService } from '../../../services/main/user.service'
 import { EditUserService } from '../admin-services/edit-user.service'
-import { AuthenticateService } from 'src/app/services/authenticate.service'
 
 /* MATERIAL DESIGN */
 import {
@@ -24,6 +20,7 @@ import {
 /* COMPONENTS */
 import { AdminUserDetailsComponent } from '../admin-user-details/admin-user-details.component'
 import { AdminNewUserComponent } from '../admin-new-user/admin-new-user.component'
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'app-admin-user-list',
@@ -31,11 +28,11 @@ import { AdminNewUserComponent } from '../admin-new-user/admin-new-user.componen
   styleUrls: ['./admin-user-list.component.scss'],
   animations: [slideUp()],
 })
-export class AdminUserListComponent implements OnInit {
+export class AdminUserListComponent implements OnInit, OnDestroy {
   state: String
-  private token: String
   list: User[]
   searchKey: string
+  subscript: Subscription
 
   /* TABLE ELEMENTS  */
   dataSource: MatTableDataSource<any>
@@ -48,21 +45,15 @@ export class AdminUserListComponent implements OnInit {
   constructor(
     private editService: EditUserService,
     private dialog: MatDialog,
-    private router: Router,
-    private route: ActivatedRoute,
-    private authService: AuthenticateService,
     private location: Location
   ) {
-    this.displayColumns = ['_id', 'username', 'email', 'role', 'actions']
+    this.displayColumns = ['username', 'email', 'role', 'actions']
     this.state = 'out'
   }
 
   ngOnInit() {
     setTimeout(() => (this.state = 'in'), 30)
-    // this.token = this.authService.getTokenDetails('auth-token')
-    this.getAllUsers()
-    this.onSearchClear()
-    this.applyFilter()
+    this.subscript = this.getAllUsers()
   }
 
   /* FUNCTION TO CLEAT THE SERACH KEY */
@@ -90,14 +81,15 @@ export class AdminUserListComponent implements OnInit {
 
   /* LIST ALL USERS */
   getAllUsers() {
-    this.editService.getUser().subscribe(res => {
-      this.list = res as User[]
-      console.log(this.list)
-      console.log(this.list['details'])
-      this.dataSource = new MatTableDataSource(this.list)
-      this.dataSource.sort = this.sort
-      this.dataSource.paginator = this.paginator
-    })
+    return this.editService.getUser().subscribe(
+      res => {
+        this.list = res as User[]
+        this.dataSource = new MatTableDataSource(this.list)
+        this.dataSource.sort = this.sort
+        this.dataSource.paginator = this.paginator
+      },
+      () => this.onSearchClear()
+    )
   }
 
   /* FUNCTION TO OPEN EDIT USER COMPONENT ON SELECTED ROW*/
@@ -121,5 +113,9 @@ export class AdminUserListComponent implements OnInit {
 
   goBack() {
     this.location.back()
+  }
+
+  ngOnDestroy() {
+    this.subscript.unsubscribe()
   }
 }
