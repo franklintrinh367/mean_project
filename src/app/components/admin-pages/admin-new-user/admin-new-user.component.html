@@ -1,89 +1,3 @@
-<!-- <div class="wraper" fxLayout="column" fxLayoutAlign="center center">
-  <mat-card fxFlex.xs="auto">
-    <mat-card-content>
-      <span> Add & Edit Users</span>
-
-      <div class="container">
-        <button mat-raised-button class="button-style" routerLink="/adminPages">
-          Main Menu
-        </button>
-
-        <button
-          mat-raised-button
-          class="button-style"
-          routerLink="/admin_userList"
-        >
-          User List
-        </button>
-      </div>
-      <form
-        autocomplete="off"
-        [formGroup]="userService.form"
-        (click)="onSubmit()"
-      >
-        <mat-grid-list cols="2" rowHeight="300px">
-          <mat-grid-tile>
-            <div class="container">
-              <mat-form-field hidden>
-                <input formControlName="_id" matInput placeholder="ID *" #_id />
-              </mat-form-field>
-
-              <mat-form-field>
-                <input
-                  required
-                  formControlName="username"
-                  matInput
-                  placeholder="User Name:"
-                  #username
-                />
-              </mat-form-field>
-
-              <mat-form-field>
-                <input
-                  required
-                  formControlName="email"
-                  matInput
-                  placeholder="User Email:"
-                  #email
-                />
-              </mat-form-field>
-
-              <mat-form-field>
-                <mat-select placeholder="Role" formControlName="role">
-                  <mat-option *ngFor="let r of roles" [value]="r.value">
-                    {{ r.viewValue }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-
-              <div class="container">
-                <div class="button-row">
-                  <button
-                    mat-raised-button
-                    class="button-style"
-                    type="submit"
-                    [disabled]="userService.invalid"
-                  >
-                    Submit
-                  </button>
-
-                  <button
-                    mat-raised-button
-                    class="button-style"
-                    (click)="onClear()"
-                  >
-                    Clear
-                  </button>
-                </div>
-              </div>
-            </div>
-          </mat-grid-tile>
-        </mat-grid-list>
-      </form>
-    </mat-card-content>
-  </mat-card>
-</div> -->
-
 <div id="body" [@slideUp]="state">
   <h1>Add & Edit Users</h1>
   <mat-divider></mat-divider>
@@ -99,13 +13,13 @@
       </button>
     </div>
   </div>
-  <form autocomplete="off" [formGroup]="userService.form">
-    <div class="tile">
-      <!-- <mat-form-field hidden>
-        <input formControlName="_id" matInput placeholder="ID *" #_id />
-      </mat-form-field> -->
 
-      <!-- User Name-->
+  <div class="tile">
+    <form
+      autocomplete="off"
+      [formGroup]="userService.form"
+      (click)="onSubmit()"
+    >
       <mat-form-field>
         <input
           required
@@ -116,29 +30,6 @@
         />
       </mat-form-field>
 
-      <!-- First Name-->
-      <!-- <mat-form-field>
-        <input
-          required
-          formControlName="firstName"
-          matInput
-          placeholder="First Name:"
-          #firstName
-        />
-      </mat-form-field> -->
-
-      <!-- Last Name-->
-      <!-- <mat-form-field>
-        <input
-          required
-          formControlName="lastName"
-          matInput
-          placeholder="Last Name:"
-          #LastName
-        />
-      </mat-form-field> -->
-
-      <!-- User Email-->
       <mat-form-field>
         <input
           required
@@ -148,10 +39,27 @@
           #email
         />
       </mat-form-field>
-
-      <!-- User Password-->
       <mat-form-field>
         <input
+          required
+          formControlName="userFirstName"
+          matInput
+          placeholder="User First Name:"
+          #userFirstName
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          required
+          formControlName="userLastName"
+          matInput
+          placeholder="User Last Name:"
+          #userLasttName
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          type="password"
           required
           formControlName="password"
           matInput
@@ -160,39 +68,33 @@
         />
       </mat-form-field>
 
-      <!-- User Role-->
       <mat-form-field>
-        <mat-select placeholder="Role" formControlName="role" #role>
+        <mat-select placeholder="Role" formControlName="role">
           <mat-option *ngFor="let r of roles" [value]="r.value">
             {{ r.viewValue }}
           </mat-option>
         </mat-select>
       </mat-form-field>
+    </form>
+  </div>
+
+  <div class="tile">
+    <div class="item">
+      <button
+        mat-raised-button
+        class="button-style"
+        type="submit"
+        [disabled]="userService.invalid"
+        color="primary"
+      >
+        Submit
+      </button>
     </div>
 
-    <div class="tile">
-      <div class="item">
-        <button
-          mat-raised-button
-          class="button-style"
-          type="submit"
-          [disabled]="userService.invalid"
-          color="primary"
-          (click)="onSubmit()"
-        >
-          Submit
-        </button>
-      </div>
-
-      <div class="item">
-        <button
-          mat-raised-button
-          class="button-style"
-          (click)="navigate('back')"
-        >
-          Cancel
-        </button>
-      </div>
+    <div class="item">
+      <button mat-raised-button class="button-style" (click)="navigate('back')">
+        Cancel
+      </button>
     </div>
-  </form>
+  </div>
 </div>

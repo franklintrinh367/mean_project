@@ -53,7 +53,7 @@ export class AdminUserListComponent implements OnInit {
     private authService: AuthenticateService,
     private location: Location
   ) {
-    this.displayColumns = ['_id', 'username', 'email', 'role', 'actions']
+    this.displayColumns = ['username', 'email', 'role', 'actions']
     this.state = 'out'
   }
 
