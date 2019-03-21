@@ -14,6 +14,7 @@ export class CandidateEditProfileComponent implements OnInit {
   private candidateEditForm: FormGroup
   candidate: Candidate
   private user: any
+  selectedFile: any
 
   constructor(
     private builder: FormBuilder,
@@ -102,6 +103,7 @@ export class CandidateEditProfileComponent implements OnInit {
       let token = this.auth.getTokenDetails('auth-token')
       this.candidate = {
         canId: token.id,
+        canAvatar: this.selectedFile,
         canFirstName: this.canFirstName.value,
         canLastName: this.canLastName.value,
         canEducation: this.canEducation.value,
@@ -137,5 +139,15 @@ export class CandidateEditProfileComponent implements OnInit {
         })
       }
     })
+  }
+
+  onFileSelected(imageInput: any) {
+    const file: File = imageInput.files[0]
+    const reader = new FileReader()
+
+    reader.addEventListener('load', () => {
+      this.selectedFile = reader.result
+    })
+    reader.readAsDataURL(file)
   }
 }

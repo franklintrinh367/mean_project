@@ -1,12 +1,19 @@
-<form [formGroup]="candidateEditForm">
+<form [formGroup]="candidateEditForm" enctype="multipart/form-data">
   <div class="flex-container">
     <div class="head-div">
       <div class="vertical-flex-container">
         <h2>Profile</h2>
         <div class="img-center">
-          <img mat-card-lg-image src="/assets/profile.jpg" />
+          <img mat-card-lg-image src="{{ selectedFile }}" />
         </div>
-        <a href="#"> Change Profile Picture</a>
+        <input
+          #imageInput
+          type="file"
+          name="avatar"
+          accept="image/*"
+          (change)="onFileSelected(imageInput)"
+        />
+        <!-- <a href="#"> Change Profile Picture</a> -->
       </div>
     </div>
     <div class="body-div">

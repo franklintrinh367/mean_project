@@ -1,7 +1,19 @@
 const express = require('express')
 const router = express.Router()
-const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const multer = require('multer')
+const fs = require('fs')
+// SET STORAGE
+var storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, 'uploads')
+  },
+  filename: function(req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now())
+  },
+})
+
+var upload = multer({ storage: storage })
 
 // Get the secret key
 const secretOrKey = require('../config/keys').secretOrKey
@@ -17,6 +29,7 @@ router.post('/register/:token', (req, res) => {
   let userID = token.id
 
   let newCandidate = new Candidate({
+    canAvatar: req.body.canAvatar,
     canFirstName: req.body.canFirstName,
     canLastName: req.body.canLastName,
     canEducation: req.body.canEducation,
@@ -63,11 +76,25 @@ router.get('/get/:candidateID', (req, res) => {
 })
 
 // Update Candidate
-router.put('/update/:token', (req, res) => {
+router.put('/update/:token', upload.single('avatar'), (req, res) => {
+  const file = req.file
+  if (!file) {
+    const error = new Error('Please upload a file')
+    error.httpStatusCode = 400
+    return next(error)
+  }
+  var img = fs.readFileSync(req.file.path)
+  var encode_image = img.toString('base64')
+  var finalImg = {
+    contentType: req.file.mimetype,
+    image: new Buffer(encode_image, 'base64'),
+  }
+
   let token = jwt.decode(req.params.token)
   let userID = token.id
 
   let newCandidate = new Candidate({
+    canAvatar: finalImg,
     canFirstName: req.body.canFirstName,
     canLastName: req.body.canLastName,
     canEducation: req.body.canEducation,
