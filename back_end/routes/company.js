@@ -66,9 +66,12 @@ router.post('/register/:token', (req, res) => {
   User.findById(userID)
     .then(user => {
       user.details = client
-      user.save()
+      user.save().then(successClient => {
+        if (successClient)
+          res.status(200).json({ success: true, client: successClient })
+      })
     })
-    .catch(err => res.json(err))
+    .catch(err => res.json({ success: false, err: err }))
 })
 
 // update company
