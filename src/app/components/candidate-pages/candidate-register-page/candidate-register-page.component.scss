@@ -6,6 +6,7 @@
     display: flex;
     flex-direction: column;
     width: 70%;
+    margin: 0 auto;
 
     mat-vertical-stepper {
       width: 100%;
@@ -19,6 +20,15 @@ mat-error {
 
 mat-form-field {
   padding: 20px;
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  :host {
+    padding: 70px 0 70px 0;
+    #body {
+      width: 90%;
+    }
+  }
 }
 
 @media screen and (max-width: 480px) {
