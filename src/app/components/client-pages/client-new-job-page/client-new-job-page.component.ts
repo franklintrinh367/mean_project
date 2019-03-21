@@ -4,12 +4,10 @@ import { Router } from '@angular/router'
 import { MatDialogRef } from '@angular/material'
 import { AuthenticateService } from 'src/app/services/authenticate.service'
 import { FormGroup } from '@angular/forms'
+import { Status } from 'src/app/models/others/status'
+import { Category } from 'src/app/models/others/category'
 
 // For implementing the selection
-export interface Status {
-  value: string
-  viewValue: string
-}
 
 @Component({
   selector: 'app-client-new-job-page',
@@ -25,6 +23,15 @@ export class ClientNewJobPageComponent implements OnInit {
   status: Status[] = [
     { value: 'Part time', viewValue: 'Part time' },
     { value: 'Full time', viewValue: 'Full time' },
+  ]
+
+  // Implements Category
+
+  category: Category[] = [
+    { value: 'Technology', viewValue: 'Technology' },
+    { value: 'Business', viewValue: 'Business' },
+    { value: 'Science', viewValue: 'Science' },
+    { value: 'Construction', viewValue: 'Construction' },
   ]
 
   today = new Date().toISOString().slice(0, 10)
@@ -51,6 +58,7 @@ export class ClientNewJobPageComponent implements OnInit {
         this.service.form.controls['userId'].setValue(token.id)
         this.service.form.controls['jobActivate'].setValue(true)
         this.service.form.controls['jobPostDate'].setValue(Date.now())
+        console.log(this.service.form.value)
         //subscribe to the function post_Jobs on the service
         this.service.post_Jobs(this.service.form.value).subscribe()
       } else {

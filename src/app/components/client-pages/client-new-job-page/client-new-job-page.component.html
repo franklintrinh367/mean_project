@@ -38,6 +38,27 @@
                 hidden
               />
 
+              <!-- First select the Job Category -->
+              <mat-form-field>
+                <mat-label>Select Category </mat-label>
+                <mat-select formControlName="jobCategory">
+                  <mat-option *ngFor="let cat of category" [value]="cat.value">
+                    {{ cat.viewValue }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <!-- Job Title -->
+              <mat-form-field>
+                <mat-label> Input Job Title </mat-label>
+                <input
+                  mat-input
+                  matNativeControl
+                  formControlName="jobTitle"
+                  #jobTitle
+                />
+              </mat-form-field>
+
               <!-- The Field to input th number of the position-->
               <mat-form-field>
                 <mat-label>How many Position </mat-label>
@@ -112,6 +133,7 @@
           </div>
         </form>
       </mat-step>
+
       <mat-step>
         <ng-template matStepLabel>Done</ng-template>
         You are now done.

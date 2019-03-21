@@ -25,6 +25,8 @@ router.post('/insert/:token', (req, res) => {
   let userID = token.id
   // Declare the body
   let {
+    jobCategory,
+    jobTitle,
     jobStatus,
     jobPosition,
     jobEndDate,
@@ -34,6 +36,8 @@ router.post('/insert/:token', (req, res) => {
   // pass the value
   var job = new Job({
     userId: userID,
+    jobCategory: jobCategory,
+    jobTitle: jobTitle,
     jobStatus: jobStatus,
     jobPostDate: Date.now(),
     jobEndDate: jobEndDate,

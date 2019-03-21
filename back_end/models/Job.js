@@ -6,6 +6,14 @@ const JobSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
+  jobCategory: {
+    type: String,
+    required: true,
+  },
+  jobTitle: {
+    type: String,
+    required: true,
+  },
   jobStatus: {
     type: String,
     required: true,
