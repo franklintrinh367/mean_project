@@ -14,6 +14,8 @@ export class ProfileComponent implements OnInit {
   private token: any
   private user: Object
   state = 'out'
+  isCandidate: boolean
+
   constructor(
     private authService: AuthenticateService,
     private location: Location,
@@ -29,6 +31,7 @@ export class ProfileComponent implements OnInit {
     } else {
       this.token = this.authService.getTokenDetails('auth-token')
       this.user = this.token.details
+      this.isCandidate = this.token.role === 'Candidate'
     }
   }
 

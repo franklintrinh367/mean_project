@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, OnDestroy } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { UserService } from 'src/app/services/main/user.service'
 import { AuthenticateService } from 'src/app/services/authenticate.service'
 import { MatDialogRef } from '@angular/material'
 import { Router } from '@angular/router'
 import { slideDown } from '../../shared/animations'
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'app-login',
@@ -12,9 +13,10 @@ import { slideDown } from '../../shared/animations'
   styleUrls: ['./login.component.scss'],
   animations: [slideDown()],
 })
-export class LoginComponent implements OnInit {
-  private error: String
-  private loginForm: FormGroup
+export class LoginComponent implements OnInit, OnDestroy {
+  error: String
+  loginForm: FormGroup
+  subs: Subscription
 
   constructor(
     private fb: FormBuilder,
@@ -35,7 +37,7 @@ export class LoginComponent implements OnInit {
     if (!this.loginForm.valid) {
       this.validateAllField(this.loginForm)
     } else {
-      this.userService.login(email, password).subscribe(
+      this.subs = this.userService.login(email, password).subscribe(
         result => {
           if (result) {
             this.auth.saveToken(result['token'], 'auth-token')
@@ -115,5 +117,9 @@ export class LoginComponent implements OnInit {
         })
       }
     })
+  }
+
+  ngOnDestroy() {
+    this.subs.unsubscribe()
   }
 }

@@ -26,15 +26,4 @@ export class CandidateHomePageComponent implements OnInit {
       this.user = token.details
     }
   }
-
-  public navigate(input) {
-    switch (input) {
-      case 'back':
-        this.location.back()
-        break
-      case 'edit':
-        this.router.navigateByUrl('/candidates/candidate_editProfile')
-        break
-    }
-  }
 }
