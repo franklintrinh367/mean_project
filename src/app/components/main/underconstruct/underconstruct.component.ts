@@ -8,8 +8,8 @@ import { Router } from '@angular/router'
 })
 export class UnderconstructComponent implements OnInit, OnDestroy {
   count: Number
-  intervals
-  timeout
+  intervals: any
+  timeout: any
   constructor(private router: Router) {
     this.count = 10
   }

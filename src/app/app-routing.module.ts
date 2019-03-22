@@ -14,6 +14,7 @@ import { VerifyPageComponent } from './components/main/verify-page/verify-page.c
 import { ResetPasswordComponent } from './components/main/reset-password/reset-password.component'
 import { ResetPasswordAuthService } from './services/reset-password-auth.service'
 import { ForgotPasswordComponent } from './components/main/forgot-password/forgot-password.component'
+import { EditProfileComponent } from './components/main/edit-profile/edit-profile.component'
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -42,6 +43,8 @@ const routes: Routes = [
     path: 'companies',
     loadChildren: './components/client-pages/companies.module#CompaniesModule',
   },
+
+  { path: 'edit_profile', component: EditProfileComponent },
 
   //Admin Pages Router
   {

@@ -5,9 +5,12 @@
       <img mat-card-lg-image src="/assets/profile.jpg" class="avatar" />
       <a href="#"><mat-icon>edit</mat-icon></a>
     </div>
-    <div class="item" *ngIf="this.user">
-      <h3>{{ this.user.canFirstName }} {{ this.user.canLastName }}</h3>
-      <h5>{{ this.user.canActualJob }}</h5>
+    <div class="item" *ngIf="this.token.details">
+      <h3>
+        {{ this.token.details.canFirstName }}
+        {{ this.token.details.canLastName }}
+      </h3>
+      <h5>{{ this.token.details.canActualJob }}</h5>
     </div>
   </div>
   <mat-divider color="primary"></mat-divider>
@@ -31,33 +34,9 @@
     <div class="item" id="info">
       <mat-tab-group>
         <mat-tab label="About">
-          <mat-list *ngIf="this.user">
-            <mat-list-item>
-              <span>First Name </span> {{ this.user.canFirstName }}
-            </mat-list-item>
-            <mat-list-item>
-              <span>Last Name </span> {{ this.user.canLastName }}
-            </mat-list-item>
-            <mat-list-item>
-              <span>Education </span> {{ this.user.canEducation }}
-            </mat-list-item>
-            <mat-list-item>
-              <span>Occupation </span> {{ this.user.canActualJob }}
-            </mat-list-item>
-            <mat-list-item>
-              <span>Phone Number </span> {{ this.user.canPhone }}
-            </mat-list-item>
-            <mat-list-item>
-              <span>Address </span> {{ this.user.canAddress }}
-            </mat-list-item>
-            <mat-list-item>
-              <span>City </span> {{ this.user.canCity }}
-            </mat-list-item>
-            <mat-list-item>
-              <span>Province </span> {{ this.user.canProvince }}
-            </mat-list-item>
-            <mat-list-item>
-              <span>Postal Code </span> {{ this.user.canPostalCode }}
+          <mat-list>
+            <mat-list-item *ngFor="let info of canFragments">
+              <span>{{ info.desc }}</span> {{ info.val }}
             </mat-list-item>
           </mat-list>
         </mat-tab>
@@ -73,7 +52,7 @@
   <div class="tile">
     <div class="item">
       <button
-        (click)="navigate('edit')"
+        [routerLink]="['../edit_profile']"
         mat-button
         mat-raised-button
         color="primary"
@@ -97,8 +76,8 @@
       <img mat-card-lg-image src="/assets/profile.jpg" class="avatar" />
       <a href="#"><mat-icon>edit</mat-icon></a>
     </div>
-    <div class="item" *ngIf="this.user">
-      <h3>{{ user.compName }}</h3>
+    <div class="item" *ngIf="this.token.details">
+      <h3>{{ this.token.details.compName }}</h3>
     </div>
   </div>
   <mat-divider color="primary"></mat-divider>
@@ -122,27 +101,9 @@
     <div class="item" id="info">
       <mat-tab-group>
         <mat-tab label="About">
-          <mat-list *ngIf="this.user">
-            <mat-list-item>
-              <span>Company Name </span> {{ user.compName }}
-            </mat-list-item>
-            <mat-list-item>
-              <span>CRA Number </span> {{ this.user.compCRANumber }}
-            </mat-list-item>
-            <mat-list-item>
-              <span>Phone Number </span> {{ this.user.compPhone }}
-            </mat-list-item>
-            <mat-list-item>
-              <span>Address </span> {{ this.user.compAddress }}
-            </mat-list-item>
-            <mat-list-item>
-              <span>City </span> {{ this.user.compCity }}
-            </mat-list-item>
-            <mat-list-item>
-              <span>Province </span> {{ this.user.compProvince }}
-            </mat-list-item>
-            <mat-list-item>
-              <span>Postal Code </span> {{ this.user.compCode }}
+          <mat-list *ngIf="this.token && this.token.details">
+            <mat-list-item *ngFor="let info of compFragments">
+              <span>{{ info.desc }}</span> {{ info.val }}
             </mat-list-item>
           </mat-list>
         </mat-tab>

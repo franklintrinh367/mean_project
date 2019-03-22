@@ -36,6 +36,7 @@ import { LoaderModule } from './module/loader-module'
 import { ResetPasswordComponent } from './components/main/reset-password/reset-password.component'
 import { JobService } from './services/jobs/job.service'
 import { ScrollCorDirective } from './components/directives/scroll-cor.directive'
+import { EditProfileComponent } from './components/main/edit-profile/edit-profile.component'
 
 @NgModule({
   declarations: [
@@ -55,6 +56,8 @@ import { ScrollCorDirective } from './components/directives/scroll-cor.directive
     HeaderComponent,
 
     ScrollCorDirective,
+
+    EditProfileComponent,
   ],
   imports: [
     MaterialModule,
