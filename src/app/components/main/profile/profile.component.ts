@@ -11,9 +11,32 @@ import { Router } from '@angular/router'
   animations: [slideUp()],
 })
 export class ProfileComponent implements OnInit {
-  private token: any
-  private user: Object
+  token: any
   state = 'out'
+  isCandidate: boolean
+  //data sample
+  canFragments = [
+    { name: 'canFirstName', desc: 'First Name', val: '' },
+    { name: 'canLastName', desc: 'Last Name', val: '' },
+    { name: 'canActualJob', desc: 'Occupation', val: '' },
+    { name: 'canEducation', desc: 'Education', val: '' },
+    { name: 'canPhone', desc: 'Phone Number', val: '' },
+    { name: 'canAddress', desc: 'Address', val: '' },
+    { name: 'canCity', desc: 'City', val: '' },
+    { name: 'canProvince', desc: 'Province', val: '' },
+    { name: 'canPostalCode', desc: 'Postal Code', val: '' },
+  ]
+
+  compFragments = [
+    { name: 'compName', desc: 'Company Name', val: '' },
+    { name: 'compCRANumber', desc: 'CRA Number', val: '' },
+    { name: 'compPhone', desc: 'Phone Number', val: '' },
+    { name: 'compAddress', desc: 'Address', val: '' },
+    { name: 'compCity', desc: 'City', val: '' },
+    { name: 'compProvince', desc: 'Province', val: '' },
+    { name: 'compCode', desc: 'Postal Code', val: '' },
+  ]
+
   constructor(
     private authService: AuthenticateService,
     private location: Location,
@@ -28,8 +51,26 @@ export class ProfileComponent implements OnInit {
       window.location.assign(`/`)
     } else {
       this.token = this.authService.getTokenDetails('auth-token')
-      this.user = this.token.details
+      this.isCandidate = this.token && this.token.role === 'Candidate'
+      this.initializeFragments()
     }
+  }
+
+  //push data into array
+  initializeFragments() {
+    if (this.token && this.token.details) {
+      let details = this.token.details
+      if (this.isCandidate) this.iterateFragments(this.canFragments, details)
+      else this.iterateFragments(this.compFragments, details)
+    }
+  }
+
+  //loop through fragments
+  iterateFragments(fragments: any, details: any) {
+    for (let i in details)
+      fragments.forEach(el => {
+        if (el.name === i) el.val = details[i]
+      })
   }
 
   public get username() {
@@ -44,9 +85,6 @@ export class ProfileComponent implements OnInit {
     switch (input) {
       case 'back':
         this.location.back()
-        break
-      case 'edit':
-        this.router.navigateByUrl('/candidates/candidate_editProfile')
         break
     }
   }
