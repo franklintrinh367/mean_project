@@ -1,10 +1,12 @@
-/* CORE */
+/* OTHERS */
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core'
 import { Location } from '@angular/common'
 import { slideUp } from '../../shared/animations'
+import { Subscription } from 'rxjs'
 
 /*MODELS */
 import { User } from '../../../../models/users'
+
 /* SERVICE */
 import { EditUserService } from '../admin-services/edit-user.service'
 
@@ -20,7 +22,6 @@ import {
 /* COMPONENTS */
 import { AdminUserDetailsComponent } from '../admin-user-details/admin-user-details.component'
 import { AdminNewUserComponent } from '../admin-new-user/admin-new-user.component'
-import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'app-admin-user-list',
