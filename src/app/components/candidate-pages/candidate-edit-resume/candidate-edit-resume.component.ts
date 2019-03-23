@@ -1,21 +1,14 @@
 import { Component, OnInit } from '@angular/core'
-import { slideRight, slideDownChunk } from '../components/shared/animations'
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  FormArray,
-  FormControl,
-  AbstractControl,
-} from '@angular/forms'
+import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms'
+import { slideRight, slideDownChunk } from '../../shared/animations'
 
 @Component({
-  selector: 'app-test',
-  templateUrl: './test.component.html',
-  styleUrls: ['./test.component.scss'],
+  selector: 'app-candidate-edit-resume',
+  templateUrl: './candidate-edit-resume.component.html',
+  styleUrls: ['./candidate-edit-resume.component.scss'],
   animations: [slideRight(), slideDownChunk()],
 })
-export class TestComponent implements OnInit {
+export class CandidateEditResumeComponent implements OnInit {
   //In summary, this is just testing phase, using array to store
   //data and send it to the backend might enlarge the payload.
   //This will be developed more in the future
