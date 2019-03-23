@@ -25,21 +25,23 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           Organization
         </th>
-        <td mat-cell *matCellDef="let data">{{ data.compName }}</td>
+        <td mat-cell *matCellDef="let data">{{ data.details.compName }}</td>
       </ng-container>
 
       <ng-container matColumnDef="compCRANumber">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           CRA Number
         </th>
-        <td mat-cell *matCellDef="let data">{{ data.compCRANumber }}</td>
+        <td mat-cell *matCellDef="let data">
+          {{ data.details.compCRANumber }}
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="compAddress">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           Address
         </th>
-        <td mat-cell *matCellDef="let data">{{ data.compAddress }}</td>
+        <td mat-cell *matCellDef="let data">{{ data.details.compAddress }}</td>
       </ng-container>
 
       <ng-container matColumnDef="compCity">
@@ -56,7 +58,7 @@
           Code
         </th>
         <td mat-cell *matCellDef="let data">
-          {{ data.compCode }}
+          {{ data.details.compCode }}
         </td>
       </ng-container>
 
@@ -65,7 +67,7 @@
           Province
         </th>
         <td mat-cell *matCellDef="let data">
-          {{ data.compProvince }}
+          {{ data.details.compProvince }}
         </td>
       </ng-container>
 
@@ -74,7 +76,7 @@
           Phone
         </th>
         <td mat-cell class="colum-size" *matCellDef="let data">
-          {{ data.compPhone }}
+          {{ data.details.compPhone }}
         </td>
       </ng-container>
 
@@ -83,7 +85,7 @@
           Contact
         </th>
         <td mat-cell *matCellDef="let data">
-          {{ data.compContact }}
+          {{ data.details.compContact }}
         </td>
       </ng-container>
 
