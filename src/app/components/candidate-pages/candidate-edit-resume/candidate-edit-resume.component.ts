@@ -14,10 +14,14 @@ export class CandidateEditResumeComponent implements OnInit {
   //This will be developed more in the future
   state = 'out'
   resumeForm: FormGroup
-  profile = []
+  profileArr = []
   info = ''
+  //These values are produced after user submit the form
+  //These values should be used in the backend to retreive information
   experienceArr = []
+  expContentArr = []
   eduArr = []
+  eduContentArr = []
 
   constructor(private builder: FormBuilder) {}
 
@@ -34,6 +38,7 @@ export class CandidateEditResumeComponent implements OnInit {
         phone: ['Phone Number'],
         email: ['Email'],
       }),
+      profile: [''],
 
       experience: this.builder.group({
         compName: [''],
@@ -56,26 +61,20 @@ export class CandidateEditResumeComponent implements OnInit {
   //push this section info to the arr
   addProfileControl(str) {
     if (str) {
-      this.profile.push(str)
-      this.info = ''
+      this.profileArr.push(str)
+      this.profile.setValue('')
     }
   }
 
   //push this section info to the arr
-  addExperience(
-    comp: string,
-    loc: string,
-    pos: string,
-    year: string,
-    content: string
-  ) {
-    if (comp && loc && pos && year && content) {
+  addExperience(comp: string, loc: string, pos: string, year: string) {
+    if (comp && loc && pos && year && this.expContentArr.length > 0) {
       let store = {
         comp: comp,
         loc: loc,
         pos: pos,
         year: year,
-        content: content,
+        content: this.expContentArr,
       }
       this.experienceArr.push(store)
       this.clearSearch([
@@ -85,23 +84,26 @@ export class CandidateEditResumeComponent implements OnInit {
         this.expPos,
         this.expYear,
       ])
+
+      this.expContentArr = []
     }
   }
 
-  addEdu(
-    uni: string,
-    loc: string,
-    field: string,
-    year: string,
-    content: string
-  ) {
-    if (uni && loc && field && year && content) {
+  addExpContent(value: string) {
+    if (value) {
+      this.expContentArr.push(value)
+      this.expContent.setValue('')
+    }
+  }
+
+  addEdu(uni: string, loc: string, field: string, year: string) {
+    if (uni && loc && field && year && this.eduContentArr.length > 0) {
       let store = {
         uni: uni,
         loc: loc,
         year: year,
         field: field,
-        content: content,
+        content: this.eduContentArr,
       }
       this.eduArr.push(store)
       this.clearSearch([
@@ -111,6 +113,27 @@ export class CandidateEditResumeComponent implements OnInit {
         this.eduYear,
         this.eduContent,
       ])
+
+      this.eduContentArr = []
+    }
+  }
+
+  addEduContent(value: string) {
+    if (value) {
+      this.eduContentArr.push(value)
+      this.eduContent.setValue('')
+    }
+  }
+
+  //Press enter for more user-experience
+  keyPressEnter(name: string, value: string) {
+    switch (name) {
+      case 'exp':
+        this.addExpContent(value)
+        break
+      case 'edu':
+        this.addEduContent(value)
+        break
     }
   }
 
@@ -189,6 +212,10 @@ export class CandidateEditResumeComponent implements OnInit {
 
   get email() {
     return this.general.get('email')
+  }
+
+  get profile() {
+    return this.resumeForm.get('profile')
   }
 
   expandTile() {
