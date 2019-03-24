@@ -9,19 +9,21 @@
           <h3>Profile</h3>
           <mat-divider></mat-divider>
         </div>
-        <ul>
-          <li *ngFor="let str of profile; let i = index" [@chunkDown]>
-            <p>{{ str }}</p>
-          </li>
-          <li *ngIf="profile_info">
-            <p>{{ profile_info.value }}</p>
-          </li>
-        </ul>
+        <div>
+          <ul>
+            <li *ngFor="let str of profileArr" [@chunkDown]>
+              <p>{{ str }}</p>
+            </li>
+            <li *ngIf="profile">
+              <p>{{ profile.value }}</p>
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="item section">
         <h3>Experience</h3>
         <mat-divider></mat-divider>
-        <div class="item" *ngFor="let i of experienceArr">
+        <div class="item" *ngFor="let i of experienceArr" [@chunkDown]>
           <div class="tile">
             <div class="left">
               <span>{{ i.comp }}</span>
@@ -42,8 +44,8 @@
 
           <div class="tile">
             <ul>
-              <li>
-                <p>{{ i.content }}</p>
+              <li *ngFor="let c of i.content">
+                <p>{{ c }}</p>
               </li>
             </ul>
           </div>
@@ -73,9 +75,11 @@
 
           <div class="tile">
             <ul>
-              <li>
-                <p>{{ expContent.value }}</p>
+              <li *ngFor="let c of expContentArr">
+                <p>{{ c }}</p>
               </li>
+
+              <li *ngIf="expContent">{{ expContent.value }}</li>
             </ul>
           </div>
         </div>
@@ -84,7 +88,7 @@
       <div class="item section">
         <h3>Education</h3>
         <mat-divider></mat-divider>
-        <div class="item" *ngFor="let i of eduArr">
+        <div class="item" *ngFor="let i of eduArr" [@chunkDown]>
           <div class="tile">
             <div class="left">
               <span>{{ i.uni }}</span>
@@ -105,8 +109,8 @@
 
           <div class="tile">
             <ul>
-              <li>
-                <p>{{ i.content }}</p>
+              <li *ngFor="let c of i.content">
+                <p>{{ c }}</p>
               </li>
             </ul>
           </div>
@@ -136,7 +140,10 @@
 
           <div class="tile">
             <ul>
-              <li>{{ eduContent.value }}</li>
+              <li *ngFor="let c of eduContentArr">
+                <p>{{ c }}</p>
+              </li>
+              <li *ngIf="eduContent">{{ eduContent.value }}</li>
             </ul>
           </div>
         </div>
@@ -152,6 +159,7 @@
               placeholder="Title"
               matInput
               formControlName="title"
+              maxlength="20"
             />
           </mat-form-field>
 
@@ -189,21 +197,19 @@
           <mat-form-field>
             <input
               type="text"
-              placeholder="Profile Infomation"
               placeholder="Something about yourself"
               matInput
-              #profile_info="ngModel"
-              [(ngModel)]="info"
-              [ngModelOptions]="{ standalone: true }"
+              formControlName="profile"
             />
-            <button
-              mat-button
-              matSuffix
-              (click)="addProfileControl(profile_info.value)"
-            >
-              <mat-icon>add</mat-icon>
-            </button>
           </mat-form-field>
+          <button
+            mat-button
+            mat-raised-button
+            matSuffix
+            (click)="addProfileControl(profile.value)"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
         </div>
 
         <div formGroupName="experience">
@@ -251,8 +257,15 @@
               placeholder="Content"
               matInput
               formControlName="content"
+              (keydown.Enter)="keyPressEnter('exp', expContent.value)"
             />
-            <button mat-button matSuffix><mat-icon>add</mat-icon></button>
+            <button
+              mat-button
+              matSuffix
+              (click)="addExpContent(expContent.value)"
+            >
+              <mat-icon>add</mat-icon>
+            </button>
           </mat-form-field>
 
           <button
@@ -263,8 +276,7 @@
                 expCompName.value,
                 expLoc.value,
                 expPos.value,
-                expYear.value,
-                expContent.value
+                expYear.value
               )
             "
           >
@@ -317,8 +329,15 @@
               placeholder="Content"
               matInput
               formControlName="content"
+              (keydown.Enter)="keyPressEnter('edu', eduContent.value)"
             />
-            <button mat-button matSuffix><mat-icon>add</mat-icon></button>
+            <button
+              mat-button
+              matSuffix
+              (click)="addEduContent(eduContent.value)"
+            >
+              <mat-icon>add</mat-icon>
+            </button>
           </mat-form-field>
           <button
             mat-button

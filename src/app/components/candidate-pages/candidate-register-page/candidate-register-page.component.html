@@ -1,9 +1,9 @@
 <div class="wraper" fxLayout="column" fxLayoutAlign="center center">
-  <div id="body">
+  <div id="body" [@slideUp]="state">
     <h3>Candidate Register</h3>
-    <form autocomplete="off" [formGroup]="candidateRegisterForm">
-      <mat-vertical-stepper linear #stepper>
-        <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+    <mat-vertical-stepper linear #stepper>
+      <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+        <form autocomplete="off" [formGroup]="firstFormGroup">
           <ng-template matStepLabel>General Information</ng-template>
           <mat-form-field>
             <mat-label>First Name</mat-label>
@@ -60,9 +60,11 @@
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext>Next</button>
           </div>
-        </mat-step>
+        </form>
+      </mat-step>
 
-        <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+      <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+        <form autocomplete="off" [formGroup]="secondFormGroup">
           <ng-template matStepLabel>Contact</ng-template>
           <mat-form-field>
             <mat-label>LinkedIn URL</mat-label>
@@ -90,11 +92,12 @@
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext>Next</button>
           </div>
-        </mat-step>
+        </form>
+      </mat-step>
 
-        <mat-step [stepControl]="thirdFormGroup" [editable]="isEditable">
-          <ng-template matStepLabel>Address</ng-template>
-
+      <mat-step [stepControl]="thirdFormGroup" [editable]="isEditable">
+        <ng-template matStepLabel>Address</ng-template>
+        <form autocomplete="off" [formGroup]="thirdFormGroup">
           <mat-form-field>
             <mat-label>Address</mat-label>
             <input matInput type="text" formControlName="canAddress" />
@@ -153,33 +156,28 @@
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext>Next</button>
           </div>
-        </mat-step>
+        </form>
+      </mat-step>
 
-        <mat-step [stepControl]="fourthFormGroup" [editable]="isEditable">
-          <ng-template matStepLabel>Complete registration</ng-template>
-          <button
-            mat-raised-button
-            color=":primary"
-            [disabled]="!candidateRegisterForm.valid"
-            (click)="signup()"
-          >
-            Submit
-          </button>
+      <mat-step [stepControl]="fourthFormGroup" [editable]="isEditable">
+        <ng-template matStepLabel>Complete registration</ng-template>
+        <button mat-button mat-raised-button color="primary" (click)="signup()">
+          Submit
+        </button>
 
-          <!-- Cancel Button -->
-          <button mat-raised-button routerLink="/home">
-            Cancel
-          </button>
-        </mat-step>
-        <mat-step>
-          <ng-template matStepLabel>Done</ng-template>
-          You are now done.
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
-          </div>
-        </mat-step>
-      </mat-vertical-stepper>
-    </form>
+        <!-- Cancel Button -->
+        <button mat-raised-button routerLink="/home">
+          Cancel
+        </button>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        You are now done.
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-vertical-stepper>
   </div>
 </div>
