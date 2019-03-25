@@ -185,7 +185,7 @@ router.post('/login', (req, res) => {
                 jwt.sign(
                   payload,
                   secretOrKey,
-                  { expiresIn: 3600 },
+                  { expiresIn: 60 * 60 * 24 },
                   (err, token) => {
                     res.json({
                       success: true,
@@ -244,12 +244,17 @@ router.post('/sendResetPassword', (req, res) => {
           hash: hash,
         }
 
-        jwt.sign(payload, secretOrKey, { expiresIn: 3600 }, (err, token) => {
-          res.json({
-            success: true,
-            token: token,
-          })
-        })
+        jwt.sign(
+          payload,
+          secretOrKey,
+          { expiresIn: 60 * 60 * 24 },
+          (err, token) => {
+            res.json({
+              success: true,
+              token: token,
+            })
+          }
+        )
       })
     })
   })

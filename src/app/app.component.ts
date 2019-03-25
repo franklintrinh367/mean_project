@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { AngularFireStorage } from '@angular/fire/storage'
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,5 @@ import { Component, OnInit } from '@angular/core'
 })
 export class AppComponent {
   title = 'JC-Consulting'
+  constructor(private storage: AngularFireStorage) {}
 }

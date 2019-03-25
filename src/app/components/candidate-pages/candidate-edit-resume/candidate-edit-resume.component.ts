@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core'
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms'
-import { slideRight, slideDownChunk } from '../../shared/animations'
+import { slideRight, slideDownChunk, slideUp } from '../../shared/animations'
 
 @Component({
   selector: 'app-candidate-edit-resume',
   templateUrl: './candidate-edit-resume.component.html',
   styleUrls: ['./candidate-edit-resume.component.scss'],
-  animations: [slideRight(), slideDownChunk()],
+  animations: [slideRight(), slideDownChunk(), slideUp()],
 })
 export class CandidateEditResumeComponent implements OnInit {
   //In summary, this is just testing phase, using array to store
   //data and send it to the backend might enlarge the payload.
   //This will be developed more in the future
   state = 'out'
+  stateUp = 'out'
   resumeForm: FormGroup
   profileArr = []
   info = ''
@@ -26,6 +27,7 @@ export class CandidateEditResumeComponent implements OnInit {
   constructor(private builder: FormBuilder) {}
 
   ngOnInit() {
+    setTimeout(() => (this.stateUp = 'in'), 30)
     this.initForm()
   }
 

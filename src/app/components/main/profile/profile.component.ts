@@ -3,6 +3,8 @@ import { AuthenticateService } from 'src/app/services/authenticate.service'
 import { Location } from '@angular/common'
 import { slideUp } from '../../shared/animations'
 import { Router } from '@angular/router'
+import { AngularFireStorage } from '@angular/fire/storage'
+import { isEmpty } from 'lodash'
 
 @Component({
   selector: 'app-profile',
@@ -11,8 +13,14 @@ import { Router } from '@angular/router'
   animations: [slideUp()],
 })
 export class ProfileComponent implements OnInit {
-  token: any
+  private token: any
+  private user: Object
   state = 'out'
+
+  // avatar file
+  private avatarUrl: any
+  private avatarDefault = 'photos/profile.jpg'
+
   isCandidate: boolean
   //data sample
   canFragments = [
@@ -40,7 +48,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private authService: AuthenticateService,
     private location: Location,
-    private router: Router
+    private router: Router,
+    private storage: AngularFireStorage
   ) {}
 
   ngOnInit() {
@@ -51,6 +60,14 @@ export class ProfileComponent implements OnInit {
       window.location.assign(`/`)
     } else {
       this.token = this.authService.getTokenDetails('auth-token')
+
+      const ref = this.storage.ref(`${this.token.details.canAvatar}`)
+      const defaultRef = this.storage.ref(`${this.avatarDefault}`)
+
+      this.avatarUrl = !isEmpty(this.token.details.canAvatar)
+        ? ref.getDownloadURL()
+        : defaultRef.getDownloadURL()
+
       this.isCandidate = this.token && this.token.role === 'Candidate'
       this.initializeFragments()
     }
@@ -83,8 +100,14 @@ export class ProfileComponent implements OnInit {
 
   public navigate(input) {
     switch (input) {
+      case 'edit':
+        this.router.navigateByUrl('/candidates/candidate_editProfile')
+        break
       case 'back':
         this.location.back()
+        break
+      case 'edit':
+        this.router.navigateByUrl('/candidates/candidate_editProfile')
         break
     }
   }

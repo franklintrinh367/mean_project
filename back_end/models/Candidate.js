@@ -3,6 +3,9 @@ const Schema = mongoose.Schema
 
 // Candidate Schema
 const CandidateSchema = new Schema({
+  canAvatar: {
+    type: String,
+  },
   canId: {
     type: String,
     required: false,

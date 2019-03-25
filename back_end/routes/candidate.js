@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 // Get the secret key
@@ -17,6 +16,7 @@ router.post('/register/:token', (req, res) => {
   let userID = token.id
 
   let newCandidate = new Candidate({
+    canAvatar: req.body.canAvatar,
     canFirstName: req.body.canFirstName,
     canLastName: req.body.canLastName,
     canEducation: req.body.canEducation,
@@ -68,6 +68,7 @@ router.put('/update/:token', (req, res) => {
   let userID = token.id
 
   let newCandidate = new Candidate({
+    canAvatar: req.body.canAvatar,
     canFirstName: req.body.canFirstName,
     canLastName: req.body.canLastName,
     canEducation: req.body.canEducation,
@@ -80,7 +81,7 @@ router.put('/update/:token', (req, res) => {
     canProvince: req.body.canProvince,
     canPostalCode: req.body.canPostalCode,
   })
-
+  console.log(newCandidate)
   User.findById(userID)
     .then(user => {
       user.details = newCandidate

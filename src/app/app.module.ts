@@ -38,6 +38,11 @@ import { JobService } from './services/jobs/job.service'
 import { ScrollCorDirective } from './components/directives/scroll-cor.directive'
 import { TestComponent } from './test/test.component'
 
+import { AngularFireModule } from '@angular/fire'
+import { AngularFirestoreModule } from '@angular/fire/firestore'
+import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage'
+import { environment } from '../environments/environment'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +60,6 @@ import { TestComponent } from './test/test.component'
     ProfileComponent,
     VerifyPageComponent,
     HeaderComponent,
-
     ScrollCorDirective,
   ],
   imports: [
@@ -68,8 +72,14 @@ import { TestComponent } from './test/test.component'
     LoaderModule,
     HttpClientModule,
     AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase, 'jc-consulting'),
+    AngularFirestoreModule,
+    AngularFireStorageModule,
   ],
-  providers: [JobService],
+  providers: [
+    JobService,
+    { provide: StorageBucket, useValue: 'jc-sonsulting.appspot.com' },
+  ],
   bootstrap: [AppComponent],
   entryComponents: [],
 })

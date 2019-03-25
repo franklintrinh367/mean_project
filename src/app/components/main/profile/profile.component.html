@@ -2,7 +2,7 @@
   <h1>Profile</h1>
   <div class="tile">
     <div class="item">
-      <img mat-card-lg-image src="/assets/profile.jpg" class="avatar" />
+      <img mat-card-lg-image [src]="avatarUrl | async" class="avatar" />
       <a href="#"><mat-icon>edit</mat-icon></a>
     </div>
     <div class="item" *ngIf="this.token.details">
@@ -52,7 +52,7 @@
   <div class="tile">
     <div class="item">
       <button
-        [routerLink]="['../edit_profile']"
+        (click)="navigate('edit')"
         mat-button
         mat-raised-button
         color="primary"

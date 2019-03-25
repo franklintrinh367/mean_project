@@ -2,6 +2,9 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 var UserSchema = new Schema({
+  avatar: {
+    type: String,
+  },
   email: {
     type: String,
     required: true,
