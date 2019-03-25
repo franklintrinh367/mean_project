@@ -77,24 +77,11 @@ router.get('/get/:candidateID', (req, res) => {
 
 // Update Candidate
 router.put('/update/:token', upload.single('avatar'), (req, res) => {
-  const file = req.file
-  if (!file) {
-    const error = new Error('Please upload a file')
-    error.httpStatusCode = 400
-    return next(error)
-  }
-  var img = fs.readFileSync(req.file.path)
-  var encode_image = img.toString('base64')
-  var finalImg = {
-    contentType: req.file.mimetype,
-    image: new Buffer(encode_image, 'base64'),
-  }
-
   let token = jwt.decode(req.params.token)
   let userID = token.id
 
   let newCandidate = new Candidate({
-    canAvatar: finalImg,
+    canAvatar: req.body.canAvatar,
     canFirstName: req.body.canFirstName,
     canLastName: req.body.canLastName,
     canEducation: req.body.canEducation,
@@ -107,7 +94,7 @@ router.put('/update/:token', upload.single('avatar'), (req, res) => {
     canProvince: req.body.canProvince,
     canPostalCode: req.body.canPostalCode,
   })
-
+  console.log(newCandidate)
   User.findById(userID)
     .then(user => {
       user.details = newCandidate

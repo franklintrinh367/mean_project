@@ -37,6 +37,11 @@ import { ResetPasswordComponent } from './components/main/reset-password/reset-p
 import { JobService } from './services/jobs/job.service'
 import { ScrollCorDirective } from './components/directives/scroll-cor.directive'
 
+import { AngularFireModule } from '@angular/fire'
+import { AngularFirestoreModule } from '@angular/fire/firestore'
+import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage'
+import { environment } from '../environments/environment'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +58,6 @@ import { ScrollCorDirective } from './components/directives/scroll-cor.directive
     ProfileComponent,
     VerifyPageComponent,
     HeaderComponent,
-
     ScrollCorDirective,
   ],
   imports: [
@@ -66,8 +70,14 @@ import { ScrollCorDirective } from './components/directives/scroll-cor.directive
     LoaderModule,
     HttpClientModule,
     AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase, 'jc-consulting'),
+    AngularFirestoreModule,
+    AngularFireStorageModule,
   ],
-  providers: [JobService],
+  providers: [
+    JobService,
+    { provide: StorageBucket, useValue: 'jc-sonsulting.appspot.com' },
+  ],
   bootstrap: [AppComponent],
   entryComponents: [],
 })
