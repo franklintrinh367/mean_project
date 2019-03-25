@@ -19,8 +19,7 @@ export class ProfileComponent implements OnInit {
   // avatar file
   private avatarUrl: any
   private avatarDefault = 'photos/profile.jpg'
-  
-  /* franklin keep this or not?
+
   isCandidate: boolean
   //data sample
   canFragments = [
@@ -44,7 +43,6 @@ export class ProfileComponent implements OnInit {
     { name: 'compProvince', desc: 'Province', val: '' },
     { name: 'compCode', desc: 'Postal Code', val: '' },
   ]
-  */
 
   constructor(
     private authService: AuthenticateService,
@@ -61,7 +59,6 @@ export class ProfileComponent implements OnInit {
       window.location.assign(`/`)
     } else {
       this.token = this.authService.getTokenDetails('auth-token')
-      this.user = this.token.details
 
       const ref = this.storage.ref(`${this.token.details.canAvatar}`)
       const defaultRef = this.storage.ref(`${this.avatarDefault}`)
@@ -70,7 +67,6 @@ export class ProfileComponent implements OnInit {
         ? ref.getDownloadURL()
         : defaultRef.getDownloadURL()
 
-  /* franklin keep this part or not?
       this.isCandidate = this.token && this.token.role === 'Candidate'
       this.initializeFragments()
     }
@@ -82,7 +78,6 @@ export class ProfileComponent implements OnInit {
       let details = this.token.details
       if (this.isCandidate) this.iterateFragments(this.canFragments, details)
       else this.iterateFragments(this.compFragments, details)
-  */
     }
   }
 
@@ -104,6 +99,9 @@ export class ProfileComponent implements OnInit {
 
   public navigate(input) {
     switch (input) {
+      case 'edit':
+        this.router.navigateByUrl('/candidates/candidate_editProfile')
+        break
       case 'back':
         this.location.back()
         break

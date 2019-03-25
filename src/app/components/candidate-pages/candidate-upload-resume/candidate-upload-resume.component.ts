@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core'
-import { slideRight } from '../../shared/animations'
+import { slideRight, slideUp } from '../../shared/animations'
 
 @Component({
   selector: 'app-candidate-upload-resume',
   templateUrl: './candidate-upload-resume.component.html',
   styleUrls: ['./candidate-upload-resume.component.scss'],
-  animations: [slideRight()],
+  animations: [slideRight(), slideUp()],
 })
 export class CandidateUploadResumeComponent implements OnInit {
   state = 'out'
+  stateUp = 'out'
   template = [
     {
       src: 'assets/resume-templates/template-1.jpg',
@@ -23,7 +24,9 @@ export class CandidateUploadResumeComponent implements OnInit {
   ]
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    setTimeout(() => (this.stateUp = 'in'), 30)
+  }
 
   expandTile() {
     this.state = this.state === 'in' ? 'out' : 'in'

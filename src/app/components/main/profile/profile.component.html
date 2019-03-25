@@ -1,47 +1,3 @@
-<!--
-                <img mat-card-lg-image src="/assets/profile.jpg" />
-                <a href="#"> Change picture</a>
-
-              <h3>John Doe</h3>
-              <h5>Student</h5>
-
-              <mat-list>
-                <h5>SUGGESTED JOBS</h5>
-                <mat-list-item> Full Stack Developer</mat-list-item>
-                <mat-list-item> Software Engineer </mat-list-item>
-                <mat-list-item> QA Analyst</mat-list-item>
-              </mat-list>
-
-              <mat-tab-group>
-                <mat-tab label="About">
-                  <mat-list>
-                    <mat-list-item>First Name: John</mat-list-item>
-                    <mat-list-item>Last Name: Doe</mat-list-item>
-                    <mat-list-item
-                      >Education: Ontario College Advanced Diploma</mat-list-item
-                    >
-                    <mat-list-item>Occupation: Student</mat-list-item>
-                    <mat-list-item>Phone Number: (416) 509-6995</mat-list-item>
-                    <mat-list-item>Address: 160 Kendal Ave </mat-list-item>
-                    <mat-list-item>City: Toronto</mat-list-item>
-                    <mat-list-item>Province: Ontario</mat-list-item>
-                    <mat-list-item>Postal Code: M5R 1M3</mat-list-item>
-                  </mat-list>
-                </mat-tab>
-                <mat-tab label="Applied Jobs"> Jobs that have been applied </mat-tab>
-                <mat-tab label="Saved Jobs">
-                  Favorite jobs will be saved here
-                </mat-tab>
-                <mat-tab label="Favorite Company"> Your favorite Company </mat-tab>
-              </mat-tab-group>
-
-              <mat-list>
-                <h5>RELEVANT JOBS</h5>
-                <mat-list-item> Frontend Developer</mat-list-item>
-                <mat-list-item> Java Developer</mat-list-item>
-                <mat-list-item> iOS Developer</mat-list-item>
-              </mat-list>  -->
-
 <div id="body" [@slideUp]="state">
   <h1>Profile</h1>
   <div class="tile">
@@ -96,7 +52,7 @@
   <div class="tile">
     <div class="item">
       <button
-        [routerLink]="['../edit_profile']"
+        (click)="navigate('edit')"
         mat-button
         mat-raised-button
         color="primary"
