@@ -36,6 +36,7 @@ import { LoaderModule } from './module/loader-module'
 import { ResetPasswordComponent } from './components/main/reset-password/reset-password.component'
 import { JobService } from './services/jobs/job.service'
 import { ScrollCorDirective } from './components/directives/scroll-cor.directive'
+import { TestComponent } from './test/test.component'
 
 import { AngularFireModule } from '@angular/fire'
 import { AngularFirestoreModule } from '@angular/fire/firestore'
@@ -55,6 +56,7 @@ import { environment } from '../environments/environment'
     LoaderComponent,
     ResetPasswordComponent,
     ForgotPasswordComponent,
+    TestComponent,
     ProfileComponent,
     VerifyPageComponent,
     HeaderComponent,

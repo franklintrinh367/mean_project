@@ -49,9 +49,12 @@
       <img mat-card-lg-image [src]="avatarUrl | async" class="avatar" />
       <a href="#"><mat-icon>edit</mat-icon></a>
     </div>
-    <div class="item">
-      <h3>{{ this.user.canFirstName }} {{ this.user.canLastName }}</h3>
-      <h5>{{ this.user.canActualJob }}</h5>
+    <div class="item" *ngIf="this.token.details">
+      <h3>
+        {{ this.token.details.canFirstName }}
+        {{ this.token.details.canLastName }}
+      </h3>
+      <h5>{{ this.token.details.canActualJob }}</h5>
     </div>
   </div>
   <mat-divider color="primary"></mat-divider>
@@ -76,32 +79,8 @@
       <mat-tab-group>
         <mat-tab label="About">
           <mat-list>
-            <mat-list-item>
-              <span>First Name: </span> {{ this.user.canFirstName }}
-            </mat-list-item>
-            <mat-list-item>
-              <span>Last Name: </span> {{ this.user.canLastName }}
-            </mat-list-item>
-            <mat-list-item>
-              <span>Education: </span> {{ this.user.canEducation }}
-            </mat-list-item>
-            <mat-list-item>
-              <span>Occupation: </span> {{ this.user.canActualJob }}
-            </mat-list-item>
-            <mat-list-item>
-              <span>Phone Number: </span> {{ this.user.canPhone }}
-            </mat-list-item>
-            <mat-list-item>
-              <span>Address: </span> {{ this.user.canAddress }}
-            </mat-list-item>
-            <mat-list-item>
-              <span>City: </span> {{ this.user.canCity }}
-            </mat-list-item>
-            <mat-list-item>
-              <span>Province </span> {{ this.user.canProvince }}
-            </mat-list-item>
-            <mat-list-item>
-              <span>Postal Code: </span> {{ this.user.canPostalCode }}
+            <mat-list-item *ngFor="let info of canFragments">
+              <span>{{ info.desc }}</span> {{ info.val }}
             </mat-list-item>
           </mat-list>
         </mat-tab>
@@ -110,6 +89,75 @@
           Favorite jobs will be saved here
         </mat-tab>
         <mat-tab label="Favorite Company"> Your favorite Company </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+  <mat-divider color="primary"></mat-divider>
+  <div class="tile">
+    <div class="item">
+      <button
+        [routerLink]="['../edit_profile']"
+        mat-button
+        mat-raised-button
+        color="primary"
+      >
+        Edit Profile
+      </button>
+    </div>
+    <div class="item">
+      <button (click)="navigate('back')" mat-button mat-raised-button>
+        Back
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Company side -->
+<div id="body" [@slideUp]="state" *ngIf="!isCandidate">
+  <h1>Profile</h1>
+  <div class="tile">
+    <div class="item">
+      <img mat-card-lg-image src="/assets/profile.jpg" class="avatar" />
+      <a href="#"><mat-icon>edit</mat-icon></a>
+    </div>
+    <div class="item" *ngIf="this.token.details">
+      <h3>{{ this.token.details.compName }}</h3>
+    </div>
+  </div>
+  <mat-divider color="primary"></mat-divider>
+
+  <div class="tile">
+    <div class="item" id="jobs">
+      <mat-list>
+        <h5>SUGGESTED JOBS</h5>
+        <mat-list-item> Full Stack Developer</mat-list-item>
+        <mat-list-item> Software Engineer </mat-list-item>
+        <mat-list-item> QA Analyst</mat-list-item>
+      </mat-list>
+
+      <mat-list>
+        <h5>RELEVANT JOBS</h5>
+        <mat-list-item> Frontend Developer</mat-list-item>
+        <mat-list-item> Java Developer</mat-list-item>
+        <mat-list-item> iOS Developer</mat-list-item>
+      </mat-list>
+    </div>
+    <div class="item" id="info">
+      <mat-tab-group>
+        <mat-tab label="About">
+          <mat-list *ngIf="this.token && this.token.details">
+            <mat-list-item *ngFor="let info of compFragments">
+              <span>{{ info.desc }}</span> {{ info.val }}
+            </mat-list-item>
+          </mat-list>
+        </mat-tab>
+        <mat-tab label="Created Jobs"> Jobs that have been created </mat-tab>
+        <mat-tab label="Candidates">
+          List of candidates who sent their resumes
+        </mat-tab>
+        <mat-tab label="Best match"
+          >List of best matched candidates for the job</mat-tab
+        >
       </mat-tab-group>
     </div>
   </div>

@@ -1,0 +1,25 @@
+<div id="body">
+  <h1>Upload Resume</h1>
+  <div class="tile card-block">
+    <div class="card" id="uploadImg">
+      <mat-icon>add</mat-icon>
+      <br />
+      <p>Drop your resume here</p>
+    </div>
+    <div class="card mat-elevation-z4" id="picky" (click)="expandTile()">
+      <p>Pick a template</p>
+    </div>
+
+    <div
+      class="card mat-elevation-z4"
+      *ngFor="let card of template"
+      [@slideRight]="state"
+    >
+      <img
+        src="{{ card.src }}"
+        alt="{{ card.alt }}"
+        routerLink="{{ card.url }}"
+      />
+    </div>
+  </div>
+</div>
