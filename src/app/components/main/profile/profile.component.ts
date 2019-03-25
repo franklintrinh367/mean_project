@@ -13,7 +13,8 @@ import { isEmpty } from 'lodash'
   animations: [slideUp()],
 })
 export class ProfileComponent implements OnInit {
-  token: any
+  private token: any
+  private user: Object
   state = 'out'
 
   // avatar file
@@ -104,6 +105,9 @@ export class ProfileComponent implements OnInit {
         break
       case 'back':
         this.location.back()
+        break
+      case 'edit':
+        this.router.navigateByUrl('/candidates/candidate_editProfile')
         break
     }
   }

@@ -1,19 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const jwt = require('jsonwebtoken')
-const multer = require('multer')
-const fs = require('fs')
-// SET STORAGE
-var storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, 'uploads')
-  },
-  filename: function(req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now())
-  },
-})
-
-var upload = multer({ storage: storage })
 
 // Get the secret key
 const secretOrKey = require('../config/keys').secretOrKey
@@ -76,7 +63,7 @@ router.get('/get/:candidateID', (req, res) => {
 })
 
 // Update Candidate
-router.put('/update/:token', upload.single('avatar'), (req, res) => {
+router.put('/update/:token', (req, res) => {
   let token = jwt.decode(req.params.token)
   let userID = token.id
 
