@@ -1,5 +1,4 @@
 export interface Client {
-  _id: string
   userId: string
   compName: string
   compCRANumber: number

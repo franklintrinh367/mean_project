@@ -37,6 +37,8 @@ export class ClientJobDetailsPageComponent implements OnInit {
   ) {
     this.displayColumns = [
       '_id',
+      'jobCategory',
+      'jobTitle',
       'jobStatus',
       'jobPostDate',
       'jobEndDate',
@@ -112,6 +114,8 @@ export class ClientJobDetailsPageComponent implements OnInit {
     this.service.populateForm(
       row._id,
       row.userId,
+      row.jobCategory,
+      row.jobTitle,
       row.jobStatus,
       row.jobPostDate,
       row.jobEndDate,
