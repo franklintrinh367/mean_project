@@ -12,7 +12,7 @@ h3,
 h5,
 p,
 span {
-  word-break: break-all;
+  overflow-wrap: break-word;
 }
 
 span {

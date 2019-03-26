@@ -99,7 +99,6 @@ router.get('/send/:id&:email', async (req, res) => {
 
       transporter.sendMail(mailOptions, (err, info) => {
         if (err) console.log(err)
-        console.log(info)
         User.findByIdAndUpdate(id, {
           hash: hash,
         })
@@ -143,7 +142,6 @@ router.get('/findUserByHash/:hash', (req, res) => {
 //Look for existing email or username
 router.get('/find/:obj', (req, res) => {
   let obj = req.params.obj
-  console.log('Request to user')
   User.findOne({
     $or: [{ email: obj }, { username: obj }],
   })
@@ -169,7 +167,6 @@ router.post('/login', (req, res) => {
         bcrypt.compare(password, user.password).then(isMatch => {
           if (isMatch) {
             let count = user.visited + 1
-            console.log(count)
             User.findByIdAndUpdate(user._id, { visited: count })
               .then(() => {
                 const payload = {
