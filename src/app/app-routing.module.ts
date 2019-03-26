@@ -14,6 +14,7 @@ import { VerifyPageComponent } from './components/main/verify-page/verify-page.c
 import { ResetPasswordComponent } from './components/main/reset-password/reset-password.component'
 import { ResetPasswordAuthService } from './services/reset-password-auth.service'
 import { ForgotPasswordComponent } from './components/main/forgot-password/forgot-password.component'
+import { TestComponent } from './test/test.component'
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -62,6 +63,9 @@ const routes: Routes = [
     loadChildren: './components/jc-pages/jcs.module#JCsModule',
   },
 
+  //TEST
+  { path: 'test', component: TestComponent },
+
   // Others
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '404', component: UnderconstructComponent },
@@ -70,13 +74,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes),
-    // RouterModule.forRoot(routes,{
-    //   useHash: true,
-    //   enableTracing: false
-    // }),
-  ],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

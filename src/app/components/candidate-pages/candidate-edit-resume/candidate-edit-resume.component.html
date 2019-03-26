@@ -1,0 +1,382 @@
+<div id="body" [@slideUp]="stateUp">
+  <div class="tile">
+    <div class="item screen mat-elevation-z8">
+      <h1>{{ title.value }}</h1>
+      <h5>{{ address.value }}</h5>
+      <h5>{{ phone.value }} | {{ email.value }}</h5>
+      <div class="item section">
+        <div>
+          <h3>Profile</h3>
+          <mat-divider></mat-divider>
+        </div>
+        <div>
+          <ul>
+            <li *ngFor="let str of profileArr" [@chunkDown]>
+              <p>{{ str }}</p>
+            </li>
+            <li *ngIf="profile">
+              <p>{{ profile.value }}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="item section">
+        <h3>Experience</h3>
+        <mat-divider></mat-divider>
+        <div class="item" *ngFor="let i of exp" [@chunkDown]>
+          <div class="tile">
+            <div class="left">
+              <span>{{ i.compName }}</span>
+            </div>
+            <div class="right">
+              <span>{{ i.loc }}</span>
+            </div>
+          </div>
+
+          <div class="tile">
+            <div class="left">
+              <span>{{ i.pos }}</span>
+            </div>
+            <div class="right">
+              <span>{{ i.year }}</span>
+            </div>
+          </div>
+
+          <div class="tile">
+            <ul>
+              <li *ngFor="let c of i.content">
+                <p>{{ c }}</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="item"
+          *ngIf="expCompName && expLoc && expPos && expYear && expContent"
+        >
+          <div class="tile">
+            <div class="left">
+              <span>{{ expCompName.value }}</span>
+            </div>
+            <div class="right">
+              <span>{{ expLoc.value }}</span>
+            </div>
+          </div>
+
+          <div class="tile">
+            <div class="left">
+              <span>{{ expPos.value }}</span>
+            </div>
+            <div class="right">
+              <span>{{ expYear.value }}</span>
+            </div>
+          </div>
+
+          <div class="tile">
+            <ul>
+              <li *ngFor="let c of expContentArr">
+                <p>{{ c }}</p>
+              </li>
+
+              <li *ngIf="expContent">{{ expContent.value }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="item section">
+        <h3>Education</h3>
+        <mat-divider></mat-divider>
+        <div class="item" *ngFor="let i of edu" [@chunkDown]>
+          <div class="tile">
+            <div class="left">
+              <span>{{ i.university }}</span>
+            </div>
+            <div class="right">
+              <span>{{ i.loc }}</span>
+            </div>
+          </div>
+
+          <div class="tile">
+            <div class="left">
+              <span>{{ i.study }}</span>
+            </div>
+            <div class="right">
+              <span>{{ i.year }}</span>
+            </div>
+          </div>
+
+          <div class="tile">
+            <ul>
+              <li *ngFor="let c of i.content" [@chunkDown]>
+                <p>{{ c }}</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="item"
+          *ngIf="eduUni && eduLoc && eduField && eduYear && eduContent"
+        >
+          <div class="tile">
+            <div class="left">
+              <span>{{ eduUni.value }}</span>
+            </div>
+            <div class="right">
+              <span>{{ eduLoc.value }}</span>
+            </div>
+          </div>
+
+          <div class="tile">
+            <div class="left">
+              <span>{{ eduField.value }}</span>
+            </div>
+            <div class="right">
+              <span>{{ eduYear.value }}</span>
+            </div>
+          </div>
+
+          <div class="tile">
+            <ul>
+              <li *ngFor="let c of eduContentArr">
+                <p>{{ c }}</p>
+              </li>
+              <li *ngIf="eduContent">{{ eduContent.value }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="item edit mat-elevation-z4">
+      <form autocomplete="off" [formGroup]="resumeForm">
+        <div formGroupName="general">
+          <h4>General Information</h4>
+          <mat-form-field>
+            <input
+              type="text"
+              placeholder="Title"
+              matInput
+              formControlName="title"
+              maxlength="20"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              type="text"
+              placeholder="Address"
+              matInput
+              formControlName="address"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              type="text"
+              placeholder="Phone Number"
+              matInput
+              formControlName="phone"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              type="text"
+              placeholder="Email"
+              matInput
+              formControlName="email"
+            />
+          </mat-form-field>
+        </div>
+
+        <div>
+          <br />
+          <h3>Profile</h3>
+          <mat-form-field>
+            <input
+              type="text"
+              placeholder="Something about yourself"
+              matInput
+              formControlName="profile"
+            />
+          </mat-form-field>
+          <button
+            mat-button
+            mat-raised-button
+            matSuffix
+            (click)="addProfileControl(profile.value)"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+          <button mat-raised-button (click)="redo('profile')">
+            <mat-icon>redo</mat-icon>
+          </button>
+        </div>
+
+        <div formGroupName="experience">
+          <br />
+          <h3>Experience</h3>
+          <mat-form-field>
+            <input
+              type="text"
+              placeholder="Company Name"
+              matInput
+              formControlName="compName"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              type="text"
+              placeholder="Location"
+              matInput
+              formControlName="loc"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              type="text"
+              placeholder="Position"
+              matInput
+              formControlName="position"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              type="text"
+              placeholder="Years"
+              matInput
+              formControlName="year"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              type="text"
+              placeholder="Content"
+              matInput
+              formControlName="content"
+              (keydown.Enter)="keyPressEnter('exp', expContent.value)"
+            />
+            <button
+              mat-button
+              matSuffix
+              (click)="addExpContent(expContent.value)"
+            >
+              <mat-icon>add</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <button
+            mat-button
+            mat-raised-button
+            (click)="
+              addExperience(
+                expCompName.value,
+                expLoc.value,
+                expPos.value,
+                expYear.value
+              )
+            "
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+          <button mat-raised-button (click)="redo('exp')">
+            <mat-icon>redo</mat-icon>
+          </button>
+        </div>
+
+        <div formGroupName="education">
+          <br />
+          <h3>Education</h3>
+          <mat-form-field>
+            <input
+              type="text"
+              placeholder="University/College"
+              matInput
+              formControlName="uni"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              type="text"
+              placeholder="Location"
+              matInput
+              formControlName="loc"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              type="text"
+              placeholder="Field of Study"
+              matInput
+              formControlName="field"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              type="text"
+              placeholder="Years"
+              matInput
+              formControlName="year"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              type="text"
+              placeholder="Content"
+              matInput
+              formControlName="content"
+              (keydown.Enter)="keyPressEnter('edu', eduContent.value)"
+            />
+            <button
+              mat-button
+              matSuffix
+              (click)="addEduContent(eduContent.value)"
+            >
+              <mat-icon>add</mat-icon>
+            </button>
+          </mat-form-field>
+          <button
+            mat-button
+            mat-raised-button
+            (click)="
+              addEdu(
+                eduUni.value,
+                eduLoc.value,
+                eduField.value,
+                eduYear.value,
+                eduContent.value
+              )
+            "
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+          <button mat-raised-button (click)="redo('edu')">
+            <mat-icon>redo</mat-icon>
+          </button>
+        </div>
+      </form>
+      <div>
+        <br />
+        <button
+          color="primary"
+          id="submit"
+          mat-button
+          mat-raised-button
+          (click)="submit()"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

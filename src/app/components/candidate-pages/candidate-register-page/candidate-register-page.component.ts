@@ -108,6 +108,7 @@ export class CandidateRegisterPageComponent implements OnInit {
   signup() {
     let token = this.auth.getTokenDetails('auth-token')
     this.candidate = {
+      canAvatar: '',
       canId: token.id,
       canFirstName: this.canFirstName.value,
       canLastName: this.canLastName.value,

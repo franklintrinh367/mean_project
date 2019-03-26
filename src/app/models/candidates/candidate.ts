@@ -1,4 +1,5 @@
 export class Candidate {
+  canAvatar: string
   canId: string
   canFirstName: string
   canLastName: string

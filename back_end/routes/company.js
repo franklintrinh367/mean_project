@@ -9,8 +9,9 @@ const Job = require('../models/Job')
 const Company = require('../models/Company')
 
 // get all companies
+// Talk Abdal about Role:
 router.get('/get/all', (req, res) => {
-  User.find({ role: 'company' }, (err, companies) => {
+  User.find({ role: 'Company' }, (err, companies) => {
     if (err) {
       res.status(400).send({ error: err })
     }

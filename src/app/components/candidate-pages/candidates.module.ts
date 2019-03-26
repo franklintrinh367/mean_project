@@ -8,12 +8,16 @@ import { CandidateEditProfileComponent } from 'src/app/components/candidate-page
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 import { MaterialModule } from 'src/app/module/material/material.module'
 import { CandidateService } from './candidate-services/candidate.service'
+import { CandidateUploadResumeComponent } from './candidate-upload-resume/candidate-upload-resume.component'
+import { CandidateEditResumeComponent } from './candidate-edit-resume/candidate-edit-resume.component'
 
 @NgModule({
   declarations: [
     CandidateRegisterPageComponent,
     CandidateHomePageComponent,
     CandidateEditProfileComponent,
+    CandidateUploadResumeComponent,
+    CandidateEditResumeComponent,
   ],
   imports: [
     CommonModule,
