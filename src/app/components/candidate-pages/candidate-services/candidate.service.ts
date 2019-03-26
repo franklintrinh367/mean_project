@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { headersToString } from 'selenium-webdriver/http'
 import { Candidate } from 'src/app/models/candidates/candidate'
+import { Resume } from 'src/app/models/candidates/resumse'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -32,5 +33,9 @@ export class CandidateService {
       candidate,
       httpOptions
     )
+  }
+
+  genDocx(resume: Resume) {
+    return this.http.post(`${this.baseUrl}/genDocx`, resume, httpOptions)
   }
 }

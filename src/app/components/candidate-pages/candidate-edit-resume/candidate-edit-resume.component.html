@@ -23,10 +23,10 @@
       <div class="item section">
         <h3>Experience</h3>
         <mat-divider></mat-divider>
-        <div class="item" *ngFor="let i of experienceArr" [@chunkDown]>
+        <div class="item" *ngFor="let i of exp" [@chunkDown]>
           <div class="tile">
             <div class="left">
-              <span>{{ i.comp }}</span>
+              <span>{{ i.compName }}</span>
             </div>
             <div class="right">
               <span>{{ i.loc }}</span>
@@ -88,10 +88,10 @@
       <div class="item section">
         <h3>Education</h3>
         <mat-divider></mat-divider>
-        <div class="item" *ngFor="let i of eduArr" [@chunkDown]>
+        <div class="item" *ngFor="let i of edu" [@chunkDown]>
           <div class="tile">
             <div class="left">
-              <span>{{ i.uni }}</span>
+              <span>{{ i.university }}</span>
             </div>
             <div class="right">
               <span>{{ i.loc }}</span>
@@ -100,7 +100,7 @@
 
           <div class="tile">
             <div class="left">
-              <span>{{ i.field }}</span>
+              <span>{{ i.study }}</span>
             </div>
             <div class="right">
               <span>{{ i.year }}</span>
@@ -109,7 +109,7 @@
 
           <div class="tile">
             <ul>
-              <li *ngFor="let c of i.content">
+              <li *ngFor="let c of i.content" [@chunkDown]>
                 <p>{{ c }}</p>
               </li>
             </ul>
@@ -210,6 +210,9 @@
           >
             <mat-icon>add</mat-icon>
           </button>
+          <button mat-raised-button (click)="redo('profile')">
+            <mat-icon>redo</mat-icon>
+          </button>
         </div>
 
         <div formGroupName="experience">
@@ -281,6 +284,9 @@
             "
           >
             <mat-icon>add</mat-icon>
+          </button>
+          <button mat-raised-button (click)="redo('exp')">
+            <mat-icon>redo</mat-icon>
           </button>
         </div>
 
@@ -354,11 +360,20 @@
           >
             <mat-icon>add</mat-icon>
           </button>
+          <button mat-raised-button (click)="redo('edu')">
+            <mat-icon>redo</mat-icon>
+          </button>
         </div>
       </form>
       <div>
         <br />
-        <button color="primary" id="submit" mat-button mat-raised-button>
+        <button
+          color="primary"
+          id="submit"
+          mat-button
+          mat-raised-button
+          (click)="submit()"
+        >
           Submit
         </button>
       </div>

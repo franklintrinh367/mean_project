@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const jwt = require('jsonwebtoken')
+const docx = require('../helper/genDocx')
 
 // Get the secret key
 const secretOrKey = require('../config/keys').secretOrKey
@@ -127,6 +128,15 @@ router.post('/apply/:jobID', (req, res) => {
       candidate.save().then(candidate => res.status(200).json(candidate))
     })
     .catch(err => res.status(400).json({ error: err }))
+})
+
+//function for generating docx
+router.post('/genDocx', (req, res) => {
+  let { education, experience, generalInfo, profile } = req.body
+
+  docx.createResume(education, experience, generalInfo, profile)
+
+  res.send(true)
 })
 
 module.exports = router

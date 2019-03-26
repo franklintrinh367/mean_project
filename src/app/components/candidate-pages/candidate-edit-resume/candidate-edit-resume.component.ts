@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core'
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms'
 import { slideRight, slideDownChunk, slideUp } from '../../shared/animations'
+import { Resume } from 'src/app/models/candidates/resumse'
+import { Experience } from 'src/app/models/candidates/experience'
+import { Education } from 'src/app/models/candidates/education'
+import { GeneralInformation } from 'src/app/models/candidates/general-info'
+import { CandidateService } from '../candidate-services/candidate.service'
 
 @Component({
   selector: 'app-candidate-edit-resume',
@@ -15,16 +20,22 @@ export class CandidateEditResumeComponent implements OnInit {
   state = 'out'
   stateUp = 'out'
   resumeForm: FormGroup
-  profileArr = []
-  info = ''
-  //These values are produced after user submit the form
-  //These values should be used in the backend to retreive information
-  experienceArr = []
-  expContentArr = []
-  eduArr = []
   eduContentArr = []
+  expContentArr = []
+  edu: Education[] = []
+  exp: Experience[] = []
+  profileArr: string[] = []
+  generalInfo: GeneralInformation
 
-  constructor(private builder: FormBuilder) {}
+  //this final value can be used for information, this is important
+  resume: Resume
+
+  constructor(
+    private builder: FormBuilder,
+    private candidateService: CandidateService
+  ) {
+    this.resume = new Resume()
+  }
 
   ngOnInit() {
     setTimeout(() => (this.stateUp = 'in'), 30)
@@ -60,7 +71,7 @@ export class CandidateEditResumeComponent implements OnInit {
     })
   }
 
-  //push this section info to the arr
+  // //push this section info to the arr
   addProfileControl(str) {
     if (str) {
       this.profileArr.push(str)
@@ -68,17 +79,21 @@ export class CandidateEditResumeComponent implements OnInit {
     }
   }
 
-  //push this section info to the arr
+  // //push this section info to the arr
+
+  //FOR EXPERIENCE
   addExperience(comp: string, loc: string, pos: string, year: string) {
     if (comp && loc && pos && year && this.expContentArr.length > 0) {
-      let store = {
-        comp: comp,
+      let experience: Experience = {
+        compName: comp,
         loc: loc,
         pos: pos,
         year: year,
         content: this.expContentArr,
       }
-      this.experienceArr.push(store)
+
+      this.exp.push(experience)
+
       this.clearSearch([
         this.expCompName,
         this.expContent,
@@ -98,16 +113,20 @@ export class CandidateEditResumeComponent implements OnInit {
     }
   }
 
+  //FOR EDUCATION
+
   addEdu(uni: string, loc: string, field: string, year: string) {
     if (uni && loc && field && year && this.eduContentArr.length > 0) {
-      let store = {
-        uni: uni,
+      let education: Education = {
+        university: uni,
         loc: loc,
+        study: field,
         year: year,
-        field: field,
         content: this.eduContentArr,
       }
-      this.eduArr.push(store)
+
+      this.edu.push(education)
+
       this.clearSearch([
         this.eduUni,
         this.eduLoc,
@@ -124,6 +143,42 @@ export class CandidateEditResumeComponent implements OnInit {
     if (value) {
       this.eduContentArr.push(value)
       this.eduContent.setValue('')
+    }
+  }
+
+  //Go back to previous changes
+  redo(key) {
+    switch (key) {
+      case 'profile':
+        {
+          if (this.profileArr.length > 0) this.profileArr.pop()
+        }
+        break
+      case 'exp':
+        {
+          if (this.exp.length > 0) this.exp.pop()
+        }
+        break
+      case 'edu': {
+        if (this.edu.length > 0) this.edu.pop()
+      }
+    }
+  }
+
+  //FOR GENERAL INFO
+  addGeneralInfo() {
+    if (
+      this.title.value &&
+      this.phone.value &&
+      this.email.value &&
+      this.address.value
+    ) {
+      this.generalInfo = {
+        address: this.address.value,
+        title: this.title.value,
+        email: this.email.value,
+        phone: this.phone.value,
+      }
     }
   }
 
@@ -222,5 +277,26 @@ export class CandidateEditResumeComponent implements OnInit {
 
   expandTile() {
     this.state = this.state === 'in' ? 'out' : 'in'
+  }
+
+  //Testing
+  submit() {
+    this.addGeneralInfo()
+    if (
+      this.generalInfo &&
+      this.profileArr.length > 0 &&
+      this.edu.length > 0 &&
+      this.exp.length > 0
+    ) {
+      this.resume = {
+        education: this.edu,
+        experience: this.exp,
+        generalInfo: this.generalInfo,
+        profile: this.profileArr,
+      }
+      this.candidateService.genDocx(this.resume).subscribe(() => {
+        window.alert('Resume has been sucessfully created!')
+      })
+    } else console.log('all fields must be filled')
   }
 }
