@@ -1,5 +1,8 @@
 # JC Consulting
 
+# Capstone Documents
+http://tamdang-portfolio.herokuapp.com/capstone
+
 # Steps for running app
 1. Run 'npm install'
 2. Run 'npm start' for starting app
