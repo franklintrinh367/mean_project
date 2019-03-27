@@ -1,0 +1,72 @@
+#body {
+  display: flex;
+  flex-direction: column;
+  padding: 70px;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+#container {
+  width: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+  table {
+    width: 100%;
+  }
+}
+
+td.mat-cell,
+th.mat-header-cell {
+  padding: 5px;
+  text-align: start;
+}
+
+button {
+  width: 150px;
+  margin: 0 auto;
+}
+
+.tile {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  height: 100%;
+}
+
+#btns {
+  display: flex;
+  flex-flow: row;
+
+  button {
+    width: 50px;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.item {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 480px) {
+  #body {
+    padding: 70px 0 70px 0;
+  }
+
+  .tile {
+    padding: 10px;
+    justify-content: center;
+  }
+
+  .item {
+    width: 100%;
+    height: 100%;
+  }
+}
