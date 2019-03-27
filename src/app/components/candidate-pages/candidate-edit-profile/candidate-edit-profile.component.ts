@@ -5,7 +5,7 @@ import { AuthenticateService } from 'src/app/services/authenticate.service'
 import { Router } from '@angular/router'
 import { CandidateService } from '../candidate-services/candidate.service'
 import { AngularFireStorage } from '@angular/fire/storage'
-import { isEmpty } from 'lodash'
+
 @Component({
   selector: 'app-candidate-edit-profile',
   templateUrl: './candidate-edit-profile.component.html',
