@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
 import { UnderconstructComponent } from './components/main/underconstruct/underconstruct.component'
 import { LoginComponent } from './components/main/login/login.component'
-import { RegisterCardComponent } from './components/main/register-card/register-card.component'
 import { ContactUsComponent } from './components/main/contact-us/contact-us.component'
 
 import { HomeComponent } from './components/main/home/home.component'
