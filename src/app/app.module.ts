@@ -42,6 +42,9 @@ import { AngularFireModule } from '@angular/fire'
 import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage'
 import { environment } from '../environments/environment'
+import { DropZoneDirective } from './components/directives/drop-zone.directive'
+import { FileUploadComponent } from './components/file-upload/file-upload.component'
+import { FileSizePipe } from './pipe/file-size.pipe'
 
 @NgModule({
   declarations: [
@@ -61,6 +64,9 @@ import { environment } from '../environments/environment'
     VerifyPageComponent,
     HeaderComponent,
     ScrollCorDirective,
+    // DropZoneDirective,
+    // FileUploadComponent,
+    // FileSizePipe,
   ],
   imports: [
     MaterialModule,
