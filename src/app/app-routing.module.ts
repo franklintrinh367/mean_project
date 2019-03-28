@@ -38,13 +38,13 @@ const routes: Routes = [
   },
   { path: 'success/:hash', component: VerifyPageComponent },
 
-  // company routes
+  // Company routes
   {
     path: 'companies',
     loadChildren: './components/client-pages/companies.module#CompaniesModule',
   },
 
-  //Admin Pages Router
+  //Admin Routes
   {
     path: 'admins',
     loadChildren: './components/admin-pages/admins.module#AdminsModule',
@@ -55,6 +55,12 @@ const routes: Routes = [
     path: 'candidates',
     loadChildren:
       './components/candidate-pages/candidates.module#CandidatesModule',
+  },
+
+  // JC Routes
+  {
+    path: 'jcs',
+    loadChildren: './components/jc-pages/jcs.module#JCsModule',
   },
 
   //TEST
