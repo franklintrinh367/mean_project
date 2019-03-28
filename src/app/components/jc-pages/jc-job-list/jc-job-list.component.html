@@ -13,59 +13,45 @@
   </div>
 
   <div class="tile" id="container">
-    <table mat-table [dataSource]="dataSource" matSort>
-      <ng-container hidden matColumnDef="jobId">
-        <th mat-header-cell class="colum-size" *matHeaderCellDef>
-          ID
-        </th>
-        <td mat-cell *matCellDef="let data">{{ data.jobId }}</td>
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="jobCategory">
+        <th mat-header-cell *matHeaderCellDef>Category</th>
+        <td mat-cell *matCellDef="let data">{{ data.jobCategory }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="compId">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          Organization
-        </th>
-        <td mat-cell *matCellDef="let data">{{ data.compId }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="jobLocation">
-        <th
-          mat-header-cell
-          class="colum-size"
-          *matHeaderCellDef
-          mat-sort-header
-        >
-          Location
-        </th>
-        <td mat-cell *matCellDef="let data">{{ data.jobLocation }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="jobPostDate">
-        <th
-          mat-header-cell
-          class="colum-size"
-          *matHeaderCellDef
-          mat-sort-header
-        >
-          Post Date
-        </th>
-        <td mat-cell *matCellDef="let data">{{ data.jobPostDate }}</td>
+      <ng-container matColumnDef="jobTitle">
+        <th mat-header-cell *matHeaderCellDef>Job Title</th>
+        <td mat-cell *matCellDef="let data">{{ data.jobTitle }}</td>
       </ng-container>
 
       <ng-container matColumnDef="jobStatus">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          Status
-        </th>
-        <td mat-cell class="colum-size" *matCellDef="let data">
-          {{ data.jobStatus }}
-        </td>
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let data">{{ data.jobStatus }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="jobPostDate">
+        <th mat-header-cell *matHeaderCellDef>Date of Posting</th>
+        <td mat-cell *matCellDef="let data">{{ data.jobPostDate }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="jobEndDate">
+        <th mat-header-cell *matHeaderCellDef>Date expired</th>
+        <td mat-cell *matCellDef="let data">{{ data.jobEndDate }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="jobPositions">
+        <th mat-header-cell *matHeaderCellDef>Position</th>
+        <td mat-cell *matCellDef="let data">{{ data.jobPosition }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="jobActivate">
+        <th mat-header-cell *matHeaderCellDef>Activation</th>
+        <td mat-cell *matCellDef="let data">{{ data.jobActivate }}</td>
       </ng-container>
 
       <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef>
-          Actions
-        </th>
-        <td mat-cell id="btns" *matCellDef="let row">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let row">
           <button mat-icon-button (click)="onEdit(row)">
             <mat-icon>view_headline</mat-icon>
           </button>
@@ -76,10 +62,14 @@
       <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>
     </table>
   </div>
+
   <div class="tile">
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
-    </mat-paginator>
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+    ></mat-paginator>
   </div>
+
   <div class="tile">
     <button mat-button mat-raised-button (click)="goBack()">Back</button>
   </div>
