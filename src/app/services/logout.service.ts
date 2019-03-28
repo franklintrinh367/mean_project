@@ -10,7 +10,7 @@ export class LogoutService implements CanActivate {
 
   public canActivate() {
     if (this.auth.isExpired('auth-token')) {
-      this.router.navigateByUrl('/home')
+      this.router.navigateByUrl('/404')
       return false
     }
 

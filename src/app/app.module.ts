@@ -82,6 +82,6 @@ import { ClientNewJobPageComponent } from './components/client-pages/client-new-
     { provide: StorageBucket, useValue: 'jc-sonsulting.appspot.com' },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [],
+  entryComponents: [LoginComponent, RegisterCardComponent],
 })
 export class AppModule {}

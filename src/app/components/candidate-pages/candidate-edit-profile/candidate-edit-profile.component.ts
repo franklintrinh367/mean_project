@@ -28,40 +28,34 @@ export class CandidateEditProfileComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if (this.auth.isExpired('auth-token')) {
-      window.confirm(`Your session timed out. Please Re-Login`)
-      this.auth.logout('auth-token')
-      window.location.assign(`/`)
-    } else {
-      let token = this.auth.getTokenDetails('auth-token')
-      this.user = token.details
-      this.candidateEditForm = this.builder.group({
-        canFirstName: [this.user.canFirstName, [Validators.required]],
-        canLastName: [this.user.canLastName, [Validators.required]],
-        canEducation: [this.user.canEducation, [Validators.required]],
-        canActualJob: [this.user.canActualJob, [Validators.required]],
-        canLink: [this.user.canLink],
-        canPhone: [
-          this.user.canPhone,
-          [
-            Validators.required,
-            Validators.pattern('^\\d{3}[-]?\\d{3}[-]?\\d{4}$'),
-          ],
+    let token = this.auth.getTokenDetails('auth-token')
+    this.user = token.details
+    this.candidateEditForm = this.builder.group({
+      canFirstName: [this.user.canFirstName, [Validators.required]],
+      canLastName: [this.user.canLastName, [Validators.required]],
+      canEducation: [this.user.canEducation, [Validators.required]],
+      canActualJob: [this.user.canActualJob, [Validators.required]],
+      canLink: [this.user.canLink],
+      canPhone: [
+        this.user.canPhone,
+        [
+          Validators.required,
+          Validators.pattern('^\\d{3}[-]?\\d{3}[-]?\\d{4}$'),
         ],
-        canResume: [''],
-        canPicture: [''],
-        canAddress: [this.user.canAddress, [Validators.required]],
-        canCity: [this.user.canCity, [Validators.required]],
-        canProvince: [this.user.canProvince, [Validators.required]],
-        canPostalCode: [
-          this.user.canPostalCode,
-          [
-            Validators.required,
-            Validators.pattern('^[A-Za-z]\\d[A-Za-z][ -]?\\d[A-Za-z]\\d$'),
-          ],
+      ],
+      canResume: [''],
+      canPicture: [''],
+      canAddress: [this.user.canAddress, [Validators.required]],
+      canCity: [this.user.canCity, [Validators.required]],
+      canProvince: [this.user.canProvince, [Validators.required]],
+      canPostalCode: [
+        this.user.canPostalCode,
+        [
+          Validators.required,
+          Validators.pattern('^[A-Za-z]\\d[A-Za-z][ -]?\\d[A-Za-z]\\d$'),
         ],
-      })
-    }
+      ],
+    })
   }
   get canFirstName() {
     return this.candidateEditForm.get('canFirstName')
