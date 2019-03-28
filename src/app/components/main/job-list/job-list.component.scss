@@ -1,0 +1,56 @@
+#body {
+  display: flex;
+  flex-direction: column;
+  padding: 70px;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+span {
+  font-weight: bold;
+}
+
+.tile {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  margin: 10px 0 10px 0;
+  flex-flow: row;
+  height: 100%;
+}
+
+.left {
+  text-align: start;
+}
+
+.right {
+  text-align: end;
+}
+
+button {
+  width: 150px;
+}
+
+.item {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+}
+
+@media screen and (max-width: 480px) {
+  #body {
+    padding: 70px 0 70px 0;
+  }
+
+  .tile {
+    padding: 10px;
+    justify-content: center;
+  }
+
+  .item {
+    width: 100%;
+    height: 100%;
+  }
+}
