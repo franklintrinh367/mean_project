@@ -10,9 +10,9 @@ import { MaterialModule } from 'src/app/module/material/material.module'
 import { CandidateService } from './candidate-services/candidate.service'
 import { CandidateUploadResumeComponent } from './candidate-upload-resume/candidate-upload-resume.component'
 import { CandidateEditResumeComponent } from './candidate-edit-resume/candidate-edit-resume.component'
-import { FileUploadComponent } from '../../file-upload/file-upload.component'
-import { DropZoneDirective } from '../../drop-zone.directive'
-import { FileSizePipe } from '../../file-size.pipe'
+// import { FileUploadComponent } from '../../file-upload/file-upload.component'
+// import { DropZoneDirective } from '../../drop-zone.directive'
+// import { FileSizePipe } from '../../file-size.pipe'
 @NgModule({
   declarations: [
     CandidateRegisterPageComponent,
@@ -20,9 +20,9 @@ import { FileSizePipe } from '../../file-size.pipe'
     CandidateEditProfileComponent,
     CandidateUploadResumeComponent,
     CandidateEditResumeComponent,
-    FileUploadComponent,
-    DropZoneDirective,
-    FileSizePipe,
+    // FileUploadComponent,
+    // DropZoneDirective,
+    // FileSizePipe,
   ],
   imports: [
     CommonModule,
