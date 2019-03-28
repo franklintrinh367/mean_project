@@ -187,6 +187,14 @@ export class AdminManageJobsComponent implements OnInit {
     this.dialog.open(ClientNewJobPageComponent, dialogConfig)
   }
 
+  // This set the row Activate to false
+  onDelete(row) {
+    // Set the activate to false
+    row.jobActivate = false
+    // Subscribe to the delte Jobs to update the row to the database
+    this.jobService.delete_Jobs(row).subscribe()
+  }
+
   goBack() {
     this.loc.back()
   }
