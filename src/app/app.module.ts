@@ -42,6 +42,7 @@ import { AngularFireModule } from '@angular/fire'
 import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage'
 import { environment } from '../environments/environment'
+import { ClientNewJobPageComponent } from './components/client-pages/client-new-job-page/client-new-job-page.component'
 
 @NgModule({
   declarations: [
