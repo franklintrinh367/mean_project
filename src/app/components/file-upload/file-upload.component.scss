@@ -8,7 +8,8 @@
   border: 2px dashed #f16624;
   border-radius: 5px;
   background: white;
-  margin: 10px 0;
+  margin: 10px auto;
+  width: 50%;
 
   &.hovering {
     border: 2px solid #f16624;
@@ -26,4 +27,8 @@ progress::-webkit-progress-value {
 
 img {
   width: 250px;
+}
+
+.file-input {
+  visibility: hidden;
 }
