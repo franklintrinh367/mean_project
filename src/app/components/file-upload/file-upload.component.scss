@@ -4,12 +4,12 @@
   justify-content: center;
   flex-direction: column;
   font-weight: 200;
-  height: 300px;
+  height: 250px;
   border: 2px dashed #f16624;
   border-radius: 5px;
   background: white;
   margin: 10px auto;
-  width: 50%;
+  width: 250px;
 
   &.hovering {
     border: 2px solid #f16624;
@@ -25,10 +25,24 @@ progress::-webkit-progress-value {
   transition: width 0.1s ease;
 }
 
+.progressContainer {
+  display: -webkit-inline-box;
+  margin-top: 10px;
+}
+
 img {
   width: 250px;
 }
 
 .file-input {
   visibility: hidden;
+  display: contents;
+}
+
+p {
+  line-height: 15px;
+}
+
+div {
+  text-align: center;
 }

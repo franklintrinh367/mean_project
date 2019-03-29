@@ -1,10 +1,9 @@
-<app-file-upload></app-file-upload>
 <form [formGroup]="candidateEditForm" enctype="multipart/form-data">
   <div class="flex-container">
     <div class="head-div">
       <div class="vertical-flex-container">
         <h2>Profile</h2>
-        <div class="img-center">
+        <!-- <div class="img-center">
           <img mat-card-lg-image src="{{ avatarFile }}" />
         </div>
         <input
@@ -13,7 +12,9 @@
           name="avatar"
           accept="image/*"
           (change)="onFileSelected(imageInput)"
-        />
+        /> -->
+        <app-file-upload></app-file-upload>
+
         <!-- <a href="#"> Change Profile Picture</a> -->
       </div>
     </div>
@@ -72,12 +73,12 @@
         <input matInput type="text" formControlName="canPhone" />
         <mat-error
           *ngIf="canPhone.invalid && canPhone.errors.hasOwnProperty('required')"
-          >Phone Number is required</mat-error
-        >
+          >Phone Number is required
+        </mat-error>
         <mat-error
           *ngIf="canPhone.invalid && canPhone.errors.hasOwnProperty('pattern')"
-          >Phone Number is not valid</mat-error
-        >
+          >Phone Number is not valid
+        </mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-label> Address </mat-label>
