@@ -14,6 +14,7 @@ import { ResetPasswordComponent } from './components/main/reset-password/reset-p
 import { ResetPasswordAuthService } from './services/reset-password-auth.service'
 import { ForgotPasswordComponent } from './components/main/forgot-password/forgot-password.component'
 import { TestComponent } from './test/test.component'
+import { JobListComponent } from './components/main/job-list/job-list.component'
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
     component: ForgotPasswordComponent,
     canActivate: [LogoutService],
   },
+
   { path: 'contact', component: ContactUsComponent },
   {
     path: 'profile',
@@ -34,6 +36,8 @@ const routes: Routes = [
     component: ResetPasswordComponent,
     canActivate: [ResetPasswordAuthService],
   },
+
+  { path: 'job-list', component: JobListComponent },
   {
     path: 'success/:hash',
     component: VerifyPageComponent,

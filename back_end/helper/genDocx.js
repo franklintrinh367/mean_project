@@ -1,8 +1,6 @@
 const docx = require('docx')
 const fs = require('fs')
 
-var doc = new docx.Document()
-
 const createHeading = header => {
   return new docx.Paragraph()
     .addRun(new docx.TextRun(header).allCaps())
@@ -30,7 +28,7 @@ const createIntro = (name, address, email, phone) => {
     .center()
 }
 
-const createContent = content => {
+const createContent = (content, doc) => {
   content.forEach(el => {
     doc.addParagraph(
       new docx.Paragraph()
@@ -47,34 +45,35 @@ const createLineTab = (left, right) => {
     .maxRightTabStop()
 }
 
-const createExperience = experience => {
+const createExperience = (experience, doc) => {
   doc.addParagraph(createHeading('Experience'))
   if (experience) {
     experience.forEach(el => {
       doc.addParagraph(createLineTab(el.compName, el.loc))
       doc.addParagraph(createLineTab(el.pos, el.year))
-      createContent(el.content)
+      createContent(el.content, doc)
     })
   }
 }
 
-const createProfile = content => {
+const createProfile = (content, doc) => {
   doc.addParagraph(createHeading('Profile'))
-  createContent(content)
+  createContent(content, doc)
 }
 
-const createEducation = education => {
+const createEducation = (education, doc) => {
   doc.addParagraph(createHeading('Education'))
   if (education) {
     education.forEach(el => {
       doc.addParagraph(createLineTab(el.school, el.loc))
       doc.addParagraph(createLineTab(el.pos, el.year))
-      createContent(el.content)
+      createContent(el.content, doc)
     })
   }
 }
 
 module.exports.createResume = (education, experience, generalInfo, profile) => {
+  var doc = new docx.Document()
   doc.addParagraph(
     createIntro(
       generalInfo.title,
@@ -83,15 +82,20 @@ module.exports.createResume = (education, experience, generalInfo, profile) => {
       generalInfo.phone
     )
   )
-  createProfile(profile)
-  createExperience(experience)
-  createEducation(education)
-  genDoc(generalInfo.title)
+  createProfile(profile, doc)
+  createExperience(experience, doc)
+  createEducation(education, doc)
+  genDoc(generalInfo.title, doc)
 }
 
-const genDoc = title => {
+const genDoc = (title, doc) => {
   var packer = new docx.Packer()
   packer.toBuffer(doc).then(buffer => {
-    fs.writeFileSync(`${title}.docx`, buffer)
+    fs.writeFileSync(
+      `src/assets/docs/${title}-${new Date()
+        .toLocaleTimeString()
+        .replace(/:/g, '')}.docx`,
+      buffer
+    )
   })
 }

@@ -7,7 +7,10 @@
         <h2>{{ job.jobTitle }}</h2>
         <span>{{ job.jobStatus }}/{{ job.jobPosition }} openings</span>
         <p>{{ job.jobDescription }}</p>
-        <button mat-raised-button color="primary">Apply</button>
+        <div class="tile">
+          <button mat-raised-button color="primary">Apply</button>
+          <button mat-raised-button>Save Job</button>
+        </div>
       </div>
 
       <div class="item right">
