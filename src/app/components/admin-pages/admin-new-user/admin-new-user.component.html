@@ -1,5 +1,11 @@
 <div id="body" [@slideUp]="state">
-  <h1>Add & Edit Users</h1>
+  <!-- The title display, it can be Add or Modify and the space between two -->
+  <mat-card-title>
+    <span>{{
+      this.userForm.controls['_id'].value ? 'Modify User' : 'Add New User'
+    }}</span>
+    <span class="fill-remaining-space"></span>
+  </mat-card-title>
   <mat-divider></mat-divider>
 
   <div class="tile">
@@ -15,17 +21,13 @@
   </div>
 
   <div class="tile">
-    <form
-      autocomplete="off"
-      [formGroup]="userService.form"
-      (click)="onSubmit()"
-    >
+    <form autocomplete="off" [formGroup]="userForm" (click)="onSubmit()">
       <mat-form-field>
         <input
           required
           formControlName="username"
           matInput
-          placeholder="User Name:"
+          placeholder="Username:"
           #username
         />
       </mat-form-field>
@@ -35,7 +37,7 @@
           required
           formControlName="email"
           matInput
-          placeholder="User Email:"
+          placeholder="Email:"
           #email
         />
       </mat-form-field>
@@ -44,7 +46,7 @@
           required
           formControlName="userFirstName"
           matInput
-          placeholder="User First Name:"
+          placeholder="First Name:"
           #userFirstName
         />
       </mat-form-field>
@@ -53,7 +55,7 @@
           required
           formControlName="userLastName"
           matInput
-          placeholder="User Last Name:"
+          placeholder="Last Name:"
           #userLastName
         />
       </mat-form-field>
@@ -63,7 +65,7 @@
           required
           formControlName="password"
           matInput
-          placeholder="User Password:"
+          placeholder="Password:"
           #password
         />
       </mat-form-field>

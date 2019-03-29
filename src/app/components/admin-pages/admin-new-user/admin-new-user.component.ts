@@ -1,19 +1,33 @@
-/* CORE */
+/* OTHERS */
 import { Component, OnInit } from '@angular/core'
-
-/* SERVICE */
-
-/* MODELS */
-import { Roles } from '../../../models/admin/role'
-
-/* MATERIAL DESIGN */
-import { MatDialogRef } from '@angular/material'
-
-/* ROUTER */
 import { Router } from '@angular/router'
 import { slideUp } from '../../shared/animations'
 import { Location } from '@angular/common'
+import { existingUserValidator } from 'src/app/validators/main/existingUserValidator'
+import { existingEmailValidator } from '../../../validators/main/existingEmailValidator'
+
+/* MODELS */
+import { Roles } from '../../../models/admin/role'
+import { User } from 'src/models/users'
+import { Admin } from '../../../models/admin/admin'
+/* MATERIAL DESIGN */
+import { MatDialogRef } from '@angular/material'
+
+/* FORMS */
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  Validators,
+  ValidatorFn,
+  AbstractControl,
+} from '@angular/forms'
+
+/* SERVICES */
 import { EditUserService } from '../admin-services/edit-user.service'
+import { UserService } from '../../../services/main/user.service'
+
+import { RegisterService } from 'src/app/services/main/register.service'
 
 @Component({
   selector: 'app-admin-new-user',
@@ -30,11 +44,15 @@ export class AdminNewUserComponent implements OnInit {
   ]
 
   _id: string
+  /*FORMS */
+  //private userForm: FormGroup
 
   constructor(
-    private userService: EditUserService,
+    private serivce: EditUserService,
+    private userService: UserService,
     private location: Location,
     private router: Router,
+    private fb: FormBuilder,
     public dialogRef: MatDialogRef<AdminNewUserComponent>
   ) {}
 
@@ -43,19 +61,83 @@ export class AdminNewUserComponent implements OnInit {
     this._id = localStorage.getItem('token')
   }
 
+  userForm = new FormGroup({
+    _id: new FormControl(null),
+    email: new FormControl(''),
+    password: new FormControl(''),
+    userFirstName: new FormControl(''),
+    userLastName: new FormControl(''),
+    username: new FormControl(''),
+    // activated: new FormControl(true),
+    role: new FormControl(''),
+  })
+
+  buildForm() {
+    return this.fb.group({
+      username: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.pattern('[\\w]+'),
+          Validators.maxLength(25),
+        ],
+        [existingUserValidator(this.userService)],
+      ],
+      email: [
+        '',
+        [
+          Validators.pattern(
+            '[\\w\\.]+@[a-zA-Z\\d]+\\.[a-zA-Z\\d]+\\.?[a-zA-Z\\d]+'
+          ),
+          Validators.required,
+        ],
+        [existingEmailValidator(this.userService)],
+      ],
+      password: ['', Validators.required],
+      userFirstName: [''],
+      userLastName: [''],
+      role: [''],
+      activated: true,
+    })
+  }
+  /* GET METHODS */
+
+  get email() {
+    return this.userForm.get('email')
+  }
+
+  get password() {
+    return this.userForm.get('password')
+  }
+
+  get userFirstName() {
+    return this.userForm.get('userFirstName')
+  }
+
+  get userLastName() {
+    return this.userForm.get('userLastName')
+  }
+
+  get role() {
+    return this.userForm.get('role')
+  }
+
+  get username() {
+    return this.userForm.get('username')
+  }
   /* ADD USER FUNCTION */
 
   onSubmit() {
-    if (this.userService.form.valid) {
-      if (!this.userService.form.get('_id').value) {
-        this.userService.form.controls['activated'].setValue(true)
-        this.userService.post_Users(this.userService.form.value).subscribe()
-      } else
-        this.userService.updateUser(this.userService.form.value).subscribe()
+    if (this.userForm.valid) {
+      if (!this.userForm.get('_id').value) {
+        this.userForm.controls['activated'].setValue(true)
+        this.serivce.post_Users(this.userForm.value).subscribe()
+      } else this.serivce.updateUser(this.userForm.value).subscribe()
 
       /*--- RESETING THE FORM ---*/
-      this.userService.form.reset()
-      this.userService.initializeFormGroup()
+      this.userForm.reset()
+      this.serivce.initializeFormGroup()
       this.onClose()
       this.router.navigate(['/admin_newUser'])
     }
@@ -64,8 +146,8 @@ export class AdminNewUserComponent implements OnInit {
   /*--- FUNCTION TO CLOSE THE DIALOG AFTER SUBMISSION ---*/
 
   onClose() {
-    this.userService.form.reset()
-    this.userService.initializeFormGroup()
+    this.userForm.reset()
+    this.serivce.initializeFormGroup()
     this.dialogRef.close()
   }
 
