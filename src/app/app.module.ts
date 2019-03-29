@@ -42,9 +42,8 @@ import { AngularFireModule } from '@angular/fire'
 import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage'
 import { environment } from '../environments/environment'
-import { DropZoneDirective } from './components/directives/drop-zone.directive'
-import { FileUploadComponent } from './components/file-upload/file-upload.component'
-import { FileSizePipe } from './pipe/file-size.pipe'
+
+import { ClientNewJobPageComponent } from './components/client-pages/client-new-job-page/client-new-job-page.component'
 
 @NgModule({
   declarations: [
@@ -64,9 +63,6 @@ import { FileSizePipe } from './pipe/file-size.pipe'
     VerifyPageComponent,
     HeaderComponent,
     ScrollCorDirective,
-    // DropZoneDirective,
-    // FileUploadComponent,
-    // FileSizePipe,
   ],
   imports: [
     MaterialModule,
@@ -87,6 +83,6 @@ import { FileSizePipe } from './pipe/file-size.pipe'
     { provide: StorageBucket, useValue: 'jc-sonsulting.appspot.com' },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [],
+  entryComponents: [LoginComponent, RegisterCardComponent],
 })
 export class AppModule {}

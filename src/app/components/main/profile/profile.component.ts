@@ -54,23 +54,17 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(() => (this.state = 'in'), 30)
-    if (this.authService.isExpired('auth-token')) {
-      window.confirm(`Your session timed out. Please Re-Login`)
-      this.authService.logout('auth-token')
-      window.location.assign(`/`)
-    } else {
-      this.token = this.authService.getTokenDetails('auth-token')
+    this.token = this.authService.getTokenDetails('auth-token')
 
-      const ref = this.storage.ref(`${this.token.details.canAvatar}`)
-      const defaultRef = this.storage.ref(`${this.avatarDefault}`)
+    const ref = this.storage.ref(`${this.token.details.canAvatar}`)
+    const defaultRef = this.storage.ref(`${this.avatarDefault}`)
 
-      this.avatarUrl = !isEmpty(this.token.details.canAvatar)
-        ? ref.getDownloadURL()
-        : defaultRef.getDownloadURL()
+    this.avatarUrl = !isEmpty(this.token.details.canAvatar)
+      ? ref.getDownloadURL()
+      : defaultRef.getDownloadURL()
 
-      this.isCandidate = this.token && this.token.role === 'Candidate'
-      this.initializeFragments()
-    }
+    this.isCandidate = this.token && this.token.role === 'Candidate'
+    this.initializeFragments()
   }
 
   //push data into array
