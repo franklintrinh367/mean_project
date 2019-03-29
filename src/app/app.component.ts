@@ -1,37 +1,39 @@
-import { Component, OnInit, OnDestroy } from '@angular/core'
+import { Component, HostListener } from '@angular/core'
 import { AngularFireStorage } from '@angular/fire/storage'
-import { AuthenticateService } from './services/authenticate.service'
-import { Router, NavigationStart } from '@angular/router'
-import { Subscription } from 'rxjs'
+import { SessionTimeoutService } from './services/session-timeout.service'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent {
   title = 'JC-Consulting'
-  subscription: Subscription
+  @HostListener('mousemove', ['$event'])
+  onmousemove() {
+    this.checkIdleStatus()
+  }
+
+  @HostListener('keydown', ['$event'])
+  onkeydown() {
+    this.checkIdleStatus()
+  }
+
+  checkIdleStatus() {
+    if (this.sessionTimeout.getIdleStatus())
+      this.sessionTimeout.setIdleStatus(false)
+  }
+
   constructor(
     private storage: AngularFireStorage,
-    private auth: AuthenticateService,
-    private router: Router
+    private sessionTimeout: SessionTimeoutService
   ) {}
 
   ngOnInit() {
-    this.subscription = this.router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        let token = this.auth.getTokenDetails('auth-token')
-        if (token && !this.auth.isExpired('auth-tokne')) {
-          this.auth.logout('auth-token')
-          window.alert('Session timed out. Please login.')
-          window.location.reload()
-          window.location.assign('/home')
-        }
-      }
-    })
-  }
-  ngOnDestroy() {
-    this.subscription.unsubscribe()
+    this.sessionTimeout.startTimer()
+    //update setIdleStatus every 5 second
+    setInterval(() => {
+      this.sessionTimeout.setIdleStatus(true)
+    }, 5000)
   }
 }
