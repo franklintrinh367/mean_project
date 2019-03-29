@@ -7,18 +7,21 @@
   background-color: #eaeff7;
   flex-wrap: wrap;
   border-radius: 10%;
+  text-align: center;
 }
 
 .flex-container > .head-div {
   width: 100%;
-  height: 280px;
+  // height: 280px;
 }
 
 .flex-container > .body-div {
-  width: 50%;
+  width: 70%;
   min-width: 350px;
   padding-top: 20px;
-  padding-left: 15%;
+  text-align: center;
+  // padding-left: 15%;
+  margin: 0 auto;
 }
 
 .vertical-flex-container {
@@ -69,4 +72,12 @@ button {
 
 mat-error {
   color: red;
+}
+
+mat-label {
+  font-size: 20px;
+}
+
+input {
+  font-size: 15px;
 }
