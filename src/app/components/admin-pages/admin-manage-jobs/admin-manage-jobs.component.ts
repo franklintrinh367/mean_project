@@ -11,12 +11,20 @@ import { JobService } from '../../../services/jobs/job.service'
 import { Router } from '@angular/router'
 
 /* MATERIAL DESIGN */
-import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material'
+import {
+  MatTableDataSource,
+  MatSort,
+  MatPaginator,
+  MatDialogConfig,
+  MatDialog,
+} from '@angular/material'
 import { Location } from '@angular/common'
 import { slideUp } from '../../shared/animations'
+import { FormControl, Validators, FormGroup } from '@angular/forms'
+import { ClientNewJobPageComponent } from '../../client-pages/client-new-job-page/client-new-job-page.component'
 
 //JUST FOR TESTING - GONNA BE DELETED
-const JOBS: any[] = [
+/*const JOBS: any[] = [
   {
     jobId: 1,
     compId: 1,
@@ -39,7 +47,7 @@ const JOBS: any[] = [
     jobStatus: 'On going',
   },
 ]
-
+*/
 @Component({
   selector: 'app-admin-manage-jobs',
   templateUrl: './admin-manage-jobs.component.html',
@@ -47,50 +55,144 @@ const JOBS: any[] = [
   animations: [slideUp()],
 })
 export class AdminManageJobsComponent implements OnInit {
-  /*  PARAMETERS */
+  displayColumns: string[]
+  state: String
+  private token: String
+  public job: Job
   searchKey: string
-  list: Job[]
-  state: string
+
+  // Form for adding or modifiyng the Job
+
+  form: FormGroup = new FormGroup({
+    _id: new FormControl(null),
+    userId: new FormControl(null),
+    jobCategory: new FormControl('', Validators.required),
+    jobTitle: new FormControl('', Validators.required),
+    jobStatus: new FormControl('', Validators.required),
+    jobPostDate: new FormControl(''),
+    jobEndDate: new FormControl('', Validators.required),
+    jobPosition: new FormControl('', [
+      Validators.required,
+      Validators.minLength(1),
+    ]),
+    jobDescription: new FormControl('', Validators.required),
+    jobActivate: new FormControl(false),
+  })
+
+  initializeFormGroup() {
+    this.form.setValue({
+      _id: new FormControl(null),
+      userId: new FormControl(null),
+      jobCategory: new FormControl('', Validators.required),
+      jobTitle: new FormControl('', Validators.required),
+      jobStatus: new FormControl('', Validators.required),
+      jobPostDate: new FormControl(''),
+      jobEndDate: new FormControl('', [Validators.required]),
+      jobPosition: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+      ]),
+      jobDescription: new FormControl('', [Validators.required]),
+      jobActivate: new FormControl(false),
+    })
+  }
+
+  /*  PARAMETERS */
 
   /*  TABLE PARAMETERS */
-  dataSource = new MatTableDataSource(JOBS)
-  displayColumns: string[] = [
-    'jobId',
-    'compId',
-    'jobLocation',
-    'jobPostDate',
-    'jobStatus',
-    'actions',
-  ]
 
   /*  TABLE SORT AND PAGINATION */
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
 
   constructor(
-    private loc: Location // private jobSerbice: JobService,
-  ) // private router: Router
-  {
+    private loc: Location,
+    private jobService: JobService,
+    private dialog: MatDialog // private router: Router
+  ) {
+    this.displayColumns = [
+      '_id',
+      'jobCategory',
+      'jobTitle',
+      'jobStatus',
+      'jobPostDate',
+      'jobEndDate',
+      'jobPositions',
+      'jobDescription',
+      'jobActivate',
+      'actions',
+    ]
     this.state = 'out'
   }
+  list: Job[]
+  dataSource: MatTableDataSource<any>
 
   ngOnInit() {
     this.onSearchClear()
     this.applyFilter()
-    this.dataSource.sort = this.sort
-    this.dataSource.paginator = this.paginator
-    setTimeout(() => (this.state = 'in'), 30)
-  }
-
-  /* FUNCTION TO CLEAR THE SEARCH KEY */
-  onSearchClear() {
-    this.searchKey = ''
+    this.getAllJobs()
     this.applyFilter()
+    setTimeout(() => (this.state = 'in'), 30)
   }
 
   /* FUCNTION TO FILTER THE TABLE */
   applyFilter() {
-    this.dataSource.filter = this.searchKey.trim().toLowerCase()
+    if (this.list !== undefined) {
+      this.dataSource.filter = this.searchKey.trim().toLowerCase()
+    }
+  }
+
+  getAllJobs() {
+    this.jobService.getJobs().subscribe(res => {
+      this.list = res as Job[]
+      this.dataSource = new MatTableDataSource(this.list)
+      this.dataSource.sort = this.sort
+      this.dataSource.paginator = this.paginator
+    })
+  }
+
+  /* FUNCTION TO CLEAR THE SEARCH KEY */
+  onSearchClear() {
+    if (this.list !== undefined) {
+      this.searchKey = ''
+      this.applyFilter()
+    }
+  }
+
+  // function to call the add clientAddJobComponent
+  onCreate() {
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = true
+    this.dialog.open(ClientNewJobPageComponent, dialogConfig)
+  }
+
+  //function to open the form with selected row
+  onEdit(row) {
+    this.jobService.populateForm(
+      row._id,
+      row.userId,
+      row.jobCategory,
+      row.jobTitle,
+      row.jobStatus,
+      row.jobPostDate,
+      row.jobEndDate,
+      row.jobPosition,
+      row.jobDescription,
+      row.jobActivate
+    )
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = true
+    this.dialog.open(ClientNewJobPageComponent, dialogConfig)
+  }
+
+  // This set the row Activate to false
+  onDelete(row) {
+    // Set the activate to false
+    row.jobActivate = false
+    // Subscribe to the delte Jobs to update the row to the database
+    this.jobService.delete_Jobs(row).subscribe()
   }
 
   goBack() {

@@ -1,0 +1,18 @@
+<div id="body" [@slideUp]="state">
+  <h1>Jobs</h1>
+  <div *ngIf="jobs">
+    <div class="tile mat-elevation-z4" *ngFor="let job of jobs">
+      <div class="item">
+        <p><span>Date Posted: </span>{{ job.jobPostDate }}</p>
+        <h2>{{ job.jobTitle }}</h2>
+        <span>{{ job.jobStatus }}/{{ job.jobPosition }} openings</span>
+        <p>{{ job.jobDescription }}</p>
+        <button mat-raised-button color="primary">Apply</button>
+      </div>
+
+      <div class="item right">
+        <p><span>Date Expired: </span>{{ job.jobEndDate }}</p>
+      </div>
+    </div>
+  </div>
+</div>

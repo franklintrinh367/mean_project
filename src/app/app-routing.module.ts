@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
 import { UnderconstructComponent } from './components/main/underconstruct/underconstruct.component'
 import { LoginComponent } from './components/main/login/login.component'
-import { RegisterCardComponent } from './components/main/register-card/register-card.component'
 import { ContactUsComponent } from './components/main/contact-us/contact-us.component'
 
 import { HomeComponent } from './components/main/home/home.component'
@@ -18,13 +17,12 @@ import { TestComponent } from './test/test.component'
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'contact', component: ContactUsComponent },
   {
-    path: 'register',
-    component: RegisterCardComponent,
+    path: 'forgot-password',
+    component: ForgotPasswordComponent,
     canActivate: [LogoutService],
   },
+  { path: 'contact', component: ContactUsComponent },
   {
     path: 'profile',
     component: ProfileComponent,
@@ -36,18 +34,24 @@ const routes: Routes = [
     component: ResetPasswordComponent,
     canActivate: [ResetPasswordAuthService],
   },
-  { path: 'success/:hash', component: VerifyPageComponent },
+  {
+    path: 'success/:hash',
+    component: VerifyPageComponent,
+    canActivate: [LogoutService],
+  },
 
   // Company routes
   {
     path: 'companies',
     loadChildren: './components/client-pages/companies.module#CompaniesModule',
+    canActivate: [UserAuthService],
   },
 
   //Admin Routes
   {
     path: 'admins',
     loadChildren: './components/admin-pages/admins.module#AdminsModule',
+    canActivate: [UserAuthService],
   },
 
   // Candidate Routes
@@ -55,12 +59,14 @@ const routes: Routes = [
     path: 'candidates',
     loadChildren:
       './components/candidate-pages/candidates.module#CandidatesModule',
+    canActivate: [UserAuthService],
   },
 
   // JC Routes
   {
     path: 'jcs',
     loadChildren: './components/jc-pages/jcs.module#JCsModule',
+    canActivate: [UserAuthService],
   },
 
   //TEST

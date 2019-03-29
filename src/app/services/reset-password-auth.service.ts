@@ -16,7 +16,7 @@ export class ResetPasswordAuthService implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (!this.auth.isExpired('forgot-password-token')) {
-      this.router.navigateByUrl('/')
+      this.router.navigateByUrl('/404')
       return false
     } else {
       let compare = route.paramMap.get('hash')
