@@ -7,7 +7,7 @@ import {
 import { Observable } from 'rxjs/Observable'
 import { AngularFirestore } from '@angular/fire/firestore'
 import { tap, finalize } from 'rxjs/operators'
-
+import { DomSanitizer } from '@angular/platform-browser'
 @Component({
   selector: 'app-candidate-upload-resume',
   templateUrl: './candidate-upload-resume.component.html',
@@ -46,7 +46,8 @@ export class CandidateUploadResumeComponent implements OnInit {
 
   constructor(
     private storage: AngularFireStorage,
-    private db: AngularFirestore
+    private db: AngularFirestore,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {
@@ -65,13 +66,13 @@ export class CandidateUploadResumeComponent implements OnInit {
     const file = event.item(0)
 
     // Client-side validation example
-    if (file.type.split('/')[0] !== 'image') {
+    if (file.type.split('/')[0] !== 'application') {
       console.error('unsupported file type :( ')
       return
     }
 
     // The storage path
-    const path = `photos/${new Date().getTime()}_${file.name}`
+    const path = `resumes/${new Date().getTime()}_${file.name}`
 
     // Totally optional metadata
     const customMetadata = { app: 'My AngularFire-powered PWA!' }
@@ -98,7 +99,7 @@ export class CandidateUploadResumeComponent implements OnInit {
       tap(snap => {
         if (snap.bytesTransferred === snap.totalBytes) {
           // Update firestore on completion
-          this.db.collection('photos').add({ path, size: snap.totalBytes })
+          this.db.collection('resumes').add({ path, size: snap.totalBytes })
         }
       })
     )
