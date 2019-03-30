@@ -106,7 +106,7 @@ export class JCCandidateListComponent implements OnInit {
     this.location.back()
   }
 
-  openDetailsDialog() {
+  openDetailsDialog(row) {
     this.dialog.open(JCCandidateDetailsComponent, {
       autoFocus: false,
       scrollStrategy: this.overlay.scrollStrategies.reposition(),
