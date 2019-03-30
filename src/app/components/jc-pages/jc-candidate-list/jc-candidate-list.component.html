@@ -51,7 +51,7 @@
           Actions
         </th>
         <td mat-cell id="btns" *matCellDef="let row">
-          <button mat-icon-button (click)="openDetailsDialog()">
+          <button mat-icon-button (click)="openDetailsDialog(row)">
             <mat-icon>view_headline</mat-icon>
           </button>
         </td>
