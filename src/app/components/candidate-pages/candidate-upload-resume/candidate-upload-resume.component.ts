@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable'
 import { AngularFirestore } from '@angular/fire/firestore'
 import { tap, finalize } from 'rxjs/operators'
 import { DomSanitizer } from '@angular/platform-browser'
+
 @Component({
   selector: 'app-candidate-upload-resume',
   templateUrl: './candidate-upload-resume.component.html',
@@ -66,8 +67,8 @@ export class CandidateUploadResumeComponent implements OnInit {
     const file = event.item(0)
 
     // Client-side validation example
-    if (file.type.split('/')[0] !== 'application') {
-      console.error('unsupported file type :( ')
+    if (file.name.split('.')[1] !== 'pdf') {
+      window.alert('Sorry! We only support .pdf file')
       return
     }
 
