@@ -7,7 +7,6 @@ import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/map'
 import 'rxjs/operator/toPromise'
 import { User } from 'src/models/users'
-
 @Injectable({
   providedIn: 'root',
 })
@@ -37,12 +36,33 @@ export class EditUserService {
       username: new FormControl(''),
       activated: new FormControl(true),
       role: new FormControl(''),
-      // details: new FormControl(
-      //   firstName: (''),
-      //   lastName: (''))
+      firstName: new FormControl(''),
+      lastName: new FormControl(''),
     })
   }
 
+  // Populate form is when you pass the form to modify
+  // populateForm(
+  //   _id: string,
+  //   userId: string,
+  //   email: string,
+  //   password:string,
+  //   userFirstName:string,
+  //   userLastName:string,
+  //   activated:string,
+  //   role:string,
+  // ) {
+  //   this.form.setValue({
+  //     _id,
+  //     userId,
+  //     email,
+  //     password,
+  //     userFirstName,
+  //     userLastName,
+  //     activated,
+  //     role,
+  //   })
+  // }
   /* FUNCTION TO ADD USERS */
   post_Users(users: User): Observable<any> {
     return this.http.post(this.Url, users)
@@ -59,7 +79,7 @@ export class EditUserService {
   //   return this.http.get(this.Url + '/get/all/company')
   // }
 
-  /* FUNCTION TO POPULATE FORM */
+  // /* FUNCTION TO POPULATE FORM */
   populateForm(users) {
     this.form.setValue(users)
   }
