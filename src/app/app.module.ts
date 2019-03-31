@@ -44,6 +44,7 @@ import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage'
 import { environment } from '../environments/environment'
 
 import { ClientNewJobPageComponent } from './components/client-pages/client-new-job-page/client-new-job-page.component'
+import { JobListComponent } from './components/main/job-list/job-list.component'
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { ClientNewJobPageComponent } from './components/client-pages/client-new-
     ProfileComponent,
     VerifyPageComponent,
     HeaderComponent,
+    JobListComponent,
     ScrollCorDirective,
   ],
   imports: [

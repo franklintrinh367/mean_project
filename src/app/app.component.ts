@@ -20,8 +20,10 @@ export class AppComponent {
   }
 
   checkIdleStatus() {
-    if (this.sessionTimeout.getIdleStatus())
+    if (this.sessionTimeout.getIdleStatus()) {
+      this.sessionTimeout.stopTimer()
       this.sessionTimeout.setIdleStatus(false)
+    }
   }
 
   constructor(
@@ -33,6 +35,7 @@ export class AppComponent {
     this.sessionTimeout.startTimer()
     //update setIdleStatus every 5 second
     setInterval(() => {
+      this.sessionTimeout.startTimer()
       this.sessionTimeout.setIdleStatus(true)
     }, 5000)
   }
