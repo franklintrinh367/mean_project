@@ -15,6 +15,7 @@ import { ResetPasswordAuthService } from './services/reset-password-auth.service
 import { ForgotPasswordComponent } from './components/main/forgot-password/forgot-password.component'
 import { TestComponent } from './test/test.component'
 import { JobListComponent } from './components/main/job-list/job-list.component'
+import { SettingComponent } from './components/main/setting/setting.component'
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -25,6 +26,7 @@ const routes: Routes = [
   },
 
   { path: 'contact', component: ContactUsComponent },
+
   {
     path: 'profile',
     component: ProfileComponent,

@@ -43,8 +43,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage'
 import { environment } from '../environments/environment'
 
-import { ClientNewJobPageComponent } from './components/client-pages/client-new-job-page/client-new-job-page.component'
 import { JobListComponent } from './components/main/job-list/job-list.component'
+import { SettingModule } from './components/main/setting/setting.module'
 
 @NgModule({
   declarations: [
@@ -75,10 +75,11 @@ import { JobListComponent } from './components/main/job-list/job-list.component'
     FlexLayoutModule,
     LoaderModule,
     HttpClientModule,
-    AppRoutingModule,
+    SettingModule,
     AngularFireModule.initializeApp(environment.firebase, 'jc-consulting'),
     AngularFirestoreModule,
     AngularFireStorageModule,
+    AppRoutingModule,
   ],
   providers: [
     JobService,
