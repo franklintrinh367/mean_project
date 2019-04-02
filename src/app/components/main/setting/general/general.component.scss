@@ -3,11 +3,12 @@
   width: 100%;
   display: flex;
   flex-flow: row wrap;
-  height: 100%;
 }
 
 .setting {
   border-bottom: 1px solid grey;
+  min-width: 0;
+  min-height: 0;
 }
 
 .setting:hover {
