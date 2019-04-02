@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, Input } from '@angular/core'
 import { UserService } from '../../../services/main/user.service'
 import { Router } from '@angular/router'
 import { MatDialogRef } from '@angular/material'
 import { User } from 'src/models/users'
+
+import { MAT_DIALOG_DATA } from '@angular/material'
+import { Inject } from '@angular/core'
 
 @Component({
   selector: 'app-jc-candidate-details',
@@ -10,11 +13,16 @@ import { User } from 'src/models/users'
   styleUrls: ['./jc-candidate-details.component.scss'],
 })
 export class JCCandidateDetailsComponent implements OnInit {
+  user: User
+
   constructor(
+    @Inject(MAT_DIALOG_DATA) private data,
     private userService: UserService,
     private router: Router,
     private dialogRef: MatDialogRef<JCCandidateDetailsComponent>
-  ) {}
+  ) {
+    this.user = data.user
+  }
 
   ngOnInit() {}
 }
