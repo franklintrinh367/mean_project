@@ -10,24 +10,16 @@ import { existingEmailValidator } from '../../../validators/main/existingEmailVa
 import { Roles } from '../../../models/admin/role'
 import { User } from 'src/models/users'
 import { Admin } from '../../../models/admin/admin'
+
 /* MATERIAL DESIGN */
 import { MatDialogRef } from '@angular/material'
 
 /* FORMS */
-import {
-  FormBuilder,
-  FormGroup,
-  FormControl,
-  Validators,
-  ValidatorFn,
-  AbstractControl,
-} from '@angular/forms'
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 
 /* SERVICES */
 import { EditUserService } from '../admin-services/edit-user.service'
 import { UserService } from '../../../services/main/user.service'
-
-import { RegisterService } from 'src/app/services/main/register.service'
 
 @Component({
   selector: 'app-admin-new-user',
@@ -38,38 +30,27 @@ import { RegisterService } from 'src/app/services/main/register.service'
 export class AdminNewUserComponent implements OnInit {
   /* PARAMETERS */
   state = 'out'
+
+  /* FORMS */
   roles: Roles[] = [
     { value: 'admin', viewValue: 'Admin' },
     { value: 'jc', viewValue: 'JC Consulting' },
   ]
 
   _id: string
-  /*FORMS */
-  //private userForm: FormGroup
-
-  constructor(
-    private serivce: EditUserService,
-    private userService: UserService,
-    private location: Location,
-    private router: Router,
-    private fb: FormBuilder,
-    public dialogRef: MatDialogRef<AdminNewUserComponent>
-  ) {}
-
-  ngOnInit() {
-    setTimeout(() => (this.state = 'in'), 30)
-    this._id = localStorage.getItem('token')
-  }
 
   userForm = new FormGroup({
     _id: new FormControl(null),
     email: new FormControl(''),
     password: new FormControl(''),
-    userFirstName: new FormControl(''),
-    userLastName: new FormControl(''),
     username: new FormControl(''),
     // activated: new FormControl(true),
     role: new FormControl(''),
+  })
+
+  adminForm = new FormGroup({
+    userFirstName: new FormControl(''),
+    userLastName: new FormControl(''),
   })
 
   buildForm() {
@@ -101,6 +82,20 @@ export class AdminNewUserComponent implements OnInit {
       activated: true,
     })
   }
+  constructor(
+    private serivce: EditUserService,
+    private userService: UserService,
+    private location: Location,
+    private router: Router,
+    private fb: FormBuilder,
+    public dialogRef: MatDialogRef<AdminNewUserComponent>
+  ) {}
+
+  ngOnInit() {
+    setTimeout(() => (this.state = 'in'), 30)
+    this._id = localStorage.getItem('token')
+  }
+
   /* GET METHODS */
 
   get email() {
@@ -137,7 +132,8 @@ export class AdminNewUserComponent implements OnInit {
 
       /*--- RESETING THE FORM ---*/
       this.userForm.reset()
-      this.serivce.initializeFormGroup()
+      this.adminForm.reset()
+      //  this.serivce.initializeFormGroup()
       this.onClose()
       this.router.navigate(['/admin_newUser'])
     }
@@ -147,7 +143,8 @@ export class AdminNewUserComponent implements OnInit {
 
   onClose() {
     this.userForm.reset()
-    this.serivce.initializeFormGroup()
+    this.adminForm.reset()
+    //  this.serivce.initializeFormGroup()
     this.dialogRef.close()
   }
 

@@ -1,5 +1,8 @@
-/* CORE*/
+/* OTHERS */
 import { Component, OnInit, ViewChild } from '@angular/core'
+import { Location } from '@angular/common'
+import { slideUp } from '../../shared/animations'
+import { FormControl, Validators, FormGroup } from '@angular/forms'
 
 /* MODEL */
 import { Job } from '../../../models/clients/jobs'
@@ -18,36 +21,10 @@ import {
   MatDialogConfig,
   MatDialog,
 } from '@angular/material'
-import { Location } from '@angular/common'
-import { slideUp } from '../../shared/animations'
-import { FormControl, Validators, FormGroup } from '@angular/forms'
+
+/* COMPONENTS */
 import { ClientNewJobPageComponent } from '../../client-pages/client-new-job-page/client-new-job-page.component'
 
-//JUST FOR TESTING - GONNA BE DELETED
-/*const JOBS: any[] = [
-  {
-    jobId: 1,
-    compId: 1,
-    jobLocation: 'AAA',
-    jobPostDate: '2019-01-25',
-    jobStatus: 'On going',
-  },
-  {
-    jobId: 2,
-    compId: 2,
-    jobLocation: 'BBB',
-    jobPostDate: '2019-02-25',
-    jobStatus: 'On going',
-  },
-  {
-    jobId: 3,
-    compId: 3,
-    jobLocation: 'CCC',
-    jobPostDate: '2019-03-25',
-    jobStatus: 'On going',
-  },
-]
-*/
 @Component({
   selector: 'app-admin-manage-jobs',
   templateUrl: './admin-manage-jobs.component.html',
@@ -55,13 +32,22 @@ import { ClientNewJobPageComponent } from '../../client-pages/client-new-job-pag
   animations: [slideUp()],
 })
 export class AdminManageJobsComponent implements OnInit {
+  /* TABLE PARAMETERS */
   displayColumns: string[]
+  dataSource: MatTableDataSource<any>
+
+  /* PARAMETERS */
   state: String
   private token: String
   public job: Job
   searchKey: string
+  list: Job[]
 
-  // Form for adding or modifiyng the Job
+  /*  TABLE SORT AND PAGINATION */
+  @ViewChild(MatSort) sort: MatSort
+  @ViewChild(MatPaginator) paginator: MatPaginator
+
+  /* FORM FOR ADD AND MODIFY JOBS */
 
   form: FormGroup = new FormGroup({
     _id: new FormControl(null),
@@ -97,14 +83,6 @@ export class AdminManageJobsComponent implements OnInit {
     })
   }
 
-  /*  PARAMETERS */
-
-  /*  TABLE PARAMETERS */
-
-  /*  TABLE SORT AND PAGINATION */
-  @ViewChild(MatSort) sort: MatSort
-  @ViewChild(MatPaginator) paginator: MatPaginator
-
   constructor(
     private loc: Location,
     private jobService: JobService,
@@ -124,8 +102,6 @@ export class AdminManageJobsComponent implements OnInit {
     ]
     this.state = 'out'
   }
-  list: Job[]
-  dataSource: MatTableDataSource<any>
 
   ngOnInit() {
     this.onSearchClear()
