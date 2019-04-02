@@ -17,7 +17,6 @@ export class SessionTimeoutService implements OnInit {
     if (this.auth.getTokenDetails('auth-token') && !this.getIdleStatus()) {
       this.stopTimer()
       this.subs = timer(0, 1000).subscribe(val => {
-        console.log(val)
         if (!this.checkTokenExp() && this.getIdleStatus() && val === 30) {
           this.processTimeout(
             'Session timeout due to inactivity. Please login.'

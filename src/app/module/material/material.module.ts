@@ -6,6 +6,7 @@ import {
   MAT_DIALOG_DATA,
   MatTabsModule,
   MatProgressBarModule,
+  MatSidenavModule,
 } from '@angular/material'
 
 @NgModule({
@@ -35,6 +36,7 @@ import {
     Material.MatStepperModule,
     MatTabsModule,
     MatProgressBarModule,
+    MatSidenavModule,
   ],
   exports: [
     Material.MatTableModule,
@@ -60,6 +62,7 @@ import {
     Material.MatStepperModule,
     MatTabsModule,
     MatProgressBarModule,
+    MatSidenavModule,
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },

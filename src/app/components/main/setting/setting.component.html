@@ -1,0 +1,26 @@
+<div id="body">
+  <h1>Settings</h1>
+  <button mat-raised-button (click)="drawer.toggle()" class="gadget">
+    <mat-icon>settings</mat-icon>
+  </button>
+  <div class="tile">
+    <div class="item toggle">
+      <mat-drawer-container [hasBackdrop]="true">
+        <mat-drawer #drawer [autoFocus]="false" [mode]="push">
+          <h5 routerLink="/settings/general" routerLinkActive="active">
+            General Settings
+          </h5>
+          <h5 routerLink="/settings/profile" routerLinkActive="active">
+            Profile Settings
+          </h5>
+          <h5 routerLink="/settings/privacy" routerLinkActive="active">
+            Privacy Settings
+          </h5>
+        </mat-drawer>
+        <mat-drawer-content>
+          <router-outlet></router-outlet>
+        </mat-drawer-content>
+      </mat-drawer-container>
+    </div>
+  </div>
+</div>
