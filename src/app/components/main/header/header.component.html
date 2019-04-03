@@ -57,21 +57,6 @@
             >
               Job Seeker
             </button>
-            <button
-              mat-menu-item
-              *ngIf="this.token && this.token.role === 'Company'"
-              (click)="onNavigate()"
-            >
-              Company
-            </button>
-
-            <button
-              mat-menu-item
-              *ngIf="this.token && this.token.role === 'Company'"
-              (click)="onGetCompany()"
-            >
-              Company Edit
-            </button>
 
             <button
               mat-menu-item
