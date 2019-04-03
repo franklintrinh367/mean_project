@@ -58,7 +58,7 @@ export class RegisterCardComponent implements OnInit {
           ],
           [existingEmailValidator(this.userService)],
         ],
-        password: ['', Validators.required],
+        password: ['', [Validators.required, Validators.minLength(8)]],
         confirm: ['', Validators.required],
         checkbox: ['', this.checked()],
         mode: [''],
