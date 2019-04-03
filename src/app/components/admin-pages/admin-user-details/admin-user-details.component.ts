@@ -29,7 +29,7 @@ import { EditUserService } from '../admin-services/edit-user.service'
 export class AdminUserDetailsComponent implements OnInit {
   roles: Roles[] = [
     { value: 'admin', viewValue: 'Admin' },
-    { value: 'jc', viewValue: 'JC Consulting' },
+    { value: 'JC', viewValue: 'JC Consulting' },
   ]
   act: Activated[] = [
     { value: 'isActive', viewValue: 'Activated' },
@@ -37,7 +37,7 @@ export class AdminUserDetailsComponent implements OnInit {
   ]
   private EditUserForm: FormGroup
   user: User[]
-  details: Admin[]
+  //details: Admin[]
   _id: string
 
   /* FORM GROUP */

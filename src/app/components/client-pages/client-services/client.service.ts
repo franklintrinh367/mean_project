@@ -52,6 +52,33 @@ export class ClientService {
     })
   }
 
+  // Populate form is when you pass the form to modify
+  populateForm(
+    _id: string,
+    userId: string,
+    compName: string,
+    compCRANumber: string,
+    compAddress: string,
+    compCity: Date,
+    compCode: Date,
+    compProvince: number,
+    compPhone: string,
+    compContact: boolean
+  ) {
+    this.form.setValue({
+      _id,
+      userId,
+      compName,
+      compCRANumber,
+      compAddress,
+      compCity,
+      compCode,
+      compPhone,
+      compProvince,
+      compContact,
+    })
+  }
+
   // function that post to the server the new company
   onCompanyRegister(client: Client): Observable<any> {
     let token = localStorage.getItem('auth-token')
