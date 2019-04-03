@@ -44,7 +44,7 @@ export class AdminUserListComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator
 
   constructor(
-    private editService: EditUserService,
+    private service: EditUserService,
     private dialog: MatDialog,
     private location: Location
   ) {
@@ -82,7 +82,7 @@ export class AdminUserListComponent implements OnInit, OnDestroy {
 
   /* LIST ALL USERS */
   getAllUsers() {
-    return this.editService.getUser().subscribe(
+    return this.service.getUser().subscribe(
       res => {
         this.list = res as User[]
         this.dataSource = new MatTableDataSource(this.list)
@@ -95,7 +95,16 @@ export class AdminUserListComponent implements OnInit, OnDestroy {
 
   /* FUNCTION TO OPEN EDIT USER COMPONENT ON SELECTED ROW*/
   onEdit(row) {
-    this.editService.populateForm(row)
+    this.service.populateForm(
+      row._id,
+      row.username,
+      row.email,
+      row.password,
+      // row.userFirstName,
+      // row.userLastName,
+      row.activated,
+      row.role
+    )
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true
@@ -105,9 +114,9 @@ export class AdminUserListComponent implements OnInit, OnDestroy {
 
   /* FUNCTION TO DELETE USERS => SET ACTIVATE  FALSE*/
   onDelete(row) {
-    if (this.editService.form.valid) {
-      if (!this.editService.form.get('_id').value) {
-        this.editService.form.controls['activated'].setValue(false)
+    if (this.service.form.valid) {
+      if (!this.service.form.get('_id').value) {
+        this.service.form.controls['activated'].setValue(false)
       }
     }
   }

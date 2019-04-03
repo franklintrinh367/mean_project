@@ -20,8 +20,8 @@ export class EditUserService {
     _id: new FormControl(null),
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
-    userFirstName: new FormControl('', Validators.required),
-    userLastName: new FormControl('', Validators.required),
+    // userFirstName: new FormControl('', Validators.required),
+    // userLastName: new FormControl('', Validators.required),
     username: new FormControl(''),
     activated: new FormControl(true),
     role: new FormControl(''),
@@ -31,41 +31,39 @@ export class EditUserService {
       _id: new FormControl(null),
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
-      userFirstName: new FormControl('', Validators.required),
-      userLastName: new FormControl('', Validators.required),
       username: new FormControl(''),
       activated: new FormControl(true),
       role: new FormControl(''),
-      firstName: new FormControl(''),
-      lastName: new FormControl(''),
+      // firstName: new FormControl(''),
+      // lastName: new FormControl(''),
     })
   }
 
   // Populate form is when you pass the form to modify
-  // populateForm(
-  //   _id: string,
-  //   userId: string,
-  //   email: string,
-  //   password:string,
-  //   userFirstName:string,
-  //   userLastName:string,
-  //   activated:string,
-  //   role:string,
-  // ) {
-  //   this.form.setValue({
-  //     _id,
-  //     userId,
-  //     email,
-  //     password,
-  //     userFirstName,
-  //     userLastName,
-  //     activated,
-  //     role,
-  //   })
-  // }
+  populateForm(
+    _id: string,
+    username: string,
+    email: string,
+    password: string,
+    // userFirstName:string,
+    // userLastName:string,
+    activated: string,
+    role: string
+  ) {
+    this.form.setValue({
+      _id,
+      username,
+      email,
+      password,
+      // userFirstName,
+      // userLastName,
+      activated,
+      role,
+    })
+  }
   /* FUNCTION TO ADD USERS */
   post_Users(users: User): Observable<any> {
-    return this.http.post(this.Url, users)
+    return this.http.post(this.Url + '/users', users)
   }
 
   /* FUNCTION TO GET USER */
@@ -80,9 +78,9 @@ export class EditUserService {
   // }
 
   // /* FUNCTION TO POPULATE FORM */
-  populateForm(users) {
-    this.form.setValue(users)
-  }
+  // populateForm(users) {
+  //   this.form.setValue(users)
+  // }
 
   updateUser(user: User): Observable<any> {
     return this.http.post(this.Url + `/user/${user._id}`, user)

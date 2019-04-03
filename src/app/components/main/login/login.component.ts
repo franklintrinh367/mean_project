@@ -57,6 +57,10 @@ export class LoginComponent implements OnInit {
                   window.location.assign('/admins/admin_homePage')
                   break
                 }
+                case 'JC': {
+                  window.location.assign('/jcs/jc_home')
+                  break
+                }
               }
               this.closeDialog('')
             } else {

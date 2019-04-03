@@ -47,42 +47,6 @@ export class AdminManageJobsComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
 
-  /* FORM FOR ADD AND MODIFY JOBS */
-
-  form: FormGroup = new FormGroup({
-    _id: new FormControl(null),
-    userId: new FormControl(null),
-    jobCategory: new FormControl('', Validators.required),
-    jobTitle: new FormControl('', Validators.required),
-    jobStatus: new FormControl('', Validators.required),
-    jobPostDate: new FormControl(''),
-    jobEndDate: new FormControl('', Validators.required),
-    jobPosition: new FormControl('', [
-      Validators.required,
-      Validators.minLength(1),
-    ]),
-    jobDescription: new FormControl('', Validators.required),
-    jobActivate: new FormControl(false),
-  })
-
-  initializeFormGroup() {
-    this.form.setValue({
-      _id: new FormControl(null),
-      userId: new FormControl(null),
-      jobCategory: new FormControl('', Validators.required),
-      jobTitle: new FormControl('', Validators.required),
-      jobStatus: new FormControl('', Validators.required),
-      jobPostDate: new FormControl(''),
-      jobEndDate: new FormControl('', [Validators.required]),
-      jobPosition: new FormControl('', [
-        Validators.required,
-        Validators.minLength(1),
-      ]),
-      jobDescription: new FormControl('', [Validators.required]),
-      jobActivate: new FormControl(false),
-    })
-  }
-
   constructor(
     private loc: Location,
     private jobService: JobService,

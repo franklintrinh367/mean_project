@@ -1,6 +1,14 @@
 <div id="body" [@slideUp]="state">
   <h1>User List</h1>
   <div class="tile">
+    <button
+      mat-raised-button
+      color="primary"
+      routerLink="/admins/admin_homePage"
+    >
+      Admin Homepage
+    </button>
+    <br />
     <button id="create" mat-raised-button routerLink="/admins/admin_newUser">
       <mat-icon>add</mat-icon>Create User
     </button>

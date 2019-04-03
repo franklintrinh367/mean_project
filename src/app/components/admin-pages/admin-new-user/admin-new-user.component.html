@@ -13,6 +13,14 @@
       <button
         mat-raised-button
         color="primary"
+        routerLink="/admins/admin_homePage"
+      >
+        Admin Homepage
+      </button>
+      <br />
+      <button
+        mat-raised-button
+        color="primary"
         routerLink="/admins/admin_userList"
       >
         User List
@@ -21,7 +29,7 @@
   </div>
 
   <div class="tile">
-    <form autocomplete="off" [formGroup]="adminForm">
+    <!-- <form autocomplete="off" [formGroup]="adminForm">
       <mat-form-field>
         <input
           required
@@ -40,7 +48,7 @@
           #userLastName
         />
       </mat-form-field>
-    </form>
+    </form> -->
     <form autocomplete="off" [formGroup]="userForm">
       <mat-form-field>
         <input
