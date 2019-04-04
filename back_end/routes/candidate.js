@@ -109,25 +109,26 @@ router.put('/update/:token', (req, res) => {
 })
 
 // apply for a job
-router.post('/apply/:jobID', (req, res) => {
+router.post('/apply', (req, res) => {
+  console.log(req.body)
   // get jobID from url
-  let { jobID } = req.params
+  // let { jobID } = req.params
   // get candidateID from header
-  let candidateID = req.get('candidateID')
+  // let candidateID = req.get('candidateID')
 
-  Job.findById({ _id: jobID })
-    .then(job => {
-      job.candidatesMatch.unshift(candidateID)
-      job.save().then(job => res.status(200).json(job))
-    })
-    .catch(err => res.status(400).json({ error: err }))
+  // Job.findById({ _id: jobID })
+  //   .then(job => {
+  //     job.candidatesMatch.unshift(candidateID)
+  //     job.save().then(job => res.status(200).json(job))
+  //   })
+  //   .catch(err => res.status(400).json({ error: err }))
 
-  User.findById({ _id: candidateID })
-    .then(candidate => {
-      candidate.details.appliedJobs.unshift(jobID)
-      candidate.save().then(candidate => res.status(200).json(candidate))
-    })
-    .catch(err => res.status(400).json({ error: err }))
+  // User.findById({ _id: candidateID })
+  //   .then(candidate => {
+  //     candidate.details.appliedJobs.unshift(jobID)
+  //     candidate.save().then(candidate => res.status(200).json(candidate))
+  //   })
+  //   .catch(err => res.status(400).json({ error: err }))
 })
 
 //function for generating docx

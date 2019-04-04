@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core'
 import { slideRight, slideUp } from '../../shared/animations'
+import {
+  AngularFireStorage,
+  AngularFireUploadTask,
+} from '@angular/fire/storage'
+import { Observable } from 'rxjs/Observable'
+import { AngularFirestore } from '@angular/fire/firestore'
+import { tap, finalize } from 'rxjs/operators'
+import { DomSanitizer } from '@angular/platform-browser'
 
 @Component({
   selector: 'app-candidate-upload-resume',
@@ -22,7 +30,26 @@ export class CandidateUploadResumeComponent implements OnInit {
       url: '/candidates/candidate_edit_resume',
     },
   ]
-  constructor() {}
+
+  // Main task
+  task: AngularFireUploadTask
+
+  // Progress monitoring
+  percentage: Observable<number>
+
+  snapshot: Observable<any>
+
+  // Download URL
+  downloadURL: any
+
+  // State for dropzone CSS toggling
+  isHovering: boolean
+
+  constructor(
+    private storage: AngularFireStorage,
+    private db: AngularFirestore,
+    private sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit() {
     setTimeout(() => (this.stateUp = 'in'), 30)
@@ -30,5 +57,60 @@ export class CandidateUploadResumeComponent implements OnInit {
 
   expandTile() {
     this.state = this.state === 'in' ? 'out' : 'in'
+  }
+  toggleHover(event: boolean) {
+    this.isHovering = event
+  }
+
+  startUpload(event: FileList) {
+    // The File object
+    const file = event.item(0)
+
+    // Client-side validation example
+    if (file.name.split('.')[1] !== 'pdf') {
+      window.alert('Sorry! We only support .pdf file')
+      return
+    }
+
+    // The storage path
+    const path = `resumes/${new Date().getTime()}_${file.name}`
+
+    // Totally optional metadata
+    const customMetadata = { app: 'My AngularFire-powered PWA!' }
+
+    // The main task
+    this.task = this.storage.upload(path, file, { customMetadata })
+
+    // Progress monitoring
+    this.percentage = this.task.percentageChanges()
+    this.snapshot = this.task.snapshotChanges()
+
+    // get notified when the download URL is available
+    this.task
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          const fileRef = this.storage.ref(path)
+          this.downloadURL = fileRef.getDownloadURL()
+        })
+      )
+      .subscribe()
+
+    this.snapshot = this.task.snapshotChanges().pipe(
+      tap(snap => {
+        if (snap.bytesTransferred === snap.totalBytes) {
+          // Update firestore on completion
+          this.db.collection('resumes').add({ path, size: snap.totalBytes })
+        }
+      })
+    )
+  }
+
+  // Determines if the upload task is active
+  isActive(snapshot) {
+    return (
+      snapshot.state === 'running' &&
+      snapshot.bytesTransferred < snapshot.totalBytes
+    )
   }
 }

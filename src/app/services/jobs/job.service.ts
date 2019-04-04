@@ -57,7 +57,6 @@ export class JobService {
   // Function to add
   post_Jobs(job: Job): Observable<any> {
     let token = localStorage.getItem('auth-token')
-    console.log(job)
     return this.http.post(this.Url + '/insert/' + token, job)
   }
 
@@ -105,5 +104,9 @@ export class JobService {
   // Set the activate false in the database
   delete_Jobs(job: Job): Observable<any> {
     return this.http.put(this.Url + `/updates/${job._id}`, job)
+  }
+
+  apply_job(obj: any) {
+    return this.http.post('http://localhost:3000/candidate/apply', obj)
   }
 }
