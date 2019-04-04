@@ -27,6 +27,16 @@ export class ClientNewJobPageComponent implements OnInit {
     { value: 'Full time', viewValue: 'Full time' },
   ]
 
+  // category
+
+  category: Status[] = [
+    { value: 'Strategy', viewValue: 'Strategy' },
+    { value: 'Business', viewValue: 'Business' },
+    { value: 'Technology', viewValue: 'Technology' },
+    { value: 'Operation', viewValue: 'Operation' },
+    { value: 'Design', viewValue: 'Design' },
+  ]
+
   today = new Date().toISOString().slice(0, 10)
 
   constructor(
@@ -52,16 +62,13 @@ export class ClientNewJobPageComponent implements OnInit {
         this.service.form.controls['jobActivate'].setValue(true)
         this.service.form.controls['jobPostDate'].setValue(Date.now())
         //subscribe to the function post_Jobs on the service
-        this.service.post_Jobs(this.service.form.value).subscribe(() => {
-          this.onClose()
-          this.router.navigate(['../company_details'])
-        })
+        this.service.post_Jobs(this.service.form.value).subscribe()
       } else {
-        this.service.update_Jobs(this.service.form.value).subscribe(() => {
-          this.onClose()
-          this.router.navigate(['../company_details'])
-        })
+        this.service.update_Jobs(this.service.form.value).subscribe()
       }
+      this.onClose()
+      window.location.assign('companies/company_details')
+      //this.router.navigate(['companies/company_details'])
     }
   }
 
