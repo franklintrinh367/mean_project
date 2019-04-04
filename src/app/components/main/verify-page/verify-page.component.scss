@@ -25,6 +25,11 @@ button {
   width: 150px;
 }
 
+.container {
+  width: 70%;
+  margin: auto;
+}
+
 @media screen and (max-width: 480px) {
   #body {
     padding: 70px 0 70px 0;
