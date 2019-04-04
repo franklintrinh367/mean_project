@@ -8,7 +8,13 @@
         <span>{{ job.jobStatus }}/{{ job.jobPosition }} openings</span>
         <p>{{ job.jobDescription }}</p>
         <div class="tile">
-          <button mat-raised-button color="primary">Apply</button>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="apply(job._id, userId)"
+          >
+            Apply
+          </button>
           <button mat-raised-button>Save Job</button>
         </div>
       </div>
