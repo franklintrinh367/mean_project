@@ -1,0 +1,37 @@
+<h4>Privacy</h4>
+
+<div class="tile setting">
+  <div class="left">Receive email notifications from system</div>
+  <div class="right">
+    <mat-slide-toggle color="primary" [checked]="isEmailOn"></mat-slide-toggle>
+  </div>
+</div>
+
+<div class="tile setting">
+  <div class="left">Receive emails from other users</div>
+  <div class="right">
+    <mat-slide-toggle color="primary" [checked]="isEmailOn"></mat-slide-toggle>
+  </div>
+</div>
+
+<div class="tile setting">
+  <div class="left">Who can see your profile</div>
+  <div class="right">
+    <mat-select>
+      <mat-option *ngFor="let mode of viewProfile" [value]="mode.value">{{
+        mode.viewValue
+      }}</mat-option>
+    </mat-select>
+  </div>
+</div>
+
+<div class="tile setting">
+  <div class="left">Who can send message to you</div>
+  <div class="right">
+    <mat-select>
+      <mat-option *ngFor="let mode of viewProfile" [value]="mode.value">{{
+        mode.viewValue
+      }}</mat-option>
+    </mat-select>
+  </div>
+</div>

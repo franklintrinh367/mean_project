@@ -65,13 +65,13 @@ export class JCCandidateListComponent implements OnInit {
     this.applyFilter()
   }
 
-  /* FUNCTION TO CLEAR THE SERACH KEY */
+  /* FUNCTION TO CLEAR THE SEARCH KEY */
   onSearchClear() {
     this.searchKey = ''
     this.applyFilter()
   }
 
-  /*FUNCTION TO FILTER IN THE TABNLE */
+  /*FUNCTION TO FILTER THE TABLE */
   applyFilter() {
     this.dataSource.filter = this.searchKey.trim().toLowerCase()
   }
@@ -110,6 +110,7 @@ export class JCCandidateListComponent implements OnInit {
     this.dialog.open(JCCandidateDetailsComponent, {
       autoFocus: false,
       scrollStrategy: this.overlay.scrollStrategies.reposition(),
+      data: { user: row },
     })
   }
 }

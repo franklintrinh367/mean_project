@@ -23,10 +23,7 @@ import {
 } from '@angular/material'
 
 /* COMPONENTS */
-import { ClientRegisterPageComponent } from '../../client-pages/client-register-page/client-register-page.component'
 import { AdminCompanyDetailsComponent } from '../../admin-pages/admin-company-details/admin-company-details.component'
-
-import { AuthenticateService } from 'src/app/services/authenticate.service'
 
 @Component({
   selector: 'app-admin-company-list',
@@ -39,7 +36,7 @@ export class AdminCompanyListComponent implements OnInit {
   list: Client[]
   searchKey: string
   subscript: Subscription
-
+  public company: Client
   /* TABLE ELEMENTS  */
   dataSource: MatTableDataSource<any>
   displayColumns: string[]
@@ -49,7 +46,8 @@ export class AdminCompanyListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator
 
   constructor(
-    private editService: EditCompanyService,
+    private service: EditCompanyService,
+    private cservice: ClientService,
     private dialog: MatDialog,
     private location: Location
   ) {
@@ -98,7 +96,7 @@ export class AdminCompanyListComponent implements OnInit {
 
   /* LIST ALL COMPANIES */
   getAllCompanies() {
-    return this.editService.getCompany().subscribe(
+    return this.service.getCompany().subscribe(
       res => {
         console.log(res)
         this.list = res as Client[]
@@ -116,7 +114,19 @@ export class AdminCompanyListComponent implements OnInit {
 
   /* FUNCTION TO OPEN EDIT USER COMPONENT ON SELECTED ROW*/
   onEdit(row) {
-    // this.editService.populateForm(row)
+    this.service.populateForm(
+      row._id,
+      row.username,
+      row.details.compName,
+      row.details.compCRANumber,
+      row.details.compAddress,
+      row.details.compCity,
+      row.details.compCode,
+      row.details.compPhone,
+      row.details.compProvince,
+      row.details.compContact
+    )
+
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true

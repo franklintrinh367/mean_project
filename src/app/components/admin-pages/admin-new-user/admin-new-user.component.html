@@ -13,6 +13,14 @@
       <button
         mat-raised-button
         color="primary"
+        routerLink="/admins/admin_homePage"
+      >
+        Admin Homepage
+      </button>
+      <br />
+      <button
+        mat-raised-button
+        color="primary"
         routerLink="/admins/admin_userList"
       >
         User List
@@ -21,7 +29,27 @@
   </div>
 
   <div class="tile">
-    <form autocomplete="off" [formGroup]="userForm" (click)="onSubmit()">
+    <!-- <form autocomplete="off" [formGroup]="adminForm">
+      <mat-form-field>
+        <input
+          required
+          formControlName="userFirstName"
+          matInput
+          placeholder="First Name:"
+          #userFirstName
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          required
+          formControlName="adminForm"
+          matInput
+          placeholder="Last Name:"
+          #userLastName
+        />
+      </mat-form-field>
+    </form> -->
+    <form autocomplete="off" [formGroup]="userForm">
       <mat-form-field>
         <input
           required
@@ -41,24 +69,7 @@
           #email
         />
       </mat-form-field>
-      <mat-form-field>
-        <input
-          required
-          formControlName="userFirstName"
-          matInput
-          placeholder="First Name:"
-          #userFirstName
-        />
-      </mat-form-field>
-      <mat-form-field>
-        <input
-          required
-          formControlName="userLastName"
-          matInput
-          placeholder="Last Name:"
-          #userLastName
-        />
-      </mat-form-field>
+
       <mat-form-field>
         <input
           type="password"
@@ -88,6 +99,7 @@
         type="submit"
         [disabled]="userService.invalid"
         color="primary"
+        (click)="onSubmit()"
       >
         Submit
       </button>

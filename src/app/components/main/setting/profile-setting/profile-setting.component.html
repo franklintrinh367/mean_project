@@ -1,0 +1,75 @@
+<h4>Profile</h4>
+
+<div class="tile setting" *ngIf="isCandidate()">
+  <div class="left">Full Name</div>
+  <div class="right">
+    {{ user.details.canFirstName + ' ' + user.details.canLastName }}
+  </div>
+</div>
+
+<div class="tile setting">
+  <div class="left">Address</div>
+  <div class="right">
+    {{ isCandidate() ? user.details.canAddress : user.details.compAddress }}
+  </div>
+</div>
+
+<div class="tile setting">
+  <div class="left">City</div>
+  <div class="right">
+    {{ isCandidate() ? user.details.canCity : user.details.compCity }}
+  </div>
+</div>
+
+<div class="tile setting">
+  <div class="left">Province</div>
+  <div class="right">
+    {{ isCandidate() ? user.details.canProvince : user.details.compProvince }}
+  </div>
+</div>
+
+<div class="tile setting">
+  <div class="left">Postal Code</div>
+  <div class="right">
+    {{ isCandidate() ? user.details.canPostalCode : user.details.compCode }}
+  </div>
+</div>
+
+<div class="tile setting">
+  <div class="left">Phone Number</div>
+  <div class="right">
+    {{ isCandidate() ? user.details.canPhone : user.details.compPhone }}
+  </div>
+</div>
+
+<div *ngIf="isCandidate()">
+  <div class="tile setting">
+    <div class="left">Education</div>
+    <div class="right">
+      {{ user.details.canEducation }}
+    </div>
+  </div>
+
+  <div class="tile setting">
+    <div class="left">Occupation</div>
+    <div class="right">
+      {{ user.details.canActualJob }}
+    </div>
+  </div>
+
+  <div class="tile setting">
+    <div class="left">LinkedIn</div>
+    <div class="right">
+      {{ user.details.canLinkedIn }}
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!isCandidate()">
+  <div class="tile setting">
+    <div class="left">CRA Number</div>
+    <div class="right">
+      {{ user.details.compCRANumber }}
+    </div>
+  </div>
+</div>

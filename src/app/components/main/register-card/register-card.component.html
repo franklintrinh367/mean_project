@@ -82,6 +82,13 @@
             >
               <p *ngIf="password.errors?.required">Password is required</p>
             </div>
+            <div
+              *ngIf="password.invalid && (password.dirty || password.touched)"
+            >
+              <p *ngIf="password.errors?.minlength">
+                Password must be 8 character minimum
+              </p>
+            </div>
           </div>
 
           <!-- Confirm -->

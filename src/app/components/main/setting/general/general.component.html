@@ -1,0 +1,21 @@
+<h4>General</h4>
+
+<div class="tile setting">
+  <div class="left">Username</div>
+  <div class="right">{{ user.username }}</div>
+</div>
+
+<div class="tile setting">
+  <div class="left">Email</div>
+  <div class="right">{{ user.email }}</div>
+</div>
+
+<div class="tile setting">
+  <div class="left">Account Type</div>
+  <div class="right">{{ user.role }}</div>
+</div>
+
+<div class="tile setting">
+  <div class="left">Status</div>
+  <div class="right">{{ user.activated ? 'Activated' : 'Deactivated' }}</div>
+</div>

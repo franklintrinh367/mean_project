@@ -53,12 +53,14 @@ export class ClientJobDetailsPageComponent implements OnInit {
   list: Job[]
   //Data source to take the material design of any table
   dataSource: MatTableDataSource<any>
-  //declare the ViewChild to sort the table
-  //declare the ViewChild to paginate the table
+
+  //declare the ViewChild to sort and pagionate  the table
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
+
   // When the user search in the table
   searchKey: string
+
   // All this methon in init is instantiate when the page load
   ngOnInit() {
     setTimeout(() => {

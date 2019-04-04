@@ -1,16 +1,15 @@
 <mat-toolbar color="primary">
-  <span class="fill-remaining-space">[User] Details</span>
+  <span class="fill-remaining-space"
+    >{{ user.details.canFirstName }}
+    {{ user.details.canLastName }} Details</span
+  >
 </mat-toolbar>
 <div fxLayout="row wrap" fxLayoutAlign="center center">
   <mat-card>
     <mat-card-content>
-      <form autocomplete="off" [formGroup]="registerForm">
-        <div class="container">
-          <mat-form-field>
-            <p>jc-candidate-details works!</p>
-          </mat-form-field>
-        </div>
-      </form>
+      <div class="container">
+        <p>jc-candidate-details works!</p>
+      </div>
     </mat-card-content>
   </mat-card>
 </div>

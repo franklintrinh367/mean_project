@@ -50,27 +50,12 @@
               Resume
             </button>
             <button mat-menu-item routerLink="/profile">Profile</button>
-            <button mat-menu-item>Setting</button>
+            <button mat-menu-item routerLink="/settings">Setting</button>
             <button
               mat-menu-item
               *ngIf="this.token && this.token.role === 'Candidate'"
             >
               Job Seeker
-            </button>
-            <button
-              mat-menu-item
-              *ngIf="this.token && this.token.role === 'Company'"
-              (click)="onNavigate()"
-            >
-              Company
-            </button>
-
-            <button
-              mat-menu-item
-              *ngIf="this.token && this.token.role === 'Company'"
-              (click)="onGetCompany()"
-            >
-              Company Edit
             </button>
 
             <button

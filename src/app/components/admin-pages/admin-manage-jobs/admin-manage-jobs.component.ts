@@ -1,5 +1,8 @@
-/* CORE*/
+/* OTHERS */
 import { Component, OnInit, ViewChild } from '@angular/core'
+import { Location } from '@angular/common'
+import { slideUp } from '../../shared/animations'
+import { FormControl, Validators, FormGroup } from '@angular/forms'
 
 /* MODEL */
 import { Job } from '../../../models/clients/jobs'
@@ -18,36 +21,10 @@ import {
   MatDialogConfig,
   MatDialog,
 } from '@angular/material'
-import { Location } from '@angular/common'
-import { slideUp } from '../../shared/animations'
-import { FormControl, Validators, FormGroup } from '@angular/forms'
+
+/* COMPONENTS */
 import { ClientNewJobPageComponent } from '../../client-pages/client-new-job-page/client-new-job-page.component'
 
-//JUST FOR TESTING - GONNA BE DELETED
-/*const JOBS: any[] = [
-  {
-    jobId: 1,
-    compId: 1,
-    jobLocation: 'AAA',
-    jobPostDate: '2019-01-25',
-    jobStatus: 'On going',
-  },
-  {
-    jobId: 2,
-    compId: 2,
-    jobLocation: 'BBB',
-    jobPostDate: '2019-02-25',
-    jobStatus: 'On going',
-  },
-  {
-    jobId: 3,
-    compId: 3,
-    jobLocation: 'CCC',
-    jobPostDate: '2019-03-25',
-    jobStatus: 'On going',
-  },
-]
-*/
 @Component({
   selector: 'app-admin-manage-jobs',
   templateUrl: './admin-manage-jobs.component.html',
@@ -55,51 +32,16 @@ import { ClientNewJobPageComponent } from '../../client-pages/client-new-job-pag
   animations: [slideUp()],
 })
 export class AdminManageJobsComponent implements OnInit {
+  /* TABLE PARAMETERS */
   displayColumns: string[]
+  dataSource: MatTableDataSource<any>
+
+  /* PARAMETERS */
   state: String
   private token: String
   public job: Job
   searchKey: string
-
-  // Form for adding or modifiyng the Job
-
-  form: FormGroup = new FormGroup({
-    _id: new FormControl(null),
-    userId: new FormControl(null),
-    jobCategory: new FormControl('', Validators.required),
-    jobTitle: new FormControl('', Validators.required),
-    jobStatus: new FormControl('', Validators.required),
-    jobPostDate: new FormControl(''),
-    jobEndDate: new FormControl('', Validators.required),
-    jobPosition: new FormControl('', [
-      Validators.required,
-      Validators.minLength(1),
-    ]),
-    jobDescription: new FormControl('', Validators.required),
-    jobActivate: new FormControl(false),
-  })
-
-  initializeFormGroup() {
-    this.form.setValue({
-      _id: new FormControl(null),
-      userId: new FormControl(null),
-      jobCategory: new FormControl('', Validators.required),
-      jobTitle: new FormControl('', Validators.required),
-      jobStatus: new FormControl('', Validators.required),
-      jobPostDate: new FormControl(''),
-      jobEndDate: new FormControl('', [Validators.required]),
-      jobPosition: new FormControl('', [
-        Validators.required,
-        Validators.minLength(1),
-      ]),
-      jobDescription: new FormControl('', [Validators.required]),
-      jobActivate: new FormControl(false),
-    })
-  }
-
-  /*  PARAMETERS */
-
-  /*  TABLE PARAMETERS */
+  list: Job[]
 
   /*  TABLE SORT AND PAGINATION */
   @ViewChild(MatSort) sort: MatSort
@@ -124,8 +66,6 @@ export class AdminManageJobsComponent implements OnInit {
     ]
     this.state = 'out'
   }
-  list: Job[]
-  dataSource: MatTableDataSource<any>
 
   ngOnInit() {
     this.onSearchClear()
