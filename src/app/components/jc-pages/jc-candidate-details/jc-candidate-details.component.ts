@@ -25,4 +25,15 @@ export class JCCandidateDetailsComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  // Logs (later will add to database) ID match for Job to use.
+  public match() {
+    console.log(this.user._id)
+    this.dialogRef.close()
+  }
+
+  // Closes window without action
+  public cancel() {
+    this.dialogRef.close()
+  }
 }
