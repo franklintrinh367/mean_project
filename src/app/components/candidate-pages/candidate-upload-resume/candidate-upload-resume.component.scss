@@ -70,8 +70,13 @@ mat-divider {
   color: #e0e0e0;
 
   mat-icon {
-    color: #e0e0e0;
+    color: black;
     font-size: 2em;
+  }
+
+  #dropzone span {
+    font-size: 18px;
+    color: white;
   }
 }
 
@@ -80,9 +85,26 @@ mat-divider {
   transition: background-color 0.8s ease;
 
   mat-icon {
+    color: white;
+    transition: color 0.8s ease;
+  }
+  #dropzone span {
+    font-size: 18px;
     color: black;
     transition: color 0.8s ease;
   }
-  color: black;
-  transition: color 0.8s ease;
+}
+
+progress::-webkit-progress-value {
+  transition: width 0.1s ease;
+}
+
+.progressContainer {
+  display: -webkit-inline-box;
+  margin-top: 10px;
+}
+
+.file-input {
+  visibility: hidden;
+  display: contents;
 }
