@@ -43,19 +43,23 @@
           <ng-template matStepLabel>Address Information name</ng-template>
 
           <mat-form-field>
+            <mat-label> Address </mat-label>
             <input matInput formControlName="compAddress" required />
             <mat-error>Company Address is required</mat-error>
           </mat-form-field>
 
           <mat-form-field>
+            <mat-label> City </mat-label>
             <input matInput formControlName="compCity" required />
             <mat-error>Company City is required</mat-error>
           </mat-form-field>
           <mat-form-field>
+            <mat-label> Province </mat-label>
             <input matInput formControlName="compProvince" required />
             <mat-error>Province Required</mat-error>
           </mat-form-field>
           <mat-form-field>
+            <mat-label> Postal Code </mat-label>
             <input matInput formControlName="compCode" required />
             <mat-error
               *ngIf="secondFormGroup.controls['compCode'].errors?.required"

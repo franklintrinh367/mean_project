@@ -71,6 +71,8 @@ router.get('/get/all', (req, res) => {
 router.get('/getall/:jobId', async (req, res) => {
   await Job.where('userId')
     .equals(req.params.jobId)
+    .where('jobActivate')
+    .equals(true)
     .exec((err, docs) => {
       if (!err) {
         res.send(docs)
