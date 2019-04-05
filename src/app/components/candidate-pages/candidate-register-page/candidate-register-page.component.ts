@@ -123,7 +123,9 @@ export class CandidateRegisterPageComponent implements OnInit {
       canProvince: this.canProvince.value,
       canPostalCode: this.canPostalCode.value,
     }
-    this.candidateService.register(this.candidate).subscribe()
+    this.candidateService.register(this.candidate).subscribe(result => {
+      this.auth.saveToken(result['token'], 'auth-token')
+    })
     window.confirm(`You have successfully updated candidate information!!`)
   }
 }

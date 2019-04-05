@@ -34,7 +34,32 @@ router.post('/register/:token', (req, res) => {
   User.findById(userID)
     .then(user => {
       user.details = newCandidate
-      user.save()
+      user
+        .save()
+        .then(savedUser => {
+          const payload = {
+            id: savedUser.id,
+            email: savedUser.email,
+            username: savedUser.username,
+            visited: savedUser.visited,
+            role: savedUser.role,
+            completed: savedUser.completed,
+            details: savedUser.details,
+          }
+          // set token
+          jwt.sign(
+            payload,
+            secretOrKey,
+            { expiresIn: 60 * 60 * 24 },
+            (err, token) => {
+              res.json({
+                success: true,
+                token: token,
+              })
+            }
+          )
+        })
+        .catch(err => console.log(err))
     })
     .catch(err => res.json(err))
 })
