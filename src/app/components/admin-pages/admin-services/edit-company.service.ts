@@ -92,4 +92,7 @@ export class EditCompanyService {
   updateCompany(client: Client): Observable<any> {
     return
   }
+  getCompanyById(_id) {
+    return this.http.get(this.Url + '/get/:companyID' + _id)
+  }
 }

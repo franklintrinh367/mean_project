@@ -24,7 +24,7 @@ import {
 
 /* COMPONENTS */
 import { AdminCompanyDetailsComponent } from '../../admin-pages/admin-company-details/admin-company-details.component'
-
+import { ClientRegisterPageComponent } from '../../client-pages/client-register-page/client-register-page.component'
 @Component({
   selector: 'app-admin-company-list',
   templateUrl: './admin-company-list.component.html',
@@ -32,11 +32,14 @@ import { AdminCompanyDetailsComponent } from '../../admin-pages/admin-company-de
   animations: [slideUp()],
 })
 export class AdminCompanyListComponent implements OnInit {
+  /* PARAMETERS */
   state: String
   list: Client[]
   searchKey: string
   subscript: Subscription
   public company: Client
+  private token: String
+
   /* TABLE ELEMENTS  */
   dataSource: MatTableDataSource<any>
   displayColumns: string[]
@@ -68,20 +71,25 @@ export class AdminCompanyListComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(() => (this.state = 'in'), 30)
-    this.subscript = this.getAllCompanies()
-  }
-
-  /* FUNCTION TO CLEAR THE SERACH KEY */
-
-  onSearchClear() {
-    this.searchKey = ''
+    this.getAllCompanies()
+    this.applyFilter()
+    this.onSearchClear()
     this.applyFilter()
   }
 
-  /*FUNCTION TO FILTER IN THE TABNLE */
+  /* FUNCTION TO CLEAR THE SEARCH KEY */
+  onSearchClear() {
+    if (this.list !== undefined) {
+      this.searchKey = ''
+      this.applyFilter()
+    }
+  }
 
+  /* FUCNTION TO FILTER THE TABLE */
   applyFilter() {
-    this.dataSource.filter = this.searchKey.trim().toLowerCase()
+    if (this.list !== undefined) {
+      this.dataSource.filter = this.searchKey.trim().toLowerCase()
+    }
   }
 
   /*--- FUNCTION TO CALL THE ADMIN_USER_COMPONENT---*/
@@ -96,20 +104,15 @@ export class AdminCompanyListComponent implements OnInit {
 
   /* LIST ALL COMPANIES */
   getAllCompanies() {
-    return this.service.getCompany().subscribe(
-      res => {
-        console.log(res)
-        this.list = res as Client[]
-        // console.log(this.list.)
-        this.list = this.list.filter(l => {
-          return l.hasOwnProperty('details')
-        })
-        this.dataSource = new MatTableDataSource(this.list)
-        this.dataSource.sort = this.sort
-        this.dataSource.paginator = this.paginator
-      },
-      () => this.onSearchClear()
-    )
+    this.service.getCompany().subscribe(res => {
+      this.list = res as Client[]
+      this.list = this.list.filter(l => {
+        return l.hasOwnProperty('details')
+      })
+      this.dataSource = new MatTableDataSource(this.list)
+      this.dataSource.sort = this.sort
+      this.dataSource.paginator = this.paginator
+    })
   }
 
   /* FUNCTION TO OPEN EDIT USER COMPONENT ON SELECTED ROW*/
@@ -126,11 +129,10 @@ export class AdminCompanyListComponent implements OnInit {
       row.details.compProvince,
       row.details.compContact
     )
-
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true
-    dialogConfig.width = '60%'
+    // dialogConfig.width = '60%'
     this.dialog.open(AdminCompanyDetailsComponent, dialogConfig)
   }
 

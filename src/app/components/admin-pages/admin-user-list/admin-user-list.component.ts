@@ -48,7 +48,7 @@ export class AdminUserListComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     private location: Location
   ) {
-    this.displayColumns = ['username', 'email', 'role', 'actions']
+    this.displayColumns = ['username', 'email', 'role', 'activated', 'actions']
     this.state = 'out'
   }
 
@@ -58,16 +58,18 @@ export class AdminUserListComponent implements OnInit, OnDestroy {
   }
 
   /* FUNCTION TO CLEAT THE SERACH KEY */
-
   onSearchClear() {
-    this.searchKey = ''
-    this.applyFilter()
+    if (this.list !== undefined) {
+      this.searchKey = ''
+      this.applyFilter()
+    }
   }
 
   /*FUNCTION TO FILTER IN THE TABNLE */
-
   applyFilter() {
-    this.dataSource.filter = this.searchKey.trim().toLowerCase()
+    if (this.list !== undefined) {
+      this.dataSource.filter = this.searchKey.trim().toLowerCase()
+    }
   }
 
   /*--- FUNCTION TO CALL THE ADMIN_USER_COMPONENT---*/
@@ -82,15 +84,12 @@ export class AdminUserListComponent implements OnInit, OnDestroy {
 
   /* LIST ALL USERS */
   getAllUsers() {
-    return this.service.getUser().subscribe(
-      res => {
-        this.list = res as User[]
-        this.dataSource = new MatTableDataSource(this.list)
-        this.dataSource.sort = this.sort
-        this.dataSource.paginator = this.paginator
-      },
-      () => this.onSearchClear()
-    )
+    return this.service.getUser().subscribe(res => {
+      this.list = res as User[]
+      this.dataSource = new MatTableDataSource(this.list)
+      this.dataSource.sort = this.sort
+      this.dataSource.paginator = this.paginator
+    })
   }
 
   /* FUNCTION TO OPEN EDIT USER COMPONENT ON SELECTED ROW*/
@@ -100,11 +99,10 @@ export class AdminUserListComponent implements OnInit, OnDestroy {
       row.username,
       row.email,
       row.password,
-      // row.userFirstName,
-      // row.userLastName,
       row.activated,
       row.role
     )
+
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true

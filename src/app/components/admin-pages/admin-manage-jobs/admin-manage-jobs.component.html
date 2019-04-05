@@ -1,10 +1,10 @@
 <div id="body" [@slideUp]="state">
-  <h1>Job Table</h1>
-  <div class="tile">
+  <h1>Edit Job</h1>
+  <!-- <div class="tile">
     <button mat-raised-button (click)="onCreate()">
       <mat-icon>add</mat-icon>Add Job
     </button>
-  </div>
+  </div> -->
 
   <div class="tile">
     <mat-form-field class="search-form-field" floatLabel="never">
@@ -23,16 +23,16 @@
         *ngIf="searchKey"
         (click)="onSearchClear()"
       >
-        <mat-icon>close</mat-icon>
+        <mat-icon>Close</mat-icon>
       </button>
     </mat-form-field>
   </div>
 
   <div class="tile" id="container">
     <table mat-table [dataSource]="dataSource">
-      <ng-container matColumnDef="_id" id="hide">
-        <th mat-header-cell *matHeaderCellDef>ID</th>
-        <td mat-cell *matCellDef="let data">{{ data._id }}</td>
+      <ng-container hidden matColumnDef="_id" id="hide">
+        <th mat-header-cell hidden *matHeaderCellDef>ID</th>
+        <td mat-cell hidden *matCellDef="let data">{{ data._id }}</td>
       </ng-container>
 
       <ng-container matColumnDef="jobCategory">
@@ -52,12 +52,16 @@
 
       <ng-container matColumnDef="jobPostDate">
         <th mat-header-cell *matHeaderCellDef>Date of Posting</th>
-        <td mat-cell *matCellDef="let data">{{ data.jobPostDate }}</td>
+        <td mat-cell *matCellDef="let data">
+          {{ data.jobPostDate | date: 'yyyy-MM-dd' }}
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="jobEndDate">
-        <th mat-header-cell *matHeaderCellDef>Date expired</th>
-        <td mat-cell *matCellDef="let data">{{ data.jobEndDate }}</td>
+        <th mat-header-cell *matHeaderCellDef>End Date</th>
+        <td mat-cell *matCellDef="let data">
+          {{ data.jobEndDate | date: 'yyyy-MM-dd' }}
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="jobPositions">
@@ -71,8 +75,10 @@
       </ng-container>
 
       <ng-container matColumnDef="jobActivate">
-        <th mat-header-cell *matHeaderCellDef>Activation</th>
-        <td mat-cell *matCellDef="let data">{{ data.jobActivate }}</td>
+        <th mat-header-cell hidden *matHeaderCellDef>Activation</th>
+        <td mat-cell hidden hidden *matCellDef="let data">
+          {{ data.jobActivate }}
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="actions">

@@ -69,6 +69,7 @@
         color="accent"
         [disabled]="this.service.form.invalid"
         class="login-btn mat-elevation-z8"
+        onclick="onSubmit()"
       >
         Submit
       </button>
@@ -79,6 +80,7 @@
         class="mat-elevation-z8"
         color="accent"
         routerLink="/home"
+        onclick="onCancel()"
       >
         Cancel
       </button>
