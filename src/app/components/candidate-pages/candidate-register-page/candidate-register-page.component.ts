@@ -124,8 +124,14 @@ export class CandidateRegisterPageComponent implements OnInit {
       canPostalCode: this.canPostalCode.value,
     }
     this.candidateService.register(this.candidate).subscribe(result => {
-      this.auth.saveToken(result['token'], 'auth-token')
+      if (result) {
+        this.auth.logout('auth-token')
+        this.auth.saveToken(result['token'], 'auth-token')
+        window.confirm(`You have successfully updated candidate information!!`)
+        window.location.assign('/profile')
+      } else {
+        window.confirm(`An error occured. Please try again!`)
+      }
     })
-    window.confirm(`You have successfully updated candidate information!!`)
   }
 }

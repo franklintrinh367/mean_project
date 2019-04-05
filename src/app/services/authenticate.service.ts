@@ -31,6 +31,10 @@ export class AuthenticateService {
     return token ? JSON.parse(window.atob(token.split('.')[1])) : null
   }
 
+  public getDirectTokenDetails(token: string): any {
+    return token ? JSON.parse(window.atob(token.split('.')[1])) : null
+  }
+
   public isExpired(name: string): boolean {
     const user = this.getTokenDetails(name)
     return user && user.exp > Date.now() / 1000

@@ -55,7 +55,6 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => (this.state = 'in'), 30)
     this.token = this.authService.getTokenDetails('auth-token')
-
     const ref = this.storage.ref(`${this.token.details.canAvatar}`)
     const defaultRef = this.storage.ref(`${this.avatarDefault}`)
 

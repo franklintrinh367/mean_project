@@ -35,7 +35,6 @@ router.post('/register', (req, res) => {
     visited,
     role,
     details,
-    completed,
   })
   //Hash password
   bcrypt.genSalt(10, (err, salt) => {
@@ -175,7 +174,7 @@ router.post('/login', (req, res) => {
                   username: user.username,
                   visited: count,
                   role: user.role,
-                  completed: user.completed,
+                  activated: user.activated,
                   details: user.details,
                 }
                 // set token
