@@ -38,43 +38,50 @@ export class LoginComponent implements OnInit {
       this.userService.login(email, password).subscribe(
         result => {
           if (result) {
-            this.auth.saveToken(result['token'], 'auth-token')
-            let token = this.auth.getTokenDetails('auth-token')
-            // Check if user finished detail registration
-            if (!token.details) {
-              switch (token.role) {
-                // check role: Candidate
-                case 'Candidate': {
-                  window.location.assign('/candidates/candidate_register')
-                  break
-                }
-                //check if the role is
-                case 'Company': {
-                  window.location.assign('/companies/company_register')
-                  break
-                }
-                case 'admin': {
-                  window.location.assign('/admins/admin_homePage')
-                  break
-                }
-                case 'JC': {
-                  window.location.assign('/jcs/jc_home')
-                  break
-                }
-              }
-              this.closeDialog('')
+            let token = this.auth.getDirectTokenDetails(result['token'])
+            console.log(token)
+            // check if account has been activated
+            if (!token.activated) {
+              window.confirm(
+                'Please check your email and confirm your email verification!!'
+              )
             } else {
-              // Not yet finish detail Registration
-              switch (token.role) {
-                // check role: Candidate
-                case 'Candidate': {
-                  window.location.assign('/candidates/candidate_homepage')
-                  break
+              // log user in and save token to localStorage
+              this.auth.saveToken(result['token'], 'auth-token')
+              // Check if user finished detail registration
+              if (!token.details) {
+                switch (token.role) {
+                  // check role: Candidate
+                  case 'Candidate': {
+                    window.location.assign('/candidates/candidate_register')
+                    break
+                  }
+                  //check if the role is
+                  case 'Company': {
+                    window.location.assign('/companies/company_register')
+                    break
+                  }
+                  case 'admin': {
+                    window.location.assign('/admins/admin_homePage')
+                    break
+                  }
+                  case 'JC': {
+                    window.location.assign('/jcs/jc_home')
+                    break
+                  }
                 }
-                //check if the role is
-                case 'Company': {
-                  window.location.assign('/companies/company_details')
-                  break
+                this.closeDialog('')
+              } else {
+                // finished detail Registration
+                switch (token.role) {
+                  case 'Candidate': {
+                    window.location.assign('/profile')
+                    break
+                  }
+                  case 'Company': {
+                    window.location.assign('/companies/company_details')
+                    break
+                  }
                 }
               }
             }
