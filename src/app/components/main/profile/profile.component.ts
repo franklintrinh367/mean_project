@@ -100,9 +100,6 @@ export class ProfileComponent implements OnInit {
       case 'back':
         this.location.back()
         break
-      case 'edit':
-        this.router.navigateByUrl('/candidates/candidate_editProfile')
-        break
     }
   }
 }
