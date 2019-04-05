@@ -5,7 +5,6 @@ import { AuthenticateService } from 'src/app/services/authenticate.service'
 import { Router } from '@angular/router'
 import { CandidateService } from '../candidate-services/candidate.service'
 import { AngularFireStorage } from '@angular/fire/storage'
-
 @Component({
   selector: 'app-candidate-edit-profile',
   templateUrl: './candidate-edit-profile.component.html',
@@ -101,7 +100,7 @@ export class CandidateEditProfileComponent implements OnInit {
       let token = this.auth.getTokenDetails('auth-token')
       this.candidate = {
         canId: token.id,
-        canAvatar: this.avatarPath,
+        canAvatar: localStorage.getItem('imagePath'),
         canFirstName: this.canFirstName.value,
         canLastName: this.canLastName.value,
         canEducation: this.canEducation.value,
@@ -137,20 +136,5 @@ export class CandidateEditProfileComponent implements OnInit {
         })
       }
     })
-  }
-
-  onFileSelected(imageInput: any) {
-    const file: File = imageInput.files[0]
-    const reader = new FileReader()
-
-    reader.addEventListener('load', () => {
-      this.avatarFile = reader.result
-    })
-    reader.readAsDataURL(file)
-
-    const path = `photos/${new Date().getTime()}_${file.name}`
-    const ref = this.storage.ref(path)
-    ref.put(file)
-    this.avatarPath = path
   }
 }
