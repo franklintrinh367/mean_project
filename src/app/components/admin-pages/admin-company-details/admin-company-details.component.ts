@@ -1,24 +1,22 @@
-/* CORE */
-import { Component, OnInit, ViewChild } from '@angular/core'
-import { Location } from '@angular/common'
+/* OTHERS */
+import { Component, OnInit } from '@angular/core'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { slideUp } from '../../shared/animations'
+import { Location } from '@angular/common'
+import { ActivatedRoute, Router } from '@angular/router'
 
 /* MATERIAL DESIGN */
-import {
-  MatDialog,
-  MatDialogConfig,
-  MatTableDataSource,
-} from '@angular/material'
+import { MatDialog, MatDialogConfig } from '@angular/material'
 
 /* COMPONENTS */
 import { ClientRegisterPageComponent } from '../../client-pages/client-register-page/client-register-page.component'
 
 /* MODELS */
 import { Client } from '../../../models/clients/client'
-import { Activated } from '../../../models/admin/activated'
 
 /* SERVICES */
 import { ClientService } from '../../client-pages/client-services/client.service'
+import { EditCompanyService } from '../admin-services/edit-company.service'
 
 /* CANADA PROVINCES */
 export interface Province {
@@ -49,26 +47,29 @@ export class AdminCompanyDetailsComponent implements OnInit {
     { value: 'Saskatchewan', viewValue: 'Saskatchewan' },
     { value: 'Yukon', viewValue: 'Yukon' },
   ]
-  /* ISACTIVE */
-  act: Activated[] = [
-    { value: 'isActive', viewValue: 'Activated' },
-    { value: 'notActive', viewValue: 'Non-Active' },
-  ]
 
   /*PARAMETERS */
-  searchKey: string
+  private editCompanyForm: FormGroup
+  public company: Client
+  state: String
   list: Client[]
-  dataSource: MatTableDataSource<any>
 
   constructor(
     private service: ClientService,
+    private cservice: EditCompanyService,
+    private router: Router,
     private dialog: MatDialog,
-    private loc: Location
-  ) {}
+    private loc: Location,
+    private fb: FormBuilder
+  ) {
+    this.state = 'out'
+  }
 
   ngOnInit() {
-    // this.getClientById()
-    this.dataSource
+    setTimeout(() => {
+      this.state = 'in'
+    }, 30)
+
     this.onCreate()
   }
 

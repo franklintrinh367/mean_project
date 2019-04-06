@@ -57,7 +57,7 @@ router.post('/insert/:token', (req, res) => {
 
 // get all Jobs
 router.get('/get/all', (req, res) => {
-  Job.find({}, (err, jobs) => {
+  Job.find({ jobActivate: true }, (err, jobs) => {
     if (err) {
       res.status(400).send({ error: err })
     }

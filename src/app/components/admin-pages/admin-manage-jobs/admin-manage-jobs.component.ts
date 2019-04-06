@@ -6,9 +6,11 @@ import { FormControl, Validators, FormGroup } from '@angular/forms'
 
 /* MODEL */
 import { Job } from '../../../models/clients/jobs'
+import { Client } from '../../../models/clients/client'
 
 /* SERVICES*/
 import { JobService } from '../../../services/jobs/job.service'
+import { EditCompanyService } from '../admin-services/edit-company.service'
 
 /* ROUTER */
 import { Router } from '@angular/router'
@@ -35,6 +37,7 @@ export class AdminManageJobsComponent implements OnInit {
   /* TABLE PARAMETERS */
   displayColumns: string[]
   dataSource: MatTableDataSource<any>
+  dataSource1: MatTableDataSource<any>
 
   /* PARAMETERS */
   state: String
@@ -42,6 +45,7 @@ export class AdminManageJobsComponent implements OnInit {
   public job: Job
   searchKey: string
   list: Job[]
+  client: Client[]
 
   /*  TABLE SORT AND PAGINATION */
   @ViewChild(MatSort) sort: MatSort
@@ -50,10 +54,12 @@ export class AdminManageJobsComponent implements OnInit {
   constructor(
     private loc: Location,
     private jobService: JobService,
+    private cservice: EditCompanyService,
     private dialog: MatDialog // private router: Router
   ) {
     this.displayColumns = [
       '_id',
+      // 'compName',
       'jobCategory',
       'jobTitle',
       'jobStatus',

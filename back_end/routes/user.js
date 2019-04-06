@@ -52,9 +52,9 @@ router.post('/register', (req, res) => {
   })
 })
 
-// get all users
+// get all users - For Admin
 router.get('/all', (req, res) => {
-  User.find({}, (err, users) => {
+  User.find({ activated: true }, (err, users) => {
     if (err) {
       res.status(400).send({ error: err })
     }

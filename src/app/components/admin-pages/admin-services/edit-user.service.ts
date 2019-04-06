@@ -20,8 +20,6 @@ export class EditUserService {
     _id: new FormControl(null),
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
-    // userFirstName: new FormControl('', Validators.required),
-    // userLastName: new FormControl('', Validators.required),
     username: new FormControl(''),
     activated: new FormControl(true),
     role: new FormControl(''),
@@ -34,8 +32,6 @@ export class EditUserService {
       username: new FormControl(''),
       activated: new FormControl(true),
       role: new FormControl(''),
-      // firstName: new FormControl(''),
-      // lastName: new FormControl(''),
     })
   }
 
@@ -45,8 +41,6 @@ export class EditUserService {
     username: string,
     email: string,
     password: string,
-    // userFirstName:string,
-    // userLastName:string,
     activated: string,
     role: string
   ) {
@@ -55,8 +49,6 @@ export class EditUserService {
       username,
       email,
       password,
-      // userFirstName,
-      // userLastName,
       activated,
       role,
     })
@@ -70,17 +62,6 @@ export class EditUserService {
   getUser() {
     return this.http.get(this.Url + '/get/all')
   }
-
-  // // Function to get all list of company
-
-  // getCompany() {
-  //   return this.http.get(this.Url + '/get/all/company')
-  // }
-
-  // /* FUNCTION TO POPULATE FORM */
-  // populateForm(users) {
-  //   this.form.setValue(users)
-  // }
 
   updateUser(user: User): Observable<any> {
     return this.http.post(this.Url + `/user/${user._id}`, user)
