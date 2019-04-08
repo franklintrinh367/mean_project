@@ -28,6 +28,7 @@ export interface Province {
   selector: 'app-admin-company-details',
   templateUrl: './admin-company-details.component.html',
   styleUrls: ['./admin-company-details.component.scss'],
+  animations: [slideUp()],
 })
 export class AdminCompanyDetailsComponent implements OnInit {
   /* PROVINCES */
@@ -70,17 +71,17 @@ export class AdminCompanyDetailsComponent implements OnInit {
       this.state = 'in'
     }, 30)
 
-    this.onCreate()
+    // this.onCreate()
   }
 
   /* FUNCTION TO CALL THE: ClientRegisterPageComponent */
-  onCreate() {
-    const dialogConfig = new MatDialogConfig()
-    dialogConfig.disableClose = true
-    dialogConfig.autoFocus = true
-    dialogConfig.width = '60%'
-    this.dialog.open(ClientRegisterPageComponent, dialogConfig)
-  }
+  // onCreate() {
+  //   const dialogConfig = new MatDialogConfig()
+  //   dialogConfig.disableClose = true
+  //   dialogConfig.autoFocus = true
+  //   dialogConfig.width = '60%'
+  //   this.dialog.open(AdminCompanyDetailsComponent, dialogConfig)
+  // }
 
   goBack() {
     this.loc.back()

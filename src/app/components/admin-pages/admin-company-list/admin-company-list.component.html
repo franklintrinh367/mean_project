@@ -18,7 +18,7 @@
         <th mat-header-cell hidden *matHeaderCellDef>
           ID
         </th>
-        <td mat-cell hidden *matCellDef="let data">{{ data._id }}</td>
+        <td mat-cell hidden *matCellDef="let data">{{ data.details._id }}</td>
       </ng-container>
 
       <ng-container matColumnDef="compName">
@@ -49,7 +49,7 @@
           City
         </th>
         <td mat-cell *matCellDef="let data">
-          {{ data.compCity }}
+          {{ data.details.compCity }}
         </td>
       </ng-container>
 

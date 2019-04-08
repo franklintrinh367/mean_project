@@ -87,9 +87,8 @@ export class AdminNewUserComponent implements OnInit {
     private userService: UserService,
     private location: Location,
     private router: Router,
-    private fb: FormBuilder
-  ) // public dialogRef: MatDialogRef<AdminNewUserComponent>
-  {}
+    private fb: FormBuilder // public dialogRef: MatDialogRef<AdminNewUserComponent>
+  ) {}
 
   ngOnInit() {
     setTimeout(() => (this.state = 'in'), 30)
@@ -105,14 +104,6 @@ export class AdminNewUserComponent implements OnInit {
   get password() {
     return this.userForm.get('password')
   }
-
-  // get userFirstName() {
-  //   return this.userForm.get('userFirstName')
-  // }
-
-  // get userLastName() {
-  //   return this.userForm.get('userLastName')
-  // }
 
   get role() {
     return this.userForm.get('role')

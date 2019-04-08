@@ -26,6 +26,7 @@ import { ClientNewJobPageComponent } from '../client-pages/client-new-job-page/c
     AdminJobsDetailsComponent,
     AdminCompanyDetailsComponent,
     ClientNewJobPageComponent,
+    AdminCompanyDetailsComponent,
   ],
   imports: [
     MaterialModule,
@@ -35,6 +36,6 @@ import { ClientNewJobPageComponent } from '../client-pages/client-new-job-page/c
     AdminsRoutingModule,
   ],
   providers: [EditUserService],
-  entryComponents: [ClientNewJobPageComponent],
+  entryComponents: [ClientNewJobPageComponent, AdminCompanyDetailsComponent],
 })
 export class AdminsModule {}

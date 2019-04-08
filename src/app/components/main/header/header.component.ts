@@ -73,7 +73,7 @@ export class HeaderComponent implements OnInit {
   onGetAdmin() {
     let token = this.authService.getTokenDetails('auth-token')
     if (token.visited) {
-      this.router.navigate(['/admin-pages/admin_homePage'])
+      this.router.navigate(['/admins/admin_homePage'])
     }
   }
 }
