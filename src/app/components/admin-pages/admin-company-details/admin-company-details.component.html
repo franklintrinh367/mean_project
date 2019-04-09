@@ -7,7 +7,11 @@
   <div id="body">
     <h3>Edit Company</h3>
 
-    <form autocomplete="off" [formGroup]="service.form">
+    <form
+      autocomplete="off"
+      [formGroup]="cservice.form"
+      (ngSubmit)="onSubmit()"
+    >
       <input type="hidden" formControlName="_id" #_id />
 
       <!-- Company Name -->
@@ -60,30 +64,28 @@
       <!-- Contact -->
       <mat-form-field>
         <mat-label>Contact </mat-label>
-        <mat-icon matSuffix>work</mat-icon>
         <input matInput formControlName="compContact" #compContact />
       </mat-form-field>
 
-      <button
-        mat-flat-button
-        color="accent"
-        [disabled]="this.service.form.invalid"
-        class="login-btn mat-elevation-z8"
-        onclick="onSubmit()"
-      >
-        Submit
-      </button>
+      <div class="botton-row">
+        <button
+          mat-flat-button
+          color="accent"
+          [disabled]="this.cservice.form.invalid"
+        >
+          Submit
+        </button>
 
-      <!-- Cancel Button -->
-      <button
-        mat-flat-button
-        class="mat-elevation-z8"
-        color="accent"
-        routerLink="/home"
-        onclick="onCancel()"
-      >
-        Cancel
-      </button>
+        <!-- Cancel Button -->
+        <button
+          mat-flat-button
+          color="accent"
+          routerLink="/home"
+          onclick="onCancel()"
+        >
+          Cancel
+        </button>
+      </div>
     </form>
 
     <div>

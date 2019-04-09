@@ -67,8 +67,11 @@ export class ClientNewJobPageComponent implements OnInit {
         this.service.update_Jobs(this.service.form.value).subscribe()
       }
       this.onClose()
-      window.location.assign('companies/company_details')
-      //this.router.navigate(['companies/company_details'])
+      if (token.role == 'Company') {
+        window.location.assign('companies/company_details')
+      } else {
+        window.location.assign('admins/admin_mamangeJobs')
+      }
     }
   }
 

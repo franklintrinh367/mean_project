@@ -46,8 +46,8 @@ router.post('/register/:token', (req, res) => {
     compAddress,
     compCode,
     compCity,
-    compContact,
     compPhone,
+    compContact,
     userId,
     compProvince,
   } = req.body

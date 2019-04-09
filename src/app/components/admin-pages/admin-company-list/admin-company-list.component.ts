@@ -121,11 +121,11 @@ export class AdminCompanyListComponent implements OnInit {
       row.details._id,
       row.details.compName,
       row.details.compCRANumber,
+      row.details.compPhone,
       row.details.compAddress,
       row.details.compCity,
-      row.details.compCode,
-      row.details.compPhone,
       row.details.compProvince,
+      row.details.compCode,
       row.details.compContact
     )
     const dialogConfig = new MatDialogConfig()
