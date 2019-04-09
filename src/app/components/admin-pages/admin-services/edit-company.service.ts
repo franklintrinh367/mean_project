@@ -23,7 +23,6 @@ export class EditCompanyService {
 
   form: FormGroup = new FormGroup({
     _id: new FormControl(null),
-    username: new FormControl(''),
     compName: new FormControl('', Validators.required),
     compCRANumber: new FormControl(''),
     compAddress: new FormControl(''),
@@ -40,7 +39,6 @@ export class EditCompanyService {
   initializeFormGroup() {
     this.form.setValue({
       _id: new FormControl(null),
-      username: new FormControl(''),
       compName: new FormControl('', Validators.required),
       compCRANumber: new FormControl(''),
       compAddress: new FormControl(''),
@@ -58,7 +56,6 @@ export class EditCompanyService {
   // Populate form is when you pass the form to modify
   populateForm(
     _id: string,
-    username: string,
     compName: string,
     compCRANumber: string,
     compAddress: string,
@@ -70,7 +67,6 @@ export class EditCompanyService {
   ) {
     this.form.setValue({
       _id,
-      username,
       compName,
       compCRANumber,
       compAddress,
@@ -94,5 +90,10 @@ export class EditCompanyService {
   }
   getCompanyById(_id) {
     return this.http.get(this.Url + '/get/:companyID' + _id)
+  }
+
+  // not implemented
+  deleteCompany(company): Observable<any> {
+    return this.http.put(this.Url + `/en/delete/${company._id}`, company)
   }
 }

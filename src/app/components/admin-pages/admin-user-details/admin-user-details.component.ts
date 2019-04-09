@@ -1,6 +1,7 @@
-/* CORE */
+/* OTHERS */
 import { Component, OnInit, ViewChild } from '@angular/core'
-
+import { Router } from '@angular/router'
+import { slideUp } from '../../shared/animations'
 /* SERVICE */
 
 /* MODELS */
@@ -10,70 +11,79 @@ import { Roles } from '../../../models/admin/role'
 import { Activated } from '../../../models/admin/activated'
 
 /* FORMS */
-import { FormGroup } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 
 /* MATERIAL DESIGN */
 import { MatDialogRef } from '@angular/material'
 
 /* COMPONENTS */
-import { AdminNewUserComponent } from '../admin-new-user/admin-new-user.component'
-/* ROUTERS */
-import { Router } from '@angular/router'
+// import { AdminNewUserComponent } from '../admin-new-user/admin-new-user.component'
+
+/* SERVICES */
 import { EditUserService } from '../admin-services/edit-user.service'
 
 @Component({
   selector: 'app-admin-user-details',
   templateUrl: './admin-user-details.component.html',
   styleUrls: ['./admin-user-details.component.scss'],
+  animations: [slideUp()],
 })
 export class AdminUserDetailsComponent implements OnInit {
   roles: Roles[] = [
     { value: 'admin', viewValue: 'Admin' },
     { value: 'JC', viewValue: 'JC Consulting' },
   ]
-  act: Activated[] = [
-    { value: 'isActive', viewValue: 'Activated' },
-    { value: 'isNotActive', viewValue: 'Non-Activated' },
-  ]
-  private EditUserForm: FormGroup
-  user: User[]
-  //details: Admin[]
+  // act: Activated[] = [
+  //   { value: 'isActive', viewValue: 'Activated' },
+  //   { value: 'isNotActive', viewValue: 'Non-Activated' },
+  // ]
+  private edituserForm: FormGroup
+  user: User
+  state: String
   _id: string
 
   /* FORM GROUP */
   adminEditUser: FormGroup
   constructor(
-    private userService: EditUserService,
+    private service: EditUserService,
+    private builder: FormBuilder,
     private router: Router,
-    public dialogRef: MatDialogRef<AdminNewUserComponent>
+    public dialogRef: MatDialogRef<AdminUserDetailsComponent>
   ) {}
 
   ngOnInit() {
+    setTimeout(() => (this.state = 'in'), 30)
     this._id = localStorage.getItem('token')
+    this.edituserForm = this.builder.group({})
   }
   /* ADD USER FUNCTION */
 
   onSubmit() {
-    if (this.userService.form.valid) {
-      if (!this.userService.form.get('_id').value) {
-        this.userService.form.controls['activated'].setValue(true)
-        this.userService.post_Users(this.userService.form.value).subscribe()
-      } else
-        this.userService.updateUser(this.userService.form.value).subscribe()
+    if (this.service.form.valid) {
+      if (!this.service.form.get('_id').value) {
+        this.service.form.controls['activated'].setValue(true)
+        this.service.post_Users(this.service.form.value).subscribe()
+      } else this.service.updateUser(this.service.form.value).subscribe()
 
       /*--- RESETING THE FORM ---*/
-      this.userService.form.reset()
-      this.userService.initializeFormGroup()
+      this.service.form.reset()
+      this.service.initializeFormGroup()
       this.onClose()
-      this.router.navigate(['/admin_newUser'])
+      window.location.assign('/admins/admin_userList')
     }
   }
+
+  /* FUNCTION TO GET USER BY ID*/
 
   /*--- FUNCTION TO CLOSE THE DIALOG AFTER SUBMISSION ---*/
 
   onClose() {
-    this.userService.form.reset()
-    this.userService.initializeFormGroup()
+    this.service.form.reset()
+    this.service.initializeFormGroup()
     this.dialogRef.close()
+  }
+
+  onCancel() {
+    this.onClose()
   }
 }

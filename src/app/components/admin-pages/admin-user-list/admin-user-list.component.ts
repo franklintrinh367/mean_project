@@ -79,7 +79,7 @@ export class AdminUserListComponent implements OnInit, OnDestroy {
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true
     dialogConfig.width = '60%'
-    this.dialog.open(AdminUserDetailsComponent, dialogConfig)
+    this.dialog.open(AdminNewUserComponent, dialogConfig)
   }
 
   /* LIST ALL USERS */
@@ -107,16 +107,15 @@ export class AdminUserListComponent implements OnInit, OnDestroy {
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true
     dialogConfig.width = '60%'
-    this.dialog.open(AdminNewUserComponent, dialogConfig)
+    this.dialog.open(AdminUserDetailsComponent, dialogConfig)
   }
 
   /* FUNCTION TO DELETE USERS => SET ACTIVATE  FALSE*/
   onDelete(row) {
-    if (this.service.form.valid) {
-      if (!this.service.form.get('_id').value) {
-        this.service.form.controls['activated'].setValue(false)
-      }
-    }
+    // Set the activate to false
+    row.activated = false
+    // Subscribe to the delte Jobs to update the row to the database
+    this.service.deleteUser(row).subscribe()
   }
 
   goBack() {

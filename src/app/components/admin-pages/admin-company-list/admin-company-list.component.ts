@@ -118,8 +118,7 @@ export class AdminCompanyListComponent implements OnInit {
   /* FUNCTION TO OPEN EDIT USER COMPONENT ON SELECTED ROW*/
   onEdit(row) {
     this.service.populateForm(
-      row._id,
-      row.username,
+      row.details._id,
       row.details.compName,
       row.details.compCRANumber,
       row.details.compAddress,
@@ -144,6 +143,14 @@ export class AdminCompanyListComponent implements OnInit {
   //     }
   //   }
   // }
+
+  /* FUNCTION TO DELETE USERS => SET ACTIVATE  FALSE*/
+  onDelete(row) {
+    // Set the activate to false
+    row.activated = false
+    // Subscribe to the delte Jobs to update the row to the database
+    this.service.deleteCompany(row).subscribe()
+  }
 
   goBack() {
     this.location.back()

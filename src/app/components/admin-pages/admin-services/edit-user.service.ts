@@ -60,11 +60,16 @@ export class EditUserService {
 
   /* FUNCTION TO GET USER */
   getUser() {
-    return this.http.get(this.Url + '/get/all')
+    return this.http.get(this.Url + '/en/get/all')
+  }
+
+  /* FUNCTION TO GET USER BY iD */
+  getUserById() {
+    return this.http.get(this.Url + '/get/:userId')
   }
 
   updateUser(user: User): Observable<any> {
-    return this.http.post(this.Url + `/user/${user._id}`, user)
+    return this.http.put(this.Url + `/en/update/${user._id}`, user)
   }
 
   // Function to get admin details
@@ -74,6 +79,6 @@ export class EditUserService {
   }
 
   deleteUser(user: User): Observable<any> {
-    return this.http.post(this.Url + `/${user._id}`, user)
+    return this.http.put(this.Url + `/en/delete/${user._id}`, user)
   }
 }

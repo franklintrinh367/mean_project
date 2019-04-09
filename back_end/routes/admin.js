@@ -9,13 +9,25 @@ const User = require('../models/User')
 // const Admin = require('../models/Admin')
 
 // get all admins
-router.get('/get/all', (req, res) => {
-  User.find({}, (err, admins) => {
+router.get('/en/get/all', (req, res) => {
+  User.find({ activated: true }, (err, admins) => {
     if (err) {
       res.status(400).send({ error: 'Admin not found' })
     }
     if (admins) {
       res.status(200).json(admins)
+    }
+  })
+})
+
+// get all usersby id - For Admin
+router.get('/get/:userId', (req, res) => {
+  User.find({ activated: true }, (err, users) => {
+    if (err) {
+      res.status(400).send({ error: err })
+    }
+    if (users) {
+      res.status(200).json(users)
     }
   })
 })
@@ -109,6 +121,30 @@ router.put('/update/:adminID', (req, res) => {
         .catch(err => res.status(400).json({ error: err }))
     }
   })
+})
+
+router.put('/en/update/:userId', async (req, res) => {
+  await User.findByIdAndUpdate(
+    req.params.userId,
+    req.body,
+    { upsert: true },
+    (err, user) => {
+      if (err) return next(err)
+      res.json(user)
+    }
+  )
+})
+
+router.put('/en/delete/:userId', async (req, res) => {
+  await User.findByIdAndUpdate(
+    req.params.userId,
+    req.body,
+    { upsert: true },
+    (err, user) => {
+      if (err) return next(err)
+      res.json(user)
+    }
+  )
 })
 
 // -> Exports the router
