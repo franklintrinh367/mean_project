@@ -6,7 +6,7 @@ import { Location } from '@angular/common'
 import { ActivatedRoute, Router } from '@angular/router'
 
 /* MATERIAL DESIGN */
-import { MatDialog, MatDialogConfig } from '@angular/material'
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material'
 
 /* COMPONENTS */
 import { ClientRegisterPageComponent } from '../../client-pages/client-register-page/client-register-page.component'
@@ -61,7 +61,8 @@ export class AdminCompanyDetailsComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog,
     private loc: Location,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public dialogRef: MatDialogRef<AdminCompanyDetailsComponent>
   ) {
     this.state = 'out'
   }
@@ -85,5 +86,23 @@ export class AdminCompanyDetailsComponent implements OnInit {
 
   goBack() {
     this.loc.back()
+  }
+
+  // It is implemented but in the backend not yet
+  onSubmit() {
+    //Check if the form is vali
+    if (this.cservice.form.valid) {
+      //subscribe to the function update_Company_details to the backend
+      this.cservice.updateCompanyDetails(this.service.form.value).subscribe()
+    }
+    // Navigate back to the admin company list
+    window.location.assign('admins/admin_companyList')
+  }
+
+  // function to close the dialog after submission
+  onClose() {
+    this.service.form.reset()
+    //this.service.initializeFormGroup()
+    this.dialogRef.close()
   }
 }

@@ -31,7 +31,7 @@ export class EditCompanyService {
     compProvince: new FormControl(''),
     compPhone: new FormControl('', [
       Validators.required,
-      Validators.minLength(8),
+      Validators.minLength(10),
     ]),
     compContact: new FormControl(''),
   })
@@ -41,14 +41,14 @@ export class EditCompanyService {
       _id: new FormControl(null),
       compName: new FormControl('', Validators.required),
       compCRANumber: new FormControl(''),
-      compAddress: new FormControl(''),
-      compCity: new FormControl(''),
-      compCode: new FormControl(''),
-      compProvince: new FormControl(''),
       compPhone: new FormControl('', [
         Validators.required,
-        Validators.minLength(8),
+        Validators.minLength(10),
       ]),
+      compAddress: new FormControl(''),
+      compCity: new FormControl(''),
+      compProvince: new FormControl(''),
+      compCode: new FormControl(''),
       compContact: new FormControl(''),
     })
   }
@@ -58,22 +58,22 @@ export class EditCompanyService {
     _id: string,
     compName: string,
     compCRANumber: string,
+    compPhone: number,
     compAddress: string,
     compCity: Date,
+    compProvince: string,
     compCode: Date,
-    compProvince: number,
-    compPhone: string,
-    compContact: boolean
+    compContact: string
   ) {
     this.form.setValue({
       _id,
       compName,
       compCRANumber,
+      compPhone,
       compAddress,
       compCity,
-      compCode,
-      compPhone,
       compProvince,
+      compCode,
       compContact,
     })
   }
@@ -95,5 +95,10 @@ export class EditCompanyService {
   // not implemented
   deleteCompany(company): Observable<any> {
     return this.http.put(this.Url + `/en/delete/${company._id}`, company)
+  }
+
+  // It is not implemented yet
+  updateCompanyDetails(company): Observable<any> {
+    return this.http.put(this.Url + `/en/update/details/`, company)
   }
 }

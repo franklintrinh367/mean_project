@@ -41,10 +41,7 @@ export class ClientRegisterPageComponent implements OnInit {
       compCRANumber: ['', Validators.required],
       compPhone: [
         '',
-        [
-          Validators.required,
-          Validators.pattern('^\\d{3}[-]?\\d{3}[-]?\\d{4}$'),
-        ],
+        [Validators.required, Validators.pattern('^\\d{3}?\\d{3}?\\d{4}$')],
       ],
     })
 

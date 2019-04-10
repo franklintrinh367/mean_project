@@ -32,7 +32,7 @@ const CompanySchema = new Schema({
     required: true,
   },
   compContact: {
-    type: Number,
+    type: String,
     required: true,
   },
   userId: {
