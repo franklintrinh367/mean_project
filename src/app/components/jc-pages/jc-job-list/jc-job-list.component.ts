@@ -21,30 +21,11 @@ import { slideUp } from '../../shared/animations'
 import { FormControl, Validators, FormGroup } from '@angular/forms'
 import { JCJobDetailsComponent } from '../jc-job-details/jc-job-details.component'
 
-// //Test
-// const JOBS: any[] = [
-//   {
-//     jobId: 1,
-//     compId: 1,
-//     jobLocation: 'AAA',
-//     jobPostDate: '2019-01-25',
-//     jobStatus: 'On going',
-//   },
-//   {
-//     jobId: 2,
-//     compId: 2,
-//     jobLocation: 'BBB',
-//     jobPostDate: '2019-02-25',
-//     jobStatus: 'On going',
-//   },
-//   {
-//     jobId: 3,
-//     compId: 3,
-//     jobLocation: 'CCC',
-//     jobPostDate: '2019-03-25',
-//     jobStatus: 'On going',
-//   },
-// ]
+import { Injectable } from '@angular/core'
+@Injectable()
+export class jobDetails {
+  job: Job
+}
 
 @Component({
   selector: 'app-jc-job-list',
@@ -107,7 +88,7 @@ export class JCJobListComponent implements OnInit {
   constructor(
     private loc: Location,
     private jobService: JobService,
-    private dialog: MatDialog // private router: Router
+    private router: Router
   ) {
     this.displayColumns = [
       'jobCategory',
@@ -155,32 +136,9 @@ export class JCJobListComponent implements OnInit {
     }
   }
 
-  // function to call the add clientAddJobComponent
-  onCreate() {
-    const dialogConfig = new MatDialogConfig()
-    dialogConfig.disableClose = true
-    dialogConfig.autoFocus = true
-    this.dialog.open(JCJobDetailsComponent, dialogConfig)
-  }
-
   //function to open the form with selected row
-  onEdit(row) {
-    this.jobService.populateForm(
-      row._id,
-      row.userId,
-      row.jobCategory,
-      row.jobTitle,
-      row.jobStatus,
-      row.jobPostDate,
-      row.jobEndDate,
-      row.jobPosition,
-      row.jobDescription,
-      row.jobActivate
-    )
-    const dialogConfig = new MatDialogConfig()
-    dialogConfig.disableClose = true
-    dialogConfig.autoFocus = true
-    this.dialog.open(JCJobDetailsComponent, dialogConfig)
+  openDetails(row) {
+    this.router.navigate(['/jcs/jc_job_details', { data: row._id }])
   }
 
   goBack() {

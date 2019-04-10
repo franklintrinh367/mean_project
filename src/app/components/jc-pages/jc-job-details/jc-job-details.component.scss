@@ -1,0 +1,14 @@
+mat-card {
+  height: 100%;
+  max-height: 80vh !important;
+  overflow: auto;
+}
+
+.container > * {
+  width: 100%;
+}
+
+button {
+  margin: 4px;
+  width: 47%;
+}

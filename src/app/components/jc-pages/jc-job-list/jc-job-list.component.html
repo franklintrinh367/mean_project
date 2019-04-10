@@ -52,7 +52,7 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Actions</th>
         <td mat-cell id="btns" *matCellDef="let row">
-          <button mat-icon-button (click)="onEdit(row)">
+          <button mat-icon-button (click)="openDetails(row)">
             <mat-icon>view_headline</mat-icon>
           </button>
         </td>
