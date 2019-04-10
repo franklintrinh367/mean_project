@@ -68,8 +68,8 @@ router.get('/get/all', (req, res) => {
 })
 
 // get Job by ID
-router.get('/getall/:jobId', async (req, res) => {
-  await Job.where('userId')
+router.get('/getall/:jobId', (req, res) => {
+  Job.where('_id')
     .equals(req.params.jobId)
     .where('jobActivate')
     .equals(true)
