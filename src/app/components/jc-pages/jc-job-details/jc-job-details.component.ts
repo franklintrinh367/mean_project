@@ -9,21 +9,30 @@ import { JobService } from '../../../services/jobs/job.service'
   styleUrls: ['./jc-job-details.component.scss'],
 })
 export class JCJobDetailsComponent implements OnInit {
-  job: Job
-
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private jobService: JobService
   ) {}
 
+  job: Job
+
   ngOnInit() {
-    let jobID = this.route.snapshot.paramMap.get('data')
-    console.log(jobID)
-    this.jobService.getUserJob(jobID).subscribe(res => {
-      console.log(res)
+    var jobID = this.route.snapshot.paramMap.get('data')
+    this.getJob(jobID)
+  }
+
+  getJob(id) {
+    this.jobService.getUserJob(id).subscribe(res => {
       this.job = res as Job
     })
-    // console.log(this.job)
+  }
+
+  back() {
+    this.router.navigate(['/jcs/jc_home'])
+  }
+
+  match() {
+    this.router.navigate(['/jcs/jc_candidate_list'])
   }
 }
