@@ -1,30 +1,29 @@
-<!-- <mat-toolbar color="primary">
-  <span class="fill-remaining-space"
-    >{{ job.jobTitle }} Details</span
+<mat-toolbar color="primary">
+  <span class="fill-remaining-space" *ngFor="let data of job">
+    {{ data.jobTitle }} Details</span
   >
 </mat-toolbar>
+<br />
 <div fxLayout="row wrap" fxLayoutAlign="center center">
-  <mat-card>
+  <mat-card class="left">
     <mat-card-content>
       <div class="container">
-        <p>Username: {{ user.username }}</p>
-        <p>Profession: {{ user.details.canActualJob }}</p>
-        <p>School: {{ user.details.canEducation }}</p>
-        <p>
-          Address: <br />{{ user.details.canAddress }} <br />{{
-            user.details.canCity
-          }}, {{ user.details.canProvince }} <br />{{
-            user.details.canPostalCode
-          }}
+        <p *ngFor="let data of job"><b>Status:</b> {{ data.jobStatus }}</p>
+        <p *ngFor="let data of job"><b>Positions:</b> {{ data.jobPosition }}</p>
+        <p *ngFor="let data of job">
+          <b>Closing Date:</b> {{ data.jobEndDate }}
         </p>
-        <p>Link: {{ user.details.canLink }}</p>
+        <p *ngFor="let data of job">
+          <b>Description:</b><br />{{ data.jobDescription }}
+        </p>
       </div>
 
       <button
         mat-flat-button
         class="mat-elevation-z8"
         color="accent"
-        (click)="match()"
+        *ngFor="let data of job"
+        (click)="match(data._id)"
       >
         Match
       </button>
@@ -32,10 +31,17 @@
         mat-flat-button
         class="mat-elevation-z8"
         color="accent"
-        (click)="cancel()"
+        (click)="back()"
       >
-        Cancel
+        Back
       </button>
     </mat-card-content>
   </mat-card>
-</div> -->
+  <mat-card class="right">
+    <div class="container">
+      <p class="match"><b>Matches:</b></p>
+      <ul></ul>
+    </div>
+  </mat-card>
+</div>
+<br />
