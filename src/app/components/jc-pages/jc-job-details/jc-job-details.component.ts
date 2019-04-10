@@ -32,7 +32,8 @@ export class JCJobDetailsComponent implements OnInit {
     this.router.navigate(['/jcs/jc_home'])
   }
 
-  match() {
-    this.router.navigate(['/jcs/jc_candidate_list'])
+  match(id) {
+    console.log(id)
+    this.router.navigate(['/jcs/jc_candidate_list', { data: id }])
   }
 }

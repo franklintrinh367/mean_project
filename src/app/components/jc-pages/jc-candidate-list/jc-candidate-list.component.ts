@@ -110,7 +110,7 @@ export class JCCandidateListComponent implements OnInit {
     this.dialog.open(JCCandidateDetailsComponent, {
       autoFocus: false,
       scrollStrategy: this.overlay.scrollStrategies.reposition(),
-      data: { user: row },
+      data: { user: row, jobID: this.route.snapshot.paramMap.get('data') },
     })
   }
 }

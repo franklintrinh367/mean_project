@@ -1,5 +1,6 @@
 export class Job {
   _id: string
+  candidatesMatch: [string]
   userId: string
   jobCategories: string
   jobTitle: string
