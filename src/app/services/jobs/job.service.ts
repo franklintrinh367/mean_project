@@ -70,6 +70,11 @@ export class JobService {
     return this.http.get(this.Url + '/getall/' + id)
   }
 
+  // Get Job for the logged user
+  getMyJob(id) {
+    return this.http.get(this.Url + '/getall/job/' + id)
+  }
+
   // Populate form is when you pass the form to modify
   populateForm(
     _id: string,
