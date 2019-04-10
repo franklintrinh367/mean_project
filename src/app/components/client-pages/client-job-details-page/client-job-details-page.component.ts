@@ -80,7 +80,7 @@ export class ClientJobDetailsPageComponent implements OnInit {
   // Function to get Job only from the User Who login
   getMyJob() {
     let token = this.authService.getTokenDetails('auth-token')
-    this.service.getUserJob(token.id).subscribe(res => {
+    this.service.getMyJob(token.id).subscribe(res => {
       this.list = res as Job[]
       this.dataSource = new MatTableDataSource(this.list)
       this.dataSource.sort = this.sort

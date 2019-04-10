@@ -82,6 +82,22 @@ router.get('/getall/:jobId', (req, res) => {
     })
 })
 
+// Get All job for the logged user
+// get Job by ID
+router.get('/getall/job/:jobId', (req, res) => {
+  Job.where('userId')
+    .equals(req.params.jobId)
+    .where('jobActivate')
+    .equals(true)
+    .exec((err, docs) => {
+      if (!err) {
+        res.send(docs)
+      } else {
+        console.log('Error in Retrieving:' + JSON.stringify(err, undefined, 2))
+      }
+    })
+})
+
 // delete Job
 router.delete('/delete/:jobID', (req, res) => {
   // get jobID from url
