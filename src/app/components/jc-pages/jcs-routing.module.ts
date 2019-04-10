@@ -7,7 +7,7 @@ import { JCCandidateDetailsComponent } from 'src/app/components/jc-pages/jc-cand
 
 const routes: Routes = [
   { path: 'jc_home', component: JCJobListComponent },
-  { path: 'jc_company_details', component: JCJobDetailsComponent },
+  { path: 'jc_job_details', component: JCJobDetailsComponent },
   { path: 'jc_candidate_list', component: JCCandidateListComponent },
   { path: 'jc_candidate_details', component: JCCandidateDetailsComponent },
 ]
