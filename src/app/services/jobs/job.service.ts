@@ -7,6 +7,7 @@ import { of } from 'rxjs/observable/of'
 
 import 'rxjs/add/operator/map'
 import 'rxjs/operator/toPromise'
+import { environment } from '../../../environments/environment'
 
 import { Job } from '../../models/clients/jobs'
 
@@ -17,7 +18,8 @@ export class JobService {
   // create Form group of Client
 
   // URL tor the job
-  readonly Url = 'http://localhost:3000/jobs'
+  // readonly Url = 'http://localhost:3000/jobs'
+  readonly Url = `${environment.url}/jobs`
 
   form: FormGroup = new FormGroup({
     _id: new FormControl(null),

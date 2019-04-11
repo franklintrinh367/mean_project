@@ -4,12 +4,13 @@ import { Observable } from 'rxjs'
 import { User } from 'src/models/users'
 import { debounceTime, map } from 'rxjs/operators'
 import { Feedback } from '../../models/others/feedback'
-
+import { environment } from '../../../environments/environment'
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private baseUrl = 'http://localhost:3000/user'
+  // private baseUrl = 'http://localhost:3000/user'
+  private baseUrl = `${environment.url}/user`
 
   constructor(private http: HttpClient) {}
 

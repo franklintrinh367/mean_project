@@ -3,12 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "npm run dev",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "e2e": "ng e2e",
     "server": "nodemon server.js",
     "dev": "concurrently \"npm run server\" \"ng serve --open\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && ng build --prod",
     "lint": "eslint --debug back_end/",
     "lint:write": "eslint --debug back_end/ --fix",
     "prettier": "prettier --write back_end/**/*.js"

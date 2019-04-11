@@ -39,6 +39,18 @@ app.use('/candidate', candidate)
 app.use('/company', company)
 app.use('/jobs', job)
 app.use('/admin', admin)
+
+// Serve static assets if in production
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static(__dirname + '/dist/MEAN'))
+
+  // Set default file for all routes
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'dist/MEAN/index.html'))
+  })
+}
+
 // Port Number
 const port = 3000 || process.env.PORT
 

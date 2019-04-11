@@ -12,6 +12,7 @@ export const environment = {
     storageBucket: 'jc-sonsulting.appspot.com',
     messagingSenderId: '447841530838',
   },
+  url: 'http://localhost:3000',
 }
 
 /*
