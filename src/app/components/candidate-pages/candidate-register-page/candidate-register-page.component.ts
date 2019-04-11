@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Candidate } from '../../../models/candidates/candidate'
 import { AuthenticateService } from 'src/app/services/authenticate.service'
-import { Router } from '@angular/router'
 import { CandidateService } from '../candidate-services/candidate.service'
 import { slideUp } from '../../shared/animations'
 
@@ -23,8 +22,7 @@ export class CandidateRegisterPageComponent implements OnInit {
   constructor(
     private builder: FormBuilder,
     private candidateService: CandidateService,
-    private auth: AuthenticateService,
-    private router: Router
+    private auth: AuthenticateService
   ) {}
 
   ngOnInit() {

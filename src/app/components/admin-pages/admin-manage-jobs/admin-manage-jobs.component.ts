@@ -1,8 +1,6 @@
 /* OTHERS */
 import { Component, OnInit, ViewChild } from '@angular/core'
 import { Location } from '@angular/common'
-import { slideUp } from '../../shared/animations'
-import { FormControl, Validators, FormGroup } from '@angular/forms'
 
 /* MODEL */
 import { Job } from '../../../models/clients/jobs'
@@ -12,9 +10,6 @@ import { Client } from '../../../models/clients/client'
 import { JobService } from '../../../services/jobs/job.service'
 import { EditCompanyService } from '../admin-services/edit-company.service'
 
-/* ROUTER */
-import { Router } from '@angular/router'
-
 /* MATERIAL DESIGN */
 import {
   MatTableDataSource,
@@ -23,10 +18,7 @@ import {
   MatDialogConfig,
   MatDialog,
 } from '@angular/material'
-
-/* COMPONENTS */
-import { ClientNewJobPageComponent } from '../../client-pages/client-new-job-page/client-new-job-page.component'
-
+import { slideUp } from '../../shared/animations'
 @Component({
   selector: 'app-admin-manage-jobs',
   templateUrl: './admin-manage-jobs.component.html',
@@ -41,7 +33,7 @@ export class AdminManageJobsComponent implements OnInit {
 
   /* PARAMETERS */
   state: String
-  private token: String
+  token: String
   public job: Job
   searchKey: string
   list: Job[]
@@ -51,12 +43,7 @@ export class AdminManageJobsComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
 
-  constructor(
-    private loc: Location,
-    private jobService: JobService,
-    private cservice: EditCompanyService,
-    private dialog: MatDialog // private router: Router
-  ) {
+  constructor(private loc: Location, private jobService: JobService) {
     this.displayColumns = [
       '_id',
       // 'compName',

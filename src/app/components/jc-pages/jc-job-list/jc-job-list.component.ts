@@ -9,18 +9,10 @@ import { Job } from '../../../models/clients/jobs'
 import { JobService } from '../../../services/jobs/job.service'
 
 /* MATERIAL DESIGN */
-import {
-  MatTableDataSource,
-  MatSort,
-  MatPaginator,
-  MatDialogConfig,
-  MatDialog,
-} from '@angular/material'
+import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material'
 import { Location } from '@angular/common'
 import { slideUp } from '../../shared/animations'
 import { FormControl, Validators, FormGroup } from '@angular/forms'
-import { JCJobDetailsComponent } from '../jc-job-details/jc-job-details.component'
-
 import { Injectable } from '@angular/core'
 @Injectable()
 export class jobDetails {
@@ -37,7 +29,7 @@ export class JCJobListComponent implements OnInit {
   /*  PARAMETERS */
   displayColumns: string[]
   state: String
-  private token: String
+  token: String
   public job: Job
   searchKey: string
 

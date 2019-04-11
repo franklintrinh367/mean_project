@@ -24,7 +24,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 export class ClientJobDetailsPageComponent implements OnInit {
   displayColumns: string[]
   state: String
-  private token: String
+  token: String
   public job: Job
   // declare the service, auth and dialog
   constructor(

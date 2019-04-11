@@ -13,13 +13,13 @@ import { isEmpty } from 'lodash'
   animations: [slideUp()],
 })
 export class ProfileComponent implements OnInit {
-  private token: any
-  private user: Object
+  token: any
+  user: Object
   state = 'out'
 
   // avatar file
-  private avatarUrl: any
-  private avatarDefault = 'photos/profile.jpg'
+  avatarUrl: any
+  avatarDefault = 'photos/profile.jpg'
 
   isCandidate: boolean
   //data sample

@@ -9,7 +9,7 @@ import { User } from 'src/models/users'
   styleUrls: ['./verify-page.component.scss'],
 })
 export class VerifyPageComponent implements OnInit {
-  private user: User
+  user: User
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,

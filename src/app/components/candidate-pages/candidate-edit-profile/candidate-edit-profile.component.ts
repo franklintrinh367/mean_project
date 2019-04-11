@@ -11,12 +11,12 @@ import { AngularFireStorage } from '@angular/fire/storage'
   styleUrls: ['./candidate-edit-profile.component.scss'],
 })
 export class CandidateEditProfileComponent implements OnInit {
-  private candidateEditForm: FormGroup
+  candidateEditForm: FormGroup
   candidate: Candidate
-  private user: any
+  user: any
 
-  private avatarFile: any
-  private avatarPath: any
+  avatarFile: any
+  avatarPath: any
 
   constructor(
     private builder: FormBuilder,

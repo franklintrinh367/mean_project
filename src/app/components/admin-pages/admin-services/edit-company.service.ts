@@ -9,7 +9,6 @@ import 'rxjs/operator/toPromise'
 
 /* MODELS */
 import { Client } from '../../../models/clients/client'
-import { User } from 'src/models/users'
 
 @Injectable({
   providedIn: 'root',

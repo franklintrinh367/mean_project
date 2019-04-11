@@ -2,11 +2,8 @@ import { Injectable } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { HttpClient } from '@angular/common/http'
 
-import { Observable } from 'rxjs/Observable'
-
 import 'rxjs/add/operator/map'
 import 'rxjs/operator/toPromise'
-import { User } from 'src/models/users'
 
 @Injectable({
   providedIn: 'root',

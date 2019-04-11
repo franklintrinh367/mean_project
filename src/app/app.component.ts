@@ -26,10 +26,7 @@ export class AppComponent {
     }
   }
 
-  constructor(
-    private storage: AngularFireStorage,
-    private sessionTimeout: SessionTimeoutService
-  ) {}
+  constructor(private sessionTimeout: SessionTimeoutService) {}
 
   ngOnInit() {
     this.sessionTimeout.startTimer()

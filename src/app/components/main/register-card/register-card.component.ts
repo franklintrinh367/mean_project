@@ -20,8 +20,8 @@ import { User } from 'src/models/users'
   styleUrls: ['./register-card.component.scss'],
 })
 export class RegisterCardComponent implements OnInit {
-  private registerForm: FormGroup
-  private modes = ['Candidate', 'Company']
+  registerForm: FormGroup
+  modes = ['Candidate', 'Company']
 
   constructor(
     private builder: FormBuilder,

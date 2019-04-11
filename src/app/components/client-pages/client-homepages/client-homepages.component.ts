@@ -9,9 +9,9 @@ import { ClientService } from '../client-services/client.service'
   styleUrls: ['./client-homepages.component.scss'],
 })
 export class ClientHomepagesComponent implements OnInit {
-  private token: String
+  token: String
   state: String
-  private disabled
+  disabled
 
   constructor(
     private service: ClientService,

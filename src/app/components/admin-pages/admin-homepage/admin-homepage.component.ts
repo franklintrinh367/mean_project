@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 
-/*MODELS */
-import { User } from '../../../../models/users'
-
 /* SERVICES */
 import { LogoutService } from '../../../services/logout.service'
 import { UserService } from 'src/app/services/main/user.service'

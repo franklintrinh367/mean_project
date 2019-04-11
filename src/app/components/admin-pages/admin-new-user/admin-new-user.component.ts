@@ -8,11 +8,7 @@ import { existingEmailValidator } from '../../../validators/main/existingEmailVa
 
 /* MODELS */
 import { Roles } from '../../../models/admin/role'
-import { User } from 'src/models/users'
 //import { Admin } from '../../../models/admin/admin'
-
-/* MATERIAL DESIGN */
-import { MatDialogRef } from '@angular/material'
 
 /* FORMS */
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'

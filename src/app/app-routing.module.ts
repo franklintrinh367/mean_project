@@ -13,10 +13,7 @@ import { VerifyPageComponent } from './components/main/verify-page/verify-page.c
 import { ResetPasswordComponent } from './components/main/reset-password/reset-password.component'
 import { ResetPasswordAuthService } from './services/reset-password-auth.service'
 import { ForgotPasswordComponent } from './components/main/forgot-password/forgot-password.component'
-import { TestComponent } from './test/test.component'
 import { JobListComponent } from './components/main/job-list/job-list.component'
-import { SettingComponent } from './components/main/setting/setting.component'
-
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   {
@@ -74,9 +71,6 @@ const routes: Routes = [
     loadChildren: './components/jc-pages/jcs.module#JCsModule',
     canActivate: [UserAuthService],
   },
-
-  //TEST
-  { path: 'test', component: TestComponent },
 
   // Others
   { path: '', redirectTo: '/home', pathMatch: 'full' },

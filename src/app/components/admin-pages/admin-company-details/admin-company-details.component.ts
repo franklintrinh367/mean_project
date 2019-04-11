@@ -1,16 +1,12 @@
 /* OTHERS */
 import { Component, OnInit } from '@angular/core'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { FormBuilder, FormGroup } from '@angular/forms'
 import { slideUp } from '../../shared/animations'
 import { Location } from '@angular/common'
-import { ActivatedRoute, Router } from '@angular/router'
+import { Router } from '@angular/router'
 
 /* MATERIAL DESIGN */
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material'
-
-/* COMPONENTS */
-import { ClientRegisterPageComponent } from '../../client-pages/client-register-page/client-register-page.component'
-
+import { MatDialog, MatDialogRef } from '@angular/material'
 /* MODELS */
 import { Client } from '../../../models/clients/client'
 
@@ -50,7 +46,7 @@ export class AdminCompanyDetailsComponent implements OnInit {
   ]
 
   /*PARAMETERS */
-  private editCompanyForm: FormGroup
+  editCompanyForm: FormGroup
   public company: Client
   state: String
   list: Client[]
@@ -58,10 +54,7 @@ export class AdminCompanyDetailsComponent implements OnInit {
   constructor(
     private service: ClientService,
     private cservice: EditCompanyService,
-    private router: Router,
-    private dialog: MatDialog,
     private loc: Location,
-    private fb: FormBuilder,
     public dialogRef: MatDialogRef<AdminCompanyDetailsComponent>
   ) {
     this.state = 'out'

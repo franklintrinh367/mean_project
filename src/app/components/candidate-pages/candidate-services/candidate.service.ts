@@ -13,7 +13,7 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class CandidateService {
-  private baseUrl: String = 'http://localhost:3000/candidate/'
+  baseUrl: String = 'http://localhost:3000/candidate/'
   constructor(private http: HttpClient) {}
 
   register(candidate: Candidate): Observable<Candidate> {

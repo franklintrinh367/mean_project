@@ -1,10 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { UserService } from '../../../services/main/user.service'
 import { Router } from '@angular/router'
 import { MatDialogRef } from '@angular/material'
 import { User } from 'src/models/users'
-import { Job } from '../../../models/clients/jobs'
-import { JobService } from '../../../services/jobs/job.service'
 
 import { MAT_DIALOG_DATA } from '@angular/material'
 import { Inject } from '@angular/core'
@@ -20,7 +18,6 @@ export class JCCandidateDetailsComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) private data,
-    private userService: UserService,
     private router: Router,
     private dialogRef: MatDialogRef<JCCandidateDetailsComponent>
   ) {
@@ -31,8 +28,7 @@ export class JCCandidateDetailsComponent implements OnInit {
   ngOnInit() {}
 
   // Logs (later will add to database) ID match for Job to use.
-  public match(id) {
-    console.log(this.user._id)
+  public match() {
     this.router.navigate(['/jcs/jc_job_details', { data: this.jobID }])
     this.dialogRef.close()
   }

@@ -2,7 +2,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core'
 import { Location } from '@angular/common'
 import { slideUp } from '../../shared/animations'
-import { Router, ActivatedRoute } from '@angular/router'
 import { Subscription } from 'rxjs'
 
 /* MODELS */
@@ -11,7 +10,6 @@ import { Client } from '../../../models/clients/client'
 /* SERVICE */
 import { EditCompanyService } from '../admin-services/edit-company.service'
 import { ClientService } from '../../client-pages/client-services/client.service'
-import { EditUserService } from '../admin-services/edit-user.service'
 
 /* MATERIAL DESIGN */
 import {
@@ -24,7 +22,6 @@ import {
 
 /* COMPONENTS */
 import { AdminCompanyDetailsComponent } from '../../admin-pages/admin-company-details/admin-company-details.component'
-import { ClientRegisterPageComponent } from '../../client-pages/client-register-page/client-register-page.component'
 @Component({
   selector: 'app-admin-company-list',
   templateUrl: './admin-company-list.component.html',
@@ -38,7 +35,7 @@ export class AdminCompanyListComponent implements OnInit {
   searchKey: string
   subscript: Subscription
   public company: Client
-  private token: String
+  token: String
 
   /* TABLE ELEMENTS  */
   dataSource: MatTableDataSource<any>
@@ -50,7 +47,6 @@ export class AdminCompanyListComponent implements OnInit {
 
   constructor(
     private service: EditCompanyService,
-    private cservice: ClientService,
     private dialog: MatDialog,
     private location: Location
   ) {

@@ -1,12 +1,10 @@
 /* CORE */
 import { Component, OnInit, ViewChild } from '@angular/core'
 import { Location } from '@angular/common'
-import { slideUp } from '../../shared/animations'
 import { ActivatedRoute, Router } from '@angular/router'
 
 /*MODELS */
 import { User } from '../../../../models/users'
-import { Admin } from '../../../models/admin/admin'
 
 /* SERVICE */
 import { AuthenticateService } from 'src/app/services/authenticate.service'
@@ -14,13 +12,11 @@ import { AuthenticateService } from 'src/app/services/authenticate.service'
 /* MATERIAL DESIGN */
 import {
   MatDialog,
-  MatDialogConfig,
   MatTableDataSource,
   MatSort,
   MatPaginator,
 } from '@angular/material'
 import { JCService } from '../jc-services/jc.service'
-import { isEmpty } from 'rxjs/operators'
 import { JCCandidateDetailsComponent } from '../jc-candidate-details/jc-candidate-details.component'
 
 import { Overlay } from '@angular/cdk/overlay'
@@ -32,7 +28,7 @@ import { Overlay } from '@angular/cdk/overlay'
 })
 export class JCCandidateListComponent implements OnInit {
   state: String
-  private token: String
+  token: String
   list: User[]
   searchKey: string
 
@@ -47,9 +43,7 @@ export class JCCandidateListComponent implements OnInit {
   constructor(
     private viewService: JCService,
     private dialog: MatDialog,
-    private router: Router,
     private route: ActivatedRoute,
-    private authService: AuthenticateService,
     private location: Location,
     private overlay: Overlay
   ) {

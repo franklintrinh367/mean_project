@@ -1,4 +1,4 @@
-import { Injectable, OnInit, HostListener } from '@angular/core'
+import { Injectable, OnInit } from '@angular/core'
 import { Subscription, timer } from 'rxjs'
 import { AuthenticateService } from './authenticate.service'
 
@@ -6,8 +6,8 @@ import { AuthenticateService } from './authenticate.service'
   providedIn: 'root',
 })
 export class SessionTimeoutService implements OnInit {
-  private subs: Subscription
-  private isIdle: boolean
+  subs: Subscription
+  isIdle: boolean
 
   constructor(private auth: AuthenticateService) {}
 

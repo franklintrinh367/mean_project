@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { MatDialog } from '@angular/material'
 import { LoginComponent } from '../login/login.component'
 import { RegisterCardComponent } from '../register-card/register-card.component'
@@ -14,13 +14,12 @@ import { Overlay } from '@angular/cdk/overlay'
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  private token: String
+  token: String
   constructor(
     private dialog: MatDialog,
     private authService: AuthenticateService,
     private router: Router,
-    private overlay: Overlay,
-    private viewRef: ViewContainerRef
+    private overlay: Overlay
   ) {}
 
   ngOnInit() {

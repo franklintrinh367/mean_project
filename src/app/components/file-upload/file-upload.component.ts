@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import {
   AngularFireStorage,
   AngularFireUploadTask,
@@ -6,8 +6,6 @@ import {
 import { Observable } from 'rxjs/Observable'
 import { AngularFirestore } from '@angular/fire/firestore'
 import { tap, finalize } from 'rxjs/operators'
-import { AuthenticateService } from 'src/app/services/authenticate.service'
-
 @Component({
   selector: 'app-file-upload',
   templateUrl: './file-upload.component.html',

@@ -7,9 +7,9 @@ import { Router } from '@angular/router'
 export class AuthenticateService {
   private token: String
 
-  constructor(private router: Router) {}
+  constructor() {}
   // Need
-  saveToken(token: string, name: string, optional?: string): void {
+  saveToken(token: string, name: string): void {
     localStorage.setItem(name, token)
     this.token = token.toString()
   }

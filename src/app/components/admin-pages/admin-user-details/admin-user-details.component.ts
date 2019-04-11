@@ -1,17 +1,14 @@
 /* OTHERS */
-import { Component, OnInit, ViewChild } from '@angular/core'
-import { Router } from '@angular/router'
+import { Component, OnInit } from '@angular/core'
 import { slideUp } from '../../shared/animations'
 /* SERVICE */
 
 /* MODELS */
 import { User } from '../../../../models/users'
-import { Admin } from '../../../models/admin/admin'
 import { Roles } from '../../../models/admin/role'
-import { Activated } from '../../../models/admin/activated'
 
 /* FORMS */
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { FormBuilder, FormGroup } from '@angular/forms'
 
 /* MATERIAL DESIGN */
 import { MatDialogRef } from '@angular/material'
@@ -33,11 +30,7 @@ export class AdminUserDetailsComponent implements OnInit {
     { value: 'admin', viewValue: 'Admin' },
     { value: 'JC', viewValue: 'JC Consulting' },
   ]
-  // act: Activated[] = [
-  //   { value: 'isActive', viewValue: 'Activated' },
-  //   { value: 'isNotActive', viewValue: 'Non-Activated' },
-  // ]
-  private edituserForm: FormGroup
+  edituserForm: FormGroup
   user: User
   state: String
   _id: string
@@ -47,7 +40,6 @@ export class AdminUserDetailsComponent implements OnInit {
   constructor(
     private service: EditUserService,
     private builder: FormBuilder,
-    private router: Router,
     public dialogRef: MatDialogRef<AdminUserDetailsComponent>
   ) {}
 
