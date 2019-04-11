@@ -23,7 +23,7 @@ export function slideUp() {
   ])
 }
 
-export const slideDown = () => {
+export function slideDown() {
   return trigger('slideDown', [
     state(
       'out',
@@ -46,7 +46,7 @@ export const slideDown = () => {
   ])
 }
 
-export const slideRight = () => {
+export function slideRight() {
   return trigger('slideRight', [
     state(
       'out',
@@ -68,7 +68,7 @@ export const slideRight = () => {
   ])
 }
 
-export const slideDownChunk = () => {
+export function slideDownChunk() {
   return trigger('chunkDown', [
     state(
       'in',
