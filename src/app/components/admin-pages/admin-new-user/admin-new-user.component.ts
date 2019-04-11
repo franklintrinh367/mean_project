@@ -3,9 +3,6 @@ import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { slideUp } from '../../shared/animations'
 import { Location } from '@angular/common'
-import { existingUserValidator } from 'src/app/validators/main/existingUserValidator'
-import { existingEmailValidator } from '../../../validators/main/existingEmailValidator'
-
 /* MODELS */
 import { Roles } from '../../../models/admin/role'
 //import { Admin } from '../../../models/admin/admin'
@@ -15,8 +12,6 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 
 /* SERVICES */
 import { EditUserService } from '../admin-services/edit-user.service'
-import { UserService } from '../../../services/main/user.service'
-
 @Component({
   selector: 'app-admin-new-user',
   templateUrl: './admin-new-user.component.html',
@@ -44,11 +39,6 @@ export class AdminNewUserComponent implements OnInit {
     role: new FormControl(''),
   })
 
-  // adminForm = new FormGroup({
-  //   userFirstName: new FormControl(''),
-  //   userLastName: new FormControl(''),
-  // })
-
   buildForm() {
     return this.fb.group({
       username: [
@@ -59,7 +49,6 @@ export class AdminNewUserComponent implements OnInit {
           Validators.pattern('[\\w]+'),
           Validators.maxLength(25),
         ],
-        [existingUserValidator(this.userService)],
       ],
       email: [
         '',
@@ -69,7 +58,6 @@ export class AdminNewUserComponent implements OnInit {
           ),
           Validators.required,
         ],
-        [existingEmailValidator(this.userService)],
       ],
       password: ['', Validators.required],
       // userFirstName: [''],
@@ -80,7 +68,6 @@ export class AdminNewUserComponent implements OnInit {
   }
   constructor(
     private service: EditUserService,
-    private userService: UserService,
     private location: Location,
     private router: Router,
     private fb: FormBuilder // public dialogRef: MatDialogRef<AdminNewUserComponent>

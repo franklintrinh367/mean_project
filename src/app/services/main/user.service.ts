@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { User } from 'src/models/users'
-import { debounceTime, map } from 'rxjs/operators'
 import { Feedback } from '../../models/others/feedback'
 import { environment } from '../../../environments/environment'
 @Injectable({
@@ -10,7 +9,7 @@ import { environment } from '../../../environments/environment'
 })
 export class UserService {
   // private baseUrl = 'http://localhost:3000/user'
-  private baseUrl = `${environment.url}/user`
+  baseUrl = `${environment.url}/user`
 
   constructor(private http: HttpClient) {}
 

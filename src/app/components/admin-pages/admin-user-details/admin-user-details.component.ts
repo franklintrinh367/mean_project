@@ -34,11 +34,11 @@ export class AdminUserDetailsComponent implements OnInit {
   user: User
   state: String
   _id: string
+  service: EditUserService
 
   /* FORM GROUP */
   adminEditUser: FormGroup
   constructor(
-    private service: EditUserService,
     private builder: FormBuilder,
     public dialogRef: MatDialogRef<AdminUserDetailsComponent>
   ) {}
