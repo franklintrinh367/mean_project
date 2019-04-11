@@ -13,8 +13,6 @@ import { AdminUserListComponent } from 'src/app/components/admin-pages/admin-use
 import { MaterialModule } from 'src/app/module/material/material.module'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 import { EditUserService } from './admin-services/edit-user.service'
-import { ClientNewJobPageComponent } from '../client-pages/client-new-job-page/client-new-job-page.component'
-
 @NgModule({
   declarations: [
     AdminHomepageComponent,
@@ -25,7 +23,6 @@ import { ClientNewJobPageComponent } from '../client-pages/client-new-job-page/c
     AdminUserDetailsComponent,
     AdminJobsDetailsComponent,
     AdminCompanyDetailsComponent,
-    ClientNewJobPageComponent,
     AdminCompanyDetailsComponent,
   ],
   imports: [
@@ -36,6 +33,6 @@ import { ClientNewJobPageComponent } from '../client-pages/client-new-job-page/c
     AdminsRoutingModule,
   ],
   providers: [EditUserService],
-  entryComponents: [ClientNewJobPageComponent, AdminCompanyDetailsComponent],
+  entryComponents: [AdminCompanyDetailsComponent],
 })
 export class AdminsModule {}
