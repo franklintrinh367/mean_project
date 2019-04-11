@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
         result => {
           if (result) {
             let token = this.auth.getDirectTokenDetails(result['token'])
-            console.log(token)
             // check if account has been activated
             if (!token.activated) {
               window.confirm(

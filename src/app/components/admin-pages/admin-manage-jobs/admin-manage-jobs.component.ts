@@ -110,7 +110,7 @@ export class AdminManageJobsComponent implements OnInit {
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true
-    this.dialog.open(ClientNewJobPageComponent, dialogConfig)
+    // this.dialog.open(ClientNewJobPageComponent, dialogConfig)
   }
 
   //function to open the form with selected row
@@ -130,7 +130,7 @@ export class AdminManageJobsComponent implements OnInit {
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true
-    this.dialog.open(ClientNewJobPageComponent, dialogConfig)
+    // this.dialog.open(ClientNewJobPageComponent, dialogConfig)
   }
 
   // This set the row Activate to false

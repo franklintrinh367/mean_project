@@ -45,7 +45,6 @@ import { environment } from '../environments/environment'
 
 import { JobListComponent } from './components/main/job-list/job-list.component'
 import { SettingModule } from './components/main/setting/setting.module'
-
 @NgModule({
   declarations: [
     AppComponent,
